@@ -20,7 +20,7 @@ The game repository's [`AGENTS.md`](https://github.com/lakam99/voxel-godot/blob/
 
 ## Initial import
 
-The first collection was reorganized from game repository commit [`cd2ac5e9ce2bdcd35280819c64ba77deede9430d`](https://github.com/lakam99/voxel-godot/tree/codex/consolidated-master-pr-20260928). `catalog/source-index.csv` records each imported document's original path, destination, source commit, and source hash. The original snapshot remains in the game repository's Git history; this repository provides a navigable, categorized copy.
+The first collection was reorganized from game repository commit [`cd2ac5e9ce2bdcd35280819c64ba77deede9430d`](https://github.com/lakam99/voxel-godot/tree/cd2ac5e9ce2bdcd35280819c64ba77deede9430d). `catalog/source-index.csv` records each imported document's original path, destination, source commit, and source hash. The original snapshot remains in the game repository's Git history; this repository provides a navigable, categorized copy. The reorganized game-repository documentation is at commit [`997a585d155a0534d3fe3847fae70bc769e3e325`](https://github.com/lakam99/voxel-godot/tree/997a585d155a0534d3fe3847fae70bc769e3e325).
 
 ## Contributing
 
