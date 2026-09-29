@@ -14,6 +14,16 @@ The natural terrain and cave interiors are now sampled through `WorldGenerationS
 
 The static gate is now expected to pass. If it fails, treat that as a regression toward the banned architecture unless the finding is a documented false positive and the gate is updated with a stricter rule.
 
+## Native Cave Replacement Checkpoint — 2026-09-29
+
+The native migration target is a behavior port of `scripts/world/ProceduralCaveField.gd`, not compatibility with the superseded native cave-density behavior. The old native cave shape is not a preservation requirement and must not return as a fallback or parallel authority. The deep noise chambers/passages remain intentional because they are part of the scripted field itself.
+
+At game-repository HEAD `dc106fa0fb0067d3d7b6e23d3b3ddd3531d393b6`, the working tree contains uncommitted native cave-port work. A fresh Windows debug build completed; focused native tests passed (5 cave-field, 1 effective-terrain recipe integration, 15 natural-terrain); and the native/GDScript adapter contract passed at `artifacts/native-world-backend/native-cave-source-2026-09-29T21-54-11-005Z-6a5974676a/report.json`. That report explicitly says it does not prove live collision publication, traversal, or visual mesh continuity, and records `productionCutover: false`.
+
+The existing headed GDScript walkthrough report is `artifacts/caves/walkthrough-2026-09-29T21-33-55-835Z-d5a6594620/report.json`: route completion and supported terrain arrivals passed, but the Godot process crashed during teardown, so the wrapper run is not wholly green. A later capture-only diagnostic run at `artifacts/caves/walkthrough-2026-09-29T21-57-09-902Z-6f9fd9cc09/report.json` captured daylight entrance and panned branch views. The independent visual critic found no obvious roof leak; the previously ambiguous bright slivers did not persist as fixed openings when the view panned. These captures are visual diagnostics, not live collision or gameplay acceptance.
+
+The next acceptance step is native production integration followed by headed visual checks on the native-generated terrain, including supported cave-floor traversal, navigation occupancy/publication, and digging with durable save/reload behavior. Do not call the cave replacement complete while the native adapter is shadow-only.
+
 ## Hard Regression Rule
 
 No future cave implementation work should continue if it tunes a cave mouth, portal, arch, rim, cap, facade, mound patch, hidden quad, or shell as a separate feature. Fixes must go through the authoritative `(x,y,z)` volume field, biome rules, or volume surface extraction.
