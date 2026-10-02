@@ -1,8 +1,10 @@
 # Visible-World Readiness Plan
 
-**Status:** proposed; implementation and acceptance remain open  
+**Status:** implementation in progress; live acceptance remains open
 **Recorded:** 2026-10-01  
 **Game baseline inspected:** `voxel-godot` master at `3d957f24`
+
+**Implementation record:** [Visible-world readiness implementation, 2026-10-01](visible-world-readiness-implementation-2026-10-01.md)
 
 ## Goal
 
