@@ -10,6 +10,8 @@
 
 Make visible-world completeness a streaming contract, not a promise to load a few nearby forests sooner. The player should receive control only after the immediate playable world is present. Content farther away may be cheaper, but anything inside the configured view must already have a coherent visual representation. During travel, keep movement responsive and promote detail before content enters the near field.
 
+The initial preload is centered on the selected spawn position and covers the configured extent across x, y and z, including directions behind the camera. As the player moves, prepare the next surrounding volume in the background and keep the accepted installed coverage available until its replacement is ready. The preload extent uses the game's existing configured view distance unless an explicit product setting changes it.
+
 Keep the existing final view distance and deterministic content/material choices. Do not hide pop-in by increasing draw distance, gating ordinary movement on distant full detail, or adding visual-only substitutes that claim collision, navigation, or interaction readiness.
 
 ## Baseline findings
