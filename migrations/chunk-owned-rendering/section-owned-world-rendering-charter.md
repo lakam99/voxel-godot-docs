@@ -1100,3 +1100,26 @@ is being added for ordinary structures, Citadel packet groups and partial
 ecology detail; tree geometry, full natural-prop census, translucent/fluid
 layers, production demand orchestration, normal-world candidate installation,
 live traversal and performance remain open.
+
+### Implementation evidence update — 2026-10-04
+
+The charter is committed at documentation revision
+`be2005b81f6baa2c1f54da2402a27287241c1dec`. Game implementation remains on
+`codex/chunk-owned-world-rendering-migration`, uncommitted, with unrelated
+`.import` churn excluded from task staging.
+
+| Gate | Result | Scope and remaining proof |
+|---|---|---|
+| Provider contracts | Partial | Ordinary structure, Citadel packet, surface detail, and one-tree captures have focused contracts. Ecology's section census deliberately remains pending while tree, rock/ore, forage, and underground props are not all represented. |
+| Whole-section assembler | Passed, synthetic | `whole-section-candidate-assembler-final-20261004/report.json`: 6 checks. Two provider inputs share one compatibility batch; exact manifest, explicit empty, retryable missing provider, stale provider epoch, and compatibility conflict are checked. Does not prove live provider parity. |
+| Native install seam | Passed, headed controlled fixture | `whole-section-candidate-native-install-stale-retry1-20261004/report.json`: 7 checks through the real GDExtension renderer. It observes the receipt, retained previous slot before commit, replacement after commit, and stale-census rejection with prior generation still installed. Providers are controlled fixtures, so this does not pass the normal-world producer gate. |
+| Production wiring and world cutover | Open | `WorldStaticSectionCoordinator` can admit and advance a complete assembled candidate, but normal section demand is not yet routed through all producer adapters. Legacy visual publication remains. Terrain fluid, full ecology/static-prop census, provider receipts/retirement and unload/replay are not integrated end to end. |
+| Playtest and performance | Untested / unresolved | `node tools/run-playtest.mjs -OutputDirectory artifacts/citadel-runtime-integration/whole-section-runtime-playtest-20261004` was stopped by the runner after headless dummy-renderer `Initializing already initialized RID` and null-mesh errors. Progress remained at `runtime_loading_Drawing_nearby_terrain`; no `playtest-report.json` was emitted. The owned-process watchdog proved zero remaining members. This is not gameplay acceptance, and current evidence does not classify the renderer errors as introduced by the migration. |
+
+Minecraft 26.2 source checks continue to support immutable section snapshots,
+worker preparation separated from staged upload, independent layer receipts,
+cancellation, and keeping the previous installed section until replacement
+acknowledgment. Godot retains its smooth Transvoxel terrain path. The controlled
+native fixture validates that the complete-candidate envelope reaches the real
+GDExtension slot, but the production stage remains open until live producers,
+section demand, gameplay visuals and traversal are connected and measured.
