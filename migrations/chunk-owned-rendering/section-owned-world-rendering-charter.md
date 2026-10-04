@@ -2720,3 +2720,68 @@ complete section jobs, but the current native-install proof uses fixture
 providers; production receipt-based visual retirement and successful live
 traversal/performance evidence remain open. Game commits: `e17937e4`,
 `7d508d2c`, and `75045fe4`.
+
+## Next implementation charter — admit prepared trees before legacy visual commit
+
+**Outcome:** let a complete normal section candidate consume the exact tree
+recipe and renderer-member values already prepared by `TreePublicationQueue`,
+without waiting for the per-tree `GeneratedTreeVisual` attachment/commit. The
+current installed section remains intact until its replacement has a live
+native receipt. Tree `StaticBody3D`, trunk collision, prop ID, harvesting,
+interactions, navigation blocking, deterministic ecology and save/removal
+authority remain unchanged; mobs and NPCs remain outside static sections.
+
+**Baseline:** game branch `codex/chunk-owned-world-rendering-migration` at
+`75045fe4`, with generated `.import` churn only. A tutorial-free fast-turn run
+on seed `freshforest20261004` reached 2,366/2,366 initial and rapid-turn view
+readiness, then left seven physically present trees with prepared recipes in
+`TreePublicationQueue.completed` at `renderStage=root`; queue state was 239
+completed, 87 published and no active workers. Report:
+`artifacts/citadel-runtime-integration/tree-resource-freshness-fast-turn-20261004-r2/report.json`.
+The route separately stopped at 42.67m on a generated-prop capsule collision;
+that is not evidence about section admission. Existing tree capture, queue and
+ecology contracts pass, but the prior native renderer fixture uses synthetic
+providers.
+
+**Source path and change boundary:** deterministic ecology candidates originate
+in `MainPlaytestTools.make_tree` and are recorded with stable source/prop IDs,
+runtime specification, bounds and revision. `_publish_tree_body` owns the live
+gameplay body and enqueues its immutable request in `TreePublicationQueue`.
+The queue's recipe worker produces canonical recipe values; staged root/bole/
+distal/foliage work builds renderer resources and `_append_section_value_member`
+captures immutable mesh/material/transform/instance attributes. Today,
+`commit_published_visual` alone calls `remember_published_lod`; the ecology
+provider then enumerates `published_lod_records`, and both census and
+contribution reject trees without committed per-tree visuals. Separate a
+queue-owned, sealed **prepared tree artifact** from the published-LOD record at
+the already-existing full-member boundary. Bind it to world/seed, stable source
+and prop IDs, exact body instance and current transform, normalized request,
+recipe signature, LOD tier, resource-aware member digest, removed-prop snapshot
+and producer generation. Census and contribution must consume the same artifact
+revision; stale body, request, resource, LOD, removal or world identity stays
+pending/rejected. Never infer empty from absent queue work.
+
+**Stages and proof:** (1) focused contract proves a complete artifact exists
+before per-tree visual commit and is immutable/revision-bound; absent,
+incomplete, stale and removed artifacts fail closed. (2) the normal ecology
+provider forms a complete section candidate from prepared tree values mixed
+with current terrain/detail/prop contributors, and a headed Main-scene run
+installs it through the native renderer with exact manifest membership and a
+live receipt while the old per-tree visuals and gameplay bodies remain valid.
+(3) cancellation, changed resource/revision, replacement owner and unload/replay
+prove staged data is discarded while the old section stays visible. Only after
+those pass should a later slice wire provider receipt acknowledgement to
+receipt-gated old tree visual retirement and test one-time removal while the
+collider, harvest ID and save delta remain live. Each gate is reported
+separately; no stage advances on a unit/fixture result alone.
+
+**Minecraft 26.2 check:** `SectionCopy` snapshots section states before worker
+compilation; `RenderSectionRegion` exposes its captured neighborhood;
+`SectionCompiler` emits one section result across render layers; and
+`SectionRenderDispatcher` keeps the prior mesh through upload acknowledgement.
+That validates separating prepared input from the old visual commit and
+switching only on receipt. This slice only removes a publication-order
+dependency: per-tree root/bole/branch/foliage construction is still staged per
+tree. A later section-level recipe compiler/batcher must address that remaining
+cost; do not copy Minecraft's block mesher or claim this bridge has eliminated
+per-tree geometry work.
