@@ -191,6 +191,21 @@ traversal parity. The first production cutover therefore needs a world-owned
 coordinator above `CitadelPublicationService`'s concurrent scene jobs; a
 per-job ledger cannot prove section completeness when jobs overlap.
 
+**World coordinator contract recheck (2026-10-04):** a draft
+`WorldStaticSectionCoordinator` now serializes source-part replacement
+boundaries above a ledger, requires a freshly supplied exact contributor census
+on every install advance, and checks the actual native section-slot receipt
+before ledger promotion. The native runner passed 31/31 checks at
+`artifacts/citadel-runtime-integration/native-chunk-packet-world-coordinator-contract-final-20261004/report.json`,
+including rejection of an incomplete census while the prior native generation
+remained installed. The first run found that candidate contributor records live
+at `replacement.snapshot.manifest`; the coordinator had assumed a nonexistent
+`snapshot.contributors` field. This schema mismatch is fixed and covered by the
+passing rerun. The coordinator is still unconnected to world producers, so this
+does not advance the production-cutover gate or complete Stage 1. The renderer
+still supports only opaque same-owner candidates, and terrain, building, tree,
+flora and prop candidates are not yet composed into one production manifest.
+
 Do not advance a stage because a pure contract or source scan passes. For each
 stage report passed, failed, blocked and untested gates separately, preserve
 prior installed content on failed replacement, and keep the overall migration
