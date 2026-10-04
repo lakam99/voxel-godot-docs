@@ -491,3 +491,29 @@ Stage 5 integration. Game HEAD at this checkpoint is
 `694ab21a80520ac8abc93eb404cd15bf17455c84` on
 `codex/chunk-owned-world-rendering-migration`; unrelated generated `.import`
 changes remain untouched.
+
+**Layered snapshot-to-slot integration (2026-10-04):** game commit `173dacfa`
+extends the immutable section snapshot with exact `opaque`, `cutout`, and
+`translucent` batch/instance counts, including explicit empty rows. The
+contributor ledger and snapshot validator now admit opaque and alpha-scissor
+content and retain valid translucent sort-policy identity. The install session
+passes the exact layer manifest through the native API and appends batches to
+their declared layers. A real alpha-scissor material/candidate was installed
+through the section owner; the other two layers received empty receipts. A
+translucent candidate is explicitly rejected as
+`native_section_translucent_sort_not_implemented` until its sorting behavior is
+implemented and verified.
+
+Focused evidence: the owned native contract
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-section-layer-sort-gate-final-20261004`
+passed all 42 checks. The ledger contract passed all checks at
+`artifacts/citadel-runtime-integration/prepared-static-contributor-ledger-section-layers-commit-20261004/report.json`;
+the snapshot-builder layer-manifest check passed at
+`artifacts/citadel-runtime-integration/prepared-static-section-snapshot-builder-layers-final-20261004/report.json`;
+and the pure assembled-snapshot contract passed at
+`artifacts/citadel-runtime-integration/chunk-static-render-section-snapshot-layers-20261004/report.json`.
+These establish immutable per-layer candidate counts and real native slot
+installation/retention. They do not establish transparent sorting, production
+producer cutover, complete cross-domain census, visuals in normal gameplay,
+traversal, or performance. Stage 2 remains partial; Stages 1 and 3–6 remain
+open.
