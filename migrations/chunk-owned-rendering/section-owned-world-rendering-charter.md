@@ -2902,6 +2902,27 @@ work through its executor; it does not add a fixed frame-based retry delay to
 an incremental section task. This is a scheduling comparison, not a claim that
 Minecraft's worker/resource policy can be copied directly.
 
+This cooldown is an observed section-admission policy gap, but it is **not yet
+the cause of the visible-world 2693/2700 gate**. The persisted fast-turn
+snapshot shows those seven waiters are all tree representations with missing
+receipts; a separate `sectionAdmission` field reports one section census
+pending on an uncommitted tree. That section/provider result may contribute to
+publication latency, but the current trace does not bind it to each of the
+seven readiness waiters. The same snapshot shows 193 retained ordinary-section
+jobs, confirming independent provider work is also accumulating. Keep these
+two gates distinct in follow-up evidence.
+
+Minecraft 26.2 offers a closer analogy for the ordinary-source repetition:
+`RenderRegionCache` reuses `SectionCopy` values for adjacent
+`RenderSectionRegion` requests during one extraction batch, while each
+`SectionCompiler` still produces a separate owned result for its target
+section. Our ordinary provider currently creates a distinct resumable source
+capture per target, and vertical siblings at the same XZ repeat its 2D source
+discovery. A revision-bound shared source-window snapshot, then exact
+section-local contribution slices, is the appropriate architectural direction;
+persistent reuse must validate world/source/member revisions and retire when
+its section jobs no longer need it.
+
 Before changing production policy, extend the visible-section demand contract
 with a provider that returns pending once and becomes complete. Record the
 baseline retry frame and demonstrate whether an otherwise-ready next-frame
@@ -2912,3 +2933,13 @@ installed-revision priority. Then run the focused contract and one tutorial-free
 headed startup/traversal replay with queue/provider timing; keep Stage 5 open
 unless current native receipts and visual traversal pass. Do not add parallel
 worker concurrency or enlarge per-frame work as part of this isolated test.
+
+For the exact seven-tree plateau, first capture those candidate IDs over a
+short stable interval and record their queue container, enqueue sequence, age,
+render stage, prepared section artifact and native receipt status. A completed
+tree task still at `root` should advance to `bole` or fail when selected; an
+unchanged stage across samples therefore distinguishes selector starvation
+from a section-provider census delay without changing queue policy. The live
+trace already identifies one candidate task at `root` for 136.7 seconds, but
+has only aggregate selection counts, so it does not prove that this task was
+starved.
