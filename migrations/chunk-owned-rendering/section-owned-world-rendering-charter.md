@@ -124,6 +124,39 @@ terrain, generated recipes or Godot renderer.
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
 | 6. Readiness, performance and legacy retirement | Wire section receipts into visible-world readiness and chunk unload/replay. Remove obsolete production per-source visual publication only after all consumers have migrated. Run normal startup, movement/turn, edit, harvest, save/reload and unload/recreate journeys. | Headed live visual/traversal evidence across representative seeds; visual readiness has no candidate/receipt gaps; performance report includes startup, p95/max cadence, queue/backlog and streaming spikes; no legacy production renderer remains for migrated categories. |
 
+## Progress snapshot — 2026-10-04
+
+- Stage 0 is complete. Producer and gameplay-authority maps plus current
+  per-source packet/replay baselines are summarized above.
+- Stage 1 has partial implementation in game commits `eb973da0` and
+  `f35f5413`. `PreparedStaticContributorLedger` now builds and retains the
+  exact replacement snapshots itself, binds a world ID, and rejects stale
+  section generations. Its current contract report is
+  `artifacts/citadel-runtime-integration/prepared-static-contributor-ledger-slot-generation-20261004/report.json`.
+  Receipt dictionaries can still be fabricated by an untrusted caller, so the
+  ledger contract is not an install authority.
+- Stage 2 has an initial native bridge in commits `1f5a37b7` and `d546311b`.
+  `NativeStaticSectionInstallSession` installs one immutable opaque candidate
+  under a section-keyed slot using the native chunk packet backend. The 29-check
+  runner
+  `artifacts/citadel-runtime-integration/native-chunk-packet-owner-epoch-gate-20261004/report.json`
+  builds the candidate through the ledger/partitioner/snapshot builder, installs
+  its resources through the GDExtension, verifies the backend receipt, and
+  promotes it. It also checks old-root retention on cancel, stale owner/generation
+  rejection, and fail-closed cross-chunk dependencies.
+- This is not a production producer cutover. `BuildingStaticBatchFlush` still
+  installs source/material/tier packets, terrain remains on Voxel Tools, and
+  tree/foliage/details/props retain their existing publication paths. The
+  bridge supports opaque content only, rejects cross-chunk dependencies until
+  their demand can be pinned, and has no normal-world producer callsite. No
+  headed generated-world/traversal or performance report demonstrates live
+  section-owned rendering yet.
+- The project checkout contains the Voxel Tools extension descriptor and
+  compiled extension but not its implementation source. The extension's exact
+  mesh replacement, stale-work cancellation and payload interception hooks
+  remain unverified; terrain integration cannot be designed from the descriptor
+  alone.
+
 Do not advance a stage because a pure contract or source scan passes. For each
 stage report passed, failed, blocked and untested gates separately, preserve
 prior installed content on failed replacement, and keep the overall migration
