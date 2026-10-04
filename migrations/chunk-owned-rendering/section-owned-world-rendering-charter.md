@@ -450,10 +450,12 @@ still active.
 Stage 3 has passed its live resident-source and native-install shadow subgate.
 Stage 1 remains partial (no all-domain, unload-independent census); Stage 2
 remains partial (native layered slot API is contract-tested but production
-installer/callers remain opaque-only); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
-visual retirement remain untested. Stages 4–6 remain open. Keep the migration
-active. The verified game slice is committed at
-`9f1168ecac0760eed458e68eda7ae5984a36cb46` on
+installer/callers remain opaque-only); Stage 3 has a runtime-owned,
+terrain-only shadow queue and live native receipt, but visible parity,
+edit/collision/fluid/light parity and Voxel Tools visual retirement remain
+untested. Stages 4–6 remain open. Keep the migration active. The verified game
+slice is committed at
+`ddc6ec2fbcf470ec85da1986be313df79b92cad3` on
 `codex/chunk-owned-world-rendering-migration`; generated `.import` churn remains
 unstaged in the game worktree.
 
@@ -528,15 +530,17 @@ publish per-cell bodies/visual children through `StructureSystem` and
 in the source map and Stage 4 gate. The ecology audit confirms the seed-order
 and stable-ID boundary in `MainPlaytestTools`, a partial tree/detail value
 ledger, and missing value captures for rock, ore and forage. Wildlife actors
-stay independent. The terrain audit confirms the only resident volume→Transvoxel
-section candidate installation remains embedded in `PlaytestRunner` shadow
-code, not a runtime-owned terrain producer.
+stay independent. The terrain audit's resident volume→Transvoxel candidate is
+now submitted and installed by a runtime-owned, retryable terrain-only shadow
+queue rather than test-owned meshing. Full source census/coordinator admission
+and visible terrain replacement remain unimplemented.
 
 The present seven-stage status is: Stage 0 source map complete; Stage 1
 candidate/census contract partial; Stage 2 native section slots and cross-owner
 receipt aggregation partial (translucent sort and stale-mid-boundary recovery
-still open); Stage 3 terrain shadow capture/install subgate passed, production
-queue and visual/edit/collision/fluid/light parity open; Stage 4 both structure
+still open); Stage 3 terrain shadow capture/install and runtime-owned producer
+subgate passed, full-census admission and visual/edit/collision/fluid/light
+parity open; Stage 4 both structure
 paths not cut over; Stage 5 only tree/detail source values captured (no complete
 section admission or natural-prop values); Stage 6 gameplay readiness,
 traversal/performance and old publisher retirement untested.
