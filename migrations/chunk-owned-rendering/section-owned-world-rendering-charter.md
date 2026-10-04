@@ -277,3 +277,17 @@ wrapper can host arbitrary triangle surfaces; it is not a Transvoxel output,
 mesh-byte-budget, live VoxelTerrain capture, headed image, or production terrain
 publication proof. The next terrain stage still needs a bounded native mesh
 payload budget and a capture matching the live VoxelTerrain authority.
+
+**Section mesh identity and native payload accounting (2026-10-04):** the
+candidate compatibility key now includes a deterministic digest over actual
+mesh surface bounds, primitive types and packed arrays. The install session
+rejects a resource whose content does not match the sealed manifest. The native
+backend snapshots admitted meshes, validates them again before upload and
+receipt, and tracks estimated CPU mesh-array plus instance-buffer payload across
+staged, installed and retiring roots; these estimates do not include renderer
+or GPU allocations. Retirement accounting is idempotent. The native runner
+passed 36/36 checks at
+`artifacts/citadel-runtime-integration/native-chunk-packet-manifest-mesh-digest-final-rerun-20261004/report.json`;
+focused snapshot, builder and ledger contracts also pass. These tests still use
+synthetic content and do not satisfy the production-producer, terrain-capture,
+headed visual/traversal, or performance gates. Stages 1–2 remain partial.
