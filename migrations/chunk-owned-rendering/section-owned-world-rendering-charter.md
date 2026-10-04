@@ -1875,3 +1875,9 @@ this as an unfulfilled runtime-startup/performance gate, not a performance
 measurement or an attributed regression. The fresh terrain renderer receipt,
 visual handoff, save/reload, traversal and representative performance gates
 remain open.
+
+**Code checkpoint:** the terrain edit invalidation and replacement-priority
+slice is committed in game commit `e2811ae8` on
+`codex/chunk-owned-world-rendering-migration`. Generated/import `.import`
+churn remains excluded and untouched. This is an intermediate stage commit;
+the terrain replacement and whole-migration gates above remain open.
