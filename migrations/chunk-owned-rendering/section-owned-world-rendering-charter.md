@@ -2441,3 +2441,30 @@ candidates. The appropriate Minecraft 26.2 precedent remains the captured
 section input and cancellation-safe compile/upload/swap lifecycle in
 `SectionCompiler`, `RenderSectionRegion`, and `SectionRenderDispatcher`; its
 block mesher is not applicable to our smooth SDF/Transvoxel terrain.
+
+## Section-owner mismatch follow-up (2026-10-04)
+
+An instrumented headed candidate diagnostic reported a surface-detail
+`sourcePartId` whose census section was `(-1, 1, 0)` while the shared
+partitioner assigned its transformed mesh bounds to `(-1, 0, 0)`. The census
+had been recovering mesh bounds by inverse/forward transforming a sealed AABB;
+it now validates the sealed bounds against the live source mesh, then uses the
+source mesh AABB center transformed by the same `sourceToWorld * instance`
+composition as the partitioner. This avoids a round trip at section boundaries.
+
+The focused ecology contract passed 45 checks, including an off-center,
+rotated and scaled mesh on a section boundary:
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-detail-owner-parity-20261004-r22/report.json`.
+The headed, tutorial-free known-seed diagnostic then installed the demanded
+`(-1, 1, 0)` candidate with a current native renderer receipt and 71 instances;
+report and screenshot are under
+`artifacts/chunk-owned-rendering/candidate-membership-census-known-seed-20261004-r4/`.
+This is real production candidate installation evidence, not traversal,
+replacement/unload-replay, full producer parity, or performance acceptance.
+Its screenshot shows a live forest view. In that admission, ecology census
+still took 40,029 µs (total census 40,087 µs) while other background demands
+were pending, so the membership fix does not resolve the performance gate.
+The exact previously mismatched pebble ID was not retained in the final receipt;
+the synthetic owner-parity assertion and successful section installation do
+not independently prove its final expected-section membership. Add a focused
+live assertion for that source identity while continuing to reduce census cost.
