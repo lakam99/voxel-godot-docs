@@ -2399,3 +2399,45 @@ the complete existing structure producer until all member recipes and the old
 visual handoff are proven. Continue with real generated-structure manifest
 capture, replacement/unload-replay, then headed traversal and performance before
 retiring its publisher.
+
+## Synchronous census profile and ecology optimization (2026-10-04)
+
+The live candidate path is integrated but its source census is not yet suitable
+for continuous traversal. A 75-second normal-runtime diagnostic at seed
+`atlas-26817380` recorded `whole_section_candidate_phase_census` p95 829.22 ms,
+p99 861.152 ms, max 1453.357 ms (112 samples); the full candidate capture p95
+was 829.428 ms and max 1453.694 ms. The run failed its cadence/performance
+thresholds, so it is diagnostic evidence, not acceptance. Its report is
+`artifacts/performance/chunk-owned-rendering-phase-profile-20261004-r2.json`.
+
+A tutorial-free, headed Main diagnostic using the previously proven seed
+`terrain-section-refresh-proof-20261004-r6` completed candidate installation
+through the native renderer. During a separate demanded section's admission,
+the provider profile attributed 104,916 µs of a 104,988 µs census to
+`ecology_and_static_props`, which remained pending with
+`ecology_tree_queue_geometry_not_committed`. Blueprint capture took 37 µs.
+Report and screenshot:
+`artifacts/chunk-owned-rendering/candidate-provider-profile-known-seed-20261004-r2/playtest-report.json`
+and `playtest.png` beside it. This identifies synchronous ecology preparation
+as the immediate census bottleneck; it does not prove a complete visual
+replacement or acceptable runtime performance.
+
+The next bounded implementation is a lightweight ecology membership/revision
+census using producer-owned bounds and explicit coverage proofs. Census must
+not prepare or hash meshes, partition tree geometry, or fabricate empty
+coverage. Preserve the live owner/resource checks on the main thread and leave
+geometry preparation in the contribution phase until a detached value packet is
+proven. Validate with the ecology provider/adapter contracts, the known-seed
+headed production candidate-install diagnostic, then a new representative
+performance observation. A separate random-seed run ended before gameplay with
+`final_terrain_expansion_timeout`; that is an unresolved startup-readiness
+failure and is not attributed to this census change:
+`artifacts/performance/chunk-owned-rendering-provider-profile-20261004-r3.json`.
+
+Stages remain 0 complete, 1–5 partial, and 6 not started. The short performance
+profile is a failed diagnostic, not a Stage 6 performance gate; construction
+and ecology still publish through their legacy paths alongside section
+candidates. The appropriate Minecraft 26.2 precedent remains the captured
+section input and cancellation-safe compile/upload/swap lifecycle in
+`SectionCompiler`, `RenderSectionRegion`, and `SectionRenderDispatcher`; its
+block mesher is not applicable to our smooth SDF/Transvoxel terrain.
