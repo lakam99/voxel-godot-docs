@@ -863,3 +863,31 @@ representative performance when an actual production section can pass the
 complete authority roster. Until terrain, ordinary structures, blueprint
 buildings, and ecology/static props all have truthful providers and payloads,
 normal gameplay remains on its current rendering path.
+
+## Producer-audit refinement — 2026-10-04
+
+Follow-up read-only audits checked the terrain, ordinary-structure, and
+ecology/prop handoff against the local Minecraft 26.2 `SectionCompiler`,
+`RenderSectionRegion`, and `SectionRenderDispatcher`. Minecraft's relevant
+lesson remains a whole-section candidate compiled from an immutable 3×3×3
+neighborhood, with independently accounted layers and a slot swap after all
+present buffers upload. Its block-state mesher is not applicable to our smooth
+Transvoxel terrain or procedural tree recipes.
+
+The audits refine the production admission gates:
+
+| Domain | Reusable authority or data | Still blocks complete section admission |
+|---|---|---|
+| Terrain | `VoxelTerrainRuntime` can seal one resident block's immutable 19³ SDF/material payload and 27 volume-section revisions. Validation can continue after native block unload. | Census must use stable authority revisions, not resident mesh-block instance/revision epochs. The current fluid renderer is separate and chunk-shaped; absent fluid nodes/meshes are not proof of empty section fluid. Until an exact section/halo fluid probe or payload is revision-current, the terrain provider stays pending. Never copy/hash the 19³ payload during each roster recapture. |
+| Ordinary generated structures | `StructureSystem` has stable source revisions, completed/omitted records, per-cell identities, and durable generated-block tombstones. | `OrdinaryStructureVisualSourceCapture` is a readiness observer, not geometry. Expected cell/type records omit some resolved visual options. A candidate needs copied mesh/material/layer/bounds/transforms from an allowlisted static visual class, bound to source/cell/tombstone revisions. Unknown, failed, or ungenerated records stay pending. Keep the per-cell gameplay bodies, collision, doors, interactions, light, navigation and saves. |
+| Trees, flora and static props | `EcologySourceValueLedger` captures tree recipe inputs and surface detail transforms/custom attributes from the existing seeded producer. Tree recipes and removal IDs already have deterministic/gameplay owners. | That ledger omits rocks, ore, forage and underground props; its current chunk-instance manifest revision is not replay-stable, and several producer/admission/material revisions are not bound. Do not run a second RNG producer to fill those holes. Wildlife stays an independent actor. A tree/detail subset may be tested in a clearly separate partial slot, but cannot satisfy or replace the complete ecology/props section manifest. |
+| Blueprint buildings | The immutable Citadel publication plan supplies exact 3D membership and stable source/plan revisions. | The registered provider is census-only; its current prepared packet covers only selected masonry/paving/roof groups and is not yet a complete section geometry payload. Missing blueprint members and other domains remain pending. |
+
+The ordinary-structure and ecology audits are design evidence only; neither
+changes production code nor passes a renderer/gameplay gate. Their practical
+consequence is that the shared coordinator must not receive an explicit-empty
+claim from a readiness manifest, absent node, unbuilt chunk, or partial ecology
+ledger. The next code increment must declare its exact producer subset and
+remain visibly non-authoritative until a complete all-domain section can pass
+the roster, install through the native section slot, and retain the old
+production visuals on stale or failed work.
