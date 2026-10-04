@@ -455,7 +455,7 @@ terrain-only shadow queue and live native receipt, but visible parity,
 edit/collision/fluid/light parity and Voxel Tools visual retirement remain
 untested. Stages 4–6 remain open. Keep the migration active. The verified game
 slice is committed at
-`ddc6ec2fbcf470ec85da1986be313df79b92cad3` on
+`2b9e0f69e308738fa832a8942e58c1fbbdafa5db` on
 `codex/chunk-owned-world-rendering-migration`; generated `.import` churn remains
 unstaged in the game worktree.
 
@@ -549,11 +549,12 @@ The runtime-owned terrain shadow producer is in place and its renderer-install
 subgate passed (entry below). The next production boundary is to admit its
 candidate through the world-lifetime section coordinator with an authoritative
 full contributor census, while preserving VoxelTerrain until all contributors
-in each affected section are represented. Before that, resolve the padded
-Transvoxel mesh-origin transform and separate residency-at-capture from
-authority-revision validation after source unload. Terrain visual replacement
-still needs headed parity, edits, collision, fluid, light, unload/replay and
-performance evidence.
+in each affected section are represented. The padded Transvoxel origin has a
+single-block bounds check, and source residency-at-copy is now separate from
+the sealed candidate's world/local-authority revision check. Real unload/reload
+and replay evidence is still required. Terrain visual replacement still needs
+headed parity, edits, collision, fluid, light, unload/replay and performance
+evidence.
 
 **Multi-section coordinator proof (2026-10-04):** game worktree commit
 `b3b53785` removes the coordinator's one-impacted-section rejection, and
@@ -579,7 +580,7 @@ retry path still need a dedicated stale-mid-boundary test. Stages 1–6 remain
 open.
 
 **Runtime-owned terrain shadow producer (2026-10-04):** game commit
-`ddc6ec2fbcf470ec85da1986be313df79b92cad3`.
+`2b9e0f69e308738fa832a8942e58c1fbbdafa5db`.
 `TerrainSectionShadowPublisher` now owns a bounded, retryable capture → candidate
 build → renderer-install queue, advanced once per `VoxelTerrainRuntime` frame.
 The test runner only submits and polls a request; it no longer meshes or stages
@@ -593,7 +594,10 @@ Command:
 `node tools/run-playtest.mjs --only resident_terrain_section_capture --seed section-shadow-runtime-queue-20261004-r3 --visible true`.
 It passed capture integrity plus native section installation through the
 runtime-owned queue and produced `artifacts/test-runners/playtest.png` and
-`playtest-report.json`. The focused fixture observed an all-air vertical
+`playtest-report.json`. A named contract check retired the residency registry
+entry after sealing: the resident validator rejected the snapshot while the
+world/local-authority validator accepted it; this is synthetic registry
+retirement, not a live native unload/reload. The focused fixture observed an all-air vertical
 neighbor as an explicit `empty` result, then installed the surface-bearing
 block. The installed mesh bounds were inside the expected 16-cell local block
 (`P=(0,11.21539,0)`, `S=(16,4.784615,16)`), so the capture padding did not shift
@@ -601,9 +605,9 @@ this sample's mesh origin. This is one-block coordinate evidence, not seam
 parity. The screenshot is still behind the startup loading overlay, so visible
 parity is untested. Traversal, save/replay, collision/edit, fluid/light and
 runtime-performance gates remain open. The capture still requires a resident
-source block; post-unload authority validation remains unresolved. This is a
-Stage 3 producer integration increment, not migration completion; Stages 1–6
-remain open.
+source block at capture; real native source unload/reload and replay remain
+unverified. This is a Stage 3 producer integration increment, not migration
+completion; Stages 1–6 remain open.
 
 **Loaded-world headed gate (2026-10-04):**
 `node tools/run-playtest.mjs --only terrain_section_shadow_live_install --seed section-shadow-live-install-20261004 --visible true`
@@ -620,3 +624,17 @@ candidate visual result was obtained. This repeats the earlier late-startup
 failure signature, so it is classified as a pre-existing/unresolved startup
 readiness issue for this candidate change; the shadow queue was not invoked in
 this run. The fast headed subgate above remains the only passing producer proof.
+
+**Sealed terrain source after residency retirement (2026-10-04):** game commit
+`2b9e0f69e308738fa832a8942e58c1fbbdafa5db` separates resident-at-copy
+validation from sealed-candidate authority validation. The latter checks
+payload digest, world/generator/terrain identity, mesher/material identity, and
+all 27 intersecting terrain-volume section revisions without requiring the
+native mesh block to remain resident. The headed contract gate
+`node tools/run-playtest.mjs --only resident_terrain_section_capture --seed section-shadow-runtime-queue-20261004-r3 --visible true`
+passed on the same seed, including synthetic retirement of the runtime
+residency registry and rejection of tampered payloads. It still ran before
+startup readiness; registry retirement is not an actual native unload/reload or
+renderer replay test. The runtime also received an installed native section
+receipt with mesh bounds inside the expected 16-cell local block. Real unload,
+re-entry, replay, visual parity, traversal and performance remain open.
