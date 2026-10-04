@@ -2836,3 +2836,47 @@ Stage 2 and its live acceptance gate remain open; this is an implementation
 checkpoint, not migration completion. Minecraft 26.2's retained-until-uploaded
 section mesh still supports the same receipt boundary, while its cube block
 mesher remains inapplicable to our smooth terrain and procedural tree geometry.
+
+### Section-local tree census and headed backpressure follow-up (2026-10-04)
+
+Local source reinspection of Minecraft 26.2 confirmed that `SectionCompiler`
+works from a copied section neighborhood and that `SectionRenderDispatcher`
+keeps the prior installed mesh until replacement uploads finish. The relevant
+lesson for the current blocker is section-local admission: unrelated tree
+geometry elsewhere in the same streamed chunk must not prevent a section from
+being compiled. The ecology provider now checks a tree's authoritative
+transformed bounds against the requested render sections before requiring its
+prepared tree artifact. Intersecting trees still require the current sealed
+artifact and exact per-section contribution; missing intersecting geometry
+remains pending.
+
+The focused ecology/provider contract passes 48/48 at
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-locality-minecraft-debug-20261004-r27/report.json`.
+It proves an uncommitted tree whose bounds do not intersect the requested
+section does not block that section census, while the same missing artifact
+still blocks when it intersects. This synthetic contract does not prove a
+production native installation or visible-gameplay improvement.
+
+A fresh headed tutorial-free replay on seed
+`sectioncutover20261004a` still timed out after 240 seconds at
+`Preparing 360° view · 2693/2700 visuals ready · 7 waiting`, with zero
+production section candidate jobs admitted. Its persisted diagnostics show the
+ordinary-structure provider's resumable work did **not** restart from revision
+drift: sampled jobs remained current and advanced through source-cell scanning,
+validation, and geometry capture. At the last sample, 171 section jobs were
+retained; sampled jobs each described 236 candidates and had advanced to
+candidate indices 20–160 under the 32-member-per-turn limit. The last admission
+status varied among ordinary capture budgets, terrain preparation and ecology
+source coverage. This points to aggregate provider throughput/backlog rather
+than a proven single stale-revision loop. The watchdog timed out but confirmed
+authoritative zero process membership (`cleanupUnresolved=false`) at
+`artifacts/node-tools/process-runs/godot-b3SZ3T/watchdog.json`.
+
+Minecraft's section scheduler reinforces that content preparation and
+installation should be admitted as complete section jobs with local immutable
+inputs; repeatedly scanning overlapping per-section source sets is a likely
+cost center here. Profile and redesign ordinary-source census sharing and
+section job scheduling next. Do not claim the tree-bound filter fixed the live
+gate, raise publication caps blindly, or advance Stage 5. The loading-screen
+readiness gate must remain pending until exact native receipts are installed;
+the headed diagnostic watchdog is not a production readiness timeout.
