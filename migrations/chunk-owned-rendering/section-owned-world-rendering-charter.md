@@ -1996,3 +1996,25 @@ The corresponding game-repository implementation is committed as
 `e2811ae8` (terrain edit invalidation) and `545c467d` (urgent whole-section
 replacement scheduling and diagnostics). The working tree also contains
 pre-existing generated `.import` churn, excluded from both commits.
+
+**Producer revision decision (2026-10-04, before implementation):** a loaded
+physical chunk's ecology source identity must not be the terrain-volume
+revision. The existing prop/tree/detail nodes remain the live producer output
+while their chunk owner remains installed; terrain edits revise terrain and
+invalidate section candidates, but do not mutate those props. Keep the
+ecology producer identity stable for the same seed/chunk/producer schema and
+validate snapshot content plus chunk-owner identity and removed-prop revision.
+Continue recording the terrain revision at which each producer pass ran as
+provenance, not as a blanket invalidation of already-installed physical output.
+A replacement/unload of the chunk owner invalidates its snapshots; the newly
+generated owner captures against current terrain and publishes a new content
+revision. Horizon-only ecology is a different owner: its cache witness already
+includes terrain revision and it retires/regenerates on edits, so keep that
+dependency. Never relabel stale contents as fresh: tests must prove the
+physical snapshot remains byte/content-identical across a terrain-only edit,
+becomes stale on removed-prop revision or owner replacement, and a reloaded
+chunk can publish changed deterministic content under the same stable producer
+identity. The headed edit gate must then install a newer live native receipt
+while retaining the old receipt until commit acknowledgment. If the existing
+source owners do not expose a verifiable owner identity/content revision, stop
+and extend discovery rather than weakening the stale check.
