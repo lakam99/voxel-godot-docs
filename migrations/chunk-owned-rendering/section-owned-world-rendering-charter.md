@@ -2635,3 +2635,52 @@ the exact probe can reach the queue head without backlog or revision drift.
 Retain the outlier as unresolved performance evidence and do not change queue
 priority based on it alone. Report and screenshot are under
 `artifacts/citadel-runtime-integration/fluid-proof-queue-telemetry-20261004-r1/`.
+
+### Tree publication backlog and ordinary-structure recipe follow-up (2026-10-04)
+
+The tutorial-free fast-turn runner now preserves up to 16 pending candidates
+and attaches bounded producer/queue diagnostics to the terminal streamed-area
+checkpoint. This closes the earlier six-of-seven diagnostic truncation. The
+same-seed replay at
+`artifacts/citadel-runtime-integration/tree-resource-freshness-fast-turn-20261004-r2/report.json`
+reached its outdoor control and rapid-turn checks with the full 2,366-candidate
+view ready. After sprint it stopped at 42.67 m on the existing
+`blocked_capsule_probe` route repair failure; the later 2,417-candidate view
+had seven pending tree candidates. Each had a live physical body and prepared
+recipe. The seven exact tasks were in the completed-publication queue at
+`renderStage=root` after roughly 40 seconds; the queue had no active workers,
+239 completed recipes, one staged task whose identity was not captured, and 87
+published recipes. This supports a publication-backlog diagnosis for these
+candidates rather than missing source capture, but does not prove queue policy
+is the only cause.
+
+Minecraft 26.2's `SectionCompiler` builds every block/fluid render layer for
+one section in one compile result; `SectionTaskDynamicQueue` orders that section
+work by camera distance with a small recompile quota. Our tree visuals still
+spend a separate bounded publication slice on each tree's root, bole, branches,
+foliage and commit. That architectural mismatch explains why simply raising a
+tree queue cap is not the right migration step: section ownership should batch
+the complete static candidate and let section-level scheduling make progress.
+Do not copy the Minecraft block mesher or its exact quota; smooth terrain and
+our procedural ecology retain their own authorities.
+
+The ordinary generated-base-block bridge now calls the shared visual recipe
+resolver during `MainChunkTerrain.create_block` and attaches the exact mesh,
+material and local transform used by section capture, while retaining the
+original gameplay body, collider and interaction metadata. Focused ordinary
+source, adapter, provider and whole-section assembler contracts passed
+16/16, 16/16, 15/15 and 8/8 respectively. The headed synthetic native-install
+fixture passed 9/9. A post-edit headed Main-scene run reached a ready initial
+view and rapid-turn checkpoint; screenshot comparison against the pre-edit
+same-seed run shows the same initial presentation. Its traversal still stopped
+at 42.67 m on `blocked_capsule_probe`, and after sprint eight tree candidates
+were pending. This confirms startup visual continuity, not ordinary-building
+recipe/section parity: no generated layout was assembled as a full section
+candidate, production receipt retirement remains unwired, and unload/replay,
+save, live traversal and performance gates remain open. Artifacts are under
+`artifacts/citadel-runtime-integration/ordinary-structure-visual-source-section-recipe-20261004-r1/`,
+`ordinary-section-geometry-adapter-recipe-20261004-r6/`,
+`ordinary-static-section-provider-recipe-input-20261004-r9/`,
+`whole-section-candidate-assembler-migration-20261004-r1/`,
+`whole-section-candidate-native-install-migration-20261004-r1/`, and
+`ordinary-recipe-live-main-fast-turn-20261004-r1/`.
