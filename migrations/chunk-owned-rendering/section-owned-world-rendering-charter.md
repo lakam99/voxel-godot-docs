@@ -191,6 +191,32 @@ visual/traversal and performance gates before retiring any old publication.
 Report each gate independently; this charter is a Stage 1–2 implementation
 slice, not a completed migration or a production visual cutover.
 
+## Next implementation charter — prepared blueprint membership provider
+
+**Outcome:** register the first normal-world source provider from immutable
+`CitadelPublicationPlan` values. Its coverage is a site-local membership
+census for exact 3D render sections. It must not infer global emptiness from a
+single site or from absent renderer jobs. Terrain, ordinary structures and
+ecology/props remain required roster domains and keep section admission
+pending until their own authorities are registered.
+
+**Authority and boundaries:** use admitted site bindings, prepared publication
+bases and their immutable plan output signature/member records. Add a true 3D
+AABB-to-section intersection query while preserving the existing XZ query
+contracts. Stable contributor IDs are section-local projections of a site
+member; revisions bind site/source identity, plan signature, member ID/group,
+bounds and visual eligibility. Do not include job/Node instance IDs or scene
+readiness receipts. The census changes no building visual, collision, door,
+furnishing, navigation, save or publication path.
+
+**Acceptance evidence:** test negative coordinates, vertical section boundaries,
+members spanning section planes, explicit site-local empty coverage, unresolved
+admission as pending, and plan/source replacement invalidation. In a real
+MainCore-owned coordinator, verify the provider registers and its census is
+complete only for blueprint membership; normal section admission must remain
+pending because the other required domains are absent. No visual/traversal or
+performance acceptance claim follows from this provider-only stage.
+
 ## Progress snapshot — 2026-10-04
 
 - Stage 0 is complete. Producer and gameplay-authority maps plus current
@@ -726,10 +752,49 @@ installation, cancelled work when a provider became pending, and confirmed the
 prior installed generation remained current. Exact report:
 `artifacts/citadel-runtime-integration/native-chunk-packet-source-roster-20261004-r14/report.json`.
 This is coordinator/native integration evidence, not normal-world producer or
-gameplay evidence: no authority provider has been registered in `MainCore`, no
-production section can yet pass the complete roster, and no headed
+gameplay evidence: at this r14 checkpoint, no authority provider had been
+registered in `MainCore`. No production section can yet pass the complete roster, and no headed
 visual/traversal/performance gate ran. Stages 1–6 remain open. The next gate is
 one real producer authority provider plus refusal of incomplete cross-domain
 sections. Cross-section-safe promotion must be designed before multi-section
 sources can pass roster admission. Later gates still require a complete
 all-domain section and live parity before any legacy visual retirement.
+
+**Blueprint source census provider (2026-10-04):** game work adds a provider
+owned by `CitadelPublicationService` and registers it from `MainCore` for the
+`blueprint_buildings` domain. It uses admission's deterministic region
+decisions and the immutable `CitadelPublicationPlan` member manifest; it does
+not inspect scene Nodes, job instance IDs, visual omissions, collision,
+interactions or gameplay readiness. Membership is clipped in exact 3D to the
+16-cell section grid after conservative XZ admission, with stable
+site/member/section IDs and revisions bound to source binding, plan signature,
+member/group bounds and section key. Unknown admission or plan state stays
+pending. The three other required domains remain unregistered and therefore
+prevent production roster admission.
+
+Game code commit: `2d29d9f8` (`Register blueprint section census provider`).
+
+The native chunk packet contract passed at
+`artifacts/citadel-runtime-integration/native-chunk-packet-section-provider-20261004-r5/report.json`.
+It includes negative-coordinate, vertical-separation, flat-plane ownership,
+half-open section-edge checks, and a synthetic admission-backed explicit-empty
+provider response alongside the existing native renderer/slot lifecycle
+checks. This proves the immutable membership query, provider response shape,
+and native install fixture separately; it does not feed blueprint geometry
+into that renderer. The building-preparation contract could not run
+its existing actual-source fixture because the referenced files
+`artifacts/citadel-runtime-integration/actual-site-source-05/result.bin` and
+`artifacts/citadel-runtime-integration/publication-preflight-02/blueprint-mutation.bin`
+are absent from this checkout. No headed world, traversal, save/replay or
+performance gate ran. This remains a census-provider increment only; all
+migration stages remain open.
+
+Minecraft 26.2 source review confirms the useful lifecycle comparison: its
+`SectionCompiler` compiles a center section against an immutable 3×3×3
+`RenderSectionRegion`, emits independently tracked render layers, and its
+`SectionRenderDispatcher` switches the section mesh only after every present
+layer's vertex and index buffers have uploaded. The Godot migration should keep
+that whole-section ownership and swap rule while retaining this game's smooth
+terrain mesher and native collision/edit authority; vanilla block meshing is
+not a fit. The live renderer proof above remains only the generic native slot
+contract, not a normal-game producer cutover.
