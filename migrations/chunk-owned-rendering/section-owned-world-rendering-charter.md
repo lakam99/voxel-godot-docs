@@ -2481,3 +2481,33 @@ This is one non-controlled sample on a different chunk from the earlier 40 ms
 sample, so it cannot establish a performance improvement or pass the runtime
 gate. Report and screenshot are under
 `artifacts/chunk-owned-rendering/candidate-membership-census-known-seed-20261004-r5/`.
+
+### Exact ecology source through section installation (2026-10-04)
+
+The known-seed headed diagnostic now follows the exact boundary source through
+the real section path. Its first version treated a retryable census response as
+final and failed while the terrain provider was still building the section's
+exact fluid proof. The diagnostic now keeps retrying that census, then requests
+the exact owner section through the normal visible-demand scheduler and verifies
+the installed candidate manifest plus current native receipt.
+
+Run command:
+`node tools/run-playtest.mjs --only production_section_candidate_diagnostic --seed terrain-section-refresh-proof-20261004-r6 --visible true --timeoutSeconds 240 --watchdogSeconds 240 --reportPath artifacts/citadel-runtime-integration/exact-ecology-source-section-contribution-20261004-r5/playtest-report.json --progressPath artifacts/citadel-runtime-integration/exact-ecology-source-section-contribution-20261004-r5/playtest-progress.txt --screenshotPath artifacts/citadel-runtime-integration/exact-ecology-source-section-contribution-20261004-r5/screenshot.png -- -SkipTutorial`.
+
+It passed in 117.9 seconds. The exact source
+`terrain-section-refresh-proof-20261004-r6:detail:-1,0:pebble:9:surface:0`
+was in the census for `(-1, 0, 0)`, partitioned into that section, and present
+in the installed candidate manifest; its coordinator source revision and
+native receipt were current for the section. The same run passed terrain edit
+replacement at `(-1, 1, 0)` with a changed manifest digest and durable edit
+delta. The report is a headed diagnostic, not a traversal or
+visual/performance gate. It needed 134 census attempts before the exact fluid
+proof became ready; this long retry period is an outstanding cold-readiness and
+performance observation, not a reason to accept missing data or treat it as an
+empty success.
+
+This diagnostic follows the lifecycle lesson from Minecraft 26.2's
+`RenderSectionRegion` and `SectionRenderDispatcher`: compile one bounded section
+from a captured neighborhood, cancel stale work, and switch the current section
+only after the replacement has been acknowledged. It does not port Minecraft's
+block mesher or alter the game-wide migration exit criteria.
