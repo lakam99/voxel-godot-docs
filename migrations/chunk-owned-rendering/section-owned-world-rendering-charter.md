@@ -2548,10 +2548,14 @@ cost of the new freshness boundary.
 sealed role/member values together with current Mesh and Material fingerprints,
 local/member transforms, colors/custom data, element count, visibility/fade and
 shadow policy. Tree contribution preparation binds its source revision to this
-digest. Ecology census computes the same digest without encoding instance
-attributes or partitioning geometry, and its contribution wrapper uses that
-same digest and identity. This closes the specific aliasing gap where a frozen
-Dictionary still referenced a mutated Godot Resource.
+digest. A shared helper now builds the complete tree producer source revision
+from world/seed/source identity, recipe and pipeline revisions, LOD, owner cell,
+body transform, and the raw resource/value digest. Ecology census computes this
+same producer revision without encoding instance attributes or partitioning
+geometry; the contribution wrapper includes the exact `captured.sourceRevision`
+plus the same candidate/body identity. This closes the specific aliasing gap
+where a frozen Dictionary still referenced a mutated Godot Resource, including
+the pipeline and ownership inputs used by contribution preparation.
 
 The tree value contract passed all checks, including independent mutation of a
 retained BoxMesh, StandardMaterial3D color, and its ImageTexture pixels, with
@@ -2565,7 +2569,7 @@ source-census revalidation, and retained generation 2 and its prior native
 root. The fixture then restored the resource and verified unload/replay. These
 are separate proofs: the coordinator fixture does not wire production ecology
 into the native candidate path.
-Reports: `artifacts/citadel-runtime-integration/tree-section-value-adapter-resource-freshness-20261004-r5/report.json`, `artifacts/citadel-runtime-integration/ecology-section-value-adapter-resource-freshness-20261004-r3/report.json`, and `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-resource-freshness-20261004-r4/report.json`.
+Final rerun reports: `artifacts/citadel-runtime-integration/tree-section-value-adapter-resource-freshness-20261004-r6/report.json`, `artifacts/citadel-runtime-integration/ecology-section-value-adapter-resource-freshness-20261004-r4/report.json`, and `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-resource-freshness-20261004-r5/report.json`.
 
 The attempted normal-runtime sprint performance runner remained at
 `main_menu_waiting_for_gameplay_ready` through 2,880 frames; its default New
