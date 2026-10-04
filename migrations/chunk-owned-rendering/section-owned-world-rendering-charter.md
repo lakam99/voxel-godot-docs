@@ -1811,3 +1811,67 @@ authoritative. Report each passed/failed/blocked/untested row separately.
 Fluid support, explicit empty terrain replacement, Voxel Tools visual handoff,
 visual parity, traversal, save/reload, and runtime performance remain separate
 gates; this charter is not a stage-completion claim.
+
+**Implementation finding (2026-10-04):** `TerrainVolumeService` now emits a
+value-only dirty-cell bound with each terrain section revision, and
+`VoxelTerrainRuntime` maps that bound through the Transvoxel one-low/two-high
+sample halo before bumping resident mesh-block revisions and re-demanding their
+section candidates. The edit batch emits a second notification after its
+`VoxelTool.paste`, binding reassembly to installed voxel data rather than only
+the earlier durable-volume update. Revisions for already-installed candidates
+are marked urgent so first-time distant content cannot starve replacement.
+The focused visible-demand driver passes 21/21 at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-exact-terrain-halo-20261004-r1/report.json`;
+it covers an eight-section boundary-cell halo and urgent recompile selection
+ahead of nearby initial candidates.
+
+**Headed result (2026-10-04):**
+`node tools/run-playtest.mjs -Only production_section_candidate_diagnostic
+-Seed terrain-section-refresh-proof-20261004-r5 -Visible true -ReportPath
+artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r5/playtest-report.json
+-ProgressPath artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r5/playtest-progress.txt
+-ScreenshotPath artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r5/playtest.png -- --skip-tutorial`
+installed an initial generation-30 cross-domain candidate with a live native
+receipt, then performed a real `WorldGenerationSystem.set_cell_state` edit.
+The edit reached resident VoxelData, appears in its durable section delta, and
+leaves Voxel Tools collision generation enabled. At the end of 3,600 frames the
+selected demand still reported `waiting`; generation 30 and its native receipt
+remained live, so the changed section did not receive a fresh renderer receipt.
+The runner exited 1 with cleanup passed and authoritative zero job members.
+This fails the replacement gate; it is not implementation-complete evidence.
+The screenshot is gameplay-visible but not visual-parity evidence: strong dark
+canopy/shadow coverage and the held item obscure much of the view. A separate
+headless retry failed during test setup because the project's native mesh path
+is unsupported by Godot's dummy renderer (uninitialized mesh RID); it is not
+counted as a production result.
+
+**Follow-up (2026-10-04):** source invalidations and changed terrain revisions
+are separate re-demand entry points. `invalidate_visible_section_source` now
+marks a section with an installed candidate as an urgent recompile and gives it
+priority ahead of first-time nearby sections, while retaining the installed
+candidate. The focused demand contract passes 21/21 after this change at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-source-invalidation-priority-20261004-r1/report.json`.
+The source invalidation assertions cover the urgent flag and priority in
+addition to retained generation/receipt.
+
+The follow-up headed run `r6` used the same production diagnostic and skip-
+tutorial launch path, but it did not reach the edit gate. It spent 600 seconds
+waiting for `production_section_candidate_waiting_terrain_empty_section_requires_exact_empty_manifest`,
+then the outer runner timed out without a playtest report. The owned-process
+watchdog records forced cleanup and authoritative zero job members, but
+`cleanupPassed` is false due to timeout. Treat r6 as a stalled headed-test
+readiness/setup result; it neither proves nor disproves the urgent replacement.
+Report/progress paths are
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r6/playtest-report.json`
+(not produced) and `playtest-progress.txt`; watchdog:
+`artifacts/node-tools/process-runs/godot-0HM095/watchdog.json`.
+
+The representative performance observation
+`node tools/run-runtime-performance-observation.mjs -Diagnostic true -DurationSeconds 45 -WarmupFrames 120 -ReportPath artifacts/performance/chunk-owned-terrain-edit-invalidation-20261004/runtime-observation.json -ProgressPath artifacts/performance/chunk-owned-terrain-edit-invalidation-20261004/runtime-observation-progress.txt -Visible true -TimeoutSeconds 300`
+also failed before collecting samples: `DayWork` reported
+`startup_not_ready`, and `startupLoadingFailureResult` was empty. Its owned
+process shut down naturally with cleanup and zero membership proven. Classify
+this as an unfulfilled runtime-startup/performance gate, not a performance
+measurement or an attributed regression. The fresh terrain renderer receipt,
+visual handoff, save/reload, traversal and representative performance gates
+remain open.
