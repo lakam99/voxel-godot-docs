@@ -1991,3 +1991,8 @@ realized prop, and removal authorities after an edit without replaying mutable
 RNG or accepting stale producer completeness. Until that contract is defined
 and implemented, section capture must keep returning pending and leave the old
 receipt installed.
+
+The corresponding game-repository implementation is committed as
+`e2811ae8` (terrain edit invalidation) and `545c467d` (urgent whole-section
+replacement scheduling and diagnostics). The working tree also contains
+pre-existing generated `.import` churn, excluded from both commits.
