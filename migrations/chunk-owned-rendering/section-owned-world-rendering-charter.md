@@ -1166,3 +1166,39 @@ accepted, then retire only matching visuals while keeping collision,
 interaction, navigation, harvest and save authorities alive. Headed world
 traversal, startup, edit/harvest, save/reload, and performance evidence are
 required before the migration can advance to completion.
+
+### Next implementation charter — realized ecology prop capture
+
+**Outcome:** extend the existing seeded ecology value authority with the
+actual realized visual inputs for surface rocks, ore clusters and forage, plus
+their underground counterparts. Record creator outputs after normal gameplay
+creation has made its existing decisions. The section census may declare one of
+these families empty only after that producer's bounded spawn/scan work is
+complete for the exact chunk and source revision; unavailable scan results,
+unsupported material semantics or missing member recipes stay pending.
+
+**Authoritative path and boundaries:** surface candidates are selected by
+`MainPlaytestTools.spawn_chunk_prop_attempt`; underground candidates are
+selected by `process_underground_chunk_prop_spawn_state` from the authoritative
+exposed-floor scan and terrain-volume revision. Existing `make_rock`,
+`make_ore_cluster`/`MainInteractionFlow.make_ore`, and
+`MainInteractionFlow.make_forage` calls remain the identity, transform,
+material, collision, nav, harvest and drop authorities. Capture each realized
+visual recipe/material/transform and stable member ID from the returned
+producer result or a value emitted by its creator. Do not scan instantiated
+scene trees, replay RNG, change creator order, or move collision, interaction,
+navigation, harvesting, removal or save ownership into the render adapter.
+Wildlife stays an actor. Tree geometry remains the `TreePublicationQueue`
+snapshot; flower/detail contributors without a bound supported layer remain
+pending.
+
+**Acceptance evidence:** focused deterministic contracts prove exact realized
+member IDs, transforms, mesh/material bindings, chunk/scan provenance, explicit
+empty-family proof, removed-prop tombstones, unload/replay from seed plus
+durable removals, and rejection after a terrain/source revision change. Add an
+RNG-order regression comparing the existing creator path before and after
+capture. A passing capture contract does not prove complete ecology census,
+native section installation, visual parity, live traversal or performance; all
+remain open for the later whole-world gates. Preserve `artifacts/` as ignored
+test evidence and stage only reviewed task files, never generated `.import`
+churn or the unrelated visible-world readiness edits in this repository.
