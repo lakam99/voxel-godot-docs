@@ -152,10 +152,11 @@ terrain, generated recipes or Godot renderer.
 - This is not a production producer cutover. `BuildingStaticBatchFlush` still
   installs source/material/tier packets, terrain remains on Voxel Tools, and
   tree/foliage/details/props retain their existing publication paths. The
-  bridge supports opaque content only, rejects cross-chunk dependencies until
-  their demand can be pinned, and has no normal-world producer callsite. No
-  headed generated-world/traversal or performance report demonstrates live
-  section-owned rendering yet.
+  bridge supports opaque content only and has no normal-world producer callsite.
+  Cross-chunk keys are capture-coverage metadata; exact per-source capture
+  revisions/epochs and full producer census are not yet bound to a production
+  candidate. No headed generated-world/traversal or performance report
+  demonstrates live section-owned rendering yet.
 - The project checkout contains the Voxel Tools extension descriptor and
   compiled extension but not its implementation source. The extension's exact
   mesh replacement, stale-work cancellation and payload interception hooks
@@ -229,3 +230,40 @@ and census rejection. It remains fixture-driven: no normal terrain/building/
 tree/prop producer calls the section coordinator, layer coverage is opaque-only,
 and headed/live/performance gates remain open. Source capture manifests still
 need exact source revisions and capture epochs for each covered chunk.
+
+**Next production slice — resident smooth-terrain shadow candidate (2026-10-04):**
+Before any visual switch, feed one real resident terrain section from the
+authoritative Voxel Tools volume into the section candidate and install it in
+the native section renderer while the Voxel Tools visual remains authoritative.
+Capture the exact resident VoxelBuffer, including edited material/SDF channels,
+with the configured Transvoxel mesher and its required halo. Bind the candidate
+to world identity, section key, capture epoch, every intersecting source-block
+revision, mesher/material schema, layer, bounds, and a digest of the resulting
+mesh payload; reject it if any revision changes before installation receipt.
+An explicitly empty result is valid only for a complete current capture.
+
+The current packet backend represents batches with MultiMesh nodes, and the
+application session currently admits only opaque instance-transform payloads.
+Do not assume that an arbitrary ArrayMesh can safely be wrapped as a single
+MultiMesh instance: first verify it in the real GDExtension renderer, preserve
+Transvoxel surface attributes/materials, and account for mesh arrays as well as
+instance buffers in staged and resident byte limits. Add the necessary
+mesh/layer support at the shared candidate boundary rather than a terrain-only
+visual authority. Keep the original Voxel Tools surface visible until candidate
+content, material/lighting, seams, edit behavior, collision, and replacement
+acknowledgement are proven in a controlled headed fixture; collision and digging
+remain owned by Voxel Tools/TerrainVolumeService throughout this shadow step.
+
+The first candidate is deliberately one real resident terrain section, not a
+claim of complete world publication. Its manifest must state that terrain alone
+is covered. It must not be promoted as a complete section while building,
+ecology/tree, foliage, and prop contributors are absent. Before whole-section
+promotion, connect authoritative producer registries above concurrent site
+jobs and runtime ecology publishers, enumerate exact current contributors and
+tombstones for all intersecting sections, and apply multi-section atomic
+replacement for contributors crossing section boundaries. Preserve gameplay
+chunk unload/replay and save/delta authorities. Minecraft 26.2 validates the
+section lifecycle pattern (3x3x3 region inputs, per-layer compilation,
+cancellation of stale tasks, and retention/release of the prior section mesh),
+but its block mesher and draw-buffer implementation are not suitable substitutes
+for this game's smooth Transvoxel terrain or Godot native backend.
