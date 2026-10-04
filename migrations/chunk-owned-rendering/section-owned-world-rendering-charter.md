@@ -86,13 +86,20 @@ after source-chunk unload. A stale or missing source is pending or failed, never
 empty success.
 
 Build every required layer in staging while retaining the old installed
-section. Atomically replace the section slot only when all present layer
-resources and the exact contributor manifest have install acknowledgements.
-Publish an explicit empty replacement when the current manifest has no content.
-On failure/cancellation, retire only staged data and keep the last valid
-section. Receipts map contributors to all affected sections; contributor
-readiness is promoted only after those section receipts are live. A Godot node
-installation receipt is not a GPU fence and must be reported as such.
+section. Atomically replace one section slot only when all present layer
+resources and that section's exact contributor manifest have install
+acknowledgements. Publish an explicit empty replacement when the current
+manifest has no content. On failure/cancellation, retire only staged data and
+keep that section's last valid content. A source crossing section boundaries
+is partitioned into section-local contributions and receives one receipt per
+affected section; source-level readiness is promoted only after every affected
+section receipt is live. Individual section slots may promote independently,
+so during an update adjacent sections may briefly show different generations.
+Do not retain a global all-sections commit lock to hide that bounded skew.
+Where old per-source visuals still exist during migration, retire each old
+section-local representation only when its replacement slot is accepted. A
+Godot node installation receipt is not a GPU fence and must be reported as
+such.
 
 The section system changes presentation ownership only. Terrain volume remains
 the authority for solidity, material, digging, fluids and saved deltas. Existing
@@ -123,8 +130,8 @@ terrain, generated recipes or Godot renderer.
 |---|---|---|
 | 0. Source map and baseline — **complete** | Trace all producer paths, authorities, revisions, ownership, unload/replay and saves; record current packet behavior and known missing terrain receipt. | This charter, focused current packet/replay reports and independent audits. Baselines prove only their named contracts. |
 | 1. Close the candidate contract | Bind candidates to exact prepared ledger outputs, world/session and owner/dependency generations. Define layer completeness, empty, cancellation, retries and contributor-to-section receipts. Verify available section mesh/upload APIs, especially Voxel Tools' real remesh retention and terrain payload capture. | Contracts reject forged/truncated/stale candidates, wrong owner/dependencies, duplicate/missing layers, partial installs and old generations; API/source audit resolves Voxel Tools interception. No production path cut over yet. |
-| 2. Implement section-slot installation | Replace the source-keyed production packet primitive where necessary with a section-keyed staged owner independent of gameplay-chunk lifetime. Support compatible multi-batch/multi-layer payloads, exact manifests, source-revision-bound capture dependencies, cancellation, owner recreation, explicit empty, and old-slot retention until complete install. | Native/engine contract exercises real section owner/resource installation and receipt checks; cross-chunk captured candidates install without retaining source chunks; stage aborts leave old content installed; native build and shutdown/retirement pass. |
-| 3. Integrate smooth terrain | Feed mesh artifacts from the existing authoritative SDF/material source into the section candidate using the game's mesher and correct halo/seam contract. Keep collision, edit, fluid/light and nav authorities separate but revision-linked. Do not disable Voxel Tools visuals until parity and replacement behavior are proven. | Real-scene section receipt for terrain; edit/remesh/empty/stale/cancel/unload/reload fixtures; seams, collision, lighting and fluid captures show source parity. Then retire the old terrain visual slot with no duplicate visual authority. |
+| 2. Implement section-slot installation | Replace the source-keyed production packet primitive where necessary with a section-keyed staged owner independent of gameplay-chunk lifetime. Support compatible multi-batch/multi-layer payloads, exact manifests, source-revision-bound capture dependencies, cancellation, owner recreation, explicit empty, and old-slot retention until complete per-section install. Cross-section sources get independently promoted section-local contributions, with source readiness waiting for all affected section receipts. | Native/engine contract exercises real section owner/resource installation and receipt checks; cross-chunk captured candidates install without retaining source chunks; stage aborts leave the affected old section installed; native build and shutdown/retirement pass. |
+| 3. Integrate smooth terrain | Feed mesh artifacts from the existing authoritative SDF/material source into the section candidate using the game's mesher and correct halo/seam contract. Keep collision, edit, fluid/light and nav authorities separate but revision-linked. Do not disable Voxel Tools visuals until parity and section-local replacement behavior are proven. | Real-scene section receipt for terrain; edit/remesh/empty/stale/cancel/unload/reload fixtures; seams, collision, lighting and fluid captures show source parity. Then retire the old terrain visual slot with no duplicate visual authority. |
 | 4. Cut over construction | Aggregate every affected building's opaque/material groups into section candidates. Remove per-source packet commits as the final visual authority. Reconcile source-part revisions, moved owners, all affected sections, empty removals, replay and scene-boundary readiness; preserve collision/doors/furnishings/nav. | Real generated structure visual playtest and captures; replacement/removal/cancel/replay and chunk recreation tests; boundary readiness cannot succeed on a partial section. |
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
 | 6. Readiness, performance and legacy retirement | Wire section receipts into visible-world readiness and chunk unload/replay. Remove obsolete production per-source visual publication only after all consumers have migrated. Run normal startup, movement/turn, edit, harvest, save/reload and unload/recreate journeys. | Headed live visual/traversal evidence across representative seeds; visual readiness has no candidate/receipt gaps; performance report includes startup, p95/max cadence, queue/backlog and streaming spikes; no legacy production renderer remains for migrated categories. |
@@ -260,9 +267,11 @@ is covered. It must not be promoted as a complete section while building,
 ecology/tree, foliage, and prop contributors are absent. Before whole-section
 promotion, connect authoritative producer registries above concurrent site
 jobs and runtime ecology publishers, enumerate exact current contributors and
-tombstones for all intersecting sections, and apply multi-section atomic
-replacement for contributors crossing section boundaries. Preserve gameplay
-chunk unload/replay and save/delta authorities. Minecraft 26.2 validates the
+tombstones for all intersecting sections, and create a complete section-local
+replacement for every section touched by cross-boundary sources. Promote
+sections independently after each slot is complete; promote aggregate source
+readiness only after all affected section receipts are current. Preserve
+gameplay chunk unload/replay and save/delta authorities. Minecraft 26.2 validates the
 section lifecycle pattern (3x3x3 region inputs, per-layer compilation,
 cancellation of stale tasks, and retention/release of the prior section mesh),
 but its block mesher and draw-buffer implementation are not suitable substitutes
@@ -378,16 +387,17 @@ have: (1) a world-lifetime exact source census, including explicit empty and
 tombstone revisions for terrain, generated structures, trees, foliage, detail
 and props, independent of scene-child lifetime; (2) immutable per-section
 multi-layer candidate payloads for smooth terrain, instanced recipes and the
-game's translucent/fluid policies; (3) multi-section staging and one atomic
-promotion after every impacted section has an exact live receipt; (4) stale
-source/owner cancellation and replay after source/render-owner unload; and
-(5) production producer routing that retains each old representation until
+game's translucent/fluid policies; (3) independent atomic section-slot
+promotion after each affected slot has an exact live receipt, with aggregate
+source readiness waiting for all affected sections; (4) stale source/owner
+cancellation and replay after source/render-owner unload; and (5) production
+producer routing that retains each old representation until
 the complete replacement is acknowledged. Mobs/NPCs, collision, interactions,
 navigation and saves stay with their established authorities.
 
 Stage exits remain the seven rows in the table above: Stage 0 source map;
 Stage 1 complete immutable manifest/census contract; Stage 2 section slot,
-multi-layer/multi-section install lifecycle; Stage 3 real terrain source and
+multi-layer/per-section install lifecycle; Stage 3 real terrain source and
 visual cutover; Stage 4 buildings; Stage 5 ecology and props; Stage 6 gameplay
 readiness, traversal/performance and legacy publication retirement. Stage 3
 shadow installation is not terrain cutover. Each exit needs its named contract
@@ -438,8 +448,8 @@ still active.
 
 Stage 3 has passed its live resident-source and native-install shadow subgate.
 Stage 1 remains partial (no all-domain, unload-independent census); Stage 2
-remains partial (opaque-only native installation and no atomic multi-section
-group commit); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
+remains partial (opaque-only native installation and no complete multi-layer
+section receipt); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
 visual retirement remain untested. Stages 4–6 remain open. Keep the migration
 active. The verified game slice is committed at
 `9f1168ecac0760eed458e68eda7ae5984a36cb46` on
