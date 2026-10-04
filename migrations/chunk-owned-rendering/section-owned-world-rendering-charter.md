@@ -798,3 +798,68 @@ that whole-section ownership and swap rule while retaining this game's smooth
 terrain mesher and native collision/edit authority; vanilla block meshing is
 not a fit. The live renderer proof above remains only the generic native slot
 contract, not a normal-game producer cutover.
+
+## Next implementation charter — terrain section candidate handoff
+
+### User-visible outcome and non-goals
+
+Move one resident smooth-terrain mesh block from the private
+`TerrainSectionShadowPublisher` install path into the shared world section
+coordinator's staged install. The captured candidate must use the same 16-cell
+interior and section key as the current Transvoxel block. Keep the current
+`VoxelTerrain` mesh and collision installed until a current shared-slot receipt
+exists. This is an integration step, not permission to retire the existing
+terrain renderer.
+
+Do not change terrain generation, SDF/material authority, Transvoxel output,
+collision, digging, lighting, fluids, save deltas, structure/tree/prop
+producers, or mob/NPC simulation. Sections whose fluid contribution is not
+proven empty or prepared remain ineligible for a complete shared candidate.
+Missing source domains remain pending; this step must not fabricate empty
+coverage for them.
+
+### Authority and handoff
+
+`VoxelTerrainRuntime` owns the terrain value snapshot and its source epoch:
+world/generator/mesher/material identity, the durable revisions for all 27
+intersecting volume sections, and the captured padded SDF/material payload
+digest. Mesh-block residency and instance IDs fence an in-flight capture only;
+they are not stable save/replay revisions. `TerrainSectionShadowPublisher`
+continues to own bounded capture/mesh/install work scheduling, but returns a
+value-only prepared source declaration and immutable instance segment to the
+world coordinator instead of creating a private ledger or installing
+independently. The coordinator recaptures the complete required-domain roster
+before and during section installation, rejects stale revisions, and retains
+the previous slot if any check or layer upload fails.
+
+`VoxelTerrain` remains the terrain collision/edit/save authority. Existing
+fluid, ordinary-structure, blueprint, tree/foliage and prop sources keep their
+owners and must either contribute revisioned payloads or remain pending before
+the shared replacement. The 16-cell source and section alignment means this
+first handoff affects exactly one section; spanning-source promotion is a
+separate chartered step and must keep per-section promotion atomic.
+
+### Acceptance evidence and exit criteria
+
+1. A focused live-runtime contract requests a resident, dry section through the
+   production runtime owner, validates capture revisions before/after meshing,
+   stages the immutable section payload, and installs it through the native
+   section renderer using the existing owner/layer manifest.
+2. Edit a source volume section after capture and during staged upload; stale
+   work must cancel, the old slot must remain installed, and collision/edit
+   authority must remain unchanged.
+3. Prove a missing required provider and unresolved fluid dependency block the
+   candidate instead of allowing a terrain-only replacement. Label fixture
+   providers as such; this contract does not count as normal-world cross-domain
+   readiness.
+4. Compare the installed terrain mesh at the real world transform against the
+   still-visible Transvoxel mesh for the tested section. A contract-only green
+   result is not visual parity.
+
+Passing this gate adds one producer handoff only. It does not prove fluid or
+LOD parity, save/load, actual native chunk unload/replay, traversal,
+performance, or permit retiring the old terrain visual. Run headed visuals and
+representative performance when an actual production section can pass the
+complete authority roster. Until terrain, ordinary structures, blueprint
+buildings, and ecology/static props all have truthful providers and payloads,
+normal gameplay remains on its current rendering path.
