@@ -2156,6 +2156,79 @@ charter was committed separately as `5f23a60` before production edits and this
 evidence update is `2f55c80`. Stage 5 remains partial and the overall migration
 remains active.
 
+## Next implementation stage: ordinary generated-structure recipes (4A)
+
+**User-visible outcome:** generated ordinary buildings and structures are
+rendered from the same section-owned candidate path as terrain/ecology while
+their existing per-cell bodies continue to own collision, interactions, doors,
+light, navigation and gameplay state. Keep the current accepted section visible
+until the replacement section receives its native install receipt. Mobs/NPCs
+remain independently simulated and rendered.
+
+**Current source path:** `StructureSystem` deterministically produces town and
+standalone placements through `place_block`, `place_path`, `place_utility`,
+and `place_door`; `_record_ordinary_visual_block` records source membership,
+cell and block type plus a source revision. Durable generated-block removal is
+in `removed_generated_structure_blocks` and feeds the save snapshot. Replay
+regenerates ordinary structures from seed and filters those stable removal
+keys. `MainChunkTerrain.create_block` creates each live `StaticBody3D`, collider,
+special visual children, material/light and interaction metadata. Current
+`OrdinaryStructureStaticSectionProvider` discovers the expected records, then
+`OrdinaryStructureSectionGeometryAdapter.capture_block` requires the live body
+and copies one visible child mesh/material; only three plain opaque block types
+are admitted, visual metadata and multisurface content are rejected. The
+candidate goes through `StaticSectionSourceRoster`, cross-domain candidate
+assembly, the section coordinator and C++ backend. The old body-child visuals
+remain published; no ordinary structure visual has been retired.
+
+**First bounded discovery (no production edits until it exits):** enumerate the
+actual generated ordinary block type and option combinations from StructureSystem
+producers, including roof/fence/window/torch options and interactive furnishings;
+map each to the exact `create_block` mesh/material child tree, collision bounds,
+transform, render layer, shadow and light behavior, live interaction owner,
+save fields and deterministic replay key. Classify unsupported/interactive or
+translucent cases explicitly. Identify one representative populated generated
+structure fixture that avoids tutorial startup and produces a real Main-scene
+section receipt. Compare those boundaries with Minecraft 26.2's copied section
+region and layered compile result; retain our smooth terrain mesher and gameplay
+authorities.
+
+**Implementation stages and gates:** (1) finish the inventory above and choose
+the smallest recipe family with exact parity; (2) add one immutable,
+revision/digest-bound ordinary visual recipe authority consumed by both
+`create_block` and section capture, with all recipe inputs included in source
+identity and no live Node/Resource access in the worker packet; (3) contract-test
+populated multi-mesh/special variants, section-boundary ownership, stale source
+and owner rejection, explicit empty/tombstone replay and unchanged collision/
+interaction/save authority; (4) install a populated ordinary-structure candidate
+through the real Main scene and native backend, verify old visuals remain until
+receipt acknowledgement, then perform a real visual/replacement/unload-replay
+check; (5) remove only the proven ordinary source visual publisher, then run
+headed generated-structure traversal and representative performance checks.
+Blueprint/landmark packet migration remains a separate 4B stage and cannot be
+claimed by 4A. Stage 4 exits only after both 4A and 4B cover their actual
+production producers and old-visual handoff.
+
+**Risks/non-goals:** do not synthesize visuals from block type alone where
+`create_block` uses metadata or multi-mesh children. Do not drop doors,
+furnishings, roof details, translucency, lighting, or collision to satisfy an
+opaque candidate. Do not replace seed generation or durable delta ownership,
+change RNG order, move NPC simulation into render sections, or retire existing
+visuals before native replacement acknowledgement.
+
+**Minecraft source review:** in 26.2, `SectionCompiler.compile` reads a
+`RenderSectionRegion` and builds separate `ChunkSectionLayer` output; the
+dispatcher owns cancellation and installation. Use that copied-input/layered
+transaction boundary, not the block-specific meshing rules. Our immutable
+recipe result must describe the exact section contributors and layers while
+keeping gameplay colliders and interactions under current scene authorities.
+
+The worktree inventory above is the discovery baseline. No implementation
+change for stage 4A has started; the ordinary-provider synthetic fixture proves
+only its supported adapter contract and not a populated production building
+receipt. The separate blueprint provider also remains incomplete. The migration
+is active.
+
 **Bounded removal projection follow-up (2026-10-04):** the first implementation
 copied the full world removal set for each chunk. That would make chunk capture
 cost scale with all previously harvested props, so it was replaced before
