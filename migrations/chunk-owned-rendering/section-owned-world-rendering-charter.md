@@ -2117,7 +2117,7 @@ is no longer part of unrelated candidate/tree source revisions; exact removed
 source IDs create source-specific section tombstones. Chunk owner, source
 schema, snapshot content digest, and removed-set capture freshness checks remain
 required. The durable `removed_props` map and revision remain unchanged as save
-authority. The ecology adapter contract passes 40/40 at
+authority. The ecology adapter contract passes 39/39 at
 `artifacts/citadel-runtime-integration/ecology-section-value-adapter-spatial-removal-20261004-r7/report.json`,
 including an exact dynamic removal from one section with other source revisions
 unchanged and two chunk snapshots still capturable after a world-wide removal.
@@ -2150,6 +2150,6 @@ starts the tutorial town, so it is not an acceptable runner under the standing
 tutorial-free playtest constraint. No harvest action was counted as evidence.
 
 The implementation is in the game repository's current worktree slice; the
-charter was committed separately as `5f23a60` in the docs repository before
-production edits. Stage 5 remains partial and the overall migration remains
-active.
+charter was committed separately as `5f23a60` before production edits and this
+evidence update is `2f55c80`. Stage 5 remains partial and the overall migration
+remains active.
