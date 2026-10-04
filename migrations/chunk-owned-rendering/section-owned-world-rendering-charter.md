@@ -1767,3 +1767,47 @@ string; production already correctly returned `pending`, an empty render layer,
 and `shader_prop_render_semantics_unsupported` for the unknown shader. The
 assertion was corrected to the implementation's exact contract and rerun. No
 production material fallback was added.
+
+### Next implementation charter — terrain edit invalidation of installed sections
+
+**Outcome:** every authoritative terrain geometry edit that intersects a live
+static render section re-demands that section and any smooth-mesher halo
+neighbors whose captured inputs changed. A stale in-flight candidate cannot
+replace the installed receipt; the old section and Voxel Tools terrain/collision
+remain available until a fresh complete candidate is acknowledged.
+
+**Non-goals:** do not disable or retire Voxel Tools terrain publication; do not
+claim fluid-layer support, visual parity, save/reload parity, traversal, or
+performance acceptance from this slice. Mobs/NPCs remain independent.
+
+**Authority and consumers:** `TerrainVolumeService` is authoritative for edited
+cell/material/fluid/light state and section revisions. `VoxelTerrainRuntime`
+owns the resident native sample buffers, smooth-mesher halo capture, collision,
+and terrain candidate admission. `MainRuntimeTools` bridges changed resident
+terrain-block revisions to `WorldStaticSectionCoordinator`; the coordinator
+owns demand, stale-source rejection, and installed section receipts. Save
+snapshots continue to persist durable terrain deltas from `TerrainVolumeService`.
+The changed-cell/batch path must notify the bridge only after authoritative
+revision mutation and must not bypass edit batching or collision publication.
+
+**Baseline:** game branch `codex/chunk-owned-world-rendering-migration`, HEAD
+`88e495a1`; existing generated `.import` churn is pre-existing and excluded.
+The headed Main-scene diagnostic has installed a current native cross-domain
+section receipt, and focused static-source invalidation contracts pass. The
+terrain audit found that cell edits update authoritative revisions but do not
+currently trigger visible-section demand; only native mesh-block enter/exit
+does. Current terrain candidates still reject exact fluid and retain Voxel
+Tools visuals/collision.
+
+**Stages and exit evidence:** (1) identify every authoritative terrain mutation
+path and its affected SDF sample/core/halo sections; (2) expose a bounded,
+value-only invalidation event from the terrain authority/runtime and connect it
+to existing visible demand without making absent/unloaded sections permanent
+demand; (3) contract-check resident core+halo invalidation, stale-candidate
+rejection, retained old receipt, and retryable fresh demand; (4) run a headed
+production terrain edit through the live section candidate and require a newer
+current renderer receipt while proving native collision and saved delta remain
+authoritative. Report each passed/failed/blocked/untested row separately.
+Fluid support, explicit empty terrain replacement, Voxel Tools visual handoff,
+visual parity, traversal, save/reload, and runtime performance remain separate
+gates; this charter is not a stage-completion claim.
