@@ -2882,3 +2882,33 @@ section job scheduling next. Do not claim the tree-bound filter fixed the live
 gate, raise publication caps blindly, or advance Stage 5. The loading-screen
 readiness gate must remain pending until exact native receipts are installed;
 the headed diagnostic watchdog is not a production readiness timeout.
+
+### Demand retry cadence investigation (2026-10-04)
+
+The live provider jobs advanced across repeated calls, while the normal runtime
+calls `advance_visible_section_candidate_demands(1)` at most once per
+publication frame. `WorldStaticSectionCoordinator` sets
+`VISIBLE_SECTION_DEMAND_RETRY_FRAMES` to 30 after any retryable source-census
+pending result. This leaves a specific, falsifiable throughput hypothesis:
+each section with a resumable provider job is deliberately parked for up to 30
+frames before it can take another bounded slice, independent of the job's
+progress or remaining publication-frame budget.
+
+Minecraft 26.2's `SectionTaskDynamicQueue.poll(cameraPos)` instead chooses the
+nearest eligible initial compile/recompile each time the dispatcher requests
+work, reserving only a two-task quota for near recompiles. `SectionRenderDispatcher`
+requeues a task when a buffer is unavailable and submits completed section
+work through its executor; it does not add a fixed frame-based retry delay to
+an incremental section task. This is a scheduling comparison, not a claim that
+Minecraft's worker/resource policy can be copied directly.
+
+Before changing production policy, extend the visible-section demand contract
+with a provider that returns pending once and becomes complete. Record the
+baseline retry frame and demonstrate whether an otherwise-ready next-frame
+attempt is skipped because of the 30-frame cooldown. If confirmed, remove the
+fixed delay while retaining the existing one-attempt-per-publication-frame
+runtime bound, nearest-section selection, retryable demand ownership and
+installed-revision priority. Then run the focused contract and one tutorial-free
+headed startup/traversal replay with queue/provider timing; keep Stage 5 open
+unless current native receipts and visual traversal pass. Do not add parallel
+worker concurrency or enlarge per-frame work as part of this isolated test.
