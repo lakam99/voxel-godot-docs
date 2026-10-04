@@ -145,6 +145,35 @@ terrain, generated recipes or Godot renderer.
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
 | 6. Readiness, performance and legacy retirement | Wire section receipts into visible-world readiness and chunk unload/replay. Remove obsolete production per-source visual publication only after all consumers have migrated. Run normal startup, movement/turn, edit, harvest, save/reload and unload/recreate journeys. | Headed live visual/traversal evidence across representative seeds; visual readiness has no candidate/receipt gaps; performance report includes startup, p95/max cadence, queue/backlog and streaming spikes; no legacy production renderer remains for migrated categories. |
 
+### Startup readiness constraint — event driven, no production wall-clock timeout
+
+The game's initial spawn remains behind the existing startup overlay until the
+authoritative 360-degree visible terrain/render readiness contract reports
+loaded for the selected spawn position. Progress reports completed/required
+work while streaming and section compilation advance. A slow or retryable
+producer keeps readiness pending; production boot must not convert elapsed wall
+time into a readiness failure. Explicit cancellation/shutdown and an
+authoritative non-retryable subsystem failure remain terminal. Keep finite
+watchdogs in automated runners as diagnostics; they do not release or fail the
+production player spawn.
+
+The current `MainCore.gd` startup path still has hard deadlines
+(`INITIAL_READINESS_TIMEOUT_SECONDS` and
+`FINAL_TERRAIN_EXPANSION_TIMEOUT_SECONDS`), and some lower-level startup stages
+return `*_timeout` on pending work. A headed diagnostic on seed
+`source-additions-diagnostic-20261004` remained at `Scanning 360° view · 5/32
+prop sources` until its runtime readiness call returned without `ready`; the
+diagnostic then threw while converting the structured failure dictionary to
+`String`, masking the cause. The reporting cast has been corrected to JSON, and
+the same-seed replay is collecting the actual structured blocker. Before
+calling startup complete, map each deadline to its readiness dependency and
+replace elapsed-time failure with an event-driven retry/acknowledgement path.
+Do not weaken completeness to make boot finish. Gate acceptance on a headed
+normal-runtime load that remains responsive, displays advancing progress, and
+spawns only after current terrain plus required visible static-section receipts
+are acknowledged. The selected location, 360-degree coverage, and screenshot
+must be included in the report.
+
 ## Next implementation charter — production source census admission
 
 **Outcome:** begin wiring the normal world lifetime to the section coordinator
@@ -1205,6 +1234,121 @@ cannot promote; (4) add a headed edit/harvest/tree-change visual check. Unknown
 affected sections remain pending/retryable; never approximate them as empty.
 This increment cannot claim unload/replay/save parity, full producer cutover,
 traversal acceptance, or migration completion.
+
+**Exact affected-section contract:** on accepted candidate installation, keep a
+source-ID-to-section reverse index derived from that candidate's complete
+manifest. Replace its entries only after the new section receipt is accepted.
+A removal or revision event can then invalidate the prior sections containing
+that source without enumerating all loaded gameplay chunks. A new or moved
+source also supplies its current geometry bounds so every intersected visible
+section is demanded; an unknown bound or missing source membership remains
+pending and must not be collapsed to an empty replacement. If an affected
+section currently has no visible demand, retain a durable dirty-source marker
+for its installed slot; do not discard invalidation when the live demand record
+is withdrawn. Unload/replay must revalidate that marker against the provider
+census and rebuild before replaying the stale candidate. This guard must cover
+both production section candidates and the older committed-candidate replay
+queue, including already active replay sessions. Before clearing dirty state,
+verify the accepted receipt still belongs to the live section owner/backend.
+Terrain mesh-block
+revision signals already identify exact 3D sections and continue through their
+existing path. The ecology harvest writer must submit its stable recorded
+source ID/bounds before it frees the gameplay prop body; collision, harvesting,
+and durable removal still remain under their current owners.
+
+**Implementation progress (2026-10-04, updated):** the coordinator now derives its
+accepted source-to-section reverse index from each installed candidate's
+`candidate.snapshot.manifest` (`sourceId` / `sourceRevision`), replacing index
+entries only after the matching native install receipt. This deliberately does
+not use candidate `sourceRevisions` keys: those are source-part IDs and are a
+different identity. The prior 18-check visible-demand contract covered unequal
+source/source-part IDs, demanded invalidation, old receipt retention, and index
+replacement; the prior 26-check realized-prop capture contract covered stable
+source IDs and world bounds. A read-only lifecycle review then found a
+withdrawn-demand replay bug: the top-level resolver skipped undemanded sections,
+and a recreated owner could replay the old accepted candidate. The coordinator
+now records dirty source revisions even without live demand and suppresses
+production-candidate replay until a fresh demand assembles a replacement. The
+earlier 19-check report
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-dirty-replay-20261004-r4/report.json`
+covered only the production-candidate route. A follow-up review then exposed
+legacy queued/active replay bypasses plus promotion without a current-owner
+receipt check. Those are now guarded too: invalidation cancels active and
+queued legacy replay; stream unload/reload and replay admission preserve dirty
+state; legacy replay advancement defers dirty sections; and production
+candidate promotion verifies the receipt still belongs to the live backend
+before clearing dirty state. The expanded 19-check report
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-source-invalidation-20261004-r2/report.json`
+passes with every check green, including withdrawn demand, unload/reload,
+queued/active replay cancellation and a deliberately late active replay. This
+is coordinator lifecycle evidence, not a real stream-recreated visual proof.
+Harvest's existing `complete_destroy_target` path submits source identity,
+bounds, and durable removal revision before the prop body is retired;
+NPC/navigation, rewards, collision and save ownership remain in their existing
+systems.
+
+The headed production diagnostic was rerun after adding dirty-source tracking
+using `node tools/run-playtest.mjs -Only
+production_section_candidate_diagnostic -Seed
+source-invalidation-proof-20261004 -Visible true -ReportPath
+artifacts/chunk-owned-rendering/dirty-source-replay-live-20261004-r1/playtest-report.json
+-ProgressPath
+artifacts/chunk-owned-rendering/dirty-source-replay-live-20261004-r1/playtest-progress.txt
+-ScreenshotPath
+artifacts/chunk-owned-rendering/dirty-source-replay-live-20261004-r1/playtest.png
+-- --skip-tutorial`. It installs a current native receipt for `(0, 1, 0)` at
+generation 9 after a complete 47-contributor census. Its accepted demand
+records a tree-source invalidation during startup, then reaches `installed`;
+the owned watchdog exits 0, proves zero job members, and reports
+`cleanupPassed=true`. This proves producer notifications can coexist with real
+startup section assembly/installation; it does not prove that a previously
+installed slot was replaced after a real harvest or edit. The inspected
+screenshot remains too dark and occluded by the spawn tree and held item for
+visual acceptance. A prior underground scan-revision conversion error was
+corrected from `String(...)` to `str(...)`.
+
+The same headed command was rerun after the replay and live-receipt guards at
+`artifacts/chunk-owned-rendering/dirty-source-replay-live-20261004-r2/`.
+It passes in the Main production scene, installs generation 19 for section
+`(0, 1, 0)`, and records a current native backend receipt after the selected
+tree-source revision changed during startup. The owned watchdog at
+`artifacts/node-tools/process-runs/godot-MEzUp0/watchdog.json` reports exit 0,
+authoritative zero job members, and cleanup passed. This verifies the current
+receipt gate against a real renderer owner, but still does not perform a real
+harvest/edit replacement. The runner's default headed screenshot/progress
+artifacts are reused and overwritten by later runs; no visual-parity image is
+being claimed or retained as acceptance evidence.
+
+The separate seed `source-additions-diagnostic-20261004` remained at
+`Scanning 360° view · 5/32 prop sources` for over three minutes. Its production
+startup-failure dictionary was empty: this was still pending when the headed
+playtest observer reached its own 240-second observation limit, not an
+authoritative game failure. The playtest failure report now includes current
+visible-world prop-capture and readiness diagnostics. Its loading screenshot
+and progress were later overwritten by the runner's default paths and are not
+preserved. The run therefore does not establish
+why that seed's sixth prop source is slow. Real headed harvest/edit replacement,
+stale worker rejection in the production path, legacy committed replay while
+dirty, building edits, gameplay visual parity, save/reload, traversal and
+performance acceptance remain open. This is an active stage, not a
+migration-complete gate.
+
+**Ordinary-structure source invalidation (2026-10-04):**
+`StructureSystem.generated_visual_block_removed` now advances the durable
+source revision/tombstone before notifying `MainPropFactory`'s existing
+`invalidate_static_render_source` bridge with the removed mesh's world bounds.
+The section system can therefore invalidate prior installed source membership
+and build a replacement while collision, interaction, navigation and save
+tombstone ownership stay in their existing systems. The source contract passes
+14/14 at
+`artifacts/citadel-runtime-integration/ordinary-structure-visual-source-invalidation-20261004-r1/report.json`;
+the coordinator source-invalidation/replay contract passes 19/19 at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-source-invalidation-20261004-r2/report.json`.
+This is focused synthetic integration with the existing invalidation API. A
+headed ordinary-block removal followed through section replacement and visual
+retirement has not yet been run. Generated building packet retirement,
+gameplay visual parity, save/reload, traversal and performance acceptance remain
+open. This is an active stage, not a migration-complete gate.
 
 ### Next implementation charter — realized ecology prop capture
 
