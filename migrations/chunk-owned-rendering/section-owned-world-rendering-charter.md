@@ -2108,3 +2108,48 @@ transaction model: section inputs are copied, stale compilation is cancelled,
 and old layer buffers remain installed until all replacement uploads complete.
 This removal fix changes only source projection/invalidation; Minecraft's block
 mesher is not applicable to our smooth terrain or procedural tree meshes.
+
+**Implementation evidence (2026-10-04):** the ecology adapter now captures the
+authoritative removed-ID set as a stable value for the duration of section
+census and projects matching detail/static-prop/tree candidates out before
+section membership and contribution assembly. The global save removal counter
+is no longer part of unrelated candidate/tree source revisions; exact removed
+source IDs create source-specific section tombstones. Chunk owner, source
+schema, snapshot content digest, and removed-set capture freshness checks remain
+required. The durable `removed_props` map and revision remain unchanged as save
+authority. The ecology adapter contract passes 40/40 at
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-spatial-removal-20261004-r7/report.json`,
+including an exact dynamic removal from one section with other source revisions
+unchanged and two chunk snapshots still capturable after a world-wide removal.
+The tree adapter contract passes 13/13 at
+`artifacts/citadel-runtime-integration/tree-section-value-adapter-spatial-removal-20261004-r3/report.json`,
+including stable tree geometry under an unrelated durable removal. These are
+synthetic source/recipe contracts, not live harvest acceptance.
+
+The final-source tutorial-free headed Main diagnostic passes with seed
+`terrain-section-refresh-proof-20261004-r5`: a current native section candidate
+was installed at generation 29, with 49 contributors and a live coordinator
+and backend receipt. Report/screenshot:
+`artifacts/chunk-owned-rendering/spatial-removal-20261004-r6/playtest-report.json`
+and `artifacts/chunk-owned-rendering/spatial-removal-20261004-r6/playtest.png`.
+The owned process exited 0 and job membership reached authoritative zero. This
+proves production candidate install after this source change, not harvest,
+save/reload, traversal, performance, parity, or legacy publisher retirement.
+The screenshot still has dense dark canopy/shadow coverage. A second fresh-seed
+diagnostic remained pending at `terrain_empty_section_requires_exact_empty_manifest`
+until stopped via its owned stop-request channel; the watchdog confirmed
+authoritative zero job members. This is an unresolved terrain census blocker
+separate from ecology removal. Replaying the known r5 seed later passed its
+receipt gate, so retain both observations rather than treating the first
+pending attempt as a code regression.
+
+Live harvest/save-reload remains unverified. The existing resource-lifecycle
+headed runner currently fails to parse because it calls the coroutine
+`wooded_surface_candidates()` without `await`; its normal New Game path also
+starts the tutorial town, so it is not an acceptable runner under the standing
+tutorial-free playtest constraint. No harvest action was counted as evidence.
+
+The implementation is in the game repository's current worktree slice; the
+charter was committed separately as `5f23a60` in the docs repository before
+production edits. Stage 5 remains partial and the overall migration remains
+active.
