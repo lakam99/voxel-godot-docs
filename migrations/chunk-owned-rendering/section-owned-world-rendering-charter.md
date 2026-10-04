@@ -1928,3 +1928,43 @@ live receipt while checking resident voxel data, saved delta, and collision publ
 visual handoff, save/reload, traversal, and representative performance as
 separate gates. No implementation-complete claim until those gates and later
 migration stages pass.
+
+### Next implementation charter — current ecology snapshot during section capture
+
+**Outcome:** when a whole-section candidate is assembled, the ecology provider
+captures a value snapshot whose chunk source revision and removed-props revision
+still match the authoritative chunk at admission and install. If that input
+changes, retain demand and retry from a newly published chunk snapshot.
+
+**Non-goals:** do not accept stale snapshot bytes, relax the complete source
+census, regenerate gameplay props or consume RNG from the renderer, or retire
+the existing ecology publisher. Preserve prop IDs, harvest/removal, save
+deltas, canonical tree recipes, and actor/NPC simulation.
+
+**Authority and path:** chunk gameplay/prop state and removed-prop deltas feed
+the static ecology source value snapshot on the chunk owner; `EcologySectionValueAdapter`
+validates that snapshot against `_ecology_chunk_source_revision` and
+`removed_props_revision`; `WorldStaticSectionCoordinator` combines it with
+terrain/building providers and hands a complete candidate to the native section
+install session. A stale ecology revision is a retryable provider result, not
+an install acknowledgement.
+
+**Baseline:** game code checkpoint `e2811ae8`, plus the current uncommitted
+urgent-lane/telemetry slice. Focused queue/halo contracts pass 22/22 at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-priority-queue-20261004-r2/report.json`.
+The headed same-seed run `r9` reaches the edited resident cell and keeps its
+saved delta, collision publisher, and previous live native receipt. The urgent
+section gets 113 admission attempts in 3,600 frames, but every observed
+terminal demand reason is `ecology_chunk_source_snapshot_revision_stale`; no
+new candidate is installed. The provider returns mismatch details, but the
+current demand telemetry retains only its reason. First expose the bounded
+snapshot/current revision pair and determine whether prop publication or
+removed-prop revision is changing the snapshot during capture.
+
+**Stages and exit evidence:** (1) retain only the latest provider pending
+details in the demand state and headed report; (2) identify and fix the source
+snapshot publication/update contract while preserving authoritative content
+and no-RNG renderer capture; (3) test stable capture, stale rejection, retry to
+a refreshed snapshot, and old-receipt retention; (4) repeat same-seed headed
+terrain edit replacement and require a newer live native receipt. Follow with
+ecology removal/save replay, visual handoff, traversal, and performance gates.
