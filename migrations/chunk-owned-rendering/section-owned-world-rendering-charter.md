@@ -541,16 +541,15 @@ paths not cut over; Stage 5 only tree/detail source values captured (no complete
 section admission or natural-prop values); Stage 6 gameplay readiness,
 traversal/performance and old publisher retirement untested.
 
-The next production slice is to move the existing resident terrain capture,
-Transvoxel build and candidate installation from `PlaytestRunner` into a
-runtime-owned, budgeted/retryable producer, keeping VoxelTerrain visuals and
-collision active. Do not submit that terrain-only manifest as a complete shared
-section while it omits colocated static contributors. Its capture/install proof
-also needs to test the one-cell padded buffer's mesh-origin transform and split
-source residency-at-capture from authority-revision validation after unload.
-Only after this producer boundary is sound should it join full census admission;
-the later terrain visual switch needs headed parity, edits, collision, fluid,
-light, unload/replay and performance evidence.
+The runtime-owned terrain shadow producer is in place and its renderer-install
+subgate passed (entry below). The next production boundary is to admit its
+candidate through the world-lifetime section coordinator with an authoritative
+full contributor census, while preserving VoxelTerrain until all contributors
+in each affected section are represented. Before that, resolve the padded
+Transvoxel mesh-origin transform and separate residency-at-capture from
+authority-revision validation after source unload. Terrain visual replacement
+still needs headed parity, edits, collision, fluid, light, unload/replay and
+performance evidence.
 
 **Multi-section coordinator proof (2026-10-04):** game worktree commit
 `b3b53785` removes the coordinator's one-impacted-section rejection, and
@@ -574,3 +573,46 @@ section keeps its successfully installed complete generation and must be
 replaced by the retry boundary; this temporary section-generation skew and
 retry path still need a dedicated stale-mid-boundary test. Stages 1–6 remain
 open.
+
+**Runtime-owned terrain shadow producer (2026-10-04):** game commit
+`ddc6ec2fbcf470ec85da1986be313df79b92cad3`.
+`TerrainSectionShadowPublisher` now owns a bounded, retryable capture → candidate
+build → renderer-install queue, advanced once per `VoxelTerrainRuntime` frame.
+The test runner only submits and polls a request; it no longer meshes or stages
+the candidate itself. Source copy and stale-revision checks remain on the
+runtime thread, renderer installation is budgeted over frames, and the original
+VoxelTerrain visuals/collision remain authoritative. Candidate results expose
+mesh-build timing. This still publishes terrain-only under a shadow world ID,
+does not have the full shared source census, and does not switch visible terrain.
+
+Command:
+`node tools/run-playtest.mjs --only resident_terrain_section_capture --seed section-shadow-runtime-queue-20261004-r3 --visible true`.
+It passed capture integrity plus native section installation through the
+runtime-owned queue and produced `artifacts/test-runners/playtest.png` and
+`playtest-report.json`. The focused fixture observed an all-air vertical
+neighbor as an explicit `empty` result, then installed the surface-bearing
+block. The installed mesh bounds were inside the expected 16-cell local block
+(`P=(0,11.21539,0)`, `S=(16,4.784615,16)`), so the capture padding did not shift
+this sample's mesh origin. This is one-block coordinate evidence, not seam
+parity. The screenshot is still behind the startup loading overlay, so visible
+parity is untested. Traversal, save/replay, collision/edit, fluid/light and
+runtime-performance gates remain open. The capture still requires a resident
+source block; post-unload authority validation remains unresolved. This is a
+Stage 3 producer integration increment, not migration completion; Stages 1–6
+remain open.
+
+**Loaded-world headed gate (2026-10-04):**
+`node tools/run-playtest.mjs --only terrain_section_shadow_live_install --seed section-shadow-live-install-20261004 --visible true`
+did not reach the terrain candidate phase because ordinary startup readiness
+failed. At the 240-second readiness limit it remained at 2074/2082 visuals, with
+eight pending visuals classified as generated structures; 29/31 structure
+sources were complete, all 31 prop sources were complete, and terrain, trees,
+foliage and wildlife counts had no pending representations. Report:
+`playtest-report.json`; live progress: `playtest-progress.txt`; owned-process
+watchdog:
+`artifacts/node-tools/process-runs/godot-QXCTkr/watchdog.json` (exit 1, cleanup
+passed, authoritative zero job members). No loaded-world terrain screenshot or
+candidate visual result was obtained. This repeats the earlier late-startup
+failure signature, so it is classified as a pre-existing/unresolved startup
+readiness issue for this candidate change; the shadow queue was not invoked in
+this run. The fast headed subgate above remains the only passing producer proof.
