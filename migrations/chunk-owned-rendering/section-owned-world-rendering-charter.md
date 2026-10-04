@@ -1970,3 +1970,24 @@ and no-RNG renderer capture; (3) test stable capture, stale rejection, retry to
 a refreshed snapshot, and old-receipt retention; (4) repeat same-seed headed
 terrain edit replacement and require a newer live native receipt. Follow with
 ecology removal/save replay, visual handoff, traversal, and performance gates.
+
+**Diagnostic update (2026-10-04):** r11 confirms the urgent lane is working and
+identifies the stale pair: the ecology chunk snapshot carries
+`ecology-v1:terrain-section-refresh-proof-20261004-r5:0,0:terrain-0`, while the
+authoritative current chunk revision is the same identity with `terrain-1`.
+Both removed-props revisions are `0`, and the old snapshot passes its internal
+validation. The terrain edit changed the source revision, but the completed
+chunk ecology snapshot was not republished. The headed run made 113 target
+admission attempts, all held pending by that stale source snapshot; its native
+generation-8 receipt stayed live and the edited cell remained in VoxelData and
+the saved delta. Report:
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r11/playtest-report.json`.
+
+The production lane and queue change also passes 24/24 focused contracts at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-stale-provider-detail-20261004-r3/report.json`.
+This advances demand selection but not terrain replacement. The next source
+owner decision is how ecology values are refreshed from the durable terrain,
+realized prop, and removal authorities after an edit without replaying mutable
+RNG or accepting stale producer completeness. Until that contract is defined
+and implemented, section capture must keep returning pending and leave the old
+receipt installed.
