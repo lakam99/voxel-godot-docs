@@ -2785,3 +2785,54 @@ dependency: per-tree root/bole/branch/foliage construction is still staged per
 tree. A later section-level recipe compiler/batcher must address that remaining
 cost; do not copy Minecraft's block mesher or claim this bridge has eliminated
 per-tree geometry work.
+
+### Prepared tree admission implementation (2026-10-04)
+
+Game commit `bb32bbf0` adds a sealed queue-owned prepared-tree artifact at the
+existing full-member boundary. Ecology census and contribution can now consume
+that artifact before a per-tree visual commit. After the shared coordinator
+installs a complete candidate and verifies its live native receipt, providers
+receive source acknowledgements. A tree spanning multiple sections retains its
+legacy visual until every owning section has a still-current receipt; its
+accepted queue values then remain available for later revisions. Gameplay body,
+collision, prop identity and interaction authority remain in the existing tree
+path. The production queue enables this mode only when both the coordinator and
+ecology provider are available.
+
+Focused evidence passed:
+
+- Prepared tree capture, resource-aware revision, multi-section receipt
+  accumulation, receipt-gated legacy visual retirement, and reuse of accepted
+  values: 19/19 checks at
+  `artifacts/citadel-runtime-integration/tree-section-value-adapter-minecraft-cutover-20261004-r6/report.json`.
+- Ecology producer/value contract: 46/46 checks at
+  `artifacts/citadel-runtime-integration/ecology-section-value-adapter-minecraft-cutover-20261004-r3/report.json`.
+- Ordinary structure provider: 15/15 checks at
+  `artifacts/citadel-runtime-integration/ordinary-static-section-provider-minecraft-cutover-20261004-r1/report.json`.
+- Whole-section native install fixture: 9/9 checks at
+  `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-minecraft-cutover-20261004-r1/report.json`.
+- Queue contract passed with owned-process cleanup evidence at
+  `artifacts/node-tools/process-runs/godot-2tCsPg/watchdog.json`.
+
+The tutorial-free headed production gate did **not** reach gameplay, so it does
+not prove tree candidates install through the real provider roster or validate
+visual traversal. Command:
+`node tools/run-visible-world-fast-turn-sprint.mjs --skip-tutorial true --diagnostic-replay-seed sectioncutover20261004a --timeout-seconds 360`.
+It exited with `initial_region_readiness_timeout` after about 201 seconds; the
+watchdog exited normally and proved owned-process cleanup at
+`artifacts/node-tools/process-runs/godot-QEQHdQ/watchdog.json`. The captured
+startup state had physical terrain/structure readiness, but only 15/16 terrain
+chunks and 360/369 required terrain mesh blocks were ready (9 remained pending
+with `native_terrain_visual_coverage_pending`). The structure visual gate also
+had one missing recipe in `town:0,0` at cell `(1,23,24)` despite 167 other
+renderable candidates being installed. These are unresolved startup blockers;
+the run produced no traversal checkpoint. Do not classify the failed live gate
+as caused by the tree commit without a baseline comparison.
+
+The production receipt path is implemented but still needs an actual Main-scene
+native section receipt containing a prepared tree, including a tree spanning
+multiple sections, followed by visual/traversal and runtime performance checks.
+Stage 2 and its live acceptance gate remain open; this is an implementation
+checkpoint, not migration completion. Minecraft 26.2's retained-until-uploaded
+section mesh still supports the same receipt boundary, while its cube block
+mesher remains inapplicable to our smooth terrain and procedural tree geometry.
