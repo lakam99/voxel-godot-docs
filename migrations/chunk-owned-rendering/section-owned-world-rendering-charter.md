@@ -2051,3 +2051,60 @@ The implementation is committed in the game repository as `26565d98`
 was made before that commit but against the exact committed production-source
 changes; r3 adds a contract that same stable producer identity can carry a
 different content revision after regeneration on a changed terrain revision.
+
+### Next implementation charter — spatial ecology removal projection
+
+**Outcome:** harvesting one durable static prop changes the ecology contribution
+and replacement demand only for section bounds intersecting that prop. Other
+resident chunks remain capturable even though the world-wide save removal
+revision advanced. Reload/regeneration still filters the stable prop identity
+from deterministic producer output.
+
+**Non-goals:** do not split or weaken the durable `removed_props` authority,
+change prop IDs/RNG, keep harvested visuals, re-render unrelated chunks, or
+retire the old per-source publishers in this slice. Keep actor/NPC simulation
+and collision/navigation removal under their existing gameplay owners.
+
+**Authority and path:** harvest records `prop_id` in `removed_props`, increments
+the world save revision, and invalidates that source's bounds. The resident
+chunk's sealed ecology values contain stable source/prop IDs and content digests.
+The section adapter must derive an immutable per-chunk removal projection from
+those values plus the authoritative removed-ID set, then use that local
+projection digest when binding source revisions. A removal absent from a
+chunk's producer output must not stale that chunk; a present removed ID must be
+projected out and represented as a tombstone before it can enter replacement
+geometry. Save state keeps the global revision; producer source identity stays
+seed/chunk/schema based. Candidate capture, coordinator install, and source
+invalidation continue to use exact source bounds, complete census and owner
+identity checks.
+
+**Baseline:** game branch `codex/chunk-owned-world-rendering-migration`, HEAD
+`19e52664`; tracked source is clean and generated `.import` churn is pre-existing
+and excluded. Ecology adapter contract r3 passed 39 checks and proves stable
+producer identity across terrain-only edits, but did not test unrelated versus
+local durable removal. MainPropFactory's real harvest increments the global
+revision and invalidates only one prop's bounds; `_capture_production_chunk`
+currently requires every snapshot's global revision to equal the current one.
+Latest production proof remains headed r12, report
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r12/playtest-report.json`;
+it proves terrain candidate replacement, not ecology harvest/replay.
+
+**Stages and exit evidence:** (1) add a failing synthetic contract with two
+resident chunk snapshots and one removed prop, proving unaffected-chunk source
+revision stability and exact affected-chunk omission/tombstone; (2) implement
+the adapter's content-verified removal projection and ensure save's global
+revision is not misused as local source identity; test stale owner rejection,
+replacement receipts and removed-ID replay; (3) run a real Main headed harvest
+path and confirm affected section replaces while unrelated resident section
+remains current and collision/interaction/save identity are unchanged; (4)
+run appropriate visual/traversal and runtime performance coverage before using
+this as Stage 5 acceptance. Preserve old accepted section contents until the
+complete current candidate has a native install receipt. No migration stage is
+complete from this focused fix alone.
+
+**Implementation review note:** Minecraft 26.2's `SectionCompiler`,
+`RenderSectionRegion`, and `SectionRenderDispatcher` support the candidate
+transaction model: section inputs are copied, stale compilation is cancelled,
+and old layer buffers remain installed until all replacement uploads complete.
+This removal fix changes only source projection/invalidation; Minecraft's block
+mesher is not applicable to our smooth terrain or procedural tree meshes.
