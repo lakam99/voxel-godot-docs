@@ -2018,3 +2018,36 @@ identity. The headed edit gate must then install a newer live native receipt
 while retaining the old receipt until commit acknowledgment. If the existing
 source owners do not expose a verifiable owner identity/content revision, stop
 and extend discovery rather than weakening the stale check.
+
+**Production implementation result (2026-10-04):** physical ecology source
+identity now uses the stable `ecology-v2:<seed>:<chunk>:static-props-v1`
+producer revision; each snapshot retains its terrain revision as provenance
+and carries a runtime chunk-owner instance identity outside deterministic
+content hashing. Capture requires that the current chunk map still points to
+that exact owner and still checks removed-prop revision and the sealed content
+digest. A terrain-only edit no longer invalidates unchanged installed ecology
+values; owner replacement or durable removals still reject stale values. The
+focused adapter contract passes all 39 checks, including those freshness
+boundaries:
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-producer-revision-20261004-r3/report.json`.
+
+The real headed Main-scene diagnostic also passes on seed
+`terrain-section-refresh-proof-20261004-r5` with `-SkipTutorial` forwarded as a
+Godot user argument. Its complete census contains 49 contributors; generation
+9 remains the old installed candidate until the edited-cell candidate reaches
+a live native receipt at generation 37. The target cell was applied to resident
+VoxelData, appears in the durable section delta, and collision publication
+remained enabled. The owned process exited 0 with authoritative zero job
+members. Exact report and screenshot:
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r12/playtest-report.json`
+and `artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r12/playtest.png`.
+The screenshot still has dense dark canopy/shadow coverage. This proves live
+candidate install after an edit; it does not prove collision-contact, fluid or
+light parity, legacy terrain-renderer retirement, save/reload replay, traversal,
+visual parity, or performance. Keep Stage 3 partial until those exits pass.
+
+The implementation is committed in the game repository as `26565d98`
+(`Decouple ecology producer identity from terrain edits`). The r12 headed run
+was made before that commit but against the exact committed production-source
+changes; r3 adds a contract that same stable producer identity can carry a
+different content revision after regeneration on a changed terrain revision.
