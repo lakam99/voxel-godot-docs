@@ -2540,9 +2540,43 @@ candidate acceptance; each change must either advance the current roster
 revision or reject stale work while preserving the previous installed section.
 Then rerun the tree/ecology provider contracts, the known-seed headed source
 install diagnostic, and a representative performance observation to check the
-cost of the new freshness boundary. Stage 5 remains partial: complete static
-ecology family coverage, harvest/reload replacement, cross-section replay,
-legacy visual retirement, and live traversal still have separate exit gates.
+cost of the new freshness boundary.
+
+#### 2026-10-04 implementation evidence
+
+`TreeSectionValueAdapter.raw_member_content_revision` now hashes the queue's
+sealed role/member values together with current Mesh and Material fingerprints,
+local/member transforms, colors/custom data, element count, visibility/fade and
+shadow policy. Tree contribution preparation binds its source revision to this
+digest. Ecology census computes the same digest without encoding instance
+attributes or partitioning geometry, and its contribution wrapper uses that
+same digest and identity. This closes the specific aliasing gap where a frozen
+Dictionary still referenced a mutated Godot Resource.
+
+The tree value contract passed all checks, including independent mutation of a
+retained BoxMesh, StandardMaterial3D color, and its ImageTexture pixels, with
+exact census/contribution revision equality after each mutation. The tree
+adapter's material fingerprint now covers supported BaseMaterial3D properties
+and Texture2D content, matching the ecology adapter's material-content policy.
+The ecology provider contract also passed. A
+headed synthetic native-install fixture staged a replacement, mutated its
+shared mesh, observed a new source revision, cancelled the stale candidate at
+source-census revalidation, and retained generation 2 and its prior native
+root. The fixture then restored the resource and verified unload/replay. These
+are separate proofs: the coordinator fixture does not wire production ecology
+into the native candidate path.
+Reports: `artifacts/citadel-runtime-integration/tree-section-value-adapter-resource-freshness-20261004-r5/report.json`, `artifacts/citadel-runtime-integration/ecology-section-value-adapter-resource-freshness-20261004-r3/report.json`, and `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-resource-freshness-20261004-r4/report.json`.
+
+The attempted normal-runtime sprint performance runner remained at
+`main_menu_waiting_for_gameplay_ready` through 2,880 frames; its default New
+Game path enters the tutorial, so it was stopped to honor the tutorial-free
+playtest constraint. No tree-census performance result or known-seed headed
+production ecology install was obtained in this slice. The double content
+fingerprint on census/contribution is therefore a performance risk to measure,
+not a proven acceptable cost. Stage 5 remains partial: complete static ecology
+family coverage, production ecology-to-native replacement, harvest/reload,
+cross-section replay, legacy visual retirement, and live traversal still have
+separate exit gates.
 
 ### Cold fluid-proof queue diagnostic plan (2026-10-04)
 
