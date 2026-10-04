@@ -3103,6 +3103,43 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Recipe-fed tree section compiler progress (2026-10-04)
+
+Game commit `c3ee1619` adds the first queue-to-compiler handoff. While
+section-owned publication is enabled, a completed recipe is sealed before the
+legacy per-tree visual stages. `tree-section-recipe-input/v1` captures the
+normalized request and recipe, stable seed/prop/source identity, render tier,
+runtime recipe signature, deterministic content digest, compiler revision,
+body weak owner/instance, producer generation, transform and logical owner
+cell. A re-enqueue generation change, body replacement/cancellation or moved
+transform rejects the artifact. The old per-tree visual path remains active as
+the fallback; this capture is not yet connected to ecology census or native
+section installation.
+
+`ProceduralTreeVisualFactory` now exposes node-free resource/value finish
+methods for bole, distal branches and foliage. Existing scene-node finish
+methods wrap those same outputs and share the render policy. This provides the
+compiler boundary needed to reuse deterministic runtime geometry without
+creating `GeneratedTreeVisual` nodes inside section compilation.
+
+**Evidence:** `node tools/run-tree-publication-queue-contract.mjs` passed,
+including early recipe availability before `GeneratedTreeVisual` exists and
+stale-owner rejection after movement. Captured stdout and watchdog evidence are
+under `artifacts/node-tools/process-runs/godot-PFPSPC/`; the runner proves a
+queue contract only, not installed rendering. A broader
+`node tools/run-canopy-runtime-contract-tests.mjs` attempt did not produce a
+report: its output showed missing `static_ecology_source_value_ledger`
+metadata from `MainPlaytestTools`, and the owned-process watchdog confirmed
+zero remaining processes. Treat that result as unresolved setup/integration
+evidence, not as a failure caused by this change.
+
+This advances only the tree recipe-artifact substage. The compiler job queue,
+exact per-section recipe geometry and coverage, ecology census/contribution
+integration, real native receipt, old-visual retirement, foliage layer parity,
+and headed visual/traversal/performance checks remain open. Overall migration
+status remains 7 stages total: Stage 0 complete; Stages 1–5 partial; Stage 6
+not started.
+
 ### Next implementation charter — recipe-fed section tree compiler (2026-10-04)
 
 **Outcome:** move procedural tree visuals from per-tree scene construction to
