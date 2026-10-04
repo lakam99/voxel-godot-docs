@@ -2684,3 +2684,39 @@ save, live traversal and performance gates remain open. Artifacts are under
 `whole-section-candidate-assembler-migration-20261004-r1/`,
 `whole-section-candidate-native-install-migration-20261004-r1/`, and
 `ordinary-recipe-live-main-fast-turn-20261004-r1/`.
+
+### Explicit empty coverage and phase timing follow-up (2026-10-04)
+
+An all-air terrain section now enters the shared whole-section candidate as an
+explicit empty contributor bound to its source-part revision, logical owner and
+section. The assembler requires exactly one geometry input or explicit empty
+record for every census member; missing output remains retryable. This avoids
+mistaking an omitted producer result for a valid empty section. The focused
+terrain contribution contract passed 9/9 at
+`artifacts/citadel-runtime-integration/terrain-section-contribution-empty-minecraft-review-20261004-r2/report.json`;
+the shared candidate assembler contract passed 8/8 at
+`artifacts/citadel-runtime-integration/whole-section-candidate-assembler-empty-minecraft-review-20261004-r2/report.json`.
+
+The coordinator now records census, per-provider capture, contribution,
+assembly, and submit/revalidation durations, and preserves exact requested and
+owned section/source-part identity in pending-demand diagnostics. The visible
+demand contract passed 25/25 at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-minecraft-review-20261004-r2/report.json`.
+A headed fixture passed 9/9 at
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-minecraft-review-20261004-r2/report.json`,
+proving the assembled fixture candidate reaches the native section renderer;
+it still does not prove generated-world producer parity or visible gameplay.
+The ecology realized-prop capture contract passed its production-authority
+and RNG replay assertions at
+`artifacts/citadel-runtime-integration/ecology-realized-prop-capture-minecraft-review-20261004-r1/report.json`.
+Its fixture now derives ecology revisions from the production authority rather
+than duplicating the revision string.
+
+These changes do not resolve the live sprint's two distinct symptoms: tree
+visual publication can remain backlogged after recipe preparation, while the
+shared player navigator can independently stop at a generated-prop capsule
+obstacle. Minecraft's section compiler supports replacing per-tree work with
+complete section jobs, but the current native-install proof uses fixture
+providers; production receipt-based visual retirement and successful live
+traversal/performance evidence remain open. Game commits: `e17937e4`,
+`7d508d2c`, and `75045fe4`.
