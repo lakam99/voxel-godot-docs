@@ -2229,6 +2229,45 @@ only its supported adapter contract and not a populated production building
 receipt. The separate blueprint provider also remains incomplete. The migration
 is active.
 
+**Stage 4A discovery exit (2026-10-04):** producer review covered town/cabin
+walls, roofs, windows, doors and furnishings; ruin/camp blocks and paths; and
+trader-stall, torch, spike-trap, campfire and loot-chest output. The source
+ledger stores only expected `cell -> blockType`, omitted/failed keys and a
+revision. Per-cell visual options (roof role/axis/side/material/edge/chimney,
+window/fence/corner accents, torch mount/scale and structure transform offsets)
+are currently written to live body metadata but are not part of the producer
+value snapshot or its source revision. `create_block` can publish one or many
+mesh children; furnishing, door and other interactive nodes also own gameplay
+state and collision. Therefore the present three-type allowlist is not a
+complete structure recipe path, and merely broadening it would create false
+coverage. Start the production cutover with ordinary opaque base-block visual
+recipes, with option-bearing and multi-mesh members still pending until their
+inputs are captured authoritatively and represented by the same recipe used by
+`create_block`.
+
+**Unchanged-baseline navigation check:** `node tools/npc/run-npc-contract-tests.mjs
+-TimeMode Both` passed its 88-check aggregate at
+`artifacts/npc/reports/contract-both.json` (seed `atlas-1492`, 0 failures).
+`node tools/npc/run-all-npc-tests.mjs -TimeMode Both` produced passing contract,
+motor, route, repair, door, avoidance, traffic, behavior, interaction, and soak
+reports (seed `atlas-1492`). Its streaming-save report had two failures, both
+`npc_save_world_signature_unchanged`: the tracked baseline exists (423894 bytes)
+but the required generated `artifacts/world-signature/latest/atlas-1492.json`
+does not. The run-all registry does not include the world-signature producer, so
+this is a missing test prerequisite, not evidence of a save or pathfinding
+regression. Preserve it as a pre-existing test/setup blocker unless reproduced
+after first generating the prerequisite artifact.
+
+The aggregate then began headed generated-world `go_home_visual` and remained at
+startup readiness (`2090/2098` visuals ready, 8 waiting) after 182 seconds with
+no gameplay result. It was interrupted before the following real tutorial
+playthroughs to honor the standing tutorial-free instruction. Thus the full
+aggregate and headed door sequence remain untested, not passed. The active Godot
+processes launched by this run were absent after interruption; no final
+watchdog/job-membership cleanup report was obtained, so authoritative cleanup
+proof is missing. No structure edits had begun and protected NPC/pathfinding
+code remains untouched.
+
 **Bounded removal projection follow-up (2026-10-04):** the first implementation
 copied the full world removal set for each chunk. That would make chunk capture
 cost scale with all previously harvested props, so it was replaced before
