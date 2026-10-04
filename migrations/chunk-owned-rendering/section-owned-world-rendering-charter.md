@@ -448,10 +448,46 @@ still active.
 
 Stage 3 has passed its live resident-source and native-install shadow subgate.
 Stage 1 remains partial (no all-domain, unload-independent census); Stage 2
-remains partial (opaque-only native installation and no complete multi-layer
-section receipt); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
+remains partial (native layered slot API is contract-tested but production
+installer/callers remain opaque-only); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
 visual retirement remain untested. Stages 4–6 remain open. Keep the migration
 active. The verified game slice is committed at
 `9f1168ecac0760eed458e68eda7ae5984a36cb46` on
 `codex/chunk-owned-world-rendering-migration`; generated `.import` churn remains
 unstaged in the game worktree.
+
+**Section lifecycle and ecology producer increments (2026-10-04):** after
+reviewing Minecraft 26.2's per-section mesh swap in
+`SectionRenderDispatcher`, the contract no longer requires one atomic commit
+across multiple section slots. Each section independently stages and promotes
+only after all its layers and exact manifest are acknowledged; a contributor
+crossing sections is considered ready only after its full set of section
+receipts is current. This allows bounded adjacent-section generation skew,
+matching the reference lifecycle and avoiding an unsafe sequential cross-owner
+transaction. See documentation commit `994ab51` for the decision.
+
+Game commit `694ab21a` adds separate native `begin_packet_with_layers` and
+`append_batch_in_layer` APIs while keeping the legacy packet signatures
+unchanged. The focused owned-process runner
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-multilayer-section-slot-clean-20261004`
+passed 41/41 checks. The report proves per-layer batch/instance counts, explicit
+empty layer receipts, cancellation/incomplete replacement preserving the old
+root, and an installed empty replacement through the real GDExtension node.
+Godot material still selects the actual pipeline; this is not a GPU fence or
+sorting proof, and production install callers remain opaque-only.
+
+Game commit `6870245c` adds a chunk-scoped value ledger at the deterministic
+tree/detail producer boundary. The focused command
+`node tools/run-detail-ordered-parity.mjs` passed for seed `atlas-1492` with all
+53 attempts, unchanged final RNG state `-4425083070199577339`, matching tree
+and detail recreation digests, one durable-removal tombstone, and native detail
+parity. The ledger captures tree recipe inputs and detail instance attributes
+before scene publication, contains no duplicated collision/interaction
+authority, and unloads with its streamed chunk for deterministic reconstruction.
+It omits rocks, ore, forage, wildlife and underground props; tree meshes are
+not compiled into section payloads; no producer submits these values to section
+slots. This closes only a bounded source-value subgate, not Stage 1 census or
+Stage 5 integration. Game HEAD at this checkpoint is
+`694ab21a80520ac8abc93eb404cd15bf17455c84` on
+`codex/chunk-owned-world-rendering-migration`; unrelated generated `.import`
+changes remain untouched.
