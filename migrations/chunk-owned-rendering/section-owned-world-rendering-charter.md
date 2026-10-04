@@ -2300,3 +2300,53 @@ seed's earlier `terrain_empty_section_requires_exact_empty_manifest` pending
 result is still an independent unresolved census blocker; the passing r5 seed
 does not clear it. Stage 5 remains partial, and the overall migration remains
 active.
+
+## Ordinary source-recipe input increment (2026-10-04)
+
+`StructureSystem._record_ordinary_visual_block` now stores a recursively sealed
+per-cell record containing block type, the exact option dictionary passed to
+`MainChunkTerrain.create_block`, and a SHA-256 digest. Accepted structure-source
+revisions advance when either membership/type or any visual recipe input
+changes. The ordinary source census fails closed if an expected member lacks a
+valid recipe record. `OrdinaryStructureSectionGeometryAdapter` verifies the
+sealed record and digest, includes the digest in its geometry source revision,
+and carries the sealed recipe input/digest through the prepared section
+partitioner. `create_block` still renders by its existing implementation and
+the section adapter still reads one live mesh child; this is a value-input
+capture step, not the geometry recipe/renderer cutover.
+
+Final-source contracts pass: producer ledger 16/16 at
+`artifacts/citadel-runtime-integration/ordinary-structure-visual-source-revision-20261004-r3/report.json`;
+geometry adapter 15/15 at
+`artifacts/citadel-runtime-integration/ordinary-section-geometry-adapter-recipe-20261004-r3/report.json`;
+section provider 15/15 at
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-recipe-input-20261004-r3/report.json`.
+They prove deep read-only recipe inputs, stable revision under identical input,
+stale/mutable recipe rejection, digest propagation into prepared section
+geometry, boundary/removal census behavior and collision owner retention. These
+remain synthetic contracts. Earlier r1/r2 adapter attempts found a missing
+fixture `CELL` and unpositioned synthetic member bodies; both stopped under the
+owned watchdog with authoritative zero, and the corrected r3 runner passes.
+
+The current-source tutorial-free headed production diagnostic also passes at
+`artifacts/chunk-owned-rendering/ordinary-recipe-input-20261004-r1/playtest-report.json`.
+It installed section `(0,0,0)` through the native backend at generation 9 with a
+current receipt and 49 contributors in 41.2 seconds of game runtime. This
+selected section's ordinary-structure coverage is explicitly `empty` with
+source count 0, so it proves unrelated production integration stability, not a
+populated generated building. The watchdog is
+`artifacts/node-tools/process-runs/godot-fmqv5L/watchdog.json` (exit 0,
+`cleanupPassed=true`, authoritative zero, no job members). The screenshot is
+`artifacts/chunk-owned-rendering/ordinary-recipe-input-20261004-r1/playtest.png`;
+it still shows heavy dark canopy/shadow coverage and a large held item. No
+ordinary per-cell visuals have been retired; collision, interactions, doors,
+lights, navigation, save and replay behavior remain under their current owners.
+
+The NPC contract baseline after this source edit passes 88/88 at
+`artifacts/npc/reports/contract-both.json` for seed `atlas-1492`. The broader
+pre-edit baseline and its missing world-signature prerequisite plus the
+tutorial-free interruption of the aggregate's headed door test are recorded in
+the stage 4A discovery note above. Stage 4A remains partial: build an actual
+shared block visual recipe consumed by both `create_block` and section capture,
+capture a populated generated-structure section through the real renderer, and
+prove accepted replacement/unload/replay before legacy visual retirement.
