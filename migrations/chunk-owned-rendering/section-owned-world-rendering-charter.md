@@ -919,7 +919,12 @@ deterministic authority proves exact section coverage at a current revision.
   fence, not a replay revision. Fluid is independently scanned or prepared from
   `TerrainVolumeService`; no mesh/node absence proves empty. A fluid-bearing
   section stays pending until its exact native fluid geometry is included in a
-  supported section layer.
+  supported section layer. Godot's transparent-object ordering is not
+  per-face sorting inside a section mesh; keep water/lava pending until their
+  camera-dependent quad order can be updated under the installed section
+  generation, source revision and sort token. A camera change must not rebuild
+  terrain or switch away from the last accepted translucent order while its
+  replacement is incomplete.
 - Ordinary generated structure geometry is copied from an admitted immutable
   recipe/mesh source and bound to stable source, cell and tombstone revisions.
   Initially allow only stateless masonry/path visuals. Keep per-cell bodies,
