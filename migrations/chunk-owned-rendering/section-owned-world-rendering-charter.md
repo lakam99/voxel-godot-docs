@@ -2574,13 +2574,37 @@ Final rerun reports: `artifacts/citadel-runtime-integration/tree-section-value-a
 The attempted normal-runtime sprint performance runner remained at
 `main_menu_waiting_for_gameplay_ready` through 2,880 frames; its default New
 Game path enters the tutorial, so it was stopped to honor the tutorial-free
-playtest constraint. No tree-census performance result or known-seed headed
-production ecology install was obtained in this slice. The double content
-fingerprint on census/contribution is therefore a performance risk to measure,
-not a proven acceptable cost. Stage 5 remains partial: complete static ecology
-family coverage, production ecology-to-native replacement, harvest/reload,
-cross-section replay, legacy visual retirement, and live traversal still have
-separate exit gates.
+playtest constraint. The suitable lightweight runner,
+`run-visible-world-fast-turn-sprint.mjs -DiagnosticReplaySeed
+freshforest20261004 -SkipTutorial -ForceDaytime -ForceClearWeather`, then ran
+live on that fresh seed. Its first outdoor view and rapid-turn checkpoint were
+ready at 2,366/2,366 candidates. After the attempted sprint, the view was
+pending at 2,410/2,417: seven of 324 tree/foliage candidates lacked
+representations while terrain, structures, props, and wildlife were
+represented. This was not a native section receipt for those exact trees.
+
+The live player moved 42.67 m of the 45 m target before the shared navigator
+stopped on `unreachable_static` / `blocked_capsule_probe`. The report identifies
+a generated prop collider at `(45.9, 14.84398, 17.55)` in cell `(34, 13)`; the
+route authority's collision repair attempted three alternate routes before
+terminating. This is a traversal-fixture failure, not evidence that resource
+revision hashing caused the stop. The headed diagnostic recorded 1,363 frame
+samples with p50 34.6 ms, p95 43.0 ms, p99 54.3 ms and max 79.1 ms. Candidate
+census for ecology/static props had only three samples (p50 0.93 ms, max 17.67
+ms), insufficient to certify the new hashing cost or representative
+performance. Report and screenshots are under
+`artifacts/citadel-runtime-integration/tree-resource-freshness-fast-turn-20261004-r1/`.
+
+Minecraft 26.2 `SectionCopy` copies the section's `PalettedContainer` before
+`SectionCompiler` reads the bounded 3x3x3 region; its `SectionRenderDispatcher`
+cancels stale work and only acknowledges a replacement after compile/upload
+work succeeds. That reference exposed why a read-only dictionary around mutable
+Godot resource aliases was not a stable section input. Our current repair
+revalidates resource content rather than copying complete immutable GPU inputs;
+the census cost still needs a representative profile. Stage 5 remains partial:
+complete static ecology family coverage, exact tree contribution receipt,
+harvest/reload, cross-section replay, legacy visual retirement, and live
+traversal still have separate exit gates.
 
 ### Cold fluid-proof queue diagnostic plan (2026-10-04)
 
