@@ -1,6 +1,6 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
-**Status:** active migration charter; production cutover not started
+**Status:** active migration; a live Main-scene production section candidate now reaches a current native render receipt. Full visual cutover and gameplay acceptance remain open.
 **Recorded:** 2026-10-04
 **Canonical source:** `voxel-godot` branch `codex/chunk-owned-world-rendering-migration`
 
@@ -32,20 +32,28 @@ geometry.
 | Props and decorative detail | `MainPlaytestTools` produces deterministic props and detail transforms per chunk. Rocks/ore/forage become per-prop bodies with visual children; decorative detail becomes typed `MultiMesh` batches under `DecorBatches`. `ChunkPropVisualManifest` observes candidate/represented state for readiness. | Prop source revisions include seed, chunk identity and completed candidate content. Harvested IDs are stored in `removedProps`; visual geometry regenerates. Physical props keep their collision and interaction bodies. Horizon-only roots are visual-only. | Capture sealed producer values before scene-node materialization, preserving transforms, colors, custom data, wind/material policy and stable IDs. A manifest/readiness observer is not the renderer. |
 | Wildlife / NPCs | Wildlife and NPCs use animated, collision-aware actor bodies and independent behavior/movement schedules; distant visual-only wildlife may be separately represented. | Actor state, simulation distance, collision, interaction and save data are actor-owned. | Keep live mobs/NPCs outside static section buffers. Do not mistake their visual-only far proxies for simulation or physical readiness. |
 
-Current application-level gaps and source evidence are recorded in the active
-game migration document and its reports. The per-source packet baseline passes
-24/24 checks at
+The game branch now configures terrain, blueprint-building, ordinary-structure,
+and ecology/static-prop providers on the world-owned coordinator. A seeded
+headed Main-scene diagnostic passed at game revision under active development
+with a complete 22-contributor census, 29 captured inputs, and a native receipt
+for one selected section. Provider coverage may legitimately be explicitly
+empty for domains with no members in that section, so this result does not yet
+prove a populated blueprint or ordinary-structure visual migrated into the
+candidate. The section candidate installs alongside existing category visuals;
+old producer retirement is not wired. Stage 3 terrain is not complete because
+the candidate bridge still rejects translucent/fluid sort publication and does
+not yet subsume all terrain light/collision/readiness contracts. See the exact
+production command and artifact report in the 2026-10-04 findings below.
+
+The per-source packet baseline passes 24/24 checks at
 `artifacts/citadel-runtime-integration/native-chunk-packet-baseline-pre-section-cutover-20261004/report.json`;
-the static replay fixture passes 5/5 at
+the prior static replay fixture passes 5/5 at
 `artifacts/citadel-runtime-integration/static-flush-baseline-pre-section-cutover-20261004/report.json`.
-The latter uses a fake backend. Neither is whole-section, terrain, or live
-gameplay acceptance. The snapshot/grid/partition/ledger contracts are likewise
-data-level evidence only. The game worktree is at `879c2e15`; it has uncommitted
-building packet bridge and contract changes plus generated `.import` churn.
-Review those changes before replacing the production path; preserve unrelated
-files and import churn. The documentation repository is on `main` at `47d03ea`
-with pre-existing edits to the visible-world readiness plan and implementation;
-those edits are outside this charter.
+The latter uses a fake backend. Snapshot/grid/partition/ledger contracts are
+data-level evidence. The current game tree contains unrelated generated
+`.import` churn that must remain unstaged. The documentation repository also
+has pre-existing edits to the visible-world readiness plan and implementation;
+those files are outside this charter and must be preserved.
 
 ## Shared section candidate contract
 
@@ -1167,6 +1175,37 @@ interaction, navigation, harvest and save authorities alive. Headed world
 traversal, startup, edit/harvest, save/reload, and performance evidence are
 required before the migration can advance to completion.
 
+### Next implementation charter — source-change invalidation
+
+**Outcome:** when any admitted static source changes after section installation,
+enqueue the affected visible section for a complete replacement candidate while
+leaving its current native slot visible. Publish removal/empty results only
+after current census, contribution, layer upload, and native receipt all agree.
+
+**Authorities and scope:** terrain section revisions originate in
+`VoxelTerrainRuntime`; generated building revisions/removals originate in
+`StructureSystem` and the Citadel publication authority; tree and ecology
+changes originate in `TreePublicationQueue`, the realized ecology ledger, and
+durable prop-removal revisions. These authorities identify the exact changed
+source and affected render sections. `WorldStaticSectionCoordinator` owns only
+the retryable per-section invalidation queue and candidate-generation fence.
+It must not take over generation, collision, interaction, navigation, or save
+ownership. Keep mobs and NPCs independent. Minecraft's section dispatcher
+recompiles a reassigned section and retains its previous meshes until layer
+uploads acknowledge; apply that transactional replacement property, not its
+block mesher.
+
+**Stages and proof:** (1) add an exact source/provider/section invalidation API
+and a focused coordinator contract for source changes, stale staged work,
+repeat invalidation, and unchanged old-slot receipt; (2) route the existing
+terrain signal and realized static-prop/tree removals or revisions through it
+without scanning all loaded chunks; (3) use a real native receipt test to prove
+that the new complete generation replaces the old slot and that a stale worker
+cannot promote; (4) add a headed edit/harvest/tree-change visual check. Unknown
+affected sections remain pending/retryable; never approximate them as empty.
+This increment cannot claim unload/replay/save parity, full producer cutover,
+traversal acceptance, or migration completion.
+
 ### Next implementation charter — realized ecology prop capture
 
 **Outcome:** extend the existing seeded ecology value authority with the
@@ -1202,3 +1241,380 @@ native section installation, visual parity, live traversal or performance; all
 remain open for the later whole-world gates. Preserve `artifacts/` as ignored
 test evidence and stage only reviewed task files, never generated `.import`
 churn or the unrelated visible-world readiness edits in this repository.
+
+**Surface versus underground readiness:** the shared section provider must
+seal a surface-only value snapshot as soon as the deterministic surface prop,
+tree-membership, and detail passes are complete, without sealing or losing the
+still-running underground ledger. Aboveground section candidates may defer
+`underground_props` explicitly because terrain hides them; they must not claim
+that family is empty. When the player is underground, a surface-only snapshot
+is pending until the authoritative exposed-floor scan and underground prop
+publication complete. Replace the partial surface snapshot with the final
+full snapshot after that scan; both remain bound to terrain and durable-removal
+revisions. Focused acceptance must prove this split and the transition into
+underground demand before attempting another long production-install run.
+
+### Next implementation charter — multi-surface static render candidates
+
+**Outcome:** represent every admitted static source as the exact set of its
+mesh surfaces, materials and render layers so a whole section candidate can be
+compiled and installed without rejecting valid production assets or merging
+different material semantics. This immediately addresses the production
+`flowerStem` / `flowerBloom` detail mesh, whose creator returns two surfaces
+with different materials.
+
+**Authority and boundary:** keep the current deterministic detail creator,
+mesh, transforms, colors, custom data, source IDs, gameplay collision,
+interaction, harvest and save authority. At capture time, derive immutable
+surface fragments from the actual mesh surface arrays and bound material
+resources; bind each fragment to the original source ID plus stable surface
+index, its exact material key, primitive, transformed bounds, and render layer.
+Do not infer a material from a detail-family label, consume RNG, duplicate the
+whole mesh once per advertised material, or let a fragment acknowledge a
+different source revision. Missing/unsupported surface material or primitive
+semantics keep the section pending. Deduplicate the resulting fragments only
+by their complete geometry/material/layer identity.
+
+**Minecraft reference and stages:** in Minecraft 26.2,
+`SectionCompiler` produces section geometry grouped by actual render layer,
+and `SectionRenderDispatcher` installs the replacement only after all expected
+layer uploads acknowledge while the old section remains visible. Apply those
+layer grouping and transactional replacement principles while retaining this
+game's smooth voxel terrain mesher. Stage A: add pure contract coverage for
+surface enumeration, material identity, per-surface bounds/layer, deterministic
+fragment IDs, and rejection of missing material or stale source revision.
+Stage B: capture the live creator's actual flower mesh surfaces into the
+section candidate and prove parity with the existing visible MultiMesh.
+Stage C: install those candidates through the real native renderer, with a
+receipt for every expected layer and the prior section retained through a
+stale or failed replacement. Stage D: headed visual/traversal and performance
+checks. These stages do not close source-change invalidation, unload/replay,
+terrain/fluid parity, building coverage, save/reload, collision or interaction
+authority, or full migration acceptance.
+
+**Implementation finding (2026-10-04):** the flower mesh really has two
+surfaces, `detailGrass` and `detailFlower`, and its `ShaderMaterial` is opaque:
+`detail_material.gdshader` has no blending, `ALPHA`, or `discard` path. The
+previous ecology digest delegated to the generic Citadel material identity,
+which correctly refused the shader `Resource` reference and therefore kept all
+flower candidates pending. Production capture now records one stable source
+fragment per actual mesh surface and derives the render layer from its bound
+material semantics. The ecology adapter contract passes 33/33 checks, including
+shader code/uniform digest identity and both flower surfaces. A new headed,
+skip-tutorial diagnostic is still in its real source-census wait; no native
+section installation or visual parity is claimed by these focused checks.
+
+### Next implementation charter — generated prop asset member capture
+
+**Outcome:** generated GLB-backed rocks and other eligible static props expose
+the exact render members needed by the section provider when the normal asset
+creator selects and publishes them. A selected scene with no usable mesh
+members, unsupported surface material, or incomplete imported resource binding
+must keep its ecology source pending rather than claiming the family complete.
+
+**Authority and ownership:** `VisualAssetRegistry` remains the asset selection,
+PackedScene, and render-policy authority; the existing prop creator remains the
+owner of stable prop ID, recipe transform, `StaticBody3D`, collision, navigation,
+interaction, harvesting, and saved removal. The registry's selected-asset
+capture API must return a stable, immutable value manifest of source member ID,
+mesh surface, material, local transform, bounds, and render semantics to the
+creator. Capture from the selected asset's declared scene representation under
+registry ownership, not by scanning world/chunk nodes, replaying selection, or
+asking the section adapter to discover scene contents. Bind each returned
+resource pair to the realized prop source and current asset/mesh/material
+revision, including the contents of referenced textures. Do not replace the
+current generated rock art with a primitive to satisfy capture. Headless
+imported-scene proxies remain pending for geometry.
+
+**Stages and proof:** (1) add an asset-manifest contract covering a nested,
+multi-surface scene, stable member identities, exact composed transforms,
+materials/layers/bounds, missing imports, and stale resources; (2) attach the
+registry manifest to the existing prop creator output without changing asset
+selection, seed/RNG order, collision or gameplay behavior; (3) prove those
+members enter the full section census/contribution and native slot while the
+old per-prop view remains until receipt; (4) headed prop visuals, movement,
+harvest/removal, save/reload, and performance. This does not complete terrain,
+buildings, tree geometry, unload/replay, or whole-world migration gates.
+
+### Next implementation charter — canonical tree request revision checks
+
+**Outcome:** a tree enters a static section census only when its queued request,
+captured recipe, installed body metadata, and current LOD agree under the same
+canonical `TreeSpawnService` normalization used to build the recipe. Raw caller
+inputs may contain values that the service clamps or defaults; recomputing a
+signature directly from that raw dictionary must not reject a valid published
+tree or admit a stale one.
+
+**Authority and boundary:** `TreeRuntimeRequestBuilder` supplies the stable
+world/seed/ecology request; `TreeSpawnService.normalize_request` is the current
+canonicalizer and owns recipe identity. `TreePublicationQueue` owns the current
+accepted request/recipe/body/LOD receipt; `TreeSectionValueAdapter` validates
+that receipt before producing immutable render inputs. Preserve tree IDs,
+procedural recipe/RNG order, geometry and body collision, navigation, removal
+and save ownership. Do not weaken signature equality, substitute a fresh recipe
+for the committed one, or make missing queue geometry look complete.
+
+**Stages and proof:** (1) normalize the queue's immutable request through the
+service before recomputing its signature; retain bounded raw-versus-canonical
+signature diagnostics for pending mismatches; (2) make the focused tree fixture
+construct its expected recipe with the same normalization and prove stale body,
+recipe, request, or tier identities remain pending; (3) run the headed real
+section-census diagnostic and confirm this tree now advances to the next actual
+provider blocker. This does not prove installed section rendering, tree visual
+parity, traversal, save/reload, or full migration acceptance.
+
+**Implementation finding (2026-10-04):** the adapter now normalizes the
+queue-acknowledged request through `TreeSpawnService` before recomputing the
+recipe signature. The focused tree value-adapter contract passed 11/11. A headed
+no-tutorial production diagnostic on seed `section-roster-diagnostic-20261004`
+advanced beyond the tree mismatch and stopped at terrain census admission,
+`terrain_exact_fluid_section_probe_pending`; it did not queue a native install.
+The run exited with code 1 and the owned-process watchdog proved zero remaining
+job members (`cleanupPassed: true`). This confirms the tree revision check only;
+it does not prove a render install or the generated-rock capture hidden behind
+the provider ordering.
+
+### Next implementation charter — retry ownership for deferred terrain contributions
+
+**Outcome:** a deferred terrain section contribution remains retryable with its
+complete world, section, provider, coverage, and source revision identity. A
+retry must not be mutated when the current attempt clears its working state.
+
+**Authority and boundary:** `TerrainSectionShadowPublisher` owns its bounded
+contribution queue and active work item; `VoxelTerrainRuntime` remains the
+terrain/fluid authority and `WorldStaticSectionCoordinator` owns candidate
+admission. Preserve exact-fluid revisions, the smooth-terrain capture, old
+terrain visibility, collision and gameplay ownership. No “fluid absent” shortcut
+or synchronous scan is allowed.
+
+**Stages and proof:** (1) preserve a headed baseline before edits; (2) prove a
+deferred active request re-enters the queue as an intact independent value,
+including a later retry after the fluid proof changes to current; (3) rerun the
+headed production candidate diagnostic to see whether terrain advances to
+candidate preparation and native receipt. No visual, traversal, save/replay, or
+performance acceptance is implied.
+
+**Baseline (2026-10-04):** `node tools/run-playtest.mjs -Only
+production_section_candidate_diagnostic -Seed section-roster-diagnostic-20261004
+-Visible true -ArtifactDir artifacts/chunk-owned-rendering/production-roster-diagnostic-20261004-r19
+-- --skip-tutorial` reached the production terrain contribution scheduler and
+crashed at `TerrainSectionShadowPublisher.gd:240` while reading `sectionKey`
+from an empty queued Dictionary. No playtest report was emitted. The owned
+watchdog proved zero remaining job members, but `cleanupPassed` was false after
+the runner requested termination. This failure predates the retry fix in this
+stage; root cause is being verified against the enqueue/clear ownership path.
+
+### Next implementation charter — terrain membership in a cross-domain section manifest
+
+**Outcome:** terrain contribution admission validates the terrain-owned source
+membership and revision in the complete section manifest while allowing
+building, ecology, tree, and prop sources to share that section.
+
+**Authority and boundary:** the source roster owns complete per-section source
+membership; terrain owns its sole terrain source ID and fluid/volume revisions.
+Do not use a global contributor count as a terrain-only count. Keep deterministic
+terrain generation, Transvoxel geometry, collision and the existing surface
+visible until the shared candidate receipt.
+
+**Stages and proof:** (1) add a contract with one terrain source plus unrelated
+building/ecology contributors in the same complete roster and prove terrain
+capture accepts the roster while still requiring its exact source ID; (2) run
+the focused terrain contribution contract; (3) run the headed diagnostic through
+the normal visible-demand scheduler and inspect the first subsequent producer
+or renderer blocker. Renderer receipt and visual/performance gates remain open.
+
+**Finding (2026-10-04):** headed census evidence showed 22 cross-domain
+contributors in one section, while terrain's adapter had a guard requiring the
+complete section's expected contributor array to have size exactly one. Its
+terrain-only fixture contained just one expected source, masking the production
+manifest shape. A second headed retry run was stopped through its owned watchdog
+after the demand remained waiting; it did not produce a final report, and the
+watchdog proved zero job members but marked cleanup unsuccessful. This stage
+will replace the total-count assumption with exact terrain source membership.
+
+**Focused verification (2026-10-04):** the terrain contribution contract passes
+9/9 after the provider guard now counts its own source ID in the complete
+expected manifest. It also proves retry records survive defer/clear by value and
+produce a sealed contribution after a current no-fluid proof is supplied. This
+is synthetic producer/assembler evidence only; the headed native install is
+still open.
+
+### Next implementation charter — identify the production batch rejected by native append
+
+**Outcome:** a native append failure reports the exact section batch/segment and
+bounded payload facts needed to identify the invalid field. Fix only the
+producer or packet boundary that violates the backend contract.
+
+**Authority and boundary:** `NativeStaticSectionInstallSession` owns the mapping
+from immutable shared snapshot batches to native append calls; the C++ packet
+backend owns its payload acceptance rules. Keep complete candidate membership,
+source identity, materials, meshes, visibility policy, and old-slot retention
+unchanged while diagnosing.
+
+**Stages and proof:** (1) preserve the headed batch rejection report; (2) attach
+bounded failing batch/segment metadata to the returned diagnostic; (3) reproduce
+the same seed and identify which backend precondition fails; (4) add a focused
+contract for that field and only then fix its actual producer. A render receipt
+is still required after the fix.
+
+**Baseline (2026-10-04):** headed no-tutorial diagnostic
+`node tools/run-playtest.mjs -Only production_section_candidate_diagnostic
+-Seed section-roster-diagnostic-20261004 -Visible true -ArtifactDir
+artifacts/chunk-owned-rendering/production-roster-diagnostic-20261004-r21 --
+--skip-tutorial` captured the full 22-source, 29-input section candidate, queued
+it through the live demand scheduler, and reached native append. The first
+renderer append failed with `invalid_batch_payload`; no receipt or report pass.
+See the runner's root `playtest-report.json` and owned watchdog report. This is a
+real integration failure, not a synthetic producer failure.
+
+**Finding (2026-10-04):** replay `r22` attached bounded append metadata to that
+same real rejection: a 195-instance opaque `ArrayMesh` batch had finite,
+positive bounds, 3900 floats (20 per instance), a 64-character mesh digest, and
+the `ShaderMaterial`; the renderer rejected its `renderTier: "near"`. The native
+contract supports `silhouette`, `structural`, `detail`, and `horizon`. The tree
+adapter had forwarded procedural LOD tier (`near/mid/far/impostor`) into the
+renderer category field. Its report is `playtest-report.json`; the owned
+watchdog proved zero remaining job members and cleanup passed.
+
+### Next implementation charter — keep procedural LOD separate from renderer category
+
+**Outcome:** tree geometry carries both its committed recipe LOD and the
+renderer-supported semantic category for each member role. LOD still owns the
+recipe, visibility, and deterministic source revision; renderer category owns
+only the batch/material submission classification.
+
+**Authority and boundary:** `TreeSpawnService` remains LOD/recipe authority;
+`TreeSectionValueAdapter` maps the existing bole/branch/foliage role to the
+backend category contract. Use structural for collision-relevant trunk/branch
+visuals and detail for foliage. Preserve exact tree geometry, LOD visibility,
+collision body, interaction, harvest, navigation, removal, and save identity.
+Do not broaden C++ tier acceptance to include LOD names.
+
+**Stages and proof:** (1) add a focused captured-tree contract asserting exact
+role-to-category mapping and retained LOD revisions; (2) run the tree and
+section installation contracts; (3) replay the headed production candidate and
+require the installed receipt, then inspect visual parity before any retirement.
+
+**Implementation finding (2026-10-04):** the focused tree contract passes 12/12,
+and the headed production diagnostic moved past `invalid_batch_payload` to
+`duplicate_batch_id`; it still has no install receipt. The next failure is in
+the merged snapshot path, not tree LOD mapping.
+
+### Next implementation charter — stable identities for merged native batch segments
+
+**Outcome:** every final merged section-batch segment has a deterministic,
+nonempty identity unique within its batch, including batches coalesced from
+multiple source contributors or split at the native instance limit.
+
+**Authority and boundary:** `ChunkStaticRenderSectionSnapshot` owns stable
+snapshot segment identity after compatible inputs are merged. The install
+session combines that segment identity with the compatibility batch key for
+native uniqueness. Preserve source-range manifests, merged buffer order,
+content digest determinism, and whole-candidate transaction semantics.
+
+**Stages and proof:** (1) extend the snapshot contract to require deterministic,
+unique merged segment IDs under input reordering and native-limit splitting;
+(2) run the snapshot, builder, and controlled native installation contracts;
+(3) replay the same headed production candidate and require a receipt. Any
+visual parity, traversal, and performance work remains a separate gate.
+
+**Baseline (2026-10-04):** headed `r23`, same command/seed as `r22`, captured a
+complete 22-source/29-input candidate, advanced visible demand, and failed at
+native append with `duplicate_batch_id`. Append telemetry identified a repeated
+batch key with an empty merged segment ID. No receipt was committed. The owned
+watchdog proved zero remaining job members and cleanup passed.
+
+**Implementation finding (2026-10-04):** `VisualAssetRegistry` now emits
+surface member values during its existing render-policy traversal of a selected
+rock asset, and the normal rock creator binds those rows to the realized
+prop's source ID, body transform, and live gameplay body. Imported mesh
+fragments preserve each actual surface material. Standard and shader material
+digests now bind supported parameters and referenced texture pixels. The
+existing canopy/import contract passed 14/14; the later headed production
+section census also reached all 22 source contributors and native installation
+for its selected section, so live section publication includes its captured
+rock/foliage/tree contributors in the candidate manifest and receipt. The
+headed diagnostic does not yet prove old-visual replacement/retirement, terrain
+collision/fluid/light parity, save/reload parity, traversal, or performance.
+
+**Implementation finding (2026-10-04):** `ChunkStaticRenderSectionSnapshot`
+now assigns each merged/split output segment a deterministic ID derived from its
+compatibility batch key and output ordinal. The focused immutable snapshot
+contract passes 29/29, including nonempty/unique IDs on a native-limit split and
+repeat assembly stability. The headed no-tutorial main-scene diagnostic
+`node tools/run-playtest.mjs -Only production_section_candidate_diagnostic
+-Seed section-roster-diagnostic-20261004 -Visible true -ArtifactDir
+artifacts/chunk-owned-rendering/production-roster-diagnostic-20261004-r24 --
+--skip-tutorial` passed with a current native chunk-renderer receipt for section
+`(-1, 0, 0)`, generation 29, 22 complete source contributors and 29 captured
+inputs across terrain, blueprint buildings, ecology/static props, and ordinary
+structures. `playtest-report.json` records `receiptBackedInstall: true`; the
+owned watchdog at `artifacts/node-tools/process-runs/godot-NjWsJE/watchdog.json`
+records exit 0, authoritative zero job members, and cleanup passed. This is
+production renderer installation evidence for one section in `Playtest.tscn`,
+not full-world visual/gameplay acceptance.
+
+### Next implementation charter — validate section replacement, stale rejection, and old-visual retention
+
+**Outcome:** when a current section candidate replaces an installed generation,
+the old generation remains visible until the renderer acknowledges the whole
+replacement; a stale generation or mismatched owner/backend receipt cannot
+publish or retire the current representation. Unload/replay must remove the
+section's static visual packet while preserving independent terrain collision,
+gameplay interaction/save authorities, and independent mob/NPC simulation.
+
+**Authority and boundary:** `WorldStaticSectionCoordinator`,
+`NativeStaticSectionInstallSession`, and the native chunk renderer own candidate
+generation, install acknowledgement, and visual slot replacement/retirement.
+TerrainVolumeService and existing building/ecology/prop/structure systems remain
+the authority for collision, edits, interaction, deterministic generation, and
+durable save deltas. Do not detach those contracts merely to prove rendering.
+
+**Stages and proof:** (1) inspect the current receipt, install, removal, and
+replacement APIs end to end and compare their revision/backend/owner guards;
+(2) add or refine a production-boundary contract for stale generation rejection,
+failed partial replacement preserving the previous slot, current replacement
+publishing before prior-slot retirement, and unload/replay idempotence; (3) prove
+the sequence through a headed native renderer fixture with actual prior/current
+visual generations and screenshots or visible state evidence; (4) exercise one
+real source revision/edit and reload path to ensure gameplay/save authority is
+unchanged. Do not begin full traversal/performance acceptance until these
+lifecycle checks expose no unsafe replacement path.
+
+**Entry evidence:** same-seed headed section candidate install passed at `r24`
+with current native receipt, after the split-segment identity contract passed
+29/29. No old-slot replacement, stale completion, unload/replay, edit/save,
+traversal, or runtime performance claim exists yet.
+
+**Lifecycle finding (2026-10-04):** the controlled headed native candidate
+fixture now passes 8/8 after the snapshot segment-ID change. Its generation 2
+replacement keeps generation 1 installed until commit acknowledgement; changing
+the provider revision after generation 3 has already entered native append
+cancels the staged candidate and leaves the generation 2 installed root ID
+unchanged; unloading the source chunk and recreating its renderer backend then
+replays the last accepted generation 2 candidate. Report:
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-stale-replacement-20261004-r5/report.json`.
+The first attempt (`r4`) did not load because the added fixture expression had
+an inferred-Variant type error; it was corrected before the passing run. These
+are headed fixture checks with native rendering resources, not real-world
+source edit/save or player traversal evidence.
+
+**Visual observation (2026-10-04):** the production r24 screenshot is preserved
+at `artifacts/test-runners/playtest.png`. It shows the diagnostic running in a
+forest, but heavy dark foliage/shadow coverage and a large dark held-item shape
+make it unsuitable as visual-parity acceptance. This remains a gameplay visual
+issue to investigate separately from the successful native receipt.
+
+**Checkpoint commit:** the game implementation and current stage evidence are
+committed on `codex/chunk-owned-world-rendering-migration` as
+`fd389f48` (`Wire whole-section candidates into production rendering`). The
+commit intentionally excludes the 204 changed generated `.import` sidecars.
+Focused validation also passes the 15-check demand driver contract at
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-migration-20261004-r1/report.json`
+and the 24-check realized-prop contract at
+`artifacts/citadel-runtime-integration/ecology-realized-prop-capture-migration-20261004-r2/report.json`.
+The realized-prop run `r1` failed because its expectation used the wrong reason
+string; production already correctly returned `pending`, an empty render layer,
+and `shader_prop_render_semantics_unsupported` for the unknown shader. The
+assertion was corrected to the implementation's exact contract and rerun. No
+production material fallback was added.
