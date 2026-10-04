@@ -891,3 +891,89 @@ ledger. The next code increment must declare its exact producer subset and
 remain visibly non-authoritative until a complete all-domain section can pass
 the roster, install through the native section slot, and retain the old
 production visuals on stale or failed work.
+
+## Next implementation charter — producer geometry handoff wave
+
+### Outcome and candidate contract
+
+Replace the private terrain-shadow installation with producer submissions to
+`WorldStaticSectionCoordinator`, then grow the same section candidate to cover
+the current terrain/fluid, ordinary-structure, blueprint-building, and
+ecology/static-prop sources. The candidate remains one immutable 16-cell
+section replacement with a sorted, revisioned contributor manifest and
+explicit opaque, cutout, and translucent/fluid layer accounting. Native
+section-slot ownership and GPU-facing batches are section-keyed, not
+source-keyed. Mobs, wildlife actors and NPCs remain independent.
+
+This is a progressive cutover. Existing VoxelTerrain and static producer
+visuals remain visible while any producer is being migrated. A partial packet
+may be prepared and tested in an explicitly non-authoritative renderer slot,
+but it cannot satisfy complete roster admission, replace a production section,
+or be called gameplay acceptance. A source may say `empty` only when its own
+deterministic authority proves exact section coverage at a current revision.
+
+### Producer handoff rules
+
+- Terrain values come from `VoxelTerrainRuntime`'s sealed 19³ SDF/material
+  capture and intersecting volume revisions. Mesh-block residency is a capture
+  fence, not a replay revision. Fluid is independently scanned or prepared from
+  `TerrainVolumeService`; no mesh/node absence proves empty. A fluid-bearing
+  section stays pending until its exact native fluid geometry is included in a
+  supported section layer.
+- Ordinary generated structure geometry is copied from an admitted immutable
+  recipe/mesh source and bound to stable source, cell and tombstone revisions.
+  Initially allow only stateless masonry/path visuals. Keep per-cell bodies,
+  collision, doors, interactions, lights, navigation and saves under their
+  existing owners.
+- Blueprint geometry comes from prepared Citadel packet values and exact
+  section partitioning. Every member/group must be represented; selected
+  masonry/paving/roof groups alone cannot claim blueprint completeness.
+- Ecology values must come from the existing admitted seeded producer. Bind
+  canonical tree recipe, terrain/admission, environment/material schema and
+  removed-ID revisions. Account for branches/opaque and foliage/cutout,
+  details, rocks, ore, forage and underground static props. Do not rerun RNG to
+  fill a missing record. Wildlife remains an actor.
+
+All async work carries world, section-slot, source-part and dependency
+revisions. Recapture the complete producer census before/during installation
+and immediately before promotion. Any changed or unavailable producer cancels
+staged work while retaining the old slot. Capture and compile once per admitted
+candidate; roster recapture must be metadata-only, bounded, and must not recopy
+the 19³ terrain payload every frame. Cross-section meshes use exact transformed
+bounds and per-section fragments/receipts.
+
+### Ordered implementation and acceptance
+
+1. **Shared terrain handoff.** Replace the shadow publisher's private ledger
+   and direct install with immutable declaration/segment submission to the
+   world coordinator. Add a metadata-only stable terrain census and
+   revision-current exact fluid coverage. An unresolved or fluid-bearing
+   section remains pending until its fluid layer is prepared. Prove stale
+   capture cancellation and old-slot retention with a live resident block.
+2. **Structure payload adapters.** Adapt one ordinary static masonry/path
+   source and complete blueprint packet membership into section-local native
+   batches. Preserve source bodies and all gameplay records. Missing/failed
+   source completion remains pending; tombstones and explicit empty removals
+   are covered.
+3. **Ecology/static prop adapters.** Extend the same existing seeded capture
+   rather than introducing a second generator. Include all static producer
+   families or keep the section pending. Prove canonical recipe/revision parity,
+   harvested-ID exclusion, and cross-section ownership.
+4. **Complete renderer gate.** Install a normal-world section that includes
+   every producer's current contributors and all required layers through the
+   native section slot. Compare the installed result at its real transform
+   against legacy visuals, inject a source edit during upload, and verify stale
+   rejection with the old slot and gameplay collision intact. A controlled
+   fixture provider may prove the coordinator API/native upload seam only; it
+   cannot satisfy this normal-world gate.
+5. **Live cutover.** Run headed forest/structure traversal, edit/harvest,
+   unload/recreate and save/reload checks plus a representative runtime
+   performance observation. Retire legacy static visuals only category by
+   category after the relevant complete manifests and receipts pass.
+
+The next production edit must implement item 1 without treating it as migration
+completion. Items 2–5 stay open until their named evidence exists. Continue
+rechecking Minecraft 26.2's immutable neighborhood, per-layer upload receipts,
+cancellation and retain-old-until-ready behavior; keep Godot's smooth terrain,
+tree grammar, gameplay/save authorities and renderer semantics native to this
+game.
