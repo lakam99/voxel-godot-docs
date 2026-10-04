@@ -939,6 +939,21 @@ deterministic authority proves exact section coverage at a current revision.
   details, rocks, ore, forage and underground static props. Do not rerun RNG to
   fill a missing record. Wildlife remains an actor.
 
+#### Instance attribute parity
+
+The current shared section instance buffer carries a transform and custom data,
+but no independent per-instance color. `spawn_detail_batch` publishes both
+`MultiMesh.use_colors` and `use_custom_data`, and its producer output includes
+both attributes. Section candidates must preserve the same pair; dropping tint
+or reusing the custom-data lane is a visual/material parity failure. Before
+surface-detail instances enter a production candidate, extend and version the
+shared instance layout and native `MultiMesh` upload together, bind its schema
+to candidate identity, and test color plus custom data through native install
+and replacement. Until that passes, detail membership is pending. Review every
+existing packet/section producer when changing the shared layout; default
+white color must preserve existing appearance and custom data must remain in
+its original lane.
+
 All async work carries world, section-slot, source-part and dependency
 revisions. Recapture the complete producer census before/during installation
 and immediately before promotion. Any changed or unavailable producer cancels
