@@ -441,4 +441,7 @@ Stage 1 remains partial (no all-domain, unload-independent census); Stage 2
 remains partial (opaque-only native installation and no atomic multi-section
 group commit); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
 visual retirement remain untested. Stages 4–6 remain open. Keep the migration
-active.
+active. The verified game slice is committed at
+`9f1168ecac0760eed458e68eda7ae5984a36cb46` on
+`codex/chunk-owned-world-rendering-migration`; generated `.import` churn remains
+unstaged in the game worktree.
