@@ -517,3 +517,24 @@ installation/retention. They do not establish transparent sorting, production
 producer cutover, complete cross-domain census, visuals in normal gameplay,
 traversal, or performance. Stage 2 remains partial; Stages 1 and 3–6 remain
 open.
+
+**Multi-section coordinator proof (2026-10-04):** game worktree commit
+`b3b53785` removes the coordinator's one-impacted-section rejection. A changed
+source can now compile, install, and promote the exact full receipt set for all
+sections it touches. The native contract moved one contributor from section
+`(0,0,0)` into `(1,0,0)`, installed both complete section slots through the
+native backend, and accepted the ledger only after both live receipts matched.
+The same run rejected an incomplete contributor census without replacing the
+current slot. Evidence:
+`artifacts/citadel-runtime-integration/native-chunk-packet-multisection-coordinator-verified-20261004/report.json`
+(43/43 checks).
+
+This remains a coordinator/native integration fixture, not a normal gameplay
+producer cutover: no ordinary terrain, building, tree, or prop producer yet
+submits its full production source set to this coordinator. Per-slot promotion
+is atomic; cross-section source readiness waits for the full affected receipt
+set. If an active boundary becomes stale after one slot has promoted, that
+section keeps its successfully installed complete generation and must be
+replaced by the retry boundary; this temporary section-generation skew and
+retry path still need a dedicated stale-mid-boundary test. Stages 1–6 remain
+open.
