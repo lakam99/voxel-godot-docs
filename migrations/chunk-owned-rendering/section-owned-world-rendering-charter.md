@@ -2468,3 +2468,16 @@ The exact previously mismatched pebble ID was not retained in the final receipt;
 the synthetic owner-parity assertion and successful section installation do
 not independently prove its final expected-section membership. Add a focused
 live assertion for that source identity while continuing to reduce census cost.
+
+The follow-up removed a redundant candidate-digest pass: production capture
+already verifies every candidate digest before the synchronous ownership loop.
+The provider still rejects a deliberately corrupted candidate before census;
+the ecology contract passed 46 checks at
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-candidate-digest-once-20261004-r23/report.json`.
+The same known-seed headed diagnostic installed section `(-1, 1, 0)` with a
+current native receipt and 71 instances. Its sampled ecology provider call was
+15,715 µs (15,787 µs total census), pending on unrelated tree queue geometry.
+This is one non-controlled sample on a different chunk from the earlier 40 ms
+sample, so it cannot establish a performance improvement or pass the runtime
+gate. Report and screenshot are under
+`artifacts/chunk-owned-rendering/candidate-membership-census-known-seed-20261004-r5/`.
