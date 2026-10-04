@@ -1881,3 +1881,45 @@ slice is committed in game commit `e2811ae8` on
 `codex/chunk-owned-world-rendering-migration`. Generated/import `.import`
 churn remains excluded and untouched. This is an intermediate stage commit;
 the terrain replacement and whole-migration gates above remain open.
+
+### Next implementation charter — guaranteed scheduling for visible replacements
+
+**Outcome:** an urgent replacement for an installed visible section gets a
+bounded production admission opportunity during ordinary gameplay even when
+the shared publication frame is occupied. Continue retaining the previous
+section receipt until a current whole-section replacement is accepted.
+
+**Non-goals:** do not bypass provider completeness, native receipts, stale-work
+rejection, the shared gameplay budget, or queue backpressure; do not make
+capture synchronous as a loading fallback; do not change terrain generation,
+fluid support, collision authority, or actor/NPC scheduling.
+
+**Authority and path:** `TerrainVolumeService` -> `VoxelTerrainRuntime` ->
+`MainRuntimeTools.on_visible_terrain_mesh_section_revision_changed` ->
+`WorldStaticSectionCoordinator` -> complete provider capture -> native section
+install session. `MainRuntimeTools` currently calls candidate admission only
+when lane 2 of its shared 6 ms publication schedule has more than 2 ms
+remaining, after structure and prop work. The coordinator tracks urgent
+replacement demands but the current headed evidence does not report whether an
+admission attempt was made during the edit window.
+
+**Baseline and discovery:** game commit `e2811ae8`, branch
+`codex/chunk-owned-world-rendering-migration`. Focused demand lifecycle tests
+pass 21/21, but headed same-seed run
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r7/playtest-report.json`
+still has the edited, resident, saved cell at native candidate generation 19,
+the old receipt live, and section demand waiting after the 3,600-frame window.
+First add bounded diagnostic evidence for urgent state, queued demand, and
+coordinator admission-attempt delta. Separate scheduler starvation from
+provider/native pending status before changing scheduler order.
+
+**Stages and exit evidence:** (1) expose current bounded admission/queue state
+in the existing real headed diagnostic; (2) if it shows starvation, reserve a
+small bounded opportunity for one urgent demand without stealing work from
+player-safety collision or bypassing provider/receipt checks; (3) contract-test
+normal and saturated lanes, pending-provider retry, and retained-old receipt;
+(4) repeat the headed same-seed edit and require a newer live receipt while
+checking resident voxel data, saved delta, and collision publication. Treat
+visual handoff, save/reload, traversal, and representative performance as
+separate gates. No implementation-complete claim until those gates and later
+migration stages pass.
