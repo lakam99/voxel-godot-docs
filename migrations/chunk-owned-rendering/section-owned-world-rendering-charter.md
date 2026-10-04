@@ -154,8 +154,30 @@ terrain, generated recipes or Godot renderer.
 - The project checkout contains the Voxel Tools extension descriptor and
   compiled extension but not its implementation source. The extension's exact
   mesh replacement, stale-work cancellation and payload interception hooks
-  remain unverified; terrain integration cannot be designed from the descriptor
-  alone.
+  remain unavailable to the application-level audit; terrain integration cannot
+  treat the existing renderer as a section-slot receipt authority.
+
+**Installed Voxel Tools API reflection (2026-10-04):**
+`node tools/run-voxel-tools-api-reflection.mjs` passed with no validation errors.
+The exact debug DLL loaded by the project is identified in
+`artifacts/native-world-backend/n1-api-reflection/2026-10-04T043737-257Z-92423ab4/report.probe.json`
+by SHA-256 `b24cc4eb8d22c27ce5babf1cf23190571d4acca9b2d215cf9c9adf00614bfc97`.
+ClassDB exposes `VoxelMesher.build_mesh(VoxelBuffer, materials,
+additional_data)`, `VoxelTerrain.mesh_block_entered/exited`,
+`VoxelTerrain.is_area_meshed`, `has_data_block`, and coordinate conversion.
+It does not expose a ClassDB method to retrieve the installed visual mesh or
+acknowledge an application-owned replacement. `mesh_block_entered` only
+reports that a mesh block entered the terrain system; `is_area_meshed` reports
+processing, not non-empty visibility or replacement ownership. Thus these
+signals cannot stand in for a section receipt. The supported investigation path
+is an immutable padded `VoxelBuffer` snapshot from the authoritative terrain
+source, passed to the existing Transvoxel mesher to form the candidate; its
+capture must include durable edits, neighboring sample revisions, collision
+parity, and fluid/material state before the Voxel Tools visual is retired. The
+reflection establishes only the public ClassDB surface of the installed
+binary, not that no private/native hook exists. The DLL has no product version
+metadata or pinned upstream commit in the repository, so upstream master docs
+are not accepted as exact-binary evidence.
 
 Do not advance a stage because a pure contract or source scan passes. For each
 stage report passed, failed, blocked and untested gates separately, preserve
