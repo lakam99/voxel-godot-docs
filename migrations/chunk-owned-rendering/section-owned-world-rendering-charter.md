@@ -2562,3 +2562,14 @@ distance while preserving initial compiles with a small recompile quota;
 cancels superseded work. This is a scheduling reference only. Do not change the
 terrain proof queue until its measured backlog/progress/staleness identifies
 which property limits the exact demanded section.
+
+The sparse-sample replay passed at the same seed in 22.3 seconds of diagnostic
+time with seven census attempts. At first observation, the target probe was
+already the single queue item at index zero; its payload was 3,888 cells and
+its captured volume/fluid revisions (1/0) still matched current revisions. The
+next sample found a current proof, with no stale or cancelled state. This replay
+does not explain the earlier 134-attempt/117.9-second outlier; it does show that
+the exact probe can reach the queue head without backlog or revision drift.
+Retain the outlier as unresolved performance evidence and do not change queue
+priority based on it alone. Report and screenshot are under
+`artifacts/citadel-runtime-integration/fluid-proof-queue-telemetry-20261004-r1/`.
