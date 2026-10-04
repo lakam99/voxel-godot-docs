@@ -179,6 +179,18 @@ binary, not that no private/native hook exists. The DLL has no product version
 metadata or pinned upstream commit in the repository, so upstream master docs
 are not accepted as exact-binary evidence.
 
+**Native renderer seam recheck (2026-10-04):**
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-section-coordinator-preintegration-20261004`
+passed all 29 checks. It reconfirms actual chunk-owned backend creation,
+section candidate installation through the native renderer, retention of the
+previous section root on cancellation, owner/generation rejection, and current
+building packet replay after chunk recreation. The production building flush
+still installs per source/material/tier; this report verifies the install seam,
+not contributor aggregation, ordinary generated-world behavior, or visual and
+traversal parity. The first production cutover therefore needs a world-owned
+coordinator above `CitadelPublicationService`'s concurrent scene jobs; a
+per-job ledger cannot prove section completeness when jobs overlap.
+
 Do not advance a stage because a pure contract or source scan passes. For each
 stage report passed, failed, blocked and untested gates separately, preserve
 prior installed content on failed replacement, and keep the overall migration
