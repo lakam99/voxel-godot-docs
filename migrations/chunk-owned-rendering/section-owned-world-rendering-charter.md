@@ -2155,3 +2155,36 @@ The implementation is in the game repository's current worktree slice; the
 charter was committed separately as `5f23a60` before production edits and this
 evidence update is `2f55c80`. Stage 5 remains partial and the overall migration
 remains active.
+
+**Bounded removal projection follow-up (2026-10-04):** the first implementation
+copied the full world removal set for each chunk. That would make chunk capture
+cost scale with all previously harvested props, so it was replaced before
+acceptance with `ActiveRemovedPropsSnapshot.capture_for_ids`: ecology collects
+the unique prop IDs already present in its sealed chunk snapshot and double-
+checks only those IDs; a tree capture checks only that tree's stable prop ID.
+Unrelated global removal revisions no longer invalidate resident chunk capture,
+while owner/seed/revision checks still reject changes during the bounded read.
+The save authority remains the existing `removed_props` map and global revision.
+
+Focused evidence on the final source: ecology adapter 40/40 at
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-spatial-removal-20261004-r9/report.json`;
+tree adapter 13/13 at
+`artifacts/citadel-runtime-integration/tree-section-value-adapter-spatial-removal-20261004-r4/report.json`.
+These prove scoped removal capture, exact local projection/tombstone behavior,
+unrelated chunk snapshot stability, and tree recipe stability under unrelated
+removal. They are synthetic contracts, not gameplay/save-reload acceptance.
+
+The final-source, tutorial-free headed Main diagnostic passes with seed
+`terrain-section-refresh-proof-20261004-r5` at
+`artifacts/chunk-owned-rendering/spatial-removal-20261004-r7/playtest-report.json`.
+It installed candidate generation 50 through the native renderer with a current
+coordinator/backend receipt and 49 contributors, then saved the screenshot at
+`artifacts/chunk-owned-rendering/spatial-removal-20261004-r7/playtest.png`.
+The owned process exited successfully and reported authoritative zero job
+members. This proves production candidate installation, not harvest, save/reload,
+visual parity, traversal, performance, or retirement of the per-source
+publishers. The screenshot retains dense dark foliage/shadow coverage. A second
+seed's earlier `terrain_empty_section_requires_exact_empty_manifest` pending
+result is still an independent unresolved census blocker; the passing r5 seed
+does not clear it. Stage 5 remains partial, and the overall migration remains
+active.
