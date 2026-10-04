@@ -1905,21 +1905,26 @@ admission attempt was made during the edit window.
 
 **Baseline and discovery:** game commit `e2811ae8`, branch
 `codex/chunk-owned-world-rendering-migration`. Focused demand lifecycle tests
-pass 21/21, but headed same-seed run
-`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r7/playtest-report.json`
-still has the edited, resident, saved cell at native candidate generation 19,
-the old receipt live, and section demand waiting after the 3,600-frame window.
-First add bounded diagnostic evidence for urgent state, queued demand, and
-coordinator admission-attempt delta. Separate scheduler starvation from
-provider/native pending status before changing scheduler order.
+pass 21/21. The headed same-seed run `r8` at
+`artifacts/chunk-owned-rendering/terrain-section-edit-refresh-20261004-r8/playtest-report.json`
+still has the edited, resident, saved cell at native candidate generation 20
+with its old receipt live. Its demand is `urgentRecompile=true` and `queued=true`,
+but target attempts remain zero; only seven total coordinator attempts occur
+while 1,000 demands are pending over the 3,600-frame replacement window. The
+provider was never asked to rebuild that section, so classify this as demand
+admission/selection starvation, not a provider-pending result. Preserve these
+bounded counters in the diagnostic. The queue is FIFO with a bounded 32-entry
+scan, while production calls the shared lane-2 admission after structure and
+prop work and only when more than 2 ms remains in its 6 ms frame budget.
 
-**Stages and exit evidence:** (1) expose current bounded admission/queue state
-in the existing real headed diagnostic; (2) if it shows starvation, reserve a
-small bounded opportunity for one urgent demand without stealing work from
-player-safety collision or bypassing provider/receipt checks; (3) contract-test
-normal and saturated lanes, pending-provider retry, and retained-old receipt;
-(4) repeat the headed same-seed edit and require a newer live receipt while
-checking resident voxel data, saved delta, and collision publication. Treat
+**Stages and exit evidence:** (1) bounded admission/queue telemetry is now
+available in the existing real headed diagnostic; (2) put urgent rebuild
+demands at the front of a bounded priority path and reserve one lane-2
+admission opportunity before unrelated structure/prop work, without stealing
+work from player-safety collision or bypassing provider/receipt checks; (3)
+contract-test normal and saturated lanes, pending-provider retry, and
+retained-old receipt; (4) repeat the headed same-seed edit and require a newer
+live receipt while checking resident voxel data, saved delta, and collision publication. Treat
 visual handoff, save/reload, traversal, and representative performance as
 separate gates. No implementation-complete claim until those gates and later
 migration stages pass.
