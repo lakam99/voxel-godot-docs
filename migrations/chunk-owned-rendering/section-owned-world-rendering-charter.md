@@ -312,3 +312,89 @@ validation runner was attempted but stopped on failures in cave-field,
 natural-terrain golden, underground-prop and world-source tests. Their baseline
 classification is unknown; they remain unresolved and are preserved in
 `artifacts/native-world-backend/section-mesh-identity-20261004-rerun/report.json`.
+
+**Producer-boundary audit and next-stage plan (2026-10-04):** the current
+branch is `codex/chunk-owned-world-rendering-migration` at
+`787f43405a16b3594a840af61c2cf774c86059bf`. The game worktree has broad
+Godot `.import` churn outside committed code; it is being preserved. The docs
+worktree is on `main` at `8e48f40cfda9f9c71a019f16e62cccceb07fcfb4`; its two
+dirty visible-world-readiness files are unrelated and remain untouched.
+
+Three independent read-only audits completed before the next production edit:
+
+- **Terrain producer:** production terrain is `VoxelTerrainRuntime.terrain`,
+  with 16-cell Transvoxel mesh blocks and SDF16/INDICES8/DATA5_8 channels.
+  A candidate can only be captured from resident authoritative VoxelData, not
+  regenerated from the generator or from the native shadow-volume test source.
+  The proposed padded input is 19³ samples, bound to terrain instance, seed /
+  generator identity, global and all intersecting 3D section revisions,
+  resident mesh-block event, and copied-byte digest. Voxel Tools remains the
+  collision and visible authority during this first shadow installation; the
+  installed extension exposes no application-level installed-mesh receipt.
+  Terrain saves remain durable edited-cell deltas, not mesh cache.
+- **Buildings:** `BuildingPartPublisher` already has prepared immutable visual
+  segment buffers and exact source-part revisions, while `BuildingStaticBatchFlush`
+  still publishes source/material/tier packets. Collision, doors, furnishings
+  and navigation remain separately owned by the building/gameplay system.
+  The coordinator has no production producer caller, its census must be supplied
+  externally, it rejects replacements spanning more than one section, and the
+  current candidate accepts opaque instances only. A building-only connection
+  would omit co-located terrain and ecology and is not a valid cutover.
+- **Ecology / props:** the deterministic spawn state machine has stable object
+  IDs and durable harvest tombstones, but completed child manifests observe
+  materialized scenes and cannot enumerate unloaded chunks. Detail IDs/revisions
+  currently include runtime batch identity. Trees keep gameplay bodies,
+  harvest state and trunk collision while visual recipes publish asynchronously.
+  A stable producer-side, value-only generated-source ledger is needed to give
+  loaded and unloaded sections the same exact census without changing RNG draw
+  order.
+
+### Immediate production slice and stage exits
+
+The next code slice is a **resident live-terrain shadow candidate**, not a
+whole-section promotion or a per-domain renderer cutover. Before capture, the
+runtime must prove the requested mesh block is current, visible/resident and
+editable/meshed. Capture the live 19³ halo and its exact SDF/material channels
+into owned values; bind world/source/block identity, every affected 3D section
+revision, edit-pending state, mesher/material configuration, and payload digest.
+Revalidate after capture and immediately before installation. A stale,
+nonresident, pending-edit, or unavailable source returns an explicit retryable
+pending/failure reason, never empty success. Run those values through the
+configured smooth Transvoxel mesher and install the resulting mesh/material
+candidate through the real section owner. Keep Voxel Tools rendering and
+collision authoritative until a controlled headed comparison proves the
+candidate's appearance, material/light behavior, seams, and edit replacement.
+
+The capture contract must be exercised on a real VoxelTerrain scene and include
+resident-copy digest parity, edit invalidation, unload/re-entry invalidation,
+and a real native-section receipt for the produced Transvoxel resource. The
+first candidate manifest explicitly says terrain-only and is never promoted as
+a complete section. This closes a terrain source boundary and proves a
+production-shaped renderer installation, but does not pass the whole-section
+producer gate.
+
+Before any section is promoted as complete, the architecture must additionally
+have: (1) a world-lifetime exact source census, including explicit empty and
+tombstone revisions for terrain, generated structures, trees, foliage, detail
+and props, independent of scene-child lifetime; (2) immutable per-section
+multi-layer candidate payloads for smooth terrain, instanced recipes and the
+game's translucent/fluid policies; (3) multi-section staging and one atomic
+promotion after every impacted section has an exact live receipt; (4) stale
+source/owner cancellation and replay after source/render-owner unload; and
+(5) production producer routing that retains each old representation until
+the complete replacement is acknowledged. Mobs/NPCs, collision, interactions,
+navigation and saves stay with their established authorities.
+
+Stage exits remain the seven rows in the table above: Stage 0 source map;
+Stage 1 complete immutable manifest/census contract; Stage 2 section slot,
+multi-layer/multi-section install lifecycle; Stage 3 real terrain source and
+visual cutover; Stage 4 buildings; Stage 5 ecology and props; Stage 6 gameplay
+readiness, traversal/performance and legacy publication retirement. Stage 3
+shadow installation is not terrain cutover. Each exit needs its named contract
+evidence and all later gates remain open. The Minecraft source check was
+repeated against `SectionCompiler.java`, `RenderSectionRegion.java`, and
+`SectionRenderDispatcher.java`: compile visits section interior while reading a
+3×3×3 copied neighborhood; dispatcher cancellation discards stale results,
+stages each rendered layer, retains old content until upload acknowledgements,
+and explicitly installs empty output. We adopt these lifecycle principles, not
+its block-state mesher or fixed dimensions.
