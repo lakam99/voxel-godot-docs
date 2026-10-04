@@ -2995,3 +2995,110 @@ replay. The next production edit should implement the section-owned tree
 geometry handoff described above, then prove its candidate is installed
 through the real renderer before another long visual/traversal run. Stage 2
 and the live gate remain open.
+
+### Next implementation charter — recipe-fed section tree compiler (2026-10-04)
+
+**Outcome:** move procedural tree visuals from per-tree scene construction to
+the existing complete section candidate. A section compile reads immutable,
+deterministic tree recipe inputs and produces the section's compatible render
+layers. It must not wait for GeneratedTreeVisual construction or a per-tree
+visual commit. Keep world generation, recipe/LOD choice, StaticBody3D
+collision, prop identity, harvest/drops, navigation notifications, durable
+removal, saves, and mob/NPC simulation under their existing authorities.
+
+**Input ownership and content manifest:** seal each completed worker recipe as
+a value record before renderer construction, bound to world/seed, stable source
+and prop IDs, canonical normalized request, current runtime recipe signature,
+recipe content/compiler schema, render tier, exact body weak owner and instance
+ID, exact transform, and producer generation. The content revision includes
+only deterministic render inputs (recipe content, geometry compiler version,
+LOD, material/shader/uniform/texture digests, and layer policy); owner identity
+and task generation are independent stale-result guards, not content identity.
+The section census retains explicit complete/empty source membership and exact
+tree-to-section geometry ownership, including cross-section trees and
+cross-stream-chunk supports. Never substitute canopy bounds for actual
+partitioned geometry. Each section candidate includes every contributor and
+resource binding in its manifest, grouped only where mesh, material, render
+layer, shadow and instance-attribute policy match.
+
+**Geometry and scheduling:** add a composed TreeRecipeSectionCompiler that
+consumes these frozen records through the same TreeSpawnService,
+ProceduralTreeVisualFactory, and procedural recipe rules. Branch and foliage
+may share canonical meshes while retaining exact per-instance transform,
+custom data, wind, variation, tint and shadow behavior. The continuous
+order-zero bole must preserve the current continuous-wood silhouette, bark
+variation and shader semantics; merge it at section scope only if per-tree
+attributes remain representable, otherwise keep distinct compatible batches
+inside the section result. Work is resumable and retryable under the section
+job budget; a missing, incomplete or stale recipe is pending/rejected, never an
+empty success. Preserve each source's actual render layer; the current tree
+adapter accepts opaque batches only, and the native install session rejects
+translucent sorting. Close those layer limits explicitly before claiming visual
+parity. The existing native install path remains the sole section renderer
+and receives the normal complete manifest and current receipt.
+
+**Stale work and replacement:** before enqueue and again after geometry
+preparation/upload, validate current world/source revision, normalized request,
+body owner/instance, generation token, transform, removed-prop snapshot,
+resource/material fingerprint, compiler schema, affected-section set, and
+candidate manifest. Cancel stale staged output and retain the old installed
+section slot. A newly added tree keeps its collision/safety proxy until the
+replacement receipt is current. A replaced/moved/retiered tree retains the old
+visible sections until the union of old and new owning sections has current
+receipts; only then retire the legacy visual/proxy and mark section ownership.
+Removal remains an authoritative removed_props tombstone and becomes an
+explicit source removal in every previously owned section. Separate
+section/native installation acknowledgement from provider/tree retirement
+acknowledgement in telemetry and contracts; the coordinator can currently
+report an installed section while a provider acknowledgement is still pending.
+
+**Ordered stages and exits:**
+
+1. **Recipe artifact contract:** seal a completed deterministic recipe before
+   per-tree geometry/scene construction. Prove exact immutable identity,
+   content revision and stale-owner rejection, including moved, removed,
+   replaced-body, resource/compiler revision and absent-recipe cases. Keep the
+   old production renderer active.
+2. **Section compiler contract:** compile all tree inputs for a target section
+   into immutable layer/instance values, without creating or attaching
+   GeneratedTreeVisual nodes. Compare mesh/resource fingerprints and exact
+   section partitions against canonical tree values. Prove deterministic
+   output, cross-section membership and bounded resumability.
+3. **Real renderer installation:** capture an ordinary Main-scene forest
+   source through ecology census, contribution, whole-section assembly, native
+   install and receipt. Include a tree crossing section boundaries; verify all
+   owning receipts, layer/material/shadow fields and old-visual retention
+   throughout staging/upload.
+4. **Gameplay and lifecycle parity:** prove the same live body remains
+   collidable and harvestable; a removed tree writes the same durable delta and
+   disappears from every installed section; save/reload, resource/revision
+   replacement and stream unload/replay reconstruct the same deterministic
+   content and reject stale RIDs/owners. Retire per-tree visual scheduling only
+   after the preceding real receipt path passes.
+5. **Live acceptance:** run headed forest visual and traversal checks, then a
+   representative runtime performance profile. Report the exact run, screenshots,
+   per-stage receipts, worst frame and tree/section queue work. This is still
+   Stage 5 evidence; Stage 6 readiness, performance and legacy retirement is a
+   separate goal gate.
+
+**Minecraft 26.2 validation:** SectionCopy owns copied section-state values;
+RenderRegionCache reuses adjacent copies during one extraction batch;
+RenderSectionRegion exposes the 3×3 neighborhood; SectionCompiler.compile
+builds the target section's nonempty render layers in shared builders; and
+SectionRenderDispatcher publishes the replacement only after its buffers are
+uploaded and accepted, retaining the old installed mesh in the meantime.
+SectionTaskDynamicQueue.poll(cameraPos) selects nearest eligible section
+work with a small recompile quota. Reuse these value-capture, per-section
+compile, scheduling and replacement boundaries. Do not copy the cube/block
+mesher for our smooth terrain or flatten the tree recipe into a generic
+primitive.
+
+**Entry evidence and stop rule:** the r3 replay recorded tree queue tasks still
+in the completed backlog at renderStage=root and no prepared section artifact
+for tens of seconds while the initial region stayed at 32/35 visuals. This
+proves the old per-tree build can delay section admission, but does not prove it
+is the only whole-view blocker. Keep ordinary-source capture throughput,
+terrain/fluid probes, and section retry cadence as separate measured
+dependencies. Do not repeat the same long sprint before the section compiler
+has a real native-receipt proof; do not advance a stage from a snapshot or
+synthetic contract alone.
