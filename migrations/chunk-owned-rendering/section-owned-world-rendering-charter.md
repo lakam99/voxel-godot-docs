@@ -941,18 +941,15 @@ deterministic authority proves exact section coverage at a current revision.
 
 #### Instance attribute parity
 
-The current shared section instance buffer carries a transform and custom data,
-but no independent per-instance color. `spawn_detail_batch` publishes both
-`MultiMesh.use_colors` and `use_custom_data`, and its producer output includes
-both attributes. Section candidates must preserve the same pair; dropping tint
-or reusing the custom-data lane is a visual/material parity failure. Before
-surface-detail instances enter a production candidate, extend and version the
-shared instance layout and native `MultiMesh` upload together, bind its schema
-to candidate identity, and test color plus custom data through native install
-and replacement. Until that passes, detail membership is pending. Review every
-existing packet/section producer when changing the shared layout; default
-white color must preserve existing appearance and custom data must remain in
-its original lane.
+The current shared section instance ABI is
+`static-instance-transform-color-custom/v2`: 12 transform floats, 4 independent
+instance-color floats, and 4 custom-data floats. Native `MultiMesh` publication
+enables and writes color and custom lanes separately. The ABI contract passes
+through section installation and replacement; default white preserves older
+packets while custom data remains in its original lane. Producer adapters must
+preserve the exact v2 schema in their candidate identity and never overload
+custom data as tint. This does not yet prove production ecology install or
+visual parity.
 
 All async work carries world, section-slot, source-part and dependency
 revisions. Recapture the complete producer census before/during installation
@@ -997,3 +994,109 @@ rechecking Minecraft 26.2's immutable neighborhood, per-layer upload receipts,
 cancellation and retain-old-until-ready behavior; keep Godot's smooth terrain,
 tree grammar, gameplay/save authorities and renderer semantics native to this
 game.
+
+## Architecture restart charter — whole-section production candidates
+
+**Status:** required next production design; implementation remains in progress.
+
+### Outcome and non-goals
+
+Replace source-by-source production publication as the static world render
+authority with one immutable candidate for a complete 16-cell render section.
+Each candidate is assembled from every current terrain, ordinary-structure,
+blueprint-building, tree/foliage and static-prop contributor in that section,
+then partitioned and batched once across categories. It installs through the
+existing section-slot/native renderer seam. A partial source subset may be
+captured for diagnosis but cannot replace production visuals or pass section
+readiness. Keep the old section visible until every required layer has an
+accepted receipt. Keep mobs, wildlife and NPC simulation/rendering independent.
+
+This replaces the per-source ledger/publication flow as a production candidate
+builder where it cannot express one complete section. Existing ledger and
+producer packet contracts remain useful regression evidence during migration;
+they do not constrain the new production architecture. Do not change seeded
+generation, terrain/SDF or biome authority, structure/tree/prop identity,
+collision, interactions, doors, harvesting, navigation or save format. Saves
+continue to store durable edits and removals; generated render buffers are
+reconstructed from authoritative producers after load.
+
+### Candidate and data path
+
+```text
+authoritative producer snapshots + exact section census
+  -> provider-specific value adapters
+  -> merged immutable section inputs and resource bindings
+  -> one cross-domain section partition/batch pass
+  -> complete layer/manifest snapshot + digest
+  -> source/owner recapture and revision validation
+  -> staged native section install and per-section receipt
+  -> provider acknowledgement and retirement of matching old visuals
+```
+
+The complete candidate records world/session epoch, stable 3D section key,
+slot generation, sorted exact contributor IDs/revisions, provider authority and
+coverage revisions, canonical gameplay owners, section-local ranges, actual
+mesh/material/pipeline digests, transform/color/custom attributes, bounds,
+layer/policy, stream dependencies, counts/bytes and explicit empty output.
+Opaque and cutout are supported only when the real material semantics match;
+translucent/fluid stays pending until ordering and revision updates are
+implemented. Smooth terrain is meshed by the existing Transvoxel path from
+owned authoritative volume bytes and its required halo revisions; Minecraft's
+block-state mesher is not reused.
+
+All inputs are sealed values, not Nodes, RIDs, Callables or mutable producer
+containers. Every candidate source ID must match exactly one entry in the
+authoritative section census. Census includes current live contributor
+revisions and separate source-identified removal tombstones; removed members
+are not current contributors. Tombstones are consumed only after the matching
+section receipt is accepted. Bind resource contents and section owner/backend
+epochs to the candidate. Recheck provider epochs, exact census digest, source
+revisions, world identity, resources and owner before upload and immediately
+before promotion. Any changed or unavailable input cancels staged work while
+leaving the old installed section untouched. One source instance has one
+center-owned section under `StaticRenderSectionGrid`; the captured world bounds
+and intersecting stream dependencies are retained in its manifest.
+
+### Stage plan and exit gates
+
+1. **Freeze provider contracts.** Terrain, ordinary structures, blueprint
+   buildings, ecology/tree/detail and props expose immutable section-local
+   inputs, current contributor IDs/revisions, removal tombstones, layers and
+   resource bindings. Unsupported members remain pending. Prove each exact
+   identity and source-to-section mapping with focused contracts.
+2. **Build complete section candidates.** Add one assembler that unions all
+   provider inputs, rejects missing/duplicate/unowned or stale members, merges
+   compatible cross-domain batches, partitions once, and builds the final
+   immutable snapshot. Prove exact roster-to-manifest equality, explicit
+   empty, stale recapture, resource binding, size/backpressure and cross-section
+   center ownership.
+3. **Install the production candidate.** Drive visible section demand through
+   the assembler and existing `NativeStaticSectionInstallSession`, retaining
+   old roots through cancellation and acknowledging providers only after a
+   matching native receipt. Exercise a real world-produced complete candidate
+   through the actual renderer; synthetic snapshot or fixture-empty evidence
+   does not pass this gate.
+4. **Move domain production.** Cut over smooth terrain, then both structure
+   paths, then trees/foliage/detail and static props, each only after the
+   previous layer retains its source authority and passes live appearance,
+   edit/removal, unload/replay and save/reload checks.
+5. **Retire old visual authorities.** Run headed forest/structure traversal,
+   turning, editing, harvesting, unload/recreate and representative runtime
+   performance checks. Remove old per-source visual publication only when each
+   affected section has a current complete manifest and receipt with no
+   readiness gaps. Do not call any preceding stage full migration completion.
+
+### Current entry state
+
+The branch at implementation entry is `codex/chunk-owned-world-rendering-migration`
+at game revision `2d29d9f849bb5f26622bdc340101853f2e24d586`, with uncommitted
+section ABI/provider work and pre-existing generated `.import` churn. The
+canonical docs repository is on `main` at `683be945fe17e29c904f05af1db2d08fab024c08`;
+its unrelated visible-world readiness edits must be preserved. A headed
+terrain-only candidate previously installed through the native section owner,
+but its fixture explicitly treated static providers as empty. It proves only
+the renderer seam, not a complete production section. Focused producer evidence
+is being added for ordinary structures, Citadel packet groups and partial
+ecology detail; tree geometry, full natural-prop census, translucent/fluid
+layers, production demand orchestration, normal-world candidate installation,
+live traversal and performance remain open.
