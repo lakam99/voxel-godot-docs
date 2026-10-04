@@ -2116,8 +2116,10 @@ section membership and contribution assembly. The global save removal counter
 is no longer part of unrelated candidate/tree source revisions; exact removed
 source IDs create source-specific section tombstones. Chunk owner, source
 schema, snapshot content digest, and removed-set capture freshness checks remain
-required. The durable `removed_props` map and revision remain unchanged as save
-authority. The ecology adapter contract passes 39/39 at
+required. The capture path must enumerate only candidate prop IDs belonging to
+the chunk and use bounded per-ID snapshots against the authoritative map; it
+must not rescan/copy the full world removal set once for every chunk. The durable
+`removed_props` map and revision remain unchanged as save authority. The ecology adapter contract passes 39/39 at
 `artifacts/citadel-runtime-integration/ecology-section-value-adapter-spatial-removal-20261004-r7/report.json`,
 including an exact dynamic removal from one section with other source revisions
 unchanged and two chunk snapshots still capturable after a world-wide removal.
