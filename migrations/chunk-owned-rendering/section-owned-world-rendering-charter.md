@@ -2511,3 +2511,54 @@ This diagnostic follows the lifecycle lesson from Minecraft 26.2's
 from a captured neighborhood, cancel stale work, and switch the current section
 only after the replacement has been acknowledged. It does not port Minecraft's
 block mesher or alter the game-wide migration exit criteria.
+
+### Stage 5 tree resource-freshness follow-up plan (2026-10-04)
+
+The post-install audit found a source freshness hole to close before broader
+ecology cutover. `TreePublicationQueue` retains frozen member dictionaries whose
+Mesh and Material values are still mutable Resources. Ecology census revisions
+currently bind recipe signature, LOD, body transform and instance identity, but
+not the resource-aware revision already computed by `TreeSectionValueAdapter`
+from mesh/material fingerprints and instance values. The ecology contribution
+wrapper also currently recomputes its own tree revision without incorporating
+`captured.sourceRevision`. A resource mutation can therefore change prepared
+geometry while leaving the source roster revision unchanged.
+
+Before editing production code, trace and preserve this boundary: the queue owns
+committed recipe/value members; census owns section membership and revision;
+the tree adapter fingerprints and partitions geometry; the coordinator rechecks
+the census before native installation. The implementation should establish one
+producer-owned section-value revision over member mesh/material content and
+instance values, use that same identity for census and contribution, and make a
+changed retained resource invalidate or reject pending candidate work. Do not
+move mesh preparation into the per-section census or weaken the existing
+retain-old-until-receipt rule.
+
+Acceptance for this slice is a focused contract that mutates a retained Mesh
+and Material after publication and again between contribution capture and
+candidate acceptance; each change must either advance the current roster
+revision or reject stale work while preserving the previous installed section.
+Then rerun the tree/ecology provider contracts, the known-seed headed source
+install diagnostic, and a representative performance observation to check the
+cost of the new freshness boundary. Stage 5 remains partial: complete static
+ecology family coverage, harvest/reload replacement, cross-section replay,
+legacy visual retirement, and live traversal still have separate exit gates.
+
+### Cold fluid-proof queue diagnostic plan (2026-10-04)
+
+The exact-source run's 134 census attempts only show that the probe had not yet
+published a current proof. Its report does not distinguish FIFO backlog, slow
+cell progress, or repeated stale cancellation from volume/fluid revision
+changes. Before changing queue policy, add bounded samples to the same headed
+diagnostic: target section's queue index/length, probe phase, `cellsProcessed`
+against payload size, start/current volume and fluid revisions, and stale or
+completion outcome. Keep sampling intervals coarse and reports bounded. One
+known-seed tutorial-free replay should decide whether the next change belongs in
+queue priority/fairness, per-frame work budget, or revision invalidation.
+
+Minecraft 26.2's `SectionTaskDynamicQueue` orders available work by camera
+distance while preserving initial compiles with a small recompile quota;
+`SectionRenderDispatcher` requeues work when resources are unavailable and
+cancels superseded work. This is a scheduling reference only. Do not change the
+terrain proof queue until its measured backlog/progress/staleness identifies
+which property limits the exact demanded section.
