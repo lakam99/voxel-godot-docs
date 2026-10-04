@@ -2943,3 +2943,55 @@ from a section-provider census delay without changing queue policy. The live
 trace already identifies one candidate task at `root` for 136.7 seconds, but
 has only aggregate selection counts, so it does not prove that this task was
 starved.
+
+### Exact tree-queue blocker replay (2026-10-04)
+
+The bounded tutorial-free replay was repeated with lightweight blocker
+sampling, without per-tree recipe hashing in the checkpoint path:
+
+```text
+node tools/run-visible-world-fast-turn-sprint.mjs --skip-tutorial true --diagnostic-replay-seed sectioncutover20261004b --timeout-seconds 150 --reportpath artifacts/visible-world/tree-queue-debug-20261004-r3/report.json --progresspath artifacts/visible-world/tree-queue-debug-20261004-r3/progress.txt --screenshotdir artifacts/visible-world/tree-queue-debug-20261004-r3/screenshots
+```
+
+The watchdog reached its 150-second diagnostic limit with authoritative zero
+owned-process membership, but the runner did not produce a report. Thus this
+is blocker evidence only; it is not a gameplay acceptance result. At frame
+2280 the initial-region readiness census had 32/35 visuals, including 20/23
+tree visuals, and remained pending. The section admission reason was
+`ecology_tree_queue_geometry_not_committed`.
+
+The exact lightweight samples in
+`artifacts/visible-world/tree-queue-debug-20261004-r3/progress.txt.tree-queue.jsonl`
+show the blocker is an old per-tree build still in the tree queue's completed
+backlog, before a prepared section artifact or section receipt exists. For
+candidate `sectioncutover20261004b:10,14:19`, enqueue sequence 46, the
+`renderStage` remained `root` in the `completed` container from frame 2040
+(age 34.7 s) through frame 2280 (age 49.6 s). Other requested trees likewise
+appeared at `root` or `bole` with no prepared section artifact. Across later
+samples the current blocked candidate changed, while the visual census still
+had three pending trees. This confirms publication queue latency/backlog in
+the old per-tree path as a direct section-admission blocker; it does not yet
+show which of the three initial-region waiters were identical to each sampled
+blocker or prove that selector starvation alone caused the full startup delay.
+
+This result makes the architecture gap clearer than the previous
+stale-snapshot hypothesis. The ecology provider requires completed per-tree
+render geometry before it can admit a whole-section candidate. In Minecraft
+26.2, `RenderSectionRegion` supplies copied neighboring section values to
+`SectionCompiler`, which produces all applicable render layers for one
+section; `SectionTaskDynamicQueue.poll` selects eligible section tasks by
+distance and uses a small recompile quota. The relevant design lesson is to
+make tree/static input part of the section's immutable compile input and
+section-owned result, rather than waiting for a separate per-tree visual
+commit. Keep tree gameplay bodies, collision and deterministic recipe
+authority intact, and retain any old visible tree until the replacement
+section receipt is current. Do not paper over the backlog with a larger
+startup timeout, weaker readiness check, or unmeasured per-tree priority
+change.
+
+The previous charter's "capture a stable exact-tree timeline before choosing
+the queue fix" question is answered enough to stop repeating the same sprint
+replay. The next production edit should implement the section-owned tree
+geometry handoff described above, then prove its candidate is installed
+through the real renderer before another long visual/traversal run. Stage 2
+and the live gate remain open.
