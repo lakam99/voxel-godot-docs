@@ -2350,3 +2350,52 @@ the stage 4A discovery note above. Stage 4A remains partial: build an actual
 shared block visual recipe consumed by both `create_block` and section capture,
 capture a populated generated-structure section through the real renderer, and
 prove accepted replacement/unload/replay before legacy visual retirement.
+
+## Production candidate and exact-empty increment (2026-10-04)
+
+The ordinary base-block recipe now admits the production `ShaderMaterial` used
+by `woodBlock`, `stoneBlock`, and `cobblestonePath`, but only for the known
+opaque `resources/visual/building_material.gdshader`. Material identity includes
+the shader source and its sorted uniform values; a uniform change changes the
+prepared source revision. Unknown shaders, alpha output/blend modes, unsupported
+options, and interactive or multi-mesh structure members still remain pending.
+The same recipe resolves the source mesh/material/transform for `create_block`
+and section capture. The live body remains the collision/gameplay owner.
+
+An exact fluid-free terrain capture that meshes to no surfaces now produces an
+explicit empty source row with source revision, section and logical owner. The
+whole-section assembler requires each census member to supply either geometry
+or exactly one sealed explicit-empty row; a missing member still returns
+retryable pending. The section snapshot includes the empty contributor in its
+manifest with no batch keys or ranges. This follows Minecraft 26.2's section
+compiler/dispatcher behavior where an empty compiled result is still committed
+as the next current section result. It does not substitute Minecraft's block
+mesher for our smooth SDF/Transvoxel terrain path.
+
+Evidence:
+
+- Building shader adapter contract: 16/16 at
+  `artifacts/citadel-runtime-integration/ordinary-section-geometry-adapter-building-shader-20261004-r2/report.json`.
+- Cross-provider exact-empty candidate contract: 8/8 at
+  `artifacts/citadel-runtime-integration/whole-section-candidate-assembler-empty-manifest-20261004-r1/report.json`. It proves manifest insertion and that omission remains retryable; it is synthetic evidence.
+- Tutorial-free headed Main run:
+  `node tools/run-playtest.mjs --only production_section_candidate_diagnostic --seed terrain-section-refresh-proof-20261004-r6 --visible true --timeoutSeconds 240 --watchdogSeconds 240 --reportPath artifacts/chunk-owned-rendering/ordinary-recipe-renderer-proof-20261004-r11/playtest-report.json --progressPath artifacts/chunk-owned-rendering/ordinary-recipe-renderer-proof-20261004-r11/progress.txt --screenshotPath artifacts/chunk-owned-rendering/ordinary-recipe-renderer-proof-20261004-r11/playtest.png -- -SkipTutorial`.
+  The real Main provider census included the ordinary fixture, the candidate
+  installed through the native renderer at generation 42 with a current native
+  receipt and the fixture part in its manifest, and the terrain edit-refresh
+  installed generation 53 with a different manifest digest and current receipt.
+  The edit was also present in the durable terrain save delta. The screenshot is
+  the headed forest view at `artifacts/chunk-owned-rendering/ordinary-recipe-renderer-proof-20261004-r11/playtest.png`.
+
+This is not the Stage 4A exit. The fixture is one diagnostic base block, not a
+populated generated building; it does not prove old-visual retirement, complete
+decoration/material parity, collision/contact parity, unload/replay, ordinary
+save/reload, traversal, or runtime performance. Ordinary structure rendering
+still uses the per-source publisher alongside the section candidate. The
+selected terrain section's exact empty mesh had no terrain batch; a separately
+revisioned save edit then replaced that result. The run exposed a separate slow
+exact-fluid readiness path on cold startup but completed successfully. Preserve
+the complete existing structure producer until all member recipes and the old
+visual handoff are proven. Continue with real generated-structure manifest
+capture, replacement/unload-replay, then headed traversal and performance before
+retiring its publisher.
