@@ -1313,9 +1313,14 @@ It passes in the Main production scene, installs generation 19 for section
 `(0, 1, 0)`, and records a current native backend receipt after the selected
 tree-source revision changed during startup. The owned watchdog at
 `artifacts/node-tools/process-runs/godot-MEzUp0/watchdog.json` reports exit 0,
-authoritative zero job members, and cleanup passed. This verifies the current
-receipt gate against a real renderer owner, but still does not perform a real
-harvest/edit replacement. The runner's default headed screenshot/progress
+authoritative zero job members, and cleanup passed. The receipt records all
+four required providers (`terrain`, `blueprint_buildings`,
+`ordinary-structures`, and `ecology_and_static_props`); the selected section
+contains 14 installed opaque batches / 172 instances and an explicit empty
+translucent layer, with ordinary structures explicitly empty in that section.
+This verifies a real renderer install of the shared cross-domain candidate and
+current-owner receipt gate, but still does not perform a real harvest/edit
+replacement. The runner's default headed screenshot/progress
 artifacts are reused and overwritten by later runs; no visual-parity image is
 being claimed or retained as acceptance evidence.
 
