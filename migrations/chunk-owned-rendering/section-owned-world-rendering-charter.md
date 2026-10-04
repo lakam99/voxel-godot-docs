@@ -398,3 +398,47 @@ repeated against `SectionCompiler.java`, `RenderSectionRegion.java`, and
 stages each rendered layer, retains old content until upload acknowledgements,
 and explicitly installs empty output. We adopt these lifecycle principles, not
 its block-state mesher or fixed dimensions.
+
+**Resident terrain capture and real section-renderer shadow install (2026-10-04):**
+`VoxelTerrainRuntime.capture_resident_terrain_mesh_block` now copies live resident
+VoxelData instead of regenerating the candidate from the generator. It requires
+the visible resident mesh block and complete 19³ Transvoxel input area, rejects
+pending edits, captures SDF16/INDICES8/DATA5_8 into owned bytes, records all 27
+intersecting 3D section revisions plus mesh-block/world/generator identity, and
+digests the channel payload. `resident_terrain_capture_is_current` rechecks the
+source and section revisions and recomputes the byte digest before install. The
+feature remains a shadow path; it does not disable or replace Voxel Tools
+rendering, collision, edits, or saves.
+
+The focused headed command
+`node tools/run-playtest.mjs --only resident_terrain_section_capture --seed section-capture-audit-20261004 --visible true`
+passed. Its report is
+`artifacts/chunk-owned-rendering/terrain-candidate-install-headed-rerun-20261004/report.json`.
+The gate observed a production resident block `(12, 0, -1)`, validated the
+19³ byte counts and 27 source-section revisions, rejected a tampered payload,
+built a one-surface Transvoxel mesh, and installed a terrain-only candidate
+under Main's real independent static-section owner. The native receipt bound
+generation 1, the manifest digest, owner `(6, -1)`, and source-capture
+dependencies `(6, -1)` and `(7, -1)`. Voxel Tools visual/collision stayed
+active. The screenshot still shows the loading overlay, so this proves source
+capture and native renderer installation, not player-visible mesh/material
+parity, edit replacement, traversal, or performance. The first install attempt
+was rejected because the fixture used an unsupported native render tier; the
+runner was corrected to use the backend's accepted structural importance tier
+and the focused headed rerun passed.
+
+The same runner was initially made to wait for full startup before invoking the
+terrain probe. That run stopped at its 240-second watchdog with Main loading at
+2075/2083 visuals, eight pending (all reported in structure publication) and
+no runtime failure payload. It did not reach the capture assertion. This is a
+separate unresolved startup gate with no baseline comparison; do not attribute
+it to this renderer work or call the 360° startup readiness gate passed. The
+capture-only gate was moved to observe Main's actual terrain while startup was
+still active.
+
+Stage 3 has passed its live resident-source and native-install shadow subgate.
+Stage 1 remains partial (no all-domain, unload-independent census); Stage 2
+remains partial (opaque-only native installation and no atomic multi-section
+group commit); Stage 3 visual/edit/collision/fluid/light parity and Voxel Tools
+visual retirement remain untested. Stages 4–6 remain open. Keep the migration
+active.
