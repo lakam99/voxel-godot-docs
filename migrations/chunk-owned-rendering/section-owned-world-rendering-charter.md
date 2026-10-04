@@ -267,3 +267,13 @@ section lifecycle pattern (3x3x3 region inputs, per-layer compilation,
 cancellation of stale tasks, and retention/release of the prior section mesh),
 but its block mesher and draw-buffer implementation are not suitable substitutes
 for this game's smooth Transvoxel terrain or Godot native backend.
+
+**Renderer resource-shape probe (2026-10-04):** the owned native contract
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-arraymesh-section-20261004`
+passed 34/34 checks. A real triangle `ArrayMesh` was installed as the mesh of a
+`MultiMeshInstance3D` under the native section owner, and the test inspected the
+installed node/resource identity. This verifies that the current Godot/native
+wrapper can host arbitrary triangle surfaces; it is not a Transvoxel output,
+mesh-byte-budget, live VoxelTerrain capture, headed image, or production terrain
+publication proof. The next terrain stage still needs a bounded native mesh
+payload budget and a capture matching the live VoxelTerrain authority.
