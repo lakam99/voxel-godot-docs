@@ -68,17 +68,22 @@ Each immutable candidate carries:
 - terrain volume/material/fluid/light revisions and the sample halo revisions
   required by the smooth mesher; static contributors are admitted from their
   existing deterministic, prepared artifacts;
-- canonical streamed-chunk owner identity and every intersecting residency
-  dependency, with each dependency's current generation. Cross-section geometry
-  has one canonical visual owner and explicit coverage ranges/dependencies.
+- canonical section-render owner identity and every intersecting source
+  coverage dependency, each bound to its authoritative source revision and
+  immutable captured values. Source gameplay chunks may unload after capture;
+  they are not long-lived render-owner leases. If capture is still reading live
+  chunk data, that source remains admitted until the immutable snapshot is
+  sealed. Cross-section geometry has one canonical visual owner and explicit
+  coverage ranges/dependencies.
 
 Preparation consumes owned value snapshots, never live Nodes, mutable producer
 containers, or scene scans. Work is bound to world, section, source, and owner
 revisions. Cancellation or section-slot reassignment invalidates older work.
 Immediately before install and before promotion, revalidate the exact source
-set, world epoch, candidate generation, live owner chunk/backend identity, and
-all dependency residency generations. A stale or missing source is pending or
-failed, never empty success.
+set and revisions, world epoch, candidate generation, and live section-owner
+epoch/backend identity. A source revision change invalidates the candidate even
+after source-chunk unload. A stale or missing source is pending or failed, never
+empty success.
 
 Build every required layer in staging while retaining the old installed
 section. Atomically replace the section slot only when all present layer
@@ -118,7 +123,7 @@ terrain, generated recipes or Godot renderer.
 |---|---|---|
 | 0. Source map and baseline — **complete** | Trace all producer paths, authorities, revisions, ownership, unload/replay and saves; record current packet behavior and known missing terrain receipt. | This charter, focused current packet/replay reports and independent audits. Baselines prove only their named contracts. |
 | 1. Close the candidate contract | Bind candidates to exact prepared ledger outputs, world/session and owner/dependency generations. Define layer completeness, empty, cancellation, retries and contributor-to-section receipts. Verify available section mesh/upload APIs, especially Voxel Tools' real remesh retention and terrain payload capture. | Contracts reject forged/truncated/stale candidates, wrong owner/dependencies, duplicate/missing layers, partial installs and old generations; API/source audit resolves Voxel Tools interception. No production path cut over yet. |
-| 2. Implement section-slot installation | Replace the source-keyed production packet primitive where necessary with a section-keyed staged owner. Support compatible multi-batch/multi-layer payloads, exact manifests, dependency pins, cancellation, owner recreation, explicit empty, and old-slot retention until complete install. | Native/engine contract exercises real section owner/resource installation and receipt checks; stage aborts leave old content installed; native build and shutdown/retirement pass. |
+| 2. Implement section-slot installation | Replace the source-keyed production packet primitive where necessary with a section-keyed staged owner independent of gameplay-chunk lifetime. Support compatible multi-batch/multi-layer payloads, exact manifests, source-revision-bound capture dependencies, cancellation, owner recreation, explicit empty, and old-slot retention until complete install. | Native/engine contract exercises real section owner/resource installation and receipt checks; cross-chunk captured candidates install without retaining source chunks; stage aborts leave old content installed; native build and shutdown/retirement pass. |
 | 3. Integrate smooth terrain | Feed mesh artifacts from the existing authoritative SDF/material source into the section candidate using the game's mesher and correct halo/seam contract. Keep collision, edit, fluid/light and nav authorities separate but revision-linked. Do not disable Voxel Tools visuals until parity and replacement behavior are proven. | Real-scene section receipt for terrain; edit/remesh/empty/stale/cancel/unload/reload fixtures; seams, collision, lighting and fluid captures show source parity. Then retire the old terrain visual slot with no duplicate visual authority. |
 | 4. Cut over construction | Aggregate every affected building's opaque/material groups into section candidates. Remove per-source packet commits as the final visual authority. Reconcile source-part revisions, moved owners, all affected sections, empty removals, replay and scene-boundary readiness; preserve collision/doors/furnishings/nav. | Real generated structure visual playtest and captures; replacement/removal/cancel/replay and chunk recreation tests; boundary readiness cannot succeed on a partial section. |
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
@@ -210,3 +215,17 @@ Do not advance a stage because a pure contract or source scan passes. For each
 stage report passed, failed, blocked and untested gates separately, preserve
 prior installed content on failed replacement, and keep the overall migration
 active until all required domains pass live acceptance.
+
+**Independent section-owner cutover check (2026-10-04):** the main runtime now
+creates bounded static section owners beside gameplay chunks, evicts them by
+render demand, and resolves native section installation/receipt checks through
+that owner registry. `NativeStaticSectionInstallSession` treats the existing
+stream-chunk list as immutable source-capture coverage, not a gameplay-owner
+pin. The focused runner passed 33/33 checks at
+`artifacts/citadel-runtime-integration/native-chunk-packet-section-owner-contract-verified-20261004/report.json`.
+This proves native resource installation and old-root retention for the section
+slot, independent owner creation/retirement, cross-chunk manifest acceptance,
+and census rejection. It remains fixture-driven: no normal terrain/building/
+tree/prop producer calls the section coordinator, layer coverage is opaque-only,
+and headed/live/performance gates remain open. Source capture manifests still
+need exact source revisions and capture epochs for each covered chunk.
