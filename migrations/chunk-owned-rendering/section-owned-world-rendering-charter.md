@@ -2855,7 +2855,9 @@ The focused ecology/provider contract passes 48/48 at
 It proves an uncommitted tree whose bounds do not intersect the requested
 section does not block that section census, while the same missing artifact
 still blocks when it intersects. This synthetic contract does not prove a
-production native installation or visible-gameplay improvement.
+production native installation or visible-gameplay improvement. The focused
+fix is game commit `57297787` (`fix: scope ecology readiness to requested
+sections`).
 
 A fresh headed tutorial-free replay on seed
 `sectioncutover20261004a` still timed out after 240 seconds at
