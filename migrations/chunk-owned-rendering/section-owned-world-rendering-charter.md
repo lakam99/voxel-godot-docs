@@ -291,3 +291,24 @@ passed 36/36 checks at
 focused snapshot, builder and ledger contracts also pass. These tests still use
 synthetic content and do not satisfy the production-producer, terrain-capture,
 headed visual/traversal, or performance gates. Stages 1–2 remain partial.
+
+**Candidate-to-native mesh binding recheck (2026-10-04):** the section install
+session checked the resource digest when it began, but the native backend copied
+the mesh only later during append. A mutable resource could therefore change
+between those two points and be installed under a manifest describing its old
+geometry. `append_batch` now requires the candidate's expected mesh-content
+digest and compares it with the deep-copied mesh payload before staging. The
+building packet path captures that digest before begin and binds it into its
+packet digest as well. `StaticRenderMeshFingerprint` now handles both
+`ArrayMesh` and `PrimitiveMesh` resources with one versioned payload contract.
+The focused native section/building lifecycle runner passed all 37 checks at
+`artifacts/citadel-runtime-integration/native-chunk-packet-append-mesh-binding-clean-20261004/report.json`,
+including a real GDExtension check that mutates a `BoxMesh` after begin and
+verifies append rejects it. This strengthens Stage 2 only: the coordinator still
+has no normal producer caller, production buildings still commit source-keyed
+packets, terrain/foliage/props do not share section candidates, and no headed
+visual/traversal or performance gate has passed. The broader native-world
+validation runner was attempted but stopped on failures in cave-field,
+natural-terrain golden, underground-prop and world-source tests. Their baseline
+classification is unknown; they remain unresolved and are preserved in
+`artifacts/native-world-backend/section-mesh-identity-20261004-rerun/report.json`.
