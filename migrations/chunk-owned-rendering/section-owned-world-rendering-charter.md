@@ -1113,13 +1113,56 @@ The charter is committed at documentation revision
 | Provider contracts | Partial | Ordinary structure, Citadel packet, surface detail, and one-tree captures have focused contracts. Ecology's section census deliberately remains pending while tree, rock/ore, forage, and underground props are not all represented. |
 | Whole-section assembler | Passed, synthetic | `whole-section-candidate-assembler-final-20261004/report.json`: 6 checks. Two provider inputs share one compatibility batch; exact manifest, explicit empty, retryable missing provider, stale provider epoch, and compatibility conflict are checked. Does not prove live provider parity. |
 | Native install seam | Passed, headed controlled fixture | `whole-section-candidate-native-install-main-runtime-compile-20261004/report.json`: 8 checks through the real GDExtension renderer, including compilation of the normal runtime loop. It observes the receipt, retained previous slot before commit, replacement after commit, stale-census rejection with prior generation still installed, and replay after owner recreation from the last committed candidate. Providers are controlled fixtures, so this does not pass the normal-world producer gate. |
-| Production wiring and world cutover | Open | `WorldStaticSectionCoordinator` now has a bounded normal-runtime advancement hook for submitted whole candidates and retains only the last natively committed candidate for owner-recreation replay. No production callsite yet captures all domain contributions, assembles, and submits candidates from ordinary visible section demand. Legacy visual publication remains. Terrain fluid, full ecology/static-prop census, producer receipts/retirement and whole-world unload/replay are not integrated end to end. |
+| Production wiring and world cutover | Open | `WorldStaticSectionCoordinator` has a bounded normal-runtime advancement hook and a provider-census → contribution → shared-assembly → native-queue entry point. The headed 8-check install fixture exercises this full coordinator path with synthetic providers. There is still no normal visible-section-demand caller because terrain/ecology contributions and post-receipt retirement are incomplete. Legacy visual publication remains. Terrain fluid, full ecology/static-prop census, producer receipts/retirement and whole-world unload/replay are not integrated end to end. |
 | Playtest and performance | Untested / unresolved | `node tools/run-playtest.mjs -OutputDirectory artifacts/citadel-runtime-integration/whole-section-runtime-playtest-20261004` was stopped by the runner after headless dummy-renderer `Initializing already initialized RID` and null-mesh errors. Progress remained at `runtime_loading_Drawing_nearby_terrain`; no `playtest-report.json` was emitted. The owned-process watchdog proved zero remaining members. This is not gameplay acceptance, and current evidence does not classify the renderer errors as introduced by the migration. |
 
 Minecraft 26.2 source checks continue to support immutable section snapshots,
 worker preparation separated from staged upload, independent layer receipts,
 cancellation, and keeping the previous installed section until replacement
 acknowledgment. Godot retains its smooth Transvoxel terrain path. The controlled
-native fixture validates that the complete-candidate envelope reaches the real
-GDExtension slot, but the production stage remains open until live producers,
-section demand, gameplay visuals and traversal are connected and measured.
+native fixture validates provider-census and contribution dispatch, shared
+assembly, and installation of the candidate envelope into the real GDExtension
+slot, but both fixture providers are synthetic. Ordinary structure and Citadel
+adapters separately have focused value-contribution evidence. The production
+stage remains open until terrain and ecology providers produce complete current
+values, normal visible-section demand drives the coordinator, old visuals retire
+after accepted section receipts, and gameplay visuals/traversal are connected
+and measured.
+
+### Implementation evidence update — coordinator composition (2026-10-04)
+
+Game commits `4a0da843` and `3d41673d` add a world-lifetime complete-candidate
+composition API. It recaptures the required provider census, asks each provider
+for a sealed contribution, invokes the one cross-domain assembler, and submits
+only the resulting whole candidate. Missing contribution APIs remain retryable
+pending. The normal runtime advances queued native installs in bounded steps;
+the last committed candidate is retained for section-owner recreation replay.
+
+- `whole-section-candidate-native-install-producer-api-20261004/report.json`
+  passed 8/8 headed GDExtension checks through the coordinator composition API:
+  native section-slot receipt, old-slot retention until commit, stale-census
+  rejection, and committed-candidate replay on a new native owner. Its terrain
+  and ordinary providers are synthetic test authorities; it is not gameplay
+  visual acceptance.
+- `ordinary-static-section-provider-contribution-recheck-20261004/report.json`
+  passed 15/15 checks. Ordinary structures return sealed source revisions,
+  geometry inputs, compatibility and resource bindings matching their exact
+  section census. This fixture does not prove production installation.
+- `citadel-section-geometry-service-contribution-20261004/report.json` passed
+  8/8 checks. Prepared Citadel packet groups enter the common immutable
+  contribution shape with census-bound revisions. This does not install them
+  or authorize retirement of current building visuals.
+- The broad Playtest runner remains unresolved: the headless dummy renderer
+  emitted RID initialization and null-mesh errors during nearby-terrain loading,
+  and no playtest report was produced. The owned-process watchdog confirmed no
+  surviving runner processes. This is not live gameplay evidence.
+
+The source-producer callsite and visual handoff remain open: terrain must supply
+complete smooth-mesh/fluid revisions; tree, detail, rock/ore, forage and
+underground-prop sources need exact census coverage and their render layers;
+visible-section demand must drive composition without unbounded repeated scans;
+and each producer must retain its old view until the section receipt is
+accepted, then retire only matching visuals while keeping collision,
+interaction, navigation, harvest and save authorities alive. Headed world
+traversal, startup, edit/harvest, save/reload, and performance evidence are
+required before the migration can advance to completion.
