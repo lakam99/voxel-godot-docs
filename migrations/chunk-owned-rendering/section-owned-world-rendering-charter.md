@@ -1956,10 +1956,12 @@ The headed same-seed run `r9` reaches the edited resident cell and keeps its
 saved delta, collision publisher, and previous live native receipt. The urgent
 section gets 113 admission attempts in 3,600 frames, but every observed
 terminal demand reason is `ecology_chunk_source_snapshot_revision_stale`; no
-new candidate is installed. The provider returns mismatch details, but the
-current demand telemetry retains only its reason. First expose the bounded
-snapshot/current revision pair and determine whether prop publication or
-removed-prop revision is changing the snapshot during capture.
+new candidate is installed. The ecology adapter returns mismatch details,
+but `StaticSectionSourceRoster.capture_sections` wraps pending provider output
+and its `_pending` merge replaces the wrapper reason with the nested provider
+reason while dropping the revision detail fields. First preserve the bounded
+snapshot/current revision pair through that wrapper and determine whether prop
+publication or removed-prop revision is changing the snapshot during capture.
 
 **Stages and exit evidence:** (1) retain only the latest provider pending
 details in the demand state and headed report; (2) identify and fix the source
