@@ -137,6 +137,60 @@ terrain, generated recipes or Godot renderer.
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
 | 6. Readiness, performance and legacy retirement | Wire section receipts into visible-world readiness and chunk unload/replay. Remove obsolete production per-source visual publication only after all consumers have migrated. Run normal startup, movement/turn, edit, harvest, save/reload and unload/recreate journeys. | Headed live visual/traversal evidence across representative seeds; visual readiness has no candidate/receipt gaps; performance report includes startup, p95/max cadence, queue/backlog and streaming spikes; no legacy production renderer remains for migrated categories. |
 
+## Next implementation charter — production source census admission
+
+**Outcome:** begin wiring the normal world lifetime to the section coordinator
+through one authoritative, revision-bound producer census. No section may be
+promoted from a terrain-only, building-only, or other partial manifest. The
+existing VoxelTerrain and per-source static visuals remain visible until every
+contributor in each affected section has a prepared replacement and current
+renderer receipts.
+
+**Authority and boundary:** keep `WorldGenerationSystem` and
+`TerrainVolumeService` authoritative for terrain; `StructureSystem`, prepared
+building plans, deterministic ecology/prop producers, and durable removal
+records authoritative for their source members. The census must be derived from
+those producers, not from a scan of visible nodes or readiness manifests. Each
+entry identifies stable producer/source identity, source and dependency
+revisions, exact intersected render sections, bounds, render layers, and an
+explicit complete/empty/pending/failed state. Mobs and NPCs remain independent
+actors. Collision, interactions, navigation, harvest, and save authorities do
+not move into render sections.
+
+**Scope for this slice:** add a composed production roster/census under
+`scripts/world/`, owned by `MainCore` beside the world-lifetime section
+coordinator. Providers are registered by authority owner and method, referenced
+weakly, and queried for exact requested sections; provider output carries
+revisioned source IDs and explicit complete/empty/pending coverage. A provider
+that cannot census independently of a render owner remains pending. The census
+unions source revisions and sorted contributors only after every required
+provider reports complete coverage, and its digest is rechecked during staged
+installation. No old visual is retired in this slice. Keep the terrain shadow
+queue diagnostic until it can submit through the complete coordinator census.
+Preserve deterministic generation/RNG order, source tombstones, owner
+recreation, and retryable requests.
+
+**Baseline and known risks:** game branch
+`codex/chunk-owned-world-rendering-migration` at `2b9e0f69`, with pre-existing
+generated `.import` churn only. The coordinator currently has no production
+caller. Terrain capture can seal current 19³ SDF/material bytes and 27 section
+revisions but still requires a resident block to capture; ordinary structures
+have stable tombstones but their live-node observer is not an immutable census;
+Citadel plans provide exact prepared member sets but current receipts require a
+live job; ecology ledger omits rocks, ore, forage and underground props. These
+gaps risk falsely treating absence as empty and must be represented as pending.
+
+**Stages and exit evidence:** (1) add the roster/census API and adversarial
+contract coverage for missing, empty, stale and replaced producers; (2) attach
+it to `MainCore`'s normal world lifetime and connect at least one production
+authority census, while proving incomplete sections are refused; (3) route the
+first fully enumerable real section through coordinator build/install/ack while
+legacy visuals remain visible, proving native renderer receipts and stale-work
+rejection; (4) only after all contributing domains are complete, run headed
+visual/traversal and performance gates before retiring any old publication.
+Report each gate independently; this charter is a Stage 1–2 implementation
+slice, not a completed migration or a production visual cutover.
+
 ## Progress snapshot — 2026-10-04
 
 - Stage 0 is complete. Producer and gameplay-authority maps plus current
@@ -638,3 +692,42 @@ startup readiness; registry retirement is not an actual native unload/reload or
 renderer replay test. The runtime also received an installed native section
 receipt with mesh bounds inside the expected 16-cell local block. Real unload,
 re-entry, replay, visual parity, traversal and performance remain open.
+
+**World-lifetime source roster admission (2026-10-04, r14):** game source now has
+`StaticSectionSourceRoster`, owned by `WorldStaticSectionCoordinator` and
+instantiated by `MainCore` for the seeded world. Four required producer domains
+are declared: terrain, ordinary structures, blueprint buildings, and
+ecology/static props. The roster accepts providers by weakly held authority
+owner/method, requires explicit complete or empty coverage for every requested
+section, merges stable source revisions, rejects duplicate owners and missing
+answers, and binds a deterministic census digest to staged coordinator work.
+The coordinator rechecks that digest on each advance and cancels a staged
+boundary when authority revision or membership changes; the producer receives
+`requiresResubmit` because its prepared declaration/segment may now be stale.
+
+Review found a cross-section replacement hazard: the coordinator can install
+section slots independently, so cancelling after one slot commits would leave
+that replaced slot without rollback. Roster admission now refuses requests
+containing more than one section until atomic or rollback-safe promotion is
+implemented. If a provider becomes pending while a single-section boundary is
+active, that stage is cancelled with `requiresResubmit`, preserving the last
+installed slot. The roster also rejects non-string revision keys and values
+and requires revision IDs to exactly match contributor membership in the
+requested sections.
+
+The native contract command
+`node tools/run-native-chunk-render-packet-contract.mjs --outputdirectory artifacts/citadel-runtime-integration/native-chunk-packet-source-roster-20261004-r14`
+passed all checks. It installed a single-section candidate through the native
+section renderer using fixture providers, refused missing/omitted source
+coverage and multi-section admission, changed a source revision during staged
+installation, cancelled work when a provider became pending, and confirmed the
+prior installed generation remained current. Exact report:
+`artifacts/citadel-runtime-integration/native-chunk-packet-source-roster-20261004-r14/report.json`.
+This is coordinator/native integration evidence, not normal-world producer or
+gameplay evidence: no authority provider has been registered in `MainCore`, no
+production section can yet pass the complete roster, and no headed
+visual/traversal/performance gate ran. Stages 1–6 remain open. The next gate is
+one real producer authority provider plus refusal of incomplete cross-domain
+sections. Cross-section-safe promotion must be designed before multi-section
+sources can pass roster admission. Later gates still require a complete
+all-domain section and live parity before any legacy visual retirement.
