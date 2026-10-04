@@ -715,6 +715,8 @@ installed slot. The roster also rejects non-string revision keys and values
 and requires revision IDs to exactly match contributor membership in the
 requested sections.
 
+Game code commit: `6acc709b` (`Add revisioned static section source roster`).
+
 The native contract command
 `node tools/run-native-chunk-render-packet-contract.mjs --outputdirectory artifacts/citadel-runtime-integration/native-chunk-packet-source-roster-20261004-r14`
 passed all checks. It installed a single-section candidate through the native
