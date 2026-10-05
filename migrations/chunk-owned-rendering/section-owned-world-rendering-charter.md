@@ -3115,7 +3115,10 @@ in `TerrainVolumeService` and the existing generated-volume rules.
 **Minecraft check:** `SectionCompiler.compile` reads each section block state
 once, obtains its fluid state from that same region value, and sends fluid
 geometry to the corresponding layer builder before returning one section
-result. The current Godot path separately scans exact fluid cells for a
+result. The dispatcher also sorts translucent quads against camera position
+and can schedule later transparency resort work; a fluid port needs an
+equivalent explicit ordering strategy for our section geometry. The current
+Godot path separately scans exact fluid cells for a
 presence proof, while the terrain section contribution waits for that proof
 and rejects `hasFluid` because the candidate layer is unsupported. This is a
 correct fail-closed boundary, but it is not yet a complete section compile.
