@@ -5038,3 +5038,37 @@ Resolve provider ownership and per-layer completion before treating an
 authoritative empty row as proof that a category has no visual content. This
 read-only audit does not pass Stages 1–2 or authorize retirement; overall
 progress remains **1/7 stage exits**.
+
+### 2026-10-05 HEAD checkpoint — tree bounds transform falsifier
+
+The tree compiler has a confirmed world-space bounds mismatch that must be
+fixed before center-owned tree support leases can be implemented. In
+`TreeRecipeSectionCompiler._append_role_instance`, the compiler forms
+`world_transform = bodyGlobalTransform * local_transform`, then currently
+calculates `world_bounds` as `state.bounds * world_transform`. It derives both
+the geometry owner section and the support-section set from that result. The
+production partitioner and the ecology member adapter instead transform local
+mesh bounds in the forward order (`world_transform * mesh_bounds`) and assign
+ownership by the resulting world-AABB center. The independent tree falsifier
+also uses a forward eight-corner transform. These conventions disagree, so a
+compiler-produced owner/support set can target a different section than the
+candidate partitioner.
+
+The preserved `tree-recipe-section-compiler-20261005T-design7` diagnostic
+reports three failed rows: exact center-owned support witness, missing-candidate
+retry, and duplicate replacement-owner retry. The design7 report predates the
+latest bounded-diagnostic edit; rerun the current source and have an
+independent reviewer check the exact source hashes and report before using it
+as the accepted regression baseline. Do not implement leases from the current
+compiler support keys.
+
+The narrow production correction is to compute the AABB with the same forward
+world transform as the production partitioner, then verify the compiler's
+center owner and support sections against an independent transformed-corner
+oracle for rotated/scaled geometry crossing a section boundary. Preserve the
+actual output transform and confirm the geometry remains in its world-space
+location. The tree lease acceptance must then retain an off-view center owner
+while a visible support section demands it, reject an old receipt for a newer
+source revision while leaving old output visible, and release/prune only after
+the support demand ends. This is a bounded prerequisite, not a Stage 1/2 exit;
+overall status remains **1/7 stage exits complete**.
