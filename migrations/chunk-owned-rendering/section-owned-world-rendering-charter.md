@@ -3151,6 +3151,47 @@ and edit/save/reload checks prove visual and gameplay parity; (5) a runtime
 profile shows probe/compile/upload cost and traversal hitch behavior. Do not
 remove the fail-closed unsupported-layer check before Stage 3 passes.
 
+**Refined renderer boundary from local source inspection (2026-10-05):** the
+current native packet renderer installs one mesh per `MultiMesh` batch and
+applies many independent transform/color/custom-data records to that shared
+mesh. Therefore one camera-depth index order cannot correctly serve multiple
+translucent instances in the same batch. `SectionRenderDispatcher` does not
+solve that by resorting whole objects: Minecraft `MeshData.SortState` retains
+quad centroids and rebuilds indices for the current viewpoint, then the
+dispatcher uploads the new translucent index buffer while retaining the
+compiled section generation. The equivalent Godot candidate must carry its
+primitive/face grouping in immutable, digest-bound data, and validate the
+groups against the bound mesh arrays; unchecked `Resource` metadata is not a
+candidate manifest. The install stage needs either a distinct baked geometry
+batch or one independently sortable mesh per translucent instance, an actual
+camera-position/point-of-view token, and all-or-nothing generation-checked
+replacement before visibility. Resort work must not rebuild authoritative
+terrain or expose a partial layer. Keep `weighted_oit` rejected until an actual
+supported implementation exists. The camera position already reaches
+`WorldStaticSectionCoordinator.refresh_visible_section_demand_priorities`
+from the live player camera in normal runtime; that value currently does not
+reach install or native receipt.
+
+**Focused design exit before the next renderer edit:** (a) define a
+candidate-bound section translucent descriptor that names sortable primitive
+groups and is included in candidate identity; (b) identify the baked-mesh or
+one-instance strategy and prove it preserves the 20-float per-instance ABI;
+(c) pass a real camera snapshot and monotonically changing point-of-view token
+through install; (d) validate source generation and point-of-view again before
+the complete replacement becomes visible, retaining the previous section
+until then. A resort contract alone is not Stage 3 evidence if initial install
+is unsorted or the camera token never enters the actual renderer.
+
+**Current proof:** `node tools/run-exact-fluid-payload-contract.mjs` passed
+15/15 checks for exact numeric fluid payload membership, halos, immutable
+revisioned edits, stale-snapshot rejection and incremental work. This is an
+authority/payload contract only; it does not prove section geometry,
+translucent ordering, native installation, or live fluid visuals. The local
+Minecraft 26.2 review used `SectionCompiler.java`, `MeshData.java`, and
+`SectionRenderDispatcher.java`; it confirms the retained-centroid/index-sort
+and POV-resort boundary, while the game's fluid mesh still needs its own
+section-local smooth-volume-compatible implementation.
+
 **Diagnostic evidence (2026-10-05):** `node
 tools/visible-world/run-ordinary-static-section-provider-contract.mjs
 --outputdirectory artifacts/citadel-runtime-integration/ordinary-static-section-provider-minecraft-accents-20261005-r2`
