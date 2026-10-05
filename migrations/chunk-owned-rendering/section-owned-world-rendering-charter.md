@@ -3192,6 +3192,33 @@ passed 47/47. These are synthetic contracts: they do not prove populated
 production tree receipts, native rendering, live traversal, save/reload or
 performance. The tree section compiler and full migration gates remain open.
 
+**Headed readiness follow-up (2026-10-05):** after game commit `2778fff3`, a
+normal menu-to-New-Game tutorial-free fast-turn run selected seed
+`atlas-54374373` and failed `initial_region_readiness_timeout` before gameplay;
+there are no traversal or performance samples. Its last recorded section
+admission was held by `ordinary_geometry_block_type_not_migrated` for source
+`town:0,0`, section `(0,0,-3)`. The old diagnostic filter had dropped the
+offending part/cell/type fields. A seeded Main diagnostic replay of
+`atlas-54374373` also failed initial-region readiness. It showed ordinary
+capture-budget and terrain exact-fluid-proof work at different checkpoints,
+and one tree timeout candidate had a prepared artifact with a ready census
+source revision but no native receipt. The replay did not prove why that tree
+never reached a candidate/receipt; no gameplay traversal occurred.
+
+Game commit `30834119` carries the bounded `sourcePartId`, `cell`, and
+`blockType` fields through source-roster and coordinator admission diagnostics;
+the visible-section demand-driver contract passed 26 checks. Reports:
+`artifacts/citadel-runtime-integration/visible-world-fast-turn-tree-census-after-fix-20261005/report.json`
+and
+`artifacts/citadel-runtime-integration/visible-world-fast-turn-ordinary-type-replay-20261005/report.json`.
+The normal headed failure and seeded diagnostic replay have separate process
+watchdogs, both with cleanup passed and zero owned processes. The complete
+ordinary static recipe set, populated native tree receipts, fluids, gameplay
+readiness, traversal and performance remain open. Minecraft's copied-region
+and section-compiler boundary suggests next measuring shared immutable source
+capture across adjacent section demands; do not retry this expensive startup
+again without a change that can unblock one of these evidenced dependencies.
+
 **Live gate:** `node tools/run-visible-world-fast-turn-sprint.mjs
 --skip-tutorial --timeout-seconds 240` did not reach gameplay readiness. Its
 progress remained `main_menu_waiting_for_gameplay_ready` through frame 3,720;
