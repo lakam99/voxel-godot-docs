@@ -3103,6 +3103,45 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Shared ordinary-source census progress (2026-10-05)
+
+Game commit `9754d8d0` adds a bounded shared membership census for ordinary
+structure contributors. Neighboring 2×2 section windows reuse one resumable
+source enumeration and immutable member/tombstone manifest. Each target section
+still resolves its own live owners, filters exact section membership, captures
+its own geometry, and checks those owners and recipe revisions before
+contribution. Cache values are deeply sealed and value-only; currentness-token
+changes invalidate stale census and section snapshots. Installed renderer
+state remains with the renderer owner until its normal replacement receipt.
+
+**Focused evidence:** `node tools/visible-world/run-ordinary-static-section-provider-contract.mjs`
+passed 23/23 checks at
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-final-2-20261004/report.json`.
+`node tools/visible-world/run-ordinary-structure-visual-source-contract.mjs`
+passed 17 checks at
+`artifacts/citadel-runtime-integration/ordinary-structure-visual-source-final-20261004/report.json`.
+The checks prove one shared census serves adjacent exact section manifests,
+sealed cache values, tombstone invalidation, and stale-owner rejection followed
+by recapture. They are synthetic contract evidence only: no native renderer
+installation, headed startup, visual parity, traversal, or performance result
+was produced in this slice. Existing generated/import and unrelated dirty files
+were left unstaged.
+
+**Minecraft 26.2 check:** `RenderRegionCache` reuses copied neighboring
+`SectionCopy` inputs across target sections; `SectionCompiler` still compiles
+one target section's render layers; and `SectionRenderDispatcher` cancels
+superseded work and only replaces the visible mesh after upload acceptance.
+The implementation adopts shared immutable membership plus section-local
+geometry/owner checks. It does not adopt Minecraft's block mesher, which does
+not match our smooth SDF/Transvoxel terrain.
+
+**Stage decision:** Stage 1 remains partial, and the overall migration remains
+1/7 stages complete. The next evidence must measure the shared census under a
+real Main-scene startup and then prove candidate installation through the real
+renderer before proceeding to visual/traversal/performance acceptance. Do not
+infer reduced live startup time or rendering parity from the synthetic reuse
+contract.
+
 ### Next bounded production change — wake the exact section after fluid proof
 
 **Entry evidence:** game branch `codex/chunk-owned-world-rendering-migration`
