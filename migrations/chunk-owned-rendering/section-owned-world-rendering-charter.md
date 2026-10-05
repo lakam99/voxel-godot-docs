@@ -5326,6 +5326,17 @@ Vulkan loader emits `windows_read_data_files_in_registry: Registry lookup
 failed to get layer manifest files`; this startup warning is outside the game
 report, and was not suppressed or allow-listed.
 
+A fresh retry at
+`artifacts/citadel-runtime-integration/native-section-presentation-lifecycle-stage2-20261005-retry7/`
+set `VK_LAYER_PATH` only for the runner process to a task-local empty explicit
+layer directory. Khronos documents this override as replacing explicit-layer
+registry discovery while leaving implicit-layer discovery separate ([loader
+layer discovery](https://github.com/KhronosGroup/Vulkan-Loader/blob/main/docs/LoaderLayerInterface.md)).
+The four registered implicit overlays remained available. With that scoped
+test environment, the runner exited 0; the same 17/17 checks passed, Godot
+exited naturally with code 0, cleanup passed, and authoritative process-zero
+was proven. No diagnostic was filtered or allow-listed.
+
 Minecraft 26.2 source review supports this lifetime boundary: `RenderSection`
 cancels outstanding compile/resort tasks on reset; `SectionRenderDispatcher`
 keeps the previous mesh until vertex and index uploads for every present render
