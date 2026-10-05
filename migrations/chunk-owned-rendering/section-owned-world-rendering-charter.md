@@ -3157,13 +3157,22 @@ tools/visible-world/run-ordinary-static-section-provider-contract.mjs
 passed 28 synthetic provider checks; the geometry adapter runner passed 16,
 and the ordinary visual source contract passed 17.
 These include recipe capture of opaque corner timber and fence members, but
-prove no fluid behavior. A 90-second seeded, tutorial-free diagnostic after
-those changes ended at frame 1440 with no candidate jobs installed; demand
-admission still reported `terrain_exact_fluid_section_probe_pending` and
-ordinary census/geometry work in progress. Its owned-process watchdog timed
-out and proved zero remaining processes. This is diagnostic evidence only,
-not a failure of the fluid proof or live acceptance. The fluid same-pass
-integration is the next source-level investigation before changing that gate.
+prove no fluid behavior. The coherent provider/recipe slice is game commit
+`d48d22d9` (`feat: capture ordinary structure recipes by section`). Reports:
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-minecraft-accents-20261005-r2/report.json`,
+`artifacts/citadel-runtime-integration/ordinary-section-geometry-adapter-minecraft-accents-20261005-r1/report.json`,
+and
+`artifacts/citadel-runtime-integration/ordinary-structure-visual-source-minecraft-accents-20261005-r1/report.json`.
+A 90-second seeded, tutorial-free diagnostic after those changes ended at
+frame 1440 with no candidate jobs installed; demand admission still reported
+`terrain_exact_fluid_section_probe_pending` and ordinary census/geometry work
+in progress. It produced no acceptance report. Its owned-process watchdog at
+`artifacts/node-tools/process-runs/godot-0JEczu/watchdog.json` timed out and
+proved zero remaining processes; progress is at
+`artifacts/visible-world/fast-turn-sprint/progress.txt`. This is diagnostic
+evidence only, not a failure of the fluid proof or live acceptance. The fluid
+same-pass integration is the next source-level investigation before changing
+that gate.
 
 ### Next implementation charter — bounded ordinary-source capture reuse (2026-10-05)
 
