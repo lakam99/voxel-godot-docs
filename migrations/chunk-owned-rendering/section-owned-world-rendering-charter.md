@@ -4814,3 +4814,61 @@ terrain/fluid probes, and section retry cadence as separate measured
 dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
+
+## 2026-10-05 HEAD checkpoint — source closure and terrain proof
+
+**Formal stage status remains 1 of 7 exits complete.** Stage 0 source map is
+complete; Stages 1–5 remain partial; Stage 6 has not started. Work is parallel
+only across non-overlapping diagnosis/implementation lanes. Stage exits remain
+sequential and require their production evidence.
+
+**Current-source compile:**
+`node tools/run-project-compile-smoke.mjs --report-path artifacts/citadel-runtime-integration/ecology-source-owner-discovery-compile-20261005-r1/project-compile.json --watchdog-seconds 120`
+passed with Main, Main Menu, and Playtest runner loaded. Watchdog exit was 0,
+cleanup passed, and authoritative job membership was empty.
+
+**Ecology source-owner discovery:**
+`node tools/visible-world/run-ecology-source-owner-discovery-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-source-owner-discovery-contract-20261005-r5`
+passed 5/5. It proves intersecting source discovery, explicit complete-empty
+handling, missing metadata remaining retryable unknown, malformed metadata
+remaining pending, and a correctly digested old source revision being rejected.
+An independent read-only review approved the stale-revision guard. This is a
+focused provider contract; it does not prove complete spatial source closure or
+Main startup.
+
+**Terrain fluid dependency proof:**
+`node tools/visible-world/run-terrain-section-contribution-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/terrain-section-contribution-fluid-dependency-closure-20261005-r9`
+passed 27/27. The report binds the `TerrainVolumeService.gd` capture authority
+and `VoxelTerrainRuntime.gd` validator. A proof with a narrowed extent and a
+recomputed valid signature was rejected. Watchdog cleanup passed with
+authoritative zero membership. This is a synthetic provider/shared-assembler
+contract; it does not exercise the full incremental capture scan, live
+VoxelData, native normal-world installation, or fluid visuals/gameplay. The
+edited-cell bounds scan cost remains unprofiled; no cache was added.
+
+**Tutorial-free Main readiness diagnostic:**
+`artifacts/citadel-runtime-integration/ordinary-structure-main-section-replay-20261005-r3/`
+reached initial physical readiness but failed at the 90-second no-progress
+gate after 151.6 seconds. It had 586 pending visible-section demands, zero
+candidate jobs/receipts, and repeatedly reported
+`ecology_source_owner_discovery_snapshot_missing` for chunk (-3,-3). The
+target sections are near the origin; that stream chunk spans approximately
+[-113.4,-75.6) metres on both horizontal axes. The adapter currently validates
+all resident chunk snapshots before checking which candidates could support
+the requested section. Therefore distant incomplete data blocks local render
+publication. No screenshot or gameplay phase ran. The preceding r1 run exposed
+and led to fixing an absent-metadata `get_meta` log error; r2 stopped on a
+separate inherited fixture `String(...)` runtime error. Both are preserved as
+diagnostic baselines, not acceptance results.
+
+**Next gate:** do not simply ignore absent snapshots. Define a complete,
+bounded ecology source-owner closure from the actual producer's maximum
+candidate bounds or a revisioned spatial membership index. Use the dimensions
+and captured-neighborhood behavior in Minecraft 26.2 `RenderSectionRegion` as
+a boundary principle; derive our bounds from this game's real prop producers.
+Add a multi-chunk contract proving that distant incomplete owners cannot block
+a section only when the producer authority proves they cannot contribute, while
+an unknown owner inside the proven support envelope stays pending. Then rerun
+the tutorial-free Main gate once and inspect its candidate/receipt state.
+Stages 1, 3, 4 and 5 and the overall migration remain partial until their full
+production exits pass.
