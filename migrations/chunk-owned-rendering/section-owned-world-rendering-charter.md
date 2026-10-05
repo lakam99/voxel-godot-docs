@@ -5404,6 +5404,16 @@ complete fixed-domain input set. Our arbitrary procedural meshes need an
 explicit completeness proof because a tree can be rooted in a different chunk
 from every section touched by its crown or branches.
 
+Keep deterministic source enumeration, recipe-bound certification, source
+revisions and durable-removal projection in the existing GDScript world
+authorities; the support index is their derived, value-only rendering
+membership. The native C++ section renderer remains the sole owner of compiled
+layer batches, staged upload, installed receipts, presentation swap and
+retirement. This follows Minecraft's separation of world section inputs from
+its section compile/upload lifecycle without duplicating generation or
+gameplay authority. Add a native spatial-query accelerator only if measured
+index cost warrants it.
+
 Each source row binds stable provider/source/prop IDs, world seed and
 durable-removal revision, source chunk and owner generation, recipe/artifact
 generation, canonical geometry-owner section, render layer/material/resource
