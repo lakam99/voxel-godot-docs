@@ -3223,6 +3223,73 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### HEAD checkpoint — static prop support sections and terrain lease proof (2026-10-05)
+
+**Formal progress:** Stage 0 complete; overall remains **1/7 stage exits**.
+Stages 1–5 are partial and Stage 6 has not started. The source-only prop audit
+found a specific contract gap: `EcologySectionValueAdapter` and
+`ChunkStaticRenderSectionInstancePartitioner` assign the complete static-prop
+mesh to the section containing its transformed mesh-AABB center. That is a
+coherent single geometry owner and avoids duplicate meshes, but an adjacent
+section intersected by the same bounds has no source membership or receipt.
+The coordinator invalidates both sections by bounds, yet only the center-owned
+slot proves the prop's render coverage. No actual visual hole or unload failure
+was demonstrated.
+
+The proposed correction retains one geometry owner and adds typed
+`support_only` entries for every intersected render section. Each entry binds
+the stable source/member ID, source revision, center geometry-owner section,
+transformed world bounds, intersecting source-chunk dependencies and ownership
+policy into that section's manifest. Only the owner section carries mesh
+instances; support-only entries are explicit non-empty dependencies and must
+remain distinct from authoritative explicit-empty contributors. The full
+affected section receipt set gates source-level readiness and legacy visual
+retirement. No triangle clipping is needed unless later renderer constraints
+require nominally bounded mesh slots. Before implementation, add a contract for
+a real-mesher prop AABB straddling one section plane, a non-overlap control,
+stale revision between support receipts, removal and owner replay; assert one
+geometry owner and current receipts for all support sections. Capture must
+include the source-owner chunk even when its chunk does not touch the queried
+support section.
+
+The ordinary rocks/ore/forage path already reaches Main producer records,
+resource-fingerprinted immutable ecology capture, shared section candidate and
+native receipt; real harvest/save/reload headed runners exist. This audit does
+not prove their current reports pass or boundary support coverage. The stale
+adapter header claiming those categories are excluded is documentation debt,
+not evidence that the live provider omits them.
+
+The Voxel Tools terrain bridge remains in implementation/review. Its acquire
+contract checks the coordinator's current receipt, terrain provider coverage,
+current fluid proof and recomputed terrain source-part revision before applying
+a native mesh-block coverage claim; release must use the exact accepted claim
+and block incarnation. Independent review found coordinator unload/replay
+integration still required: release must be accepted before the old receipt is
+erased, pending release inputs must remain retryable, and replay must reacquire
+the terrain claim after a fresh receipt. Serialize pending acquire/release
+tokens per section so replacement cannot discard an older lease. These are
+open implementation conditions, not passed evidence.
+
+An isolated hash-pinned Citadel `--unloadreplay` setup check ran twice against
+the captured 69-input source snapshot. R1 stopped on six fixture type-inference
+errors; R2 corrected those in its isolated fixture, then Godot reached the
+pinned `TreePublicationQueue.gd` and stopped on `retired_id` inferred from
+`pop_front()` as `Variant` under warnings-as-errors. Both runs produced no
+functional report or screenshots and therefore prove no gameplay behavior.
+R2 watchdog reached terminal with authoritative owned-zero, but cleanup was
+forced and `cleanupPassed=false`; preserve this as test/parser evidence only.
+The shared working file now declares `retired_id: String`. Next proof must
+refresh and hash-check that one production input in the isolated snapshot or,
+preferably, run the focused contracts against an exact stable shared source.
+Do not launch a Main-chain test until the current-source parser gate passes.
+
+Tree exact-ID diagnostics now join recipe-input, compiled, prepared, terminal
+acknowledgement and coordinator receipt stages without changing readiness or
+scheduling. Canceled prepared records remain visible as `stale_owner`; revision
+comparisons are restricted to matching source-revision domains. Static diff
+checks passed, but Godot parser/contract evidence and independent final review
+are still pending.
+
 ### HEAD checkpoint — tree progress and section receipt evidence (2026-10-05)
 
 The seven-stage status remains **1/7 exits complete** (Stage 0). These results
