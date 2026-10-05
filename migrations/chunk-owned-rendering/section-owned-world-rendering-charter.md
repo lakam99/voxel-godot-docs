@@ -5310,3 +5310,35 @@ fixture is separately blocked before candidate promotion by incomplete Tree
 source-owner closure; it is not treated as a pass from these contracts. Stage 1
 remains partial; Stage 3 and later gates remain open; total progress is still
 **1/7 stage exits complete**.
+
+### 2026-10-05 Native section presentation lifecycle slice
+
+Game commit `ef327281` binds native section presentation callbacks to a stable
+world coordinator and retains the session, token and previous owner while a
+callback is pending or rollback fails. Reset/quit drain callbacks before
+retiring renderer owners; stale or tombstoned callbacks cannot acknowledge a
+newer generation. The focused fixture passes **17/17** lifecycle assertions
+through the actual native section packet renderer at
+`artifacts/citadel-runtime-integration/native-section-presentation-lifecycle-stage2-20261005-retry6/report.json`.
+The watchdog records Godot exit 0, no forced cleanup, cleanup passed and
+authoritative zero process members. The wrapper exits 1 because this host's
+Vulkan loader emits `windows_read_data_files_in_registry: Registry lookup
+failed to get layer manifest files`; this startup warning is outside the game
+report, and was not suppressed or allow-listed.
+
+Minecraft 26.2 source review supports this lifetime boundary: `RenderSection`
+cancels outstanding compile/resort tasks on reset; `SectionRenderDispatcher`
+keeps the previous mesh until vertex and index uploads for every present render
+layer finish, then installs the replacement and releases the old mesh. Its
+`SectionCompiler` reports every render layer, including an empty result, and
+`RenderSectionRegion` reads a captured 3x3 neighborhood of section copies. This
+project adopts the owner/cancellation/upload-barrier model, not Minecraft's
+fixed block mesher or discrete section geometry; SDF smooth surfaces, material,
+fluid, collision and halo/seam authorities remain game-owned. Godot's current
+frame-drawn callback proves a global frame boundary, not candidate pixels.
+
+This fixture uses synthetic providers and does not prove live Main census,
+candidate-specific pixel visibility, collision/interaction, save/replay,
+ordinary startup/traversal or performance. It is a verified Stage 2 lifecycle
+slice, not a stage exit. Stage 1 remains partial; Stage 2 and all later exits
+remain open; total progress remains **1/7 stage exits complete**.
