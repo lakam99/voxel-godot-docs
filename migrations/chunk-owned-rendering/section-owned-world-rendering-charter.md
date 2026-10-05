@@ -5145,3 +5145,35 @@ roster flattens `providerDetails` at the census top level. The report is
 cleanup passed and the watchdog proved authoritative zero. Correct the fixture
 path and rerun before accepting the Ecology contract. These changes are
 sub-gates only; formal progress remains **1/7 stage exits complete**.
+
+### 2026-10-05 Stage 3 gate refinement — install receipt versus rendered frame
+
+The Stage 3 code-path audit confirms the production chain:
+`StaticSectionSourceRoster` → `WorldStaticSectionCandidateAssembler` →
+`WorldStaticSectionCoordinator` recensus/generation validation →
+`ChunkRenderPacketOwner` → `NativeStaticSectionInstallSession` → live native
+receipt → provider acknowledgement. `TerrainSectionShadowPublisher` captures
+the current resident VoxelTools mesh; VoxelTools retains its visual coverage
+until its terrain claim is reconciled after receipt acceptance.
+
+The native backend stages a hidden root and its `MultiMeshInstance3D` layers,
+then exposes the new root at commit and retires the previous root. The current
+receipt proves scene-node installation and layer/source identity; it does not
+prove GPU upload completion or that a completed frame drew the new section.
+Minecraft 26.2's `SectionRenderDispatcher` waits for vertex/index upload
+callbacks for every present render layer before replacing and releasing the
+old mesh, treats explicit-empty output as a replacement, and checks
+cancellation during compilation/upload. Apply this as a lifecycle constraint,
+not a block-meshing design: production retirement needs an equivalent
+render-server/frame acknowledgement bound to the candidate receipt, with the
+old visual retained until acknowledgement. Explicit-empty candidates need the
+same accepted replacement semantics.
+
+The existing real Main candidate fixture remains
+`run-terrain-fluid-section-native-receipt-playtest.mjs` with seed
+`atlas-71906947`; it stages/restores a generated fluid edit and checks stale
+replacement rejection, old-slot/VoxelTools retention, current receipt and
+physics authority. It remains gated by full producer-census/compile readiness
+and does not prove normal startup, visual retirement, save/reload, or
+performance. The render-frame acknowledgement is a Stage 3 dependency before
+old-path retirement; no new stage exit is claimed. Total remains **1/7**.
