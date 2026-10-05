@@ -3131,6 +3131,23 @@ does not exercise tree section compilation, sprint traversal or visual parity.
 Do not attribute it to this producer change without an earlier comparable
 baseline; the source logs contain no engine error beyond the timeout.
 
+The corrected headed diagnostic run used
+`node tools/run-visible-world-fast-turn-sprint.mjs --skip-tutorial
+--diagnostic-replay-seed tree-section-values-20261004-r1 --timeout-seconds 360`.
+The runner completed in 214 seconds and reported
+`initial_region_readiness_timeout` on that seed: 34/36 visual candidates were
+represented, including 14/16 trees; the remaining two were
+`section_candidate_pending` without current receipts. Its timeout report also
+observed 84 prepared tree section artifacts and tree member values, but did not
+prove those artifacts were accepted by the native renderer. The report is
+`artifacts/visible-world/fast-turn-sprint/report.json`; its owned-process record
+is `artifacts/node-tools/process-runs/godot-23b6vJ/watchdog.json` (cleanup and
+authoritative zero membership passed). A second attempt to run only
+`production_section_candidate_diagnostic` through `node tools/run-playtest.mjs`
+also stopped before the diagnostic act because Main startup timed out at the
+same initial-region visual gate. Neither attempt included traversal or a
+renderer receipt for the pending trees.
+
 **Minecraft reference check:** the local 26.2 `SectionCompiler` groups output
 by render layer from a captured region, and `SectionRenderDispatcher` keeps the
 old section mesh until the replacement upload is accepted. That matches the
@@ -3141,11 +3158,12 @@ outputs require sorting that our native section installer does not yet support.
 
 **Stage decision:** the code now reaches recipe-derived mesh values before
 per-tree render-node construction, advancing the Stage 2 implementation
-substage. Stage 2 is not proven until a headed contract demonstrates those
-values entering `TreeSectionValueAdapter` and the real section candidate. Stage
-3 native receipt, Stage 4 gameplay/save/unload parity, Stage 5 headed
-visual/traversal/performance acceptance, and Stage 6 remain open. The startup
-timeout must be diagnosed separately before retrying this expensive live gate.
+substage. The seeded headed run proves prepared tree value artifacts were
+created in the real Main path; Stage 2 still needs proof those values enter a
+complete real section candidate. Stage 3 native receipt, Stage 4 gameplay/save/
+unload parity, Stage 5 headed visual/traversal/performance acceptance, and
+Stage 6 remain open. Preserve the startup failure as a separate baseline and
+continue migration work without attributing it to this producer change.
 
 ### Recipe-fed tree section compiler progress (2026-10-04)
 
