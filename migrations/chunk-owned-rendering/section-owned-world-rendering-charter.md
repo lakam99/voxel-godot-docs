@@ -5072,3 +5072,49 @@ while a visible support section demands it, reject an old receipt for a newer
 source revision while leaving old output visible, and release/prune only after
 the support demand ends. This is a bounded prerequisite, not a Stage 1/2 exit;
 overall status remains **1/7 stage exits complete**.
+
+### 2026-10-05 HEAD implementation gate — reviewed tree bounds defect
+
+The current-hash Tree design9 falsifier is now independently reviewed. Its
+launch is bound to game HEAD `6e911532`, test SHA-256
+`A5B10A497B6D4CB3A16FD9B9F2E1E5084B4CC637F224B1EC11DDDB2C1DD213`, compiler
+SHA-256 `DE879D8A4DB69C5FE2C7221264F3028251E0D6E8CA1003A40363D42B0C9C9A00`,
+and runner SHA-256 `E43767D8733C52CDC8ADBD28B61E9F66F98930B7F9F1D891D06E3C720F70BF45`.
+The exact command is:
+
+```text
+node tools/visible-world/run-tree-recipe-section-compiler-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261005T-design9
+```
+
+The functional result is red for the expected owner mismatch and a separate
+missing-candidate queue-query assertion. Cleanup passed with authoritative
+zero membership; there was no timeout or forced termination. The reviewer
+decoded the sealed instance batch, restored world coordinates using its
+section origin, and independently transformed all eight mesh-AABB corners.
+The actual mesh bounds center belongs to section `(1,1,0)`, while the
+compiler-authored batch belongs to `(-4,-3,0)`; the independently computed
+support set is `(0,1,0)` and `(1,1,0)`. This confirms the production mismatch
+at the sealed output, not just in a predicted candidate envelope.
+
+The test currently labels `world_transform.origin` as the mesh-center owner;
+this happens to produce `(1,1,0)` for the reported witness, but is not the
+general contract for offset meshes. Ecology owns correcting the oracle to use
+the transformed mesh AABB center. HEAD authorizes the narrow production edit
+in `TreeRecipeSectionCompiler._append_role_instance`: compute
+`world_bounds` as `world_transform * state.bounds`, matching the production
+partitioner and the independent corner transform. Preserve the emitted
+instance transform. Verify exact owner/support keys and world-transform parity
+through the focused contract, then run project compile smoke. The independent
+queue-query failure remains a separate diagnostic; it cannot be hidden or
+weakened. No support lease implementation begins until the corrected geometry
+identity is proven. This does not pass Stage 1 or Stage 2; total stays
+**1/7 stage exits complete**.
+
+The separate Ecology design10 adapter run remains diagnostic: its underground
+membership/contribution and mesh-bounds assertions now pass, while six rows
+remain red. The process reached a Godot script error in
+`WorldStaticSectionCandidateAssembler.gd` at the integer `sourceInstance`
+string conversion; the runner stopped the engine and proved zero owned
+processes, but recorded cleanup as failed because it forced the stop. Preserve
+that run as a failure baseline and repair/classify the assembler error before
+using the Ecology contract for stage evidence.
