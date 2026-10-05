@@ -4862,48 +4862,52 @@ separate inherited fixture `String(...)` runtime error. Both are preserved as
 diagnostic baselines, not acceptance results.
 
 **Next gate:** do not simply ignore absent snapshots. Define a complete,
-bounded ecology source-owner closure from the actual producer's maximum
+bounded ecology source-owner closure from each actual producer's maximum
 candidate bounds or a revisioned spatial membership index. Use the dimensions
 and captured-neighborhood behavior in Minecraft 26.2 `RenderSectionRegion` as
-a boundary principle; derive our bounds from this game's real prop producers.
-Add a multi-chunk contract proving that distant incomplete owners cannot block
-a section only when the producer authority proves they cannot contribute, while
-an unknown owner inside the proven support envelope stays pending. Then rerun
-the tutorial-free Main gate once and inspect its candidate/receipt state.
+a boundary principle; derive our bounds from this game's real prop and tree
+producers. Add a multi-chunk contract proving that distant incomplete owners
+cannot block a section only when every producer authority proves they cannot
+contribute, while an unknown owner inside the proven support envelope stays
+pending. Then rerun the tutorial-free Main gate once and inspect its
+candidate/receipt state.
 Stages 1, 3, 4 and 5 and the overall migration remain partial until their full
 production exits pass.
 
 ### 2026-10-05 HEAD decision — bounded ecology source closure
 
 An independent producer-extent audit supports a conservative **5 m x/z
-candidate-origin envelope** around each requested 21.6 m section. Stream owners
-are 37.8 m wide. Current surface ore clusters reach under 3.687 m from their
-anchor including the generic cluster offset; rocks reach under 2.45 m; forage
-and underground props are smaller. Surface detail anchors and transformed
-mesh extents remain inside their source chunks. Underground source discovery
-uses the same horizontal closure at every section y because its cell scan spans
-the owner's full vertical range. Actual contributor-to-section support still
-comes from member `Mesh.get_aabb()` values and full transforms, never the
-coarser producer envelope.
+candidate-origin envelope for props, surface details, and underground props**
+around each requested 21.6 m section. Stream owners are 37.8 m wide. Surface
+ore clusters reach under 3.687 m from their anchor including generic cluster
+offset; rocks reach under 2.45 m; forage and underground props are smaller.
+Surface detail anchors and transformed mesh extents remain inside their source
+chunks. Underground source discovery uses the same horizontal closure at every
+section y because its cell scan spans the owner's full vertical range. Actual
+prop/detail support still comes from member `Mesh.get_aabb()` values and full
+transforms, never the coarser producer envelope.
 
-Approved discovery invariant: map the half-open requested section bounds,
-expanded 5 m in x/z, to possible owner keys; union all previous
-`sourceOwnerChunk` values retained for that section before validating current
-owners. Unknown, absent, stale, or unproven snapshots inside that closure (or
-in a retained prior owner) remain pending. Resident snapshots outside it are
-not inspected because their complete producer source domain cannot reach the
-section. A moved source is independently discovered in its new section; its
-old section keeps the retained owner until a current tombstone or empty proof
-permits replacement. An unloaded prior owner remains pending until replay
-recreates current proof.
+The 5 m closure is **not approved for the shared ecology provider**. Independent
+review found that the same discovery result feeds tree candidate capture, while
+shipped biome profiles allow 32–34 m canopy radii and procedural branches can
+extend beyond that nominal radius. The current tree candidate `localBounds`
+uses only the canopy radius, which is not proof that compiled branch/foliage
+mesh support fits. Resolve tree ownership with a complete revisioned source
+roster/index or a producer-wide extent proven against `TreeRecipeSectionCompiler`
+mesh AABBs before using spatial exclusion. Do not compile or run Main until the
+tree support gate is resolved.
 
-The focused contract must cover: unrelated far owner with missing/malformed/
-stale data excluded; in-envelope unknown owner staying pending; distant prior
-owner included for tombstone/empty replacement and unload/recreate replay;
-same-ID relocation across sections; and negative-coordinate, exact-plane,
-half-open boundaries. This is a design approval only: no discovery implementation,
-contract pass, or Main readiness pass is claimed here. Stage status remains
-**1/7 exits complete**; Stage 5 and overall migration remain partial.
+The first 14/14 focused run covers unrelated far owners with
+missing/malformed/stale data, in-envelope unknown owners, actual transformed
+static-prop member support, distant prior owner tombstone/removal and
+unload/recreate replay, same-ID relocation, and negative half-open boundaries.
+Review found two more required cases before this contract can clear its gate:
+an actual underground prop member/AABB (not only an underground-complete empty
+snapshot), and a `surface_detail` candidate that is captured through the complete
+section contribution (the current fixture only proves candidate presence).
+The green run plus these gaps does not prove complete ecology, and the tree
+domain is unresolved. Stage status remains **1/7 exits complete**; Stage 5 and
+overall migration remain partial.
 
 ### 2026-10-05 HEAD checkpoint — Stage 4 source coverage audit
 
