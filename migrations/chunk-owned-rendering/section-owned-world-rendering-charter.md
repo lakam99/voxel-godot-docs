@@ -3103,6 +3103,50 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### 2026-10-04 producer-value integration checkpoint
+
+**Code evidence:** `TreePublicationQueue` now freezes section-ownership mode per
+completed task and, in that mode, sends its existing resumable bole, branch and
+foliage builders to the no-node finish methods. It captures mesh/material,
+render policy, instance transforms, colors and custom data into sealed section
+members, then waits for the section receipt before retiring the prior per-tree
+visual. A failed/incomplete seal is rejected; it cannot publish an empty root.
+The normal legacy publisher remains the fallback only for tasks admitted in
+legacy mode and for impostor recipes that are not yet enumerable as section
+values.
+
+**Focused evidence:** `node tools/run-tree-publication-queue-contract.mjs`
+passed on Godot 4.6.1, but its runner is headless and section-owned mode was
+disabled for its tree publication assertions. It proves that legacy queue
+behavior still passes, not that the new direct-value branch ran. The focused
+ordinary structure retirement contract passed 18/18; it proves receipt-fenced
+visual retirement and boundary replay only at the provider-contract level.
+
+**Live gate:** `node tools/run-visible-world-fast-turn-sprint.mjs
+--skip-tutorial --timeout-seconds 240` did not reach gameplay readiness. Its
+progress remained `main_menu_waiting_for_gameplay_ready` through frame 3,720;
+it produced no report. The owned-process watchdog timed out at 240 seconds and
+proved zero remaining Job Object members. This is a failed startup gate and
+does not exercise tree section compilation, sprint traversal or visual parity.
+Do not attribute it to this producer change without an earlier comparable
+baseline; the source logs contain no engine error beyond the timeout.
+
+**Minecraft reference check:** the local 26.2 `SectionCompiler` groups output
+by render layer from a captured region, and `SectionRenderDispatcher` keeps the
+old section mesh until the replacement upload is accepted. That matches the
+new producer-value boundary and fail-closed replacement behavior. Minecraft's
+layer classification also confirms current tree foliage is safe as opaque:
+its shader has no alpha/discard/blend semantics, while truly translucent
+outputs require sorting that our native section installer does not yet support.
+
+**Stage decision:** the code now reaches recipe-derived mesh values before
+per-tree render-node construction, advancing the Stage 2 implementation
+substage. Stage 2 is not proven until a headed contract demonstrates those
+values entering `TreeSectionValueAdapter` and the real section candidate. Stage
+3 native receipt, Stage 4 gameplay/save/unload parity, Stage 5 headed
+visual/traversal/performance acceptance, and Stage 6 remain open. The startup
+timeout must be diagnosed separately before retrying this expensive live gate.
+
 ### Recipe-fed tree section compiler progress (2026-10-04)
 
 Game commit `c3ee1619` adds the first queue-to-compiler handoff. While
