@@ -21,6 +21,58 @@ retain their existing owners and readiness contracts. Mobs and NPCs remain
 independent live actors; this migration does not bake them into static section
 geometry.
 
+## Stage 4 addendum — transform-backed static building visuals
+
+**Scope:** migrate immutable, non-interactive static building visuals emitted
+as instance transforms through `BuildingPartPublisher.collect_static_visual_transform`.
+The first acceptance member is the reproducible Citadel source
+`castle_tower_04_battlement_front_0`: it is authored as a collidable `beam`
+with `stone_foundation` material and currently emits a unit-box visual through
+the legacy transform batch. It has no prepared masonry/paving/roof geometry
+family.
+
+**Publication path:** bind each transform group to source part ID and current
+source-record revision, stable mesh/material identity, render tier/layer,
+logical owner and render-chunk key, and exact world bounds. Compile finite
+transform, instance-color, and custom-data values into bounded immutable
+`BuildingInstanceBuffer` segments. The existing
+`BuildingStaticBatchFlush` remains responsible for incremental preparation and
+the old MultiMesh stays visible while those values are captured. Do not install
+a second visible per-source chunk packet: its current backend commit reveals
+the packet immediately, and the later section slot has a distinct source ID.
+Send these immutable inputs through the Citadel provider into the shared
+section assembler; `NativeStaticSectionInstallSession` performs the existing
+whole-section begin/append/commit and validates the installed section receipt.
+The world-owned coordinator then sends a revision-bound section acknowledgement.
+Retire the old MultiMesh only after every section intersecting its global visual
+bounds has a current acknowledged replacement.
+
+**Authority and lifecycle:** source recipes, deterministic IDs, revisions and
+save reconstruction remain building-owned. The source part and
+`ConstructionStaticCollisionBatch` retain collision and physical records;
+doors and their state/interactions remain with `DoorPortalService`, navigation
+remains structure-owned, and mobs/NPCs stay live and independent. Validate the
+source revision, world epoch, packet generation, current chunk-render owner,
+material/mesh identity and complete section roster at capture and install.
+Pending or stale work keeps the old representation; explicit empty coverage is
+valid only when the authoritative roster proves it. Unload/replay must retain
+packet recipes under their stable source identity and revalidate the recreated
+owner before accepting a receipt.
+
+**Non-goals for this slice:** direct `MeshInstance3D` contributors, dynamic
+door leaves, stateful furnishings/interactables, collision migration, NPC or
+mob rendering, and claiming all Stage 4 classes complete. Those require
+separate immutable contributor adapters and remain explicit migration gaps.
+
+**Acceptance evidence:** a focused producer contract proves all transform and
+custom-data values, identity/revision/bounds, segmentation and fail-closed
+staleness; a bounded real-service preflight proves exact current census and
+packet readiness for every selected section member; then a headed proof shows
+native section installation and old-visual visibility through pending/stale
+states followed by retirement only after the complete receipt closure. Stage 4
+also requires remaining transform-backed classes, traversal/unload/replay and
+performance evidence; this addendum alone does not pass the stage.
+
 ## Current source paths and cutover implications
 
 | Domain | Current producer and renderer | Revisions, ownership, gameplay and persistence | Migration constraint |
@@ -3102,6 +3154,207 @@ terrain/fluid probes, and section retry cadence as separate measured
 dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
+
+### Blueprint section receipt progress (2026-10-05)
+
+The headed Citadel fixture now proves one real, non-empty blueprint source
+through transform-artifact contribution, complete section candidate submission,
+native installation, service receipt, and per-source visual retirement while
+preserving collision and door-registration owners. The exact gate, reports,
+and limits are recorded in
+[the Stage 4 Citadel fixture note](stage-4-citadel-nonempty-receipt-fixture.md).
+This advances the blueprint receipt substage only. It does not prove retirement
+of every member in the provider (neighboring receipts remain pending), ordinary
+generated-structure cutover, normal startup, traversal, save/reload, or broad
+performance. Stage 4 remains partial; the seven-stage migration is not complete.
+
+### Construction and ecology next-gate findings (2026-10-05)
+
+The ordinary generated-structure path already reaches the coordinator and can
+compile/install supported opaque section inputs, but its supported visual recipe
+families are only `cobblestonePath`, `stoneBlock`, and `woodBlock`. Unsupported
+membership remains pending. Capture also still depends on resident block bodies
+and their existing visual children, so it does not yet establish node-free
+generation capture or successful unload/replay. Before extending coverage,
+classify every ordinary block family as `section_static`, separately rendered
+dynamic with a named authority, or `unknown` (which remains pending). Do not
+filter unsupported members into empty coverage. See the Stage 4 fixture note for
+the adjacent Citadel proof and its limitations.
+
+The ecology provider/compiler is also wired into the production coordinator,
+with tree source revision, section partitions, stale-owner checks, and
+all-affected-section acknowledgement. However, a recent headed tree census
+reported a real prepared tree with five owning section keys but no exact queue
+task/native receipt; the New Game journey stopped earlier at separate readiness
+blockers. The next tree gate must isolate one seeded tree crossing a section
+boundary and prove its artifact generation, both-or-all owning candidate
+receipts, old-visual retention through install, then retirement only after all
+receipts while retaining the same gameplay body and collider. Do not repeat a
+broad startup/sprint until a focused Main-scene gate can isolate this candidate.
+
+These discovery lanes do not waive live acceptance: construction still needs
+ordinary generated-structure receipts and gameplay/save/removal/replay coverage;
+ecology still needs real Main-world receipts followed by harvest/save/reload,
+unload/replay, traversal, and performance. Keep stage advancement serial at the
+candidate/native/owner-acknowledgement integration gates, while independent
+producer-family work may proceed in separate files.
+
+### Citadel section-receipt retirement diagnostic (2026-10-05)
+
+Game branch `codex/chunk-owned-world-rendering-migration` at `fce5c172`.
+The r6 run used `node tools/visible-world/run-citadel-section-receipt-retirement.mjs --outputdirectory artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r6`.
+It failed before a report was written: the added diagnostic attempted
+`String(Vector3i)`. The watchdog timed out=false and proved zero job members, but
+cleanup was forced and the fixture provided no service evidence. Classify this
+as fixture instrumentation failure.
+
+The r7 replay used the same command with output directory
+`artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r7`.
+It completed 26 checks with 10 failures, watchdog exit 1, timeout=false, cleanup
+passed, and authoritative zero job members. The fixture and service source
+hashes were respectively
+`A1BE77FD881BFB88BE1E2D5A6B41EC0BB47DDF71EC87FB5B74208F9973E0FBBC` and
+`4FF80D5E181F49479B3B69C091687A7F722667A4753DB5E2A208646B48DF49C3`.
+The candidate-install trace identifies three empty/tombstone failures as
+`static_section_owner_identity_mismatch`; the fixture had recreated its section
+owner under a noncanonical name. The fixture-only correction now uses the
+canonical chunk name while retaining a new backend identity, so stale-receipt
+coverage remains meaningful.
+
+The unresolved retirement failures need separate diagnosis: direct exact
+inventory probes returned pending for intersecting visible children and stale
+bindings, but `acknowledge_section_install` returned acknowledged with an empty
+visual result list while `_retiring_scenes` still contained one entry. A bounded
+fixture subclass now records whether the acknowledgement path invokes its
+scene/retiree inventory predicates and captures their results. The production
+service remains unchanged pending that evidence. r7 proves one synthetic whole
+section candidate can install through the native renderer; it does not prove
+normal Citadel source capture, visual cutover, or Stage 4 acceptance. Overall
+status remains seven stages total: Stage 0 complete; Stages 1–5 partial; Stage 6
+not started.
+
+### Ack-path trace and retirement gate correction (2026-10-05, r8)
+
+The r8 replay used fixture SHA
+`6D036D57D14A3212901D0424579B25FF0D14D8CD5D426AF3EF6ACF261D6CF060` with
+service SHA `4FF80D5E181F49479B3B69C091687A7F722667A4753DB5E2A208646B48DF49C3`.
+It completed 26 checks with 7 failures; the watchdog exited 1 without timeout,
+passed cleanup, and proved zero job members. Report:
+`artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r8/report.json`.
+
+The new acknowledgement-path trace resolved the discrepancy. The service called
+the retiree inventory and received a pending/intersecting result, but the
+scene-inventory function checked `waiting_count` only before its
+`_retiring_scenes` loop, then unconditionally returned ready afterward. Stale
+bindings also incremented that count without an exact-disjoint proof. The
+production fix adds the missing post-loop pending return; current service SHA is
+`9918FBEC3D2A5446F4BF645184BD2243F94B18EA2E51586722CEAA3C5A41C05A` and awaits
+the next bounded runner. The fixture's canonical owner name fixed the three
+empty-section install-begin failures, while retaining a new backend instance.
+Do not mark the retirement gate passed until a fresh report proves these
+pending cases, retry-after-drain, and clean owned-process teardown. Stages and
+overall 1/7 completion count are unchanged.
+
+### Citadel acknowledgement retirement gate passes (2026-10-05, r9)
+
+The bounded r9 replay used fixture SHA
+`6D036D57D14A3212901D0424579B25FF0D14D8CD5D426AF3EF6ACF261D6CF060` and
+service SHA `9918FBEC3D2A5446F4BF645184BD2243F94B18EA2E51586722CEAA3C5A41C05A`.
+All 26 checks passed. It proved that empty current receipts remain pending
+while visible retirees exist, intersecting and stale-bound retirees block
+acknowledgement, and an intersecting section can be acknowledged after the
+retiree is removed and retried. The watchdog exited 0 without timeout or forced
+cleanup, passed cleanup, and proved zero remaining job members. Report:
+`artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r9/report.json`.
+
+This closes the synthetic headed Citadel acknowledgement/retirement diagnostic
+subgate only. The fixture still supplies admission/plan evidence; it does not
+prove ordinary-world Citadel packet capture, gameplay collision/doors/navigation,
+save/reload, live traversal, startup readiness, visual quality, or performance.
+Stage 4 remains partial and no overall stage exit advances; completion remains
+1/7 stages. Continue with real nonempty producer capture and runtime visual and
+gameplay integration evidence.
+
+### Citadel non-empty producer gate blocks at contribution capture (2026-10-05, r1)
+
+The headed runner
+`node tools/visible-world/run-citadel-nonempty-section-receipt.mjs --outputdirectory artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261005-r1`
+used fixture SHA
+`32ef1c57de242062a007435c9f57ae6b098fcec139e295fd8a5dfe3265f2dd2f`, service
+SHA `9918fbec3d2a5446f4bf645184bd2243f94b18ea2e51586722ceaa3c5a41c05a`, and
+fresh deterministic seed `atlas-1492`. Site admission, immutable plan, and the
+complete census succeeded for 12 building members in section `(199,1,-342)`.
+The sole failed check was
+`actual_plan_member_transform_artifact_contribution_ready`: contribution for
+`castle_compound_foundation_segment_00` remained pending with
+`static_transform_artifact_roster_unavailable`. No complete section candidate,
+native receipt, or legacy visual retirement was reached. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261005-r1/report.json`.
+
+The terminal scene state had 15 of 3,596 physical groups complete, 3,581
+deferred, and zero foreground packet requests. The watchdog recorded
+functional/overall exit 1, no timeout or forced cleanup, cleanup passed, and
+authoritative zero process members. Treat this as a production contribution
+gap. Do not repeat the unchanged fixture or raise budgets; first trace why the
+current demanded source groups do not yield a sealed transform-artifact roster,
+including prepared segments and demand-to-packet admission. Stage 4 and overall
+1/7 stage completion remain unchanged.
+
+### Prepared-segment producer repair and headed diagnosis (2026-10-05, r2/r3)
+
+The focused prepared-segment producer contract was extended to compare the
+captured artifact buffer, bounds, and instance count directly with the original
+compiled segment. Run
+`node tools/run-building-static-section-transform-artifact-contract.mjs --outputdirectory artifacts/citadel-runtime-integration/building-transform-artifact-prepared-segments-20261005-r6`
+passed 14/14 checks; watchdog exit 0, cleanup passed, and authoritative zero
+job members were proven. This is synthetic producer evidence only.
+
+The headed r2 replay after that producer change again stopped at contribution
+capture. R2's source hash manifest did not include
+`BuildingStaticBatchFlush.gd`, so it does not identify the exact emitter
+revision. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261005-r2/report.json`.
+
+Instrumented headed r3 added the flush file to the source hash manifest and
+records bounded per-target producer state. It confirms the explicit 15-group
+demand and all physical receipts, including
+`building:castle_compound_foundation_segment_00`; the target publisher matches
+the current site binding and the target part has publication epoch 3, but no
+committed transform-artifact roster exists. The publisher reports 27 rejected
+groups with last reason `transform_group_identity_or_payload_incomplete`.
+R3 still fails before a section candidate, native installation, or retirement
+acknowledgement. The aggregate rejection reason does not identify which part
+produced it, so the next falsifiable step is bounded per-source attribution of
+those rejects. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261005-r3/report.json`.
+R3 exits 1 without timeout or forced cleanup; watchdog cleanup passed and
+proved zero job members. Stage 4 and overall 1/7 stage completion remain
+unchanged. Do not rerun until per-source rejection evidence changes the
+diagnostic or production path.
+
+### Async building visual source-context failure (2026-10-05, r4)
+
+R4 added bounded source/key/reason attribution to transform-artifact rejection
+samples. All 15 explicitly requested packet groups had exact physical receipts,
+including the target section's building contributors. The provider nevertheless
+had no static transform artifact roster. All 27 rejected groups were recorded
+with source part `<unknown-source>` and empty source suffixes in their batch
+keys; each rejection reason was
+`transform_group_identity_or_payload_incomplete`. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261005-r4/report.json`.
+
+Source tracing identifies the likely producer defect: `publish_static_part`
+sets source part/revision/owner/chunk context while starting a resumable
+masonry, paving, or roof publication job, then restores the previous context.
+When `publish_part_batch` later advances that pending job, it does not restore
+the source context. The asynchronous collectors therefore append valid segment
+payloads under blank source identity and zero owner coordinates. The flush
+correctly rejects those groups. Repair the resumable job boundary so every
+advance uses its exact source part identity and owner coordinates, restoring
+the prior context afterward. Preserve the legacy collision and interaction
+owners. R4 exits 1 without timeout or forced cleanup; cleanup passed and
+authoritative zero job members were proven. No candidate or native install was
+reached, so Stage 4 and overall 1/7 completion remain unchanged.
 
 ### Section-relative translucent POV coordinator hook (2026-10-05)
 
