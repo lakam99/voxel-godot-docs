@@ -3103,6 +3103,76 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Next implementation charter — recipe compiler into ecology section publication (2026-10-05)
+
+**Outcome:** route the sealed canonical tree recipe artifact through a bounded
+production compiler queue into the existing ecology provider and complete
+section assembler, then prove the resulting candidate is installed by the
+native renderer. The value compiler is a producer stage, not an alternate
+renderer or an acceptance endpoint. Preserve TreeSpawnService recipe and LOD
+authority, deterministic IDs, StaticBody collision, harvesting/drops,
+navigation notifications, removed-prop save deltas, and actor/NPC systems.
+
+**Current producer map:** `TreePublicationQueue._process` runs in ordinary
+loading/gameplay frames. `enqueue_completed_task` seals the
+`tree-section-recipe-input` before legacy visual construction. The current
+ecology census still indexes only `sectionValueMembers` from prepared or
+published LOD records, and its contribution path calls `TreeSectionValueAdapter`
+to recapture and repartition those members. The recipe artifact therefore has
+no production consumer yet. `MainRuntimeTools.advance_loading_visible_section_publication`
+and the normal gameplay publication lane already advance one roster admission
+and one complete-section install; they are candidate scheduler hooks, not tree
+compiler workers today.
+
+**Required value/identity flow:** advance queued recipe compilation under a
+measured per-frame work slice. The cached compiler result must bind world/seed,
+exact queue artifact and producer generation, stable source/prop ID, unique
+current body owner and instance ID, transform, normalized request, canonical
+recipe signature, mesh/material/shader resource digests, exact center-owned
+section membership, support-section bounds and stream dependencies, plus the
+current removed-prop snapshot. Census may reuse only that exact current result;
+it must not build meshes or infer empty from a missing compiler record.
+Contribution selects the target section's exact compiled batches and revisions
+and submits them to the ordinary provider/assembler path. The final installer
+must revalidate the live source census and owner/resource epochs before
+accepting its native receipt. Ambiguous same-ID bodies or a new tombstone stay
+pending/rejected rather than admitting a stale recipe.
+
+**Stale work and retirement:** recipe changes, body move/replacement,
+re-enqueue generation, resource digest change, harvest/tombstone, world change
+or queue cancellation invalidates the compilation and any uninstalled result.
+The previous section root remains visible while replacements are prepared and
+uploaded. The legacy tree visual is retired only after current receipts cover
+every old/new owning section for that source. Keep the body and gameplay
+collision/harvest authority alive throughout. Unload/replay must reproduce the
+same recipe-derived section values and must not reuse a stale owner or RID.
+
+**Stages and exits:** (1) compiler contract (passed by game commit `a86e9b72`);
+(2) bounded queue admission/advance and source-roster currentness contract;
+(3) a production `TreePublicationQueue` → ecology census/contribution → whole
+section assembly → real native renderer receipt for a tree crossing multiple
+sections, with the previous view retained during upload; (4) live harvest,
+source replacement, save/reload and stream unload/replay parity; (5) headed
+forest visual/traversal and a representative performance observation. Do not
+retire old visuals or claim gameplay readiness from Stage 1–2 tests.
+
+**Stage 1 evidence:**
+`node tools/visible-world/run-tree-recipe-section-compiler-contract.mjs
+--outputdirectory artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261004n`
+passed 9/9 headed contract assertions. The canonical oak fixture emitted 17
+compatible batches in 9 center-owned sections; advancing one work unit per
+call took 1,804 advances, while a 24-unit slice took 76. The contract covers
+node-free geometry preparation, opaque-layer policy, immutable 20-float
+instance values, exact mesh AABB support sections, deterministic output across
+slice sizes, final resource re-fingerprinting, and transform/tombstone stale
+rejection. It does not prove ecology census/contribution, real renderer
+installation, replacement-body lookup, lifecycle parity, save/replay, or
+runtime performance. Minecraft 26.2's `RenderRegionCache`, `RenderSectionRegion`,
+`SectionCompiler`, and `SectionRenderDispatcher` confirm the shared neighborhood
+capture, target-section compile and staged-install boundary. This compiler
+does not copy the cube mesher. Game commit: `a86e9b72 feat: compile tree
+recipes into section values`.
+
 ### Next implementation charter — fluid as a section render layer (2026-10-05)
 
 **Outcome:** a terrain section candidate represents the terrain and any fluid
