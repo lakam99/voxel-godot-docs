@@ -3114,7 +3114,8 @@ identity is derived from the camera's section offset clamped per axis to
 `{-1,0,1}`; it remains stable for movement within the same POV class, preventing
 camera jitter from repeatedly cancelling staged work. A POV-stale session is
 discarded and requeued for reassembly so the previous installed slot remains
-visible.
+visible. The coordinator hook and its focused contract are committed in game
+revision `af5d0e32`.
 
 **Evidence:**
 `node tools/visible-world/run-visible-section-demand-driver-contract.mjs --outputdirectory artifacts/citadel-runtime-integration/visible-section-demand-driver-pov-head-review-20261005`
