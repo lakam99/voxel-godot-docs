@@ -5414,25 +5414,58 @@ its section compile/upload lifecycle without duplicating generation or
 gameplay authority. Add a native spatial-query accelerator only if measured
 index cost warrants it.
 
-Each source row binds stable provider/source/prop IDs, world seed and
-durable-removal revision, source chunk and owner generation, recipe/artifact
-generation, canonical geometry-owner section, render layer/material/resource
-identity, certified conservative world AABB, exact support-section keys, and
-state (`pending_recipe`, `compiled`, or `tombstoned`). Per-source-chunk
-completeness certificates bind the deterministic ecology pass and all
-enumerated rows to the current world/source revision. Candidate assembly must
-include every row for its section, reject stale owner/revision certificates,
-and remain pending when any relevant source domain is unknown. Explicit empty
-is legal only when all producer-certified source domains intersecting the
-section have current completeness certificates and no live row supports it.
+The index posts actual render members, not one synthetic whole-tree owner.
+Each member row binds stable provider/source/prop/member IDs, world seed and
+durable-removal projection, producer chunk and source revision, recipe/artifact
+revision, the member's canonical geometry-owner section, render
+layer/material/resource identity, independently certified conservative world
+AABB, exact support-section keys, and state (`pending_recipe`, `compiled`, or
+`tombstoned`). A tree can have bole, branch, and foliage members owned by
+different sections; a support query returns every member whose certified
+bounds touch that section plus the exact geometry-owner section for each
+member. Member IDs and source revisions must also be present in the installed
+candidate receipt before their support lease or tombstone can be retired.
 
-Before visual compilation, a tree recipe must publish a conservative support
-envelope derived from its actual bounded family grammar and mesh/factory
-primitive bounds. After compilation, actual transformed mesh AABBs must fit
-inside that envelope; exact support-section postings then replace conservative
-ones. Do not use nominal canopy radius or select a wider arbitrary chunk
-radius. The envelope must account for broadleaf, conifer, savanna, branch,
-foliage and LOD geometry, and fail closed if a compiled result exceeds it.
+The inverse source-domain census is a producer contract, not a radius chosen
+by the renderer. A versioned policy must provide a conservative maximum
+influence bound for each static producer family. Expand the section by that
+bound, map the result to every producer chunk that could contribute, and
+require a complete snapshot for every key, including authoritative empty
+chunks. Verify each emitted member's actual envelope against the policy bound.
+If the policy or any source snapshot is unavailable, the section remains
+pending; a missing loaded chunk or an arbitrary fixed-radius scan cannot prove
+empty coverage.
+
+The existing deterministic producer must expose an immutable source-domain
+snapshot keyed by world and producer chunk without requiring a gameplay chunk
+Node to remain alive. The gameplay chunk and render-index/candidate path must
+consume the same value snapshot and preserve the established RNG draw order,
+seeded generation, source IDs, producer completion proof, and durable-removal
+overlay. Node/instance identity proves a live installation owner only; it is
+not part of canonical generated content identity. Resource bindings and
+collision/interaction objects remain runtime-owned projections of those value
+records. Source snapshots may be cached across gameplay-owner unload, but must
+be invalidated by the exact producer, terrain, recipe-policy, or durable-delta
+revision that changes them.
+
+Per-source-chunk completeness certificates bind the deterministic producer
+pass, influence-policy revision, and all enumerated member rows to the current
+world/source revision. Candidate assembly must include every member assigned
+to its geometry-owner section, reject stale owner/revision certificates, and
+remain pending when any inverse-domain source is unknown. Explicit empty is
+legal only when every producer-certified source domain that can influence the
+section has a current completeness certificate and no live member supports
+it.
+
+Before visual compilation, the tree producer policy must bound possible recipe
+influence for inverse-domain enumeration. Once a recipe is finalized, certify
+each render member's support envelope from its actual family grammar and
+mesh/factory primitive bounds. After compilation, each transformed mesh AABB
+must fit its member envelope; exact support-section postings then replace
+policy-conservative ones. Do not use nominal canopy radius or select a wider
+arbitrary chunk radius. The policy and member envelopes must account for
+broadleaf, conifer, savanna, branch, foliage and LOD geometry, and fail closed
+if a compiled result exceeds either bound.
 
 The index is renderer metadata only. Tree gameplay owners retain trunk
 collision, harvest behavior, stable identity and durable save deltas. Harvest
@@ -5446,17 +5479,25 @@ independent actors.
 
 #### Ordered work and exit evidence
 
-1. Derive and prove family/LOD support envelopes against compiled mesh bounds,
-   including worst-case branch and canopy extents. Reject a false envelope.
-2. Implement deterministic source enumeration, source-chunk completeness
-   certificates and the section-to-contributor index from current seed and
-   durable removals. Bind every row/posting to world, source and owner
-   generations; support pending recipe, compiled and tombstoned states.
-3. Replace the ecology adapter's radius/compiled-queue discovery with the
+1. Define versioned finite influence bounds for each static producer family;
+   prove per-member tree recipe/LOD envelopes against compiled mesh bounds,
+   including worst-case branch, foliage, impostor and shader-wind extents.
+   Reject any emitted member that exceeds its policy bound.
+2. Refactor the current deterministic ecology producer to emit/cache immutable
+   source-domain snapshots by world and producer-chunk key, independent of
+   gameplay Node lifetime, while preserving exact RNG order and durable
+   removal semantics. Prove loaded gameplay publication consumes the same
+   source snapshot.
+3. Derive the complete inverse source-domain set from the certified influence
+   policy, then implement completeness certificates and the per-member
+   section-to-contributor index. Bind postings to world/source/policy
+   revisions; support pending recipe, compiled, and tombstoned states.
+4. Replace the ecology adapter's radius/compiled-queue discovery with the
    revision-bound index; wire dirty support sections through the existing
-   shared candidate assembler and native install acknowledgement. Preserve old
+   shared candidate assembler and native install acknowledgement. Bind each
+   support lease to all exact member owner-section receipts. Preserve old
    visuals through pending, stale and failed replacement work.
-4. Prove admission, invalidation, unload/replay and candidate empty semantics
+5. Prove admission, invalidation, unload/replay and candidate empty semantics
    with focused contracts, then run headed cross-boundary forest traversal.
    The live proof must show the canonical center geometry-owner slot installed
    while a support section is viewed, preserve real trunk collision/harvest/save
