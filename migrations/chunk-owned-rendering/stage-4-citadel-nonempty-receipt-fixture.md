@@ -202,3 +202,18 @@ ordinary `blockType`: `section_static`, `separate_dynamic` with its named owner,
 or `unknown` that remains pending. Only after this inventory identifies a
 common opaque static family should its node-free immutable recipe be added;
 filtering unknown or dynamic members would falsely permit empty coverage.
+
+The classification contract is now implemented in game commit `e184280`.
+`StructureSystem` source inspection and the contract cover the 15 currently
+emitted ordinary `blockType` values. Stateful chest/furnace/campfire/torch/door
+presentation is classified with its named runtime owner and remains pending;
+unsupported translucent glass remains section-static but pending; an unknown
+future type also remains pending and cannot become empty coverage. The focused
+provider contract passed 35/35 checks at
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-family-classification-20261005-r4/report.json`.
+The watchdog exited 0, cleanup passed, and authoritative zero-member proof was
+recorded. This is contract evidence only; no native ordinary section receipt,
+production registration, removal/save/reload replay, headed visual parity, or
+performance is claimed. A tentative stone-corner recipe expansion was fully
+reverted after source tracing found that the legacy constructor also adds those
+accent beams, which would have duplicated visuals.
