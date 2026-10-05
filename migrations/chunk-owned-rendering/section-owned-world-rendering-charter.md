@@ -4991,3 +4991,32 @@ This source audit and focused deterministic falsifier do not establish a live
 visual failure or pass Stage 1, 2, or 5. No production code edit, project
 compile-smoke run, or Main launch was made. Total progress remains
 **1/7 stage exits**.
+
+### 2026-10-05 HEAD checkpoint — Stage 1–2 provider and layer audit
+
+The current fixed section roster has four single-owner providers: terrain,
+ordinary structures, blueprint buildings, and ecology/static props. The
+candidate/roster path requires revisioned complete-or-empty census and one
+provider identity per source part; the existing coordinator retains its old
+accepted slot across staging and stale-work cancellation, but this is not yet
+proof of provider retirement acknowledgement or gameplay visual parity.
+
+Current provider gaps that prevent a complete manifest include:
+
+- Player-placed block visuals have no registered section provider.
+- Ordinary generated structures only admit `cobblestonePath`, `stoneBlock`,
+  and `woodBlock` as single-surface opaque geometry; other generated members
+  remain pending.
+- Blueprint construction admits opaque and cutout `building:` members, while
+  `furnishing:` and translucent building artifacts remain pending.
+- Ecology can represent opaque/cutout static content, but compiled trees are
+  opaque-only; the native backend's translucent slot alone does not establish
+  provider parity, and translucent install currently requires one baked
+  instance per batch with a current POV descriptor.
+
+The active section stack supports opaque, cutout, and translucent layers, but
+the production providers do not yet supply complete manifests for all of them.
+Resolve provider ownership and per-layer completion before treating an
+authoritative empty row as proof that a category has no visual content. This
+read-only audit does not pass Stages 1–2 or authorize retirement; overall
+progress remains **1/7 stage exits**.
