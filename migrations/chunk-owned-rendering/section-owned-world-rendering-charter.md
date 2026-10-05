@@ -3103,6 +3103,39 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Next bounded production change — wake the exact section after fluid proof
+
+**Entry evidence:** game branch `codex/chunk-owned-world-rendering-migration`
+at `30834119`. The 2026-10-05 headed startup replays remain blocked before
+candidate installation by provider census/admission; a separate terrain audit
+found that `VoxelTerrainRuntime` publishes a current exact-fluid proof but does
+not wake the matching delayed section demand. The coordinator otherwise parks
+retryable demands for `VISIBLE_SECTION_DEMAND_RETRY_FRAMES` (30 frames). Keep
+this bounded queue-latency defect distinct from the ordinary-structure and
+ecology capture blockers; it is not the sole cause of startup stalls.
+
+**Change:** when a revision-current exact-fluid proof is accepted, notify the
+world-owned `WorldStaticSectionCoordinator` for that exact section so its
+retained demand becomes eligible immediately. The coordinator must still run
+the full required-provider census and validate the current proof/revisions.
+A proof that says fluid exists remains pending until the shared candidate has
+the supported fluid layer; a stale proof must never wake as empty success.
+Avoid a global wake that floods all 2,000+ retained demands. Preserve the
+current queue backpressure, old installed section, source authorities, and the
+section-candidate receipt boundary.
+
+**Evidence and exit:** add a focused coordinator/terrain contract proving
+exact-section wake bypasses the retry delay once (including duplicate/stale
+proof and non-demanded section cases), then run the existing fluid-proof
+contract. Report that this reduces retry latency only; it does not prove fluid
+rendering, resolve ordinary-structure admission, or pass startup. Use the live
+Minecraft 26.2 reference as a boundary check: `RenderRegionCache` reuses
+revision-scoped section copies across nearby compiles, while the dispatcher
+still validates and installs complete layer output before replacing old mesh.
+That supports targeted invalidation/wakeup and shared immutable capture as the
+future architectural direction; it does not justify weakening our exact
+volume proof or importing Minecraft's cube mesher.
+
 ### Tree producer generation and replacement currentness (2026-10-04)
 
 The review of game commit `23f8db57` found that prepared tree artifacts were
