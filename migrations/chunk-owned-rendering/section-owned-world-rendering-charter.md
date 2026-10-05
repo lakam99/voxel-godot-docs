@@ -3136,6 +3136,36 @@ That supports targeted invalidation/wakeup and shared immutable capture as the
 future architectural direction; it does not justify weakening our exact
 volume proof or importing Minecraft's cube mesher.
 
+**Result (2026-10-05):** game commit `b081f2de` implements the section-local
+wake. The focused runner
+`node tools/visible-world/run-visible-section-demand-driver-contract.mjs
+--outputdirectory
+artifacts/citadel-runtime-integration/visible-section-demand-driver-fluid-proof-wakeup-20261005-r2`
+passed 31/31 checks. It proves one current proof wakes only its delayed demand,
+the exact proof signature is idempotent even after dequeue, stale and
+non-demanded sections do not wake, and a fluid-bearing section remains pending
+with `terrain_fluid_section_layer_not_supported`. The contract report is
+synthetic; it does not prove native fluid rendering or reduce the measured
+ordinary-structure/tree admission backlog. No headed run was made because the
+change removes at most one evidenced retry delay and cannot unblock the other
+known provider gates.
+
+**Next architecture work:** ordinary source discovery retains a cursor within
+one current per-section job, but each neighboring section still creates a
+separate overlapping `OrdinaryStructureVisualSourceCapture`. Its captured
+freshness token includes broad `region_dependency_scheduling_revision(bounds)`;
+changes to those dependencies restart the job. The `atlas-54374373` replay
+contains six ordinary budget admissions for six distinct sections and 2,720
+pending demands, but no per-section cursor/restart series. Minecraft's shared
+`RenderRegionCache` suggests the next production change should build a sealed,
+revision-keyed ordinary source census once for the shared region window, then
+derive section-local geometry candidates from that immutable snapshot. Keep
+live owner/recipe checks and actual per-section contributions tied to current
+source revisions; do not cache stale Node bindings or infer empty from missing
+visuals. First define precise authoritative membership invalidation and prove
+adjacent sections share census work while concurrent source changes reject or
+retry it; only then run another expensive headed startup.
+
 ### Tree producer generation and replacement currentness (2026-10-04)
 
 The review of game commit `23f8db57` found that prepared tree artifacts were
