@@ -4987,6 +4987,24 @@ then prove that the support request retains/loads that center slot and cannot
 be declared ready without its current receipt and visible output. Test stale
 source replacement and lease release after the old support demand is removed.
 
+The support-lease audit found the current runtime only requests and withdraws
+section demand by the same section key. `MainRuntimeTools` prunes native render
+owners using `retained_gameplay_chunks`, so adding a distant tree owner to that
+set would incorrectly retain/load gameplay chunks. Add separate static-owner
+demand: `retained_static_owner_cells = ordinary_needed_owner_cells ∪
+active_validated_support_lease_owner_cells`; use it only for static render-owner
+sync and pruning. A revision-bound lease identifies its support section, center
+owner section, provider/source, expected source revision, and demand revision.
+Lease readiness requires that exact source revision in the center candidate,
+its current live native receipt, and the matching owner identity. Preserve the
+old visible candidate during replacement, but never let its receipt satisfy a
+lease for a newer revision. Unknown tree census remains pending; lease logic
+must consume a complete authoritative tree support map rather than inventing
+one. A focused contract may isolate state rules, but acceptance of this policy
+requires a real Main-derived traversal fixture proving owner creation,
+replacement, visibility, demand withdrawal, and pruning without gameplay-chunk
+retention.
+
 This source audit and focused deterministic falsifier do not establish a live
 visual failure or pass Stage 1, 2, or 5. No production code edit, project
 compile-smoke run, or Main launch was made. Total progress remains
