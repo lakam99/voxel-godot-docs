@@ -3103,6 +3103,41 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Parallel implementation checkpoint — 2026-10-05
+
+The migration is still **1/7 stages complete**: Stage 0 is complete, Stages
+1–5 remain partial, and Stage 6 has not started. This checkpoint records a
+bounded tree integration subgate, not a stage exit.
+
+`node tools/visible-world/run-whole-section-candidate-native-install.mjs`
+passed 12 checks in the headed runner report
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-tree-recipe-20261004i/report.json`.
+The fixture advanced the production `TreePublicationQueue` recipe compiler,
+captured its output through `EcologySectionValueAdapter`, assembled a complete
+section candidate, and received installation from the native chunk renderer.
+After unloading and recreating the render owner, the retained generation-2
+candidate was rejected when the new owner's census digest differed; the
+coordinator requested reassembly, then installed generation 3 from the current
+owner census. The earlier failed replay was in the fixture helper, which had
+dropped the retryable `requiresReassembly` result; the production stale-census
+check correctly rejected the candidate.
+
+This is controlled fixture evidence: terrain and ordinary providers plus
+decorative detail use fixture sources, and the world is not normal Main-scene
+streaming. The run does not prove legacy tree visual retirement, foliage layer
+parity, live collision/harvest/save behavior, visual traversal, or performance.
+The old tree visuals remain active. Keep Stage 5 open.
+
+Parallel ownership is HEAD-planned with three non-overlapping implementation
+leads: (1) ecology acknowledgement and source-visual retirement while retaining
+live prop/tree gameplay bodies, (2) fluid/translucent section-local sorting and
+native replacement, and (3) ordinary/generated and blueprint structure
+cutover. The fluid lead's delegated API audit found Godot's index-region update
+API, but no proof of atomicity or accepted visual ordering; translucent install
+therefore remains fail-closed. HEAD retains integration, stage-gate and final
+diff acceptance ownership. None of these work assignments advance a gate by
+themselves.
+
 ### Next implementation charter — recipe compiler into ecology section publication (2026-10-05)
 
 **Outcome:** route the sealed canonical tree recipe artifact through a bounded
