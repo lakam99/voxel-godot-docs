@@ -5178,6 +5178,39 @@ and does not prove normal startup, visual retirement, save/reload, or
 performance. The render-frame acknowledgement is a Stage 3 dependency before
 old-path retirement; no new stage exit is claimed. Total remains **1/7**.
 
+### 2026-10-05 Stage 3 decision — bind frame acknowledgement to candidate identity
+
+Godot 4.6 exposes `RenderingServer.request_frame_drawn_callback(callable)`.
+This acknowledges a completed rendered frame globally; it does not prove any
+specific section/layer produced pixels. Treat it as the install-to-frame
+boundary, never as object-specific visibility evidence.
+
+The native/coordinator handoff should therefore have a pending-presentation
+state. Promote the complete candidate and hide the old root atomically while
+retaining the old root/receipt. Bind a one-shot callback token to world ID,
+section, generation, census/manifest digest, backend and owner identity,
+candidate root, frame sequence, source revisions, layer set and resource
+identity. The callback revalidates all current identity and only then lets the
+coordinator acknowledge providers and retire the prior root. If the candidate
+becomes stale or cancellation arrives before acknowledgement, invalidate the
+token, restore the prior root/receipt, and treat a later callback as a no-op.
+Abort hidden staging immediately.
+
+Explicit-empty output follows the same path: promote the empty manifest, hide
+the previous root, retain it until the callback accepts the current source
+token, then acknowledge empty and retire the previous root. A stale empty
+candidate restores the previous output. Offscreen sections can still be
+renderer-registered; do not require the active camera to see them for 360°
+readiness. Require an active rendered gameplay viewport and valid scenario,
+owner, root ancestry, layers and resources. Prove player-visible output with
+headed screenshots/readback for representative in-frustum sections. Do not
+use per-section forced GPU synchronization as an acknowledgement mechanism.
+
+This refines Stage 3 acceptance only. No code path yet retains the old root
+through a frame callback; Stage 3 and all later exits remain open, overall
+progress **1/7**. Source reference: [Godot 4.6 RenderingServer
+API](https://docs.godotengine.org/en/4.6/classes/class_renderingserver.html).
+
 ### 2026-10-05 ordinary-structure opaque coverage implementation slice
 
 **Scope and owner boundary:** extend the ordinary structure section provider
@@ -5223,3 +5256,28 @@ dependencies and compile readiness pass may the ordinary Main replay, visual
 traversal and performance gates run. This implementation slice does not
 complete Stage 1, Stage 2, Stage 4, or the migration; overall progress remains
 **1/7 stage exits complete**.
+
+### 2026-10-05 Tree owner-bounds contract result
+
+The Tree recipe section compiler contract now passes **24/24** checks at game
+worktree `codex/chunk-owned-world-rendering-migration`, HEAD `6e911532`, using
+test SHA-256
+`29C14719414608F7DD4A8C26698630E0E93303B8B34C33593062D86B9A502CF6` and
+`TreePublicationQueue.gd` SHA-256
+`9AB0600F062BD354E02E1FEEC1F7E6401B1AAA5BC1244C6FB37C6A57E82570F0`. Report,
+launch and watchdog evidence are in
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261005T-design11/`.
+The watchdog reports exit 0, no timeout or forced cleanup, and authoritative
+zero owned process members.
+
+The gate exposed and fixed a production owner-bounds transform error and a
+diagnostic-only `knownCandidateCount` error: the latter had counted the
+unresolved per-ID scaffold as a candidate despite no indexed stage record. The
+revised contract asserts unknown IDs have empty indexed stages, an unresolved
+revision join and count zero. A large-canopy witness rooted in owner chunk
+`(1,0)` has actual section support `(0,2,0)`, outside the earlier 5 m closure;
+the contract pairs the exact foliage instance row and validates its transformed
+support using all eight AABB corners. This is provider geometry/diagnostic
+contract evidence only. It does not prove section installation, frame
+acknowledgement, rendered pixels, live visual retirement or traversal. Stage 1
+remains partial, and total progress remains **1/7 stage exits complete**.
