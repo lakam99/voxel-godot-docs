@@ -5177,3 +5177,49 @@ physics authority. It remains gated by full producer-census/compile readiness
 and does not prove normal startup, visual retirement, save/reload, or
 performance. The render-frame acknowledgement is a Stage 3 dependency before
 old-path retirement; no new stage exit is claimed. Total remains **1/7**.
+
+### 2026-10-05 ordinary-structure opaque coverage implementation slice
+
+**Scope and owner boundary:** extend the ordinary structure section provider
+only. `StructureSystem` remains the deterministic source, edit/tombstone,
+door, collision, interaction, navigation and save authority. The section
+provider transfers opaque visual members after an exact current native
+section receipt; it must leave every gameplay body and authority intact.
+The ordinary visual cache is derived output and is not added to save data.
+
+The current classified static visual families are
+`cobblestonePath`, `stoneBlock`, `woodBlock`, `glass`, `workbench`, `bed`,
+`traderStall`, `spikeTrap`, `copperVein`, and `ironVein`. This slice implements
+opaque families only: every deterministic recipe member and supported recipe
+variant for `cobblestonePath`, `stoneBlock`, `woodBlock`, `workbench`, `bed`,
+`traderStall`, `spikeTrap`, `copperVein`, and `ironVein`. Existing generated
+static-item assets must retain their production registry/resource identity;
+fallback box recipes may not replace a registered asset. Glass is alpha
+translucent and remains pending until its section contribution can carry the
+current POV/depth-sort identity through a drawn-frame receipt. It must never be
+reported as opaque or empty. No current ordinary provider family is declared
+cutout. Unknown future types and incomplete or unclassified members remain
+pending. `chest`, `furnace`, `campfire`, `torch`, and `door` remain separate
+dynamic owners in this slice; moving a door frame alone requires explicit
+source membership proving independence from portal/leaf state.
+
+**Focused evidence before wider Main acceptance:** (1) enumerate the producer
+inventory and assert every listed static type has complete, revision-bound
+member identities, exact layer/material/mesh/resource digests and transformed
+bounds; (2) compare copied candidate members against the actual production
+visual subtree for each asset-backed and procedural recipe variant; missing
+resources, changed recipes, stale owners, unsupported options and unknown
+types stay pending; (3) prove complete/empty census, durable removal, revision
+invalidation and retry; (4) prove replacement keeps old visuals visible until
+the exact current native receipt is accepted, then retires only those migrated
+visuals while body collision/interaction/nav ownership remains live. Glass
+must be explicitly pending in this opaque slice. Run ordinary focused
+contracts and compile smoke; no broad Main test or stage exit is implied.
+
+**Next gate:** after this bounded slice, HEAD decides whether to admit an
+ordinary glass implementation that reuses the shared translucent POV/depth
+sorting and drawn-frame receipt contract. Only after provider coverage,
+dependencies and compile readiness pass may the ordinary Main replay, visual
+traversal and performance gates run. This implementation slice does not
+complete Stage 1, Stage 2, Stage 4, or the migration; overall progress remains
+**1/7 stage exits complete**.
