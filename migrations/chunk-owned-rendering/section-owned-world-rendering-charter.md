@@ -3113,14 +3113,20 @@ members, then waits for the section receipt before retiring the prior per-tree
 visual. A failed/incomplete seal is rejected; it cannot publish an empty root.
 The normal legacy publisher remains the fallback only for tasks admitted in
 legacy mode and for impostor recipes that are not yet enumerable as section
-values.
+values. Game commit `23f8db57` contains this producer change. Game commit
+`3b12e1f6` adds receipt- and live-owner-fenced retirement for supported ordinary
+generated block visuals; its scope keeps the StaticBody/collider/interaction
+authority active and preserves boundary-section ownership through replay.
 
 **Focused evidence:** `node tools/run-tree-publication-queue-contract.mjs`
 passed on Godot 4.6.1, but its runner is headless and section-owned mode was
 disabled for its tree publication assertions. It proves that legacy queue
 behavior still passes, not that the new direct-value branch ran. The focused
-ordinary structure retirement contract passed 18/18; it proves receipt-fenced
-visual retirement and boundary replay only at the provider-contract level.
+ordinary structure retirement contract
+`node tools/visible-world/run-ordinary-static-section-provider-contract.mjs
+--OutputDirectory artifacts/citadel-runtime-integration/ordinary-static-section-provider-retirement-20261004-r7`
+passed 18/18; it proves receipt-fenced visual retirement and boundary replay
+only at the provider-contract level.
 
 **Live gate:** `node tools/run-visible-world-fast-turn-sprint.mjs
 --skip-tutorial --timeout-seconds 240` did not reach gameplay readiness. Its
