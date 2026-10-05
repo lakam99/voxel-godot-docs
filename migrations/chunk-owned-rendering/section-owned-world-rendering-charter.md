@@ -4477,6 +4477,37 @@ and headed visual/traversal/performance checks remain open. Overall migration
 status remains 7 stages total: Stage 0 complete; Stages 1–5 partial; Stage 6
 not started.
 
+### HEAD checkpoint — coordinator and owner lifecycle gates (2026-10-05)
+
+Game evidence was gathered on `codex/chunk-owned-world-rendering-migration` at
+`6e911532`, with the existing migration worktree dirty. These are isolated
+contract results; neither changes the seven-stage exit count.
+
+**Stage 1 coordinator/native replay contract:**
+
+- Command: `node tools/visible-world/run-visible-section-demand-driver-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/visible-section-demand-driver-pov-reset-20261005-r4`
+- Report: `artifacts/citadel-runtime-integration/visible-section-demand-driver-pov-reset-20261005-r4/report.json`; 43/43 checks passed. The watchdog recorded functional and overall exit code 0, no timeout or forced cleanup, clean cleanup, and authoritative zero Job Object membership.
+- The translucent replay fixture now uses a native-supported `structural` render tier while retaining the translucent layer. Its positive fluid census fixture supplies exact current section revision evidence and requires complete source membership/revision. The World A→B POV-reset case, replay to a current native receipt, and fluid-bearing census case all pass.
+- This resolves the two r3 fixture failures; it does not resolve the all-domain production census, every producer's capture epochs, Voxel Tools remesh/retention, startup readiness, visual traversal, or performance. Stage 1 remains partial.
+
+**Stage 2 Main owner-demand lifecycle preparatory contract:**
+
+- The first launch reached Godot but failed script parsing on inferred local types before assertions. The owned watchdog recorded functional exit 1 and forced cleanup after a stop request; it also proved zero final Job Object members. No lifecycle assertion ran. Explicit local types repaired the parse errors without changing assertions.
+- Command after repair: `node tools/visible-world/run-static-section-owner-demand-lifecycle.mjs --OutputDirectory artifacts/citadel-runtime-integration/static-section-owner-demand-lifecycle-20261005-r2 --GodotExe C:\Users\arkam\Desktop\Godot_v4.6.1-stable_win64.exe\Godot_v4.6.1-stable_win64_console.exe --ProjectPath C:\Users\arkam\Documents\Codex\2026-06-18\goal-develop-a-3d-voxel-seed\outputs\voxel-biome-world-godot`
+- Report: `artifacts/citadel-runtime-integration/static-section-owner-demand-lifecycle-20261005-r2/report.json`; all six checks passed. The fixture follows Main's real owner-demand hooks and the native section install path: current install receipt; demand exit invalidates that receipt while retaining the immutable candidate; an ownerless `pending_owner` job is removed before a frame yield without losing the candidate; reentry installs the same generation/digest under fresh owner/backend identities; teardown frees the Main and owner nodes. Watchdog cleanup passed with functional/overall exit 0 and authoritative zero membership.
+- Scope is one synthetic provider and one section. It does not test a cancellation after an install session is staged, production provider parity, ordinary world streaming, live visual/gameplay behavior, Stage 1 completion, or full Stage 2 exit. Stage 2 remains partial.
+
+**Current formal status:** 1 of 7 stage exits complete (Stage 0). Stages 1–5
+remain partial and Stage 6 has not started. Stage 3 still needs a real
+fluid-bearing production section/native receipt and visual proof; the exact
+fluid predicate contract is not that proof. Stage 4 still needs both
+construction paths and lifecycle/visual acceptance. Stage 5 still needs
+complete recipe-fed section admission, gameplay/save/reload parity and live
+forest acceptance. Keep Stage 6 gated on Stages 1–5. The next proposed Stage 3
+gate is a real Main fluid sample routed through exact census/contribution,
+section assembly and native receipt while retaining the legacy fluid visual
+and Voxel Tools collision authorities for comparison.
+
 ### Next implementation charter — recipe-fed section tree compiler (2026-10-04)
 
 **Outcome:** move procedural tree visuals from per-tree scene construction to
