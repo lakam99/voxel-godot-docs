@@ -4969,15 +4969,25 @@ as metadata but do not currently produce section-local geometry or an explicit
 visible-readiness dependency from a support section to the center-owned slot.
 
 This is separate from the source-owner discovery radius: an owner chunk can be
-found while the candidate section still lacks the cross-boundary geometry. The
-section contract must choose and verify an explicit policy—section-local
-partitioning/clipping, or center ownership with a proven support-to-owner
-rendering/readiness dependency. Do not assume that support-key metadata alone
-loads the center slot or that duplicating full trees is correct. The focused
-falsifier must use actual compiled member AABBs and show a center-owned section
-outside the queried view whose tree support intersects it, then assert the
-chosen policy's installed visual/readiness behavior.
+found while the candidate section still lacks the cross-boundary geometry.
+**HEAD's selected policy is center ownership:** keep each transformed smooth
+tree mesh once in the section containing its actual compiled AABB center; do
+not clip or duplicate the whole tree mesh into neighboring sections. The
+section candidate must carry the exact mesh support sections, and visible-view
+demand must acquire a revision-bound lease on the center-owned section whenever
+any support intersects the required view. The center slot's current native
+receipt must satisfy that dependency; capture-time stream-chunk dependencies
+and support-key metadata alone are not installed-owner leases. Release the
+lease only after the support leaves all active required views and normal slot
+retirement succeeds.
 
-This source audit does not establish a live visual failure or pass Stage 1, 2,
-or 5. No production edit, compile, or Main launch was made; total progress
-remains **1/7 stage exits**.
+The focused falsifier must use actual compiled member AABBs and show a
+center-owned section outside the queried view whose tree support intersects it,
+then prove that the support request retains/loads that center slot and cannot
+be declared ready without its current receipt and visible output. Test stale
+source replacement and lease release after the old support demand is removed.
+
+This source audit and focused deterministic falsifier do not establish a live
+visual failure or pass Stage 1, 2, or 5. No production code edit, project
+compile-smoke run, or Main launch was made. Total progress remains
+**1/7 stage exits**.
