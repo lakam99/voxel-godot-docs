@@ -3223,6 +3223,45 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### HEAD planner checkpoint — current-source implementation review (2026-10-05)
+
+**Formal progress remains 1/7 stage exits:** Stage 0 is complete; Stages 1–5
+are partial; Stage 6 has not started. This checkpoint records reviewed working
+tree changes and static evidence only; no current-source Godot parser,
+candidate-install contract, headed playtest, or runtime profile has run for
+these edits.
+
+The work is organized by dependency, not by assigning every stage a separate
+parallel implementation. The ecology lane owns support-section membership and
+its contract; the coordinator lane owns exact terrain-lease release/replay;
+tree diagnostic freshness is a separate read-only reviewed change. Review
+found and the implementation corrected: census/contribution member-index
+parity for multi-member props; revision-bound removal proof when a live prop's
+support footprint changes; stale tree acknowledgements across producer
+generations; release-request cancellation after a stream load/unload race; and
+world reset while installed receipts still exist. Coordinator release retries
+now use one reusable queue slot per pending section and inspect at most 32 rows
+per scheduler advance. Reset guards preserve live receipt ownership.
+
+The synthetic support fixture covers one-owner/multi-section membership,
+non-overlap, two-member census/contribution digest parity, revision-bound
+footprint removal, stale-revision rejection, and the distinction between
+support-only and explicit-empty manifests. It does not prove a full production
+census through the coordinator, native receipt installation, legacy visual
+retirement, collision/interactions, save/reload, or unload/replay. The current
+tree fixture adds a stale acknowledgement-generation join case, but its exact
+diagnostic path still needs a current-source engine run. Static
+`git diff --check` and Node `--check` passed for the relevant changes; Godot
+warnings-as-errors parsing remains the next gate before any live run.
+
+**Next evidence sequence:** first run current-source parser and focused
+support/coordinator/tree contracts under owned Node runners; repair any parse or
+assertion failures; then prove the support candidate reaches the real native
+renderer with current receipts while the prior section remains visible. Only
+after that should a real Main forest prop/tree unload/replay or headed
+visual/traversal test run. A green synthetic contract alone does not complete
+Stage 1 or Stage 2.
+
 ### HEAD checkpoint — static prop support sections and terrain lease proof (2026-10-05)
 
 **Formal progress:** Stage 0 complete; overall remains **1/7 stage exits**.
