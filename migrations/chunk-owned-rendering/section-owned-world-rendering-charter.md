@@ -3103,6 +3103,36 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Section-relative translucent POV coordinator hook (2026-10-05)
+
+At game worktree baseline `9631df34046e09916adc68016453be1d78d06555`,
+the native install session already validated camera-sorted face groups against
+mesh centroids and rejected a POV revision mismatch, but the production
+coordinator advanced sessions without a current camera POV. The coordinator
+now exposes a world-camera snapshot and section-relative sort identity. The
+identity is derived from the camera's section offset clamped per axis to
+`{-1,0,1}`; it remains stable for movement within the same POV class, preventing
+camera jitter from repeatedly cancelling staged work. A POV-stale session is
+discarded and requeued for reassembly so the previous installed slot remains
+visible.
+
+**Evidence:**
+`node tools/visible-world/run-visible-section-demand-driver-contract.mjs --outputdirectory artifacts/citadel-runtime-integration/visible-section-demand-driver-pov-head-review-20261005`
+passed 33/33 contract checks. The new check proves the coordinator reports
+pending until a camera snapshot exists, returns the current world camera, keeps
+the same POV revision within one class, and changes revision at a section
+boundary. The runner labels its scope synthetic; it does not prove POV-sorted
+fluid production geometry, native fluid installation, live gameplay, or
+performance. Fluid capture remains fail-closed. The production source plan is
+`fluid-section-rendering-plan-2026-10-05.md`.
+
+**Stage decision:** no stage exit advances from this contract. The migration
+remains **1/7 stages complete**: Stage 0 complete; Stages 1–5 partial; Stage 6
+not started. The next fluid proof must carry section-local face groups through
+the shared assembler and actual native receipt, re-sort from canonical groups
+when the section POV class changes, and preserve the prior visible slot until
+replacement is accepted.
+
 ### Terrain provider registration timing correction — 2026-10-05
 
 A source audit initially mistook the `MainCore.gd` static-provider registration
