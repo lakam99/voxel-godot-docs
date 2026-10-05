@@ -3223,6 +3223,100 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### HEAD checkpoint — tree progress and section receipt evidence (2026-10-05)
+
+The seven-stage status remains **1/7 exits complete** (Stage 0). These results
+advance focused subgates only.
+
+**Stage 3 real-Main fluid receipt diagnostic:**
+
+- Command: `node tools/visible-world/run-terrain-fluid-section-native-receipt-playtest.mjs --OutputDirectory artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261005-r3 --Seed atlas-71906947`.
+- Report: `artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261005-r3/report.json`. Real Main with `-SkipTutorial` failed startup readiness before the fluid sample. Seven `trees_foliage` candidates remained pending. The active compiler matched one candidate: `atlas-71906947:tree:atlas-71906947:6,-11:17`, role `branches`, instance `183/362`, 560 work units and 44,692 usec since advance began. The queue reported 8 started, 7 completed, and 0 stale jobs.
+- The broad queue scan was capped at 512 records and cannot join the seven exact candidates to compiled/prepared/admitted/native-receipt states. This is not evidence of deadlock or native receipt rejection. Watchdog functional exit was 1 for the intentional readiness failure; cleanup passed, with no timeout or forced cleanup and authoritative zero Job Object membership. No fluid sample, screenshot, or Stage 3 exit was obtained.
+- Before another Main run, add a bounded exact-candidate-ID view across recipe input, compiler completion, prepared artifact, coordinator admission, and native install acknowledgement. Do not repeat this gate until it can discriminate where the candidates stop.
+
+**Stage 5 tree compiler progress contract:**
+
+- Command: `node tools/visible-world/run-tree-recipe-section-compiler-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/tree-recipe-section-compiler-progress-20261005-r1 --GodotExe C:\Users\arkam\Desktop\Godot_v4.6.1-stable_win64.exe\Godot_v4.6.1-stable_win64_console.exe --ProjectPath C:\Users\arkam\Documents\Codex\2026-06-18\goal-develop-a-3d-voxel-seed\outputs\voxel-biome-world-godot`.
+- The focused contract passed 14/14 checks, generated 17 batches over 9 sections and 1,804 work units, and exercised 76 queue advances. Watchdog functional/overall exit was 0, cleanup passed, with no timeout or forced cleanup and authoritative zero membership. This verifies compiler progress telemetry against its focused queue contract; it does not execute Main's startup projection, prove a complete production ecology census, or establish live forest acceptance. Stage 5 remains partial.
+
+**Stage 4 Citadel native retirement fixture:**
+
+- Command: `node tools/visible-world/run-citadel-section-receipt-retirement.mjs --OutputDirectory artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r10`.
+- Report: `artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r10/report.json`; 26/26 checks passed at game HEAD `6e911532`. It covers fixture admission and plan inputs through the live Citadel service, roster/assembler, native receipts, and multi-section visual retirement. It does not prove normal generated Citadel capture, gameplay collision/doors/navigation, save/reload, startup, or performance. Stage 4 remains partial.
+
+**Voxel Tools per-block render-lease patch:**
+
+The pinned addon patch and lock-file digest are the only tracked files in this lane. The patch adds owner-tokened visual coverage leases, enforcing the 16³ block-size invariant and binding claims to a block generation and compare-and-swap revision; it changes visual visibility only, leaving collision and mesh preparation independent. The ignored source checkout exactly matches the patch; reverse-apply and diff checks pass, and the static source contract passed 8/8. An independent review found the boundary sound but noted that the API trusts caller claim fields, so the production bridge must verify each receipt is current and installed before submitting it.
+
+SCons reported successful editor compile/link (`scons: done building targets`; staged editor DLL 7,611,904 bytes), but the owned build runner returned 125 after its two-second cleanup grace expired with two Job Object members. Job termination later proved authoritative zero membership; no processes remain. This is compile/link success with a failed runner cleanup gate, not an accepted build. The release target was not built, the DLL was not installed, and no Godot runtime test used the patch. Do not weaken the runner gate or claim renderer cutover.
+
+The production source worktree remains dirty on `codex/chunk-owned-world-rendering-migration` at `6e911532`; no game changes were committed for this checkpoint. Godot import churn and unrelated existing edits remain untouched.
+
+### HEAD checkpoint — startup tree blocker and current Citadel receipt evidence (2026-10-05)
+
+The migration remains **1/7 stage exits complete**: Stage 0 is complete;
+Stages 1–5 remain partial; Stage 6 has not started. Parallel work is split by
+non-overlapping owner lanes, while Godot runs remain serialized.
+
+The first headed Stage 3 fluid-to-native receipt run, r1, failed at fixture
+script load because several Variant-returning APIs lacked explicit GDScript
+types. Its owned watchdog stopped the group and proved zero Job Object members;
+the fixture never loaded Main. The corrected r2 fixture parsed and started real
+Main with tutorial skipped, but startup failed before reaching the selected
+fluid sample: `initial_region_readiness_timeout` reported seven pending
+`trees_foliage` visuals from
+`chunk-props:atlas-71906947:0,-1:trees_foliage`. All bodies and the chunk owner
+were live/current, candidate failures and section-value failure reasons were
+blank, six inputs remained in `section_recipe_input`, and one was also the
+active `section_compile` job. No fluid candidate or native fluid receipt was
+tested. The signal callback type mismatch made the watchdog exit 126 with
+forced cleanup; authoritative zero membership was still proven. Preserve both
+reports under
+`artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261005-r1/`
+and
+`artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261005-r2/`;
+do not rerun an equivalent startup while the tree compile progress is
+unobservable.
+
+The Stage 5 queue audit confirms inputs are intentionally retained while
+compilation and install acknowledgement proceed. The compiler's `advance()`
+already returns cumulative work units, record and role indices, status, and
+reason, but the queue discarded that result. A bounded read-only snapshot now
+exposes the active source/revision, work and role/instance indices, elapsed
+time, last advance result, and existing started/completed/stale counts; Main
+labels whether the active candidate matches the exact bounded pending-tree
+rows. The focused compiler/queue contract passed 14/14, producing 17 batches
+across 9 sections in 1,804 work units and 76 queue advances. This proves the
+progress values match the real compiler state; it does not exercise Main's
+projection or prove live startup. A source-hashed Main diagnostic was then run
+as r3: one active tree compiler was advancing, but a 512-record broad scan could
+not join the seven pending IDs to their later stages. Startup therefore remains
+unresolved, and the next Main run is gated on an exact-ID cross-stage diagnostic
+rather than another undifferentiated readiness attempt.
+
+The independent current-source headed Citadel receipt/retirement fixture passed
+26/26 checks at `6e911532` in
+`artifacts/citadel-runtime-integration/citadel-section-receipt-retirement-20261005-r10/`.
+The watchdog exited 0, needed no forced cleanup, and proved authoritative zero
+membership. This proves the fixture-supplied admission/plan path through the
+real Citadel publication service, section assembler/native receipts, and
+multi-section visual retirement. It does not prove normal generated Citadel
+capture, gameplay collision/doors/navigation, saves, Main startup, or
+performance, so Stage 4 remains partial.
+
+The Voxel Tools source path is pinned and reproducible, but the installed addon
+is opaque. The current game and addon both use 16-cell terrain block/section
+interiors; the 19-cell capture is only a meshing halo, and produced mesh bounds
+are validated inside the 16-cell interior. A terrain visual lease must still
+prove exact full-block coverage and bind all covering accepted section receipts
+to the current Voxel Tools block generation. It must preserve the old visual
+until coverage is complete, fail closed on a changed block size, and leave
+collision and preparation references independent. No patched DLL is currently
+verified or installed. Minecraft 26.2 `SectionRenderDispatcher` remains the
+reference for cancellation, accepted replacement, empty-slot replacement,
+retention, and unload/replay boundaries—not for the smooth SDF mesher.
+
 ### 2026-10-05 Stage 4 ordinary-section receipt evidence
 
 At game HEAD `6e911532222acc5a175dba10a258d3f5d476b475` on
