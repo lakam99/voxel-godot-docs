@@ -3117,6 +3117,7 @@ rechecks generation/owner/transform before evicting an earlier artifact.
 Preparation and failure states preserve the accepted per-tree/section visual,
 and the adapter permits a current prepared replacement to be captured while
 that accepted representation remains the installed source.
+Game commit `686adb22` contains this currentness fix.
 
 This boundary follows Minecraft 26.2's dispatcher pattern: supersede/cancel
 outdated compile work and keep the old section mesh until replacement upload
