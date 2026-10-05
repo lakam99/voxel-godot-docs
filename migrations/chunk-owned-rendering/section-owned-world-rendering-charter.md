@@ -3125,6 +3125,21 @@ cutover installs nor that ordinary census reuse alone is the only blocker.
 Preserve this report as the baseline and do not repeat the same long run before
 there is evidence the capture queue can drain.
 
+The follow-up instrumented replay
+`artifacts/visible-world/fast-turn-sprint/progress.txt` was bounded at 150 s
+and therefore is diagnostic-only (the owned watchdog reached its deadline,
+then proved the Job Object empty; it did not produce an acceptance report).
+At the final checkpoint the ordinary provider had built 25 census windows,
+122 census-cache reuses, seven active captures, 3,202 membership rows, zero
+currentness invalidations, and 413 capture advances using 184,172 μs total
+(about 446 μs per advance). Each advance is capped at 128 atoms despite a
+3,000 μs slice budget. The geometry cache had 45 entries and recorded only 2
+hits versus 73 misses at that checkpoint. This makes atom-budget underfill and
+active-window capacity the next measurable queue questions; geometry reuse is
+working but has not yet shown enough hits to explain the stall. The same
+checkpoint reached ordinary membership census and geometry jobs, while the
+earlier 60 s checkpoint was still pending on ecology snapshot admission.
+
 **Minecraft 26.2 comparison:** `RenderRegionCache` owns a short-lived map of
 `SectionCopy` values reused while adjacent target regions are extracted;
 `SectionCompiler` still compiles one target section and its render layers at a
