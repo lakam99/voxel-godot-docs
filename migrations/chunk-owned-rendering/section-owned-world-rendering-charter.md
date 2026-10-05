@@ -3252,6 +3252,23 @@ the complete replacement becomes visible, retaining the previous section
 until then. A resort contract alone is not Stage 3 evidence if initial install
 is unsorted or the camera token never enters the actual renderer.
 
+**Renderer API review (2026-10-04):** the repository's pinned Godot 4.6
+`godot-cpp` extension API exposes
+`RenderingServer.mesh_surface_update_index_region(mesh RID, surface, offset,
+PackedByteArray)`. The proposed first implementation is a baked, section-local
+translucent mesh per compatible material batch, with camera-sorted primitive
+indices and one identity instance in the normal packet ABI. Its immutable
+candidate descriptor must bind sortable groups to the mesh digest. The native
+backend must validate group coverage, primitive boundaries, index ranges and
+recomputed vertex centroids before upload; it must retain the admitted
+centroid/group data for resort. A camera-POV update will be prepared off the
+visible mesh, then applied only if both section generation and POV token remain
+current. The previous valid index order/section remains visible until that
+replacement is accepted. `mesh_surface_update_index_region` establishes API
+availability only: engine call behavior, renderer acceptance, replacement
+atomicity, resource lifetime and cost still need a focused native integration
+probe before this choice is implementation-proven.
+
 **Current proof:** `node tools/run-exact-fluid-payload-contract.mjs` passed
 15/15 checks for exact numeric fluid payload membership, halos, immutable
 revisioned edits, stale-snapshot rejection and incremental work. This is an
