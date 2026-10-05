@@ -3203,6 +3203,70 @@ until its named exits pass; the full migration still requires its tree, ecology,
 terrain/fluid, lifecycle, live readiness, performance and legacy-retirement
 gates.
 
+**Follow-up budget comparison:** with `DISCOVERY_ATOMS_PER_TURN` raised from
+128 to 512 and the 3,000 μs slice budget unchanged, the same 150 s seeded
+diagnostic ended with 12 census builds, 477 cache reuses, 6 retained census
+entries, 2 active captures, 68 census advances using 107,266 μs total (about
+1,577 μs per advance), zero currentness invalidations, and 2,015 membership
+rows. At the matching 150 s checkpoint before the change it had 25 builds,
+122 reuses, one retained entry, 7 active captures, 413 advances using 184,172
+μs total (about 446 μs each), and 3,202 rows. These are diagnostic snapshots,
+not a completed startup gate; both watchdog-bounded runs ended with zero owned
+process members. The change better fills each slice and lowers active-window
+pressure, but geometry/member capture still had 65 jobs at the final checkpoint
+and no candidate installation receipt.
+
+The same replay now reaches unsupported ordinary generated content: door
+leaves (`blockType=door`, with `accentRole=doorFrame`) and wood/stone accents
+such as generated window frames, corner timbers and fence details. The current
+ordinary recipe adapter remains an opaque-only partial allowlist, so these are
+real admission blockers and cannot be converted to empty membership. Minecraft
+26.2 `SectionCompiler` compiles ordinary block-state models and fluids into
+per-section render layers and separately records block entities. For this
+game, closed/open door pose and the existing portal/collision/interactions stay
+owned by the live door authority; while a leaf is moving it remains a dynamic
+visual, and a stable pose may enter the section candidate only with its exact
+state revision and a receipt-gated replacement. Glass/translucent window
+content must use a correct declared render layer and sorting policy before
+moving into section batches. Do not fake these layers with opaque materials.
+
+### Next implementation charter — ordinary structure recipe closure
+
+**Outcome:** close the supported ordinary structure recipes without changing
+world generation or gameplay authority. Implement complete multi-member
+recipes for opaque static accents (roof, corner timber, fence post/rails,
+doorframe trim/sign where the source is stable); preserve source member order,
+mesh/material identity, local transform, bounds, shadows and exact section
+partition. Resolve generated door leaves under a separate stateful capture
+contract that binds portal ID, leaf ID, pose/state revision, owner/transform
+and moving-animation state. Keep leaves dynamic during animation and admit a
+stable closed/open pose only if `StructureSystem`/door authority confirms it.
+Keep collision, portal registration, open/close, NPC traversal, durable source
+membership and save state authoritative in their current systems.
+
+**Layer rule:** support only layers the native section installer can represent
+faithfully. Opaque roof/corner/fence trim can join its opaque batch. Glass and
+any nonopaque door/window materials remain pending until candidate manifests,
+native upload, transparency sorting and stale-work checks carry their actual
+layer semantics. Never report full ordinary coverage while an intersecting
+generated source is unsupported. Keep the previous visible source until every
+affected section has a current install receipt.
+
+**Stages:**
+
+1. Recipe parity contract for each accepted opaque option combination,
+   including transforms/bounds and segment IDs compared with
+   `MainChunkTerrain.gd`; preserve unsupported layers as explicit pending.
+2. Door state contract proving closed/open state revisions, live interaction
+   and collision remain authoritative, animation is never frozen into a stale
+   section, and receipt swaps retain the previous valid view.
+3. Real Main native installation for generated house roofs, corner/fence
+   accents and closed/open doors, followed by headed building/door visual and
+   traversal checks. Record screenshot/trace and receipt IDs.
+4. Re-run seeded startup and ordinary gameplay performance after all recipes
+   needed by its visible view have real receipts. Only then advance to wider
+   ecology/tree/layer lifecycle and legacy renderer retirement gates.
+
 ### Next bounded production charter — complete ordinary roof visual members (2026-10-05)
 
 **Observed blocker:** headed fast-turn sprint with `--skip-tutorial --diagnostic-replay-seed atlas-54374373 --timeout-seconds 360` ended at `initial_region_readiness_timeout` after 217.998s. Watchdog cleanup passed (`rootExited:true`, no remaining job members), but startup did not. The current candidate had 2,720 pending demands; its final ordinary admission was `ordinary_block_visual_option_not_supported` for generated `woodBlock` source `town:0,0`, cell `(2, 15, -25)`, section `(0, 0, -2)`. One tree also lacked a native receipt. Preserve this as a failed headed startup gate, not gameplay/traversal evidence. The complete report and watchdog are `artifacts/visible-world/fast-turn-sprint/report.json` and `artifacts/node-tools/process-runs/godot-P0zDic/watchdog.json` in the game worktree.
