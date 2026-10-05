@@ -3103,6 +3103,26 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Terrain provider registration timing correction — 2026-10-05
+
+A source audit initially mistook the `MainCore.gd` static-provider registration
+block for the complete runtime provider set. Terrain registration is separate
+and does exist: `bootstrap_initial_chunks_staged()` awaits
+`reinitialize_voxel_terrain_authority_staged()` before it creates visible
+streaming demand; `ensure_voxel_terrain_authority()` creates and sets up
+`VoxelTerrainRuntime`, then calls
+`register_voxel_terrain_section_source_provider()` to register its
+`capture_static_section_sources` method with the world coordinator. The terrain
+provider therefore registers before initial visible-section candidates are
+requested.
+
+This corrects the earlier audit conclusion that the complete roster was
+permanently blocked by a missing terrain provider. The real conditional blocker
+is provider readiness: terrain census can remain pending until its exact fluid
+proof is current, and currently fails closed for fluid-bearing sections whose
+translucent layer is not supported. The fluid sorting stage addresses that
+boundary. No stage gate is advanced by this source-order audit.
+
 ### Parallel implementation checkpoint — 2026-10-05
 
 The migration is still **1/7 stages complete**: Stage 0 is complete, Stages
