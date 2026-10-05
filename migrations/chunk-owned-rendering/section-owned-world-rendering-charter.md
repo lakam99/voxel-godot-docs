@@ -3154,7 +3154,8 @@ remove the fail-closed unsupported-layer check before Stage 3 passes.
 **Diagnostic evidence (2026-10-05):** `node
 tools/visible-world/run-ordinary-static-section-provider-contract.mjs
 --outputdirectory artifacts/citadel-runtime-integration/ordinary-static-section-provider-minecraft-accents-20261005-r2`
-passed 28 synthetic provider checks; the geometry adapter runner passed 16.
+passed 28 synthetic provider checks; the geometry adapter runner passed 16,
+and the ordinary visual source contract passed 17.
 These include recipe capture of opaque corner timber and fence members, but
 prove no fluid behavior. A 90-second seeded, tutorial-free diagnostic after
 those changes ended at frame 1440 with no candidate jobs installed; demand
