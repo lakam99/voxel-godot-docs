@@ -3103,6 +3103,91 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Next implementation charter — bounded ordinary-source capture reuse (2026-10-05)
+
+**Outcome:** reduce repeated ordinary-structure visual capture for adjacent
+target-section demands without increasing synchronous frame budgets or
+weakening source completeness. Reuse completed source values within a bounded
+render-region work window, then continue compiling each target section as its
+own complete candidate. Keep StructureSystem authoritative for generated
+membership, source revisions, collision, interactions, edits, removals and
+saves. Keep terrain generation/meshing and tree/NPC simulation independent.
+
+**Current evidence:** commit `9754d8d0` already shares ordinary membership
+census windows across section demands. The seeded Main gate at
+`artifacts/citadel-runtime-integration/ordinary-roof-native-receipt-seeded-20261005-final/report.json`
+still ended `initial_region_readiness_timeout` after 222.2 s. It had 2,720
+pending section demands, zero pending candidate jobs, zero install advances,
+and ordinary admissions still pending on `ordinary_visual_capture_budget`;
+the reported census cursor was in the thousands. The gate did not reach
+candidate assembly or the native receipt, so it proves neither that the roof
+cutover installs nor that ordinary census reuse alone is the only blocker.
+Preserve this report as the baseline and do not repeat the same long run before
+there is evidence the capture queue can drain.
+
+**Minecraft 26.2 comparison:** `RenderRegionCache` owns a short-lived map of
+`SectionCopy` values reused while adjacent target regions are extracted;
+`SectionCompiler` still compiles one target section and its render layers at a
+time. `SectionTaskDynamicQueue` schedules nearest eligible work and limits
+recompiles behind initial compilation. Apply that bounded batch/capture split:
+share validated contributor inputs across nearby section jobs, retain a full
+per-section manifest and independent install receipt, and prioritize first
+visible sections. Do not make an unbounded global cache or translate this into
+block meshing for our smooth terrain.
+
+**Shared candidate content and cache key:** a cached ordinary source record
+must contain every recipe member for one authoritative block: stable source
+and part IDs; cell/block type; authority source revision and recipe digest;
+body owner instance and exact transform; member segment IDs; mesh/material
+resource identities and content fingerprints; member transforms and bounds;
+batch compatibility, render layer and shadow policy; deterministic content
+digest and compiler schema. Cache identity also includes world ID and
+generation. All nested value arrays/dictionaries are sealed before sharing.
+Partition these complete captured members against each target section's
+actual transformed bounds; a neighboring section may reuse capture but cannot
+omit a member from its own manifest. A missing capture is pending, never an
+empty result.
+
+**Currentness, bounds and replacement:** validate authority revision,
+membership token/tombstone, body weak owner and instance, block cell/type,
+recipe digest, live transforms/member nodes, resource identity/fingerprint,
+compiler schema and affected-section ownership before cache reuse and again
+before installation acknowledgement. A changed owner or source invalidates
+the cached record and retries capture. Keep cache bytes, entry count and
+lifetimes bounded to the active neighborhood; eviction only causes recapture
+and never drops retryable demand. Keep the previous installed section visible
+until the replacement has uploaded, passed its complete manifest/currentness
+checks and returned its normal native receipt. Collision and interactions
+remain with StructureSystem throughout.
+
+**Ordered stages and exits:**
+
+1. **Cache contract:** test exact cache identity/reuse and rejection after
+   movement, replacement body, authority/recipe change, resource change,
+   tombstone, compiler schema change and eviction. Prove fully sealed member
+   lists and identical multi-section partition/content manifests to uncached
+   capture. Include multi-member roof, chimney and cross-section support.
+2. **Queue throughput:** measure admissions, unique source captures, cache
+   hits/misses/evictions, cursor progress and usec by capture stage for a
+   representative initial view. Prove each retryable continuation advances
+   fairly and no work is lost under capacity pressure.
+3. **Real native installation:** in the real Main renderer, capture ordinary
+   generated roof geometry, compile complete section candidates, upload and
+   receive receipts for all sections touched by the roof. Show old visuals
+   remain until each owning replacement receipt; synthetic contracts do not
+   pass this stage.
+4. **Visual/traversal/performance:** run a headed generated-roof/building
+   visual and traversal check plus a representative performance observation.
+   Report screenshot/trace, queue metrics, worst frame and exact command.
+
+**Stop rule:** if census progress improves but candidate assembly/native
+installation remains pending, inspect the next concrete dependency and revise
+the plan before another broad sprint. Do not increase admission attempts per
+frame without measuring the resulting main-thread cost. Keep this stage partial
+until its named exits pass; the full migration still requires its tree, ecology,
+terrain/fluid, lifecycle, live readiness, performance and legacy-retirement
+gates.
+
 ### Next bounded production charter — complete ordinary roof visual members (2026-10-05)
 
 **Observed blocker:** headed fast-turn sprint with `--skip-tutorial --diagnostic-replay-seed atlas-54374373 --timeout-seconds 360` ended at `initial_region_readiness_timeout` after 217.998s. Watchdog cleanup passed (`rootExited:true`, no remaining job members), but startup did not. The current candidate had 2,720 pending demands; its final ordinary admission was `ordinary_block_visual_option_not_supported` for generated `woodBlock` source `town:0,0`, cell `(2, 15, -25)`, section `(0, 0, -2)`. One tree also lacked a native receipt. Preserve this as a failed headed startup gate, not gameplay/traversal evidence. The complete report and watchdog are `artifacts/visible-world/fast-turn-sprint/report.json` and `artifacts/node-tools/process-runs/godot-P0zDic/watchdog.json` in the game worktree.
