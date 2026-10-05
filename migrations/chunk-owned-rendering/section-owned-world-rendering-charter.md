@@ -3221,6 +3221,31 @@ coverage, edits/replay, full roster co-coverage, clean runner shutdown and live
 visual/traversal/performance checks remain open. Overall migration remains
 **1/7 stage exits complete**; Stage 4 and the full migration remain partial.
 
+### 2026-10-05 Stage 4 ordinary native receipt rerun — r6
+
+After r5 exposed fixture shutdown mutating the immutable provider census with
+`Dictionary.clear()`, the fixture teardown now drops those retained snapshots
+by replacing its local dictionary/array references. The headed command
+`node tools/visible-world/run-ordinary-structure-native-section-receipt.mjs
+--outputdirectory artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-20261005-r6`
+passed 10/10 checks. The exact discoverable member
+`ordinary:town:4,4:cell:4,0,4` appears in the production provider census and
+candidate receipt; the native section slot acknowledged it, the prior visual
+remained visible until the receipt was current, then the three recipe segments
+were retired while the same `StaticBody3D` and enabled collider remained.
+Teardown released the installed packet and reported zero installed/staged
+packets and retiring roots, with the fixture world freed. The owned-process
+watchdog exited normally (`functionalExitCode=0`, `cleanupPassed=true`,
+authoritative zero, no remaining members, no forced cleanup); `stderr.log` is
+empty. Report and watchdog are under the command's r6 output directory.
+
+This is a headed, isolated, one-cell ordinary-structure proof with only the
+ordinary provider in its roster. It does not prove full-world co-coverage,
+generated-town parity, player interaction, save/reload, tombstone replay,
+chunk unload/replay, normal startup, traversal or performance. It is one
+ordinary-source receipt subgate only; Stage 4 remains partial and the overall
+migration remains 1/7 stage exits.
+
 ### 2026-10-05 Stage 5 evidence note — static source audit only
 
 The production tree path currently begins with deterministic Main chunk prop
