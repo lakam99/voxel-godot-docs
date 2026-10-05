@@ -5118,3 +5118,30 @@ string conversion; the runner stopped the engine and proved zero owned
 processes, but recorded cleanup as failed because it forced the stop. Preserve
 that run as a failure baseline and repair/classify the assembler error before
 using the Ecology contract for stage evidence.
+
+### 2026-10-05 HEAD implementation checkpoint — first two bounded fixes
+
+The reviewed tree compiler operand-order fix is applied in the shared game
+worktree. Ecology updated its tree contract to derive the owner section from
+`world_mesh_bounds.get_center()` (test SHA-256
+`11513F21937C9907BFD55B7A5F1BB58AFA765664C2F1C02E863931F916349866`; runner
+SHA-256 `8C22D801F390BF20A45356BD5FBF0DCDE6BD7F179E23BA76159837C929A3DEC0`).
+The tree lead has the stable fixture and will run the focused contract followed
+by compile smoke. The green result is still pending; exact-query behavior and
+the support-lease lifecycle remain open.
+
+The assembler's integer-to-string runtime error has been repaired narrowly by
+using `str(sourceInstance)` in the support-range identity. Its synthetic shared
+candidate contract passed 8/8 with exit 0, watchdog cleanup passed, and
+authoritative zero was proven in
+`artifacts/citadel-runtime-integration/whole-section-candidate-assembler-contract-20261005T-head-strfix-r1/`.
+
+Ecology design12 subsequently reached its real census/contribution assertions
+without the assembler exception and passed all but one check. The remaining
+red is `census_rejects_candidate_digest_corruption_before_membership`; the
+fixture looks for `providerDetails` nested below `details`, while the current
+roster flattens `providerDetails` at the census top level. The report is
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-20261005T-design12/`;
+cleanup passed and the watchdog proved authoritative zero. Correct the fixture
+path and rerun before accepting the Ecology contract. These changes are
+sub-gates only; formal progress remains **1/7 stage exits complete**.
