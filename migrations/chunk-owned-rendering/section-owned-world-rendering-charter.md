@@ -3166,6 +3166,67 @@ visuals. First define precise authoritative membership invalidation and prove
 adjacent sections share census work while concurrent source changes reject or
 retry it; only then run another expensive headed startup.
 
+### Next implementation charter — shared ordinary-source census window
+
+**Outcome:** adjacent ordinary-structure section jobs reuse one sealed,
+revision-bound producer-membership capture instead of each repeating overlapping
+town/standalone discovery and cell enumeration. Section-local geometry still
+filters that capture through the canonical ordinary visual recipe path, and
+the existing whole-section coordinator remains the sole install/receipt owner.
+This reduces redundant discovery while keeping each exact section's contributor
+manifest complete and current; it does not authorize retiring per-cell visuals.
+
+**Authority and immutable boundary:** `StructureSystem.ordinary_visual_sources`
+is the producer authority for accepted source ID, source revision, expected
+cell/type membership, recipe input/digest, failed/omitted output and completion.
+`removed_generated_structure_blocks` is the durable tombstone authority.
+Capture one bounded world/region window from these values and the deterministic
+town/standalone region membership needed to discover its source IDs. Seal only
+value data in the reusable census: world/seed and producer epochs, exact window,
+sorted source/cell identities, source/cell/recipe revisions, and explicit
+complete/empty/pending/failed evidence. The shared cache must not retain Nodes,
+WeakRefs, RIDs, Callables, meshes or materials. Each section derives its own
+exact intersecting member set from the shared values and captures compatible
+geometry resources through the canonical recipe. Validate the current body,
+visual owner, source revision and recipe again before accepting the section
+contribution and again at receipt/retirement; a missing owner remains pending,
+not empty.
+
+**Freshness and retirement:** key a reusable census by world identity, seed,
+regional generation/revision, ordinary visual revision, exact region window,
+and only the authoritative town/standalone membership epochs that affect that
+window. First prove the narrow token covers source completion, expected-cell
+changes, recipe changes, source removals/tombstones, town-cache admission and
+standalone eligibility; retain or add a dependency only when evidence shows it
+affects ordinary membership. In-flight jobs whose token changes are cancelled
+or discarded and retried from a current snapshot. Bound cache entries and bytes
+by explicit policy; eviction may not discard retained demand. Old section and
+legacy visuals remain installed until the current complete candidate is
+accepted through the existing native receipt path.
+
+**Stages and exit evidence:** (1) add an adversarial census contract for
+overlapping/negative-coordinate windows, deterministic order, explicit empty,
+missing or unaccepted sources, durable removals, changed source/recipe/town
+membership epochs, cache eviction and replaced live owners; assert shared
+entries are read-only values with no scene/resource handles; (2) route two or
+more adjacent production section captures through one shared census job and
+prove source/cell enumeration occurs once while exact per-section manifests,
+revisions and recipe inputs match independent authoritative captures; (3)
+prove concurrent producer revision/tombstone/owner changes reject stale cached
+work and leave each demand retryable; (4) compare bounded discovery atoms,
+capture restarts and per-section service cadence against the existing report;
+only if this removes repeated work, run one new headed tutorial-free startup to
+test real queue progress. This slice does not establish complete generated
+building membership, native visual parity, source retirement, terrain fluid or
+gameplay acceptance.
+
+**Minecraft 26.2 check:** `RenderRegionCache.createRegion` reuses `SectionCopy`
+values for neighboring target sections within one extraction batch, then
+`SectionCompiler` compiles per-section layer output. This validates sharing
+immutable neighborhood values with section-local compilation. Its fixed block
+section and cube mesher are not applicable; we preserve our smooth terrain
+mesher and deterministic structure recipe authorities.
+
 ### Tree producer generation and replacement currentness (2026-10-04)
 
 The review of game commit `23f8db57` found that prepared tree artifacts were
