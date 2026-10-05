@@ -4932,3 +4932,28 @@ remaining Stage 4 risk is contributor coverage and lifecycle parity:
 
 This source audit makes no Stage 4 exit claim. The migration remains
 **1/7 exits complete**; Stage 4 and overall acceptance remain partial.
+
+### 2026-10-05 HEAD checkpoint — Stage 3 fixture dependency audit
+
+The prepared terrain-fluid lifecycle fixture is downstream of the complete
+four-provider section candidate: terrain, ordinary structures, blueprint
+buildings, and ecology/static props. An ecology source-closure gap therefore
+blocks candidate assembly before the terrain receipt assertion can run. A
+project compile smoke alone is not sufficient launch authorization.
+
+The next Stage 3 sequence is: (1) prove complete ecology owner closure,
+including cross-section tree support from actual compiled recipe mesh bounds
+or an equally complete revisioned source roster; (2) close the nonempty
+underground-prop and full surface-detail contribution contract cases; (3) pass
+the project compile smoke; then (4) run the prepared fluid lifecycle fixture.
+The fixture exercises the real `TerrainVolumeService` edit, exact-fluid proof,
+revision-checked terrain shadow contribution, shared candidate, and native
+section receipt. It can establish stale staged-session cancellation, retention
+of the old native/Voxel Tools owner, restoration without a durable cell delta,
+and acceptance of a newer current receipt. It does not establish native abort
+acknowledgement, general traversal, visual/collision parity, save/reload,
+unload/replay, or performance; even a pass is only a Stage 3 lifecycle
+subgate.
+
+No Main launch or production edit was made for this audit. Stage 3 remains
+partial and overall progress remains **1/7 stage exits**.
