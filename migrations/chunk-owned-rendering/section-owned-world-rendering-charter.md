@@ -3304,6 +3304,50 @@ generated-rock geometry inputs (game:
 `scripts/world/EcologySourceValueLedger.gd:115-138`). No stage advances from
 this note, and the overall migration remains at 1/7.
 
+### 2026-10-05 Stage 5 headed ordering diagnostic — setup and readiness failures
+
+The first corrected-ordering launch used
+`node tools/visible-world/run-ecology-main-tree-receipt.mjs -OutputDirectory
+artifacts/citadel-runtime-integration/ecology-main-tree-section-receipt-20261005-ordering-r1`
+with seed `ecology-main-retirement-stage5` and `-SkipTutorial`. It stopped at
+script load because `same_body` and `old_visual_live` had uninferred GDScript
+types; no report or progress file was produced. The fixture now declares the
+derived booleans explicitly. Static checks and an owned Godot
+`--check-only --script res://scripts/testing/world/EcologyMainTreeSectionReceiptPlaytest.gd`
+passed with exit 0, empty stderr and authoritative zero process members. This
+was a fixture/setup failure, not a renderer result.
+
+The one corrected headed attempt, r2 at the same seed, failed before tree
+receipt ordering. Main ended initial-region startup with
+`initial_region_readiness_timeout` and pending reason
+`visual_representation_pending`. The final view had 6 of 44 tree/foliage
+visuals pending (queue depth 39); 29 of 36 resident chunk snapshots were ready
+and 7 were missing. Discovery saw 48 publication records, 13 compiled queue
+records and three multi-section tree candidates, but selected zero live
+compiled candidates. Rejection counts were 127 `no_current_publication_for_prop`,
+45 `publication_not_compiled`, and 3 missing legacy visual/enabled trunk
+collider. No receipt-ordering or collider-retention assertion ran and no
+screenshots were produced. Full report, progress and watchdog are under
+`artifacts/citadel-runtime-integration/ecology-main-tree-section-receipt-20261005-ordering-r2/`.
+
+The runner used its fixed 900-second owned watchdog but terminated early, with
+no timeout: functional engine exit code was `3221225477` (Windows access
+violation); watchdog forced cleanup and marked `cleanupPassed=false`, while
+authoritative zero-member proof succeeded. The runner also rejected the
+watchdog result because the run-local stop produced `overallExitCode=126`.
+Treat r2 as a Main startup/readiness failure followed by an engine crash, not as
+a receipt-ordering failure or successful cleanup. Do not repeat it unchanged.
+The next diagnostic must first identify why those six tree visuals remain
+unrepresented and why the selected multi-section candidates lack a live
+publication; then fix the lowest owner and collect clean startup evidence
+before retrying the tree-ordering gate.
+
+Production streaming has another separate lifecycle gap: the coordinator's
+`notify_stream_chunk_unloaded/loaded` APIs have no callers in Main chunk
+retirement/creation. Its direct lifecycle tests therefore do not prove
+production unload/replay. Wire and verify the Main owner hooks before claiming
+that gate.
+
 ### Blueprint section receipt progress (2026-10-05)
 
 The headed Citadel fixture now proves one real, non-empty blueprint source
