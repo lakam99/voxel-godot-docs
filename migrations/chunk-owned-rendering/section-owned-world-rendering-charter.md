@@ -3142,6 +3142,42 @@ renderer before proceeding to visual/traversal/performance acceptance. Do not
 infer reduced live startup time or rendering parity from the synthetic reuse
 contract.
 
+### Next implementation charter — resumable section admission scheduling
+
+**Observed problem:** the tutorial-free headed diagnostic on seed
+`atlas-54374373` failed initial-region readiness at 216.5 seconds with 13/14
+visuals represented and one prepared near tree still awaiting its section
+receipt. The same report shows 2,720 pending section demands; the most recent
+ordinary provider result was `ordinary_section_geometry_capture_budget`.
+Ordinary membership/geometry cursors remain in their provider across attempts,
+but the source roster drops provider progress fields and the coordinator gives
+all pending demands the same 30-frame retry delay. This delays a resumable
+partial capture as if it were an external event wait.
+
+**Outcome and authority:** let providers explicitly distinguish resumable
+budget continuations from dependency waits. The provider owns its cursor and
+source revisions; the roster forwards only a bounded, value-only continuation
+hint; the coordinator owns admission ordering, retry cadence and fairness.
+Continue to recapture current source authority on every attempt, keep old
+installed content visible, and never infer an empty contributor from missing
+data. Initial candidates must retain a bounded turn while active captures
+continue, and background/event-dependent waits keep their existing delay.
+
+**Minecraft 26.2 check:** `SectionTaskDynamicQueue.poll(cameraPos)` selects the
+nearest eligible initial compile or recompile and uses a small recompile quota.
+This supports scheduling already-eligible section work by current view distance
+with fairness. It does not justify importing Minecraft's block mesher or
+removing our stale-provider revision checks.
+
+**Stage gates:** (1) contract explicit continuation forwarding and rejection
+of mutable/unbounded hints; (2) contract that a resumable section cursor gets
+its next bounded slice promptly while initial work still receives turns and
+external waits remain delayed; (3) rerun the headed seeded readiness diagnostic
+and record provider attempts/cursor progress, pending visual and native receipts.
+Exit only when the startup gate reaches a current visual/native receipt or a
+different exact blocker is reported. This remains a startup/admission gate;
+live traversal, visual parity and performance stages remain open.
+
 ### Next bounded production change — wake the exact section after fluid proof
 
 **Entry evidence:** game branch `codex/chunk-owned-world-rendering-migration`
