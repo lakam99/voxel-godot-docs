@@ -4872,3 +4872,59 @@ an unknown owner inside the proven support envelope stays pending. Then rerun
 the tutorial-free Main gate once and inspect its candidate/receipt state.
 Stages 1, 3, 4 and 5 and the overall migration remain partial until their full
 production exits pass.
+
+### 2026-10-05 HEAD decision — bounded ecology source closure
+
+An independent producer-extent audit supports a conservative **5 m x/z
+candidate-origin envelope** around each requested 21.6 m section. Stream owners
+are 37.8 m wide. Current surface ore clusters reach under 3.687 m from their
+anchor including the generic cluster offset; rocks reach under 2.45 m; forage
+and underground props are smaller. Surface detail anchors and transformed
+mesh extents remain inside their source chunks. Underground source discovery
+uses the same horizontal closure at every section y because its cell scan spans
+the owner's full vertical range. Actual contributor-to-section support still
+comes from member `Mesh.get_aabb()` values and full transforms, never the
+coarser producer envelope.
+
+Approved discovery invariant: map the half-open requested section bounds,
+expanded 5 m in x/z, to possible owner keys; union all previous
+`sourceOwnerChunk` values retained for that section before validating current
+owners. Unknown, absent, stale, or unproven snapshots inside that closure (or
+in a retained prior owner) remain pending. Resident snapshots outside it are
+not inspected because their complete producer source domain cannot reach the
+section. A moved source is independently discovered in its new section; its
+old section keeps the retained owner until a current tombstone or empty proof
+permits replacement. An unloaded prior owner remains pending until replay
+recreates current proof.
+
+The focused contract must cover: unrelated far owner with missing/malformed/
+stale data excluded; in-envelope unknown owner staying pending; distant prior
+owner included for tombstone/empty replacement and unload/recreate replay;
+same-ID relocation across sections; and negative-coordinate, exact-plane,
+half-open boundaries. This is a design approval only: no discovery implementation,
+contract pass, or Main readiness pass is claimed here. Stage status remains
+**1/7 exits complete**; Stage 5 and overall migration remain partial.
+
+### 2026-10-05 HEAD checkpoint — Stage 4 source coverage audit
+
+A read-only production path audit found that the coordinator already checks
+candidate revisions, validates native receipts, retains the old slot during
+replacement, and acknowledges provider retirement only after install. The
+remaining Stage 4 risk is contributor coverage and lifecycle parity:
+
+- The ordinary structure geometry adapter currently admits only
+  `cobblestonePath`, `stoneBlock`, and `woodBlock`; unsupported generated
+  members must stay pending or be assigned to an explicitly independent owner.
+- The Citadel plan includes `building:` and `furnishing:` members, but active
+  section adapters currently accept only `building:`. A section containing a
+  furnishing cannot be declared complete or empty until furnishings are
+  represented in the typed section manifest.
+- Player-placed block mesh ownership is not yet accounted for in the fixed
+  section-provider roster. Doors, collision, interaction, nav, and furnishing
+  gameplay remain under their existing authorities during any visual cutover.
+- Production evidence still needs generated building and furnishing receipts,
+  in-flight stale replacement with old visuals retained, source unload/replay,
+  and binary save/reload tombstones with gameplay ownership intact.
+
+This source audit makes no Stage 4 exit claim. The migration remains
+**1/7 exits complete**; Stage 4 and overall acceptance remain partial.
