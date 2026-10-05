@@ -197,6 +197,74 @@ terrain, generated recipes or Godot renderer.
 | 5. Admit ecology and static props | Feed accepted tree recipes/LODs, decorative detail buffers and prop visual recipes through the same section manifest. Preserve color/custom/wind attributes and material layers. Replace per-tree/per-prop visual nodes only after all affected section receipts are accepted; retain their bodies/interactions. Keep wildlife/NPC actors independent. | Deterministic source parity and removal/save/reload tests; live forest/prop visual captures and traversal show complete coverage without pop or hitch. |
 | 6. Readiness, performance and legacy retirement | Wire section receipts into visible-world readiness and chunk unload/replay. Remove obsolete production per-source visual publication only after all consumers have migrated. Run normal startup, movement/turn, edit, harvest, save/reload and unload/recreate journeys. | Headed live visual/traversal evidence across representative seeds; visual readiness has no candidate/receipt gaps; performance report includes startup, p95/max cadence, queue/backlog and streaming spikes; no legacy production renderer remains for migrated categories. |
 
+### Stage 6 implementation addendum — startup section receipt gate
+
+This addendum specifies the Stage 6 boundary; it does not pass any stage or
+authorize weakening the existing startup prerequisites.
+
+**Scope authority:** `VoxelTerrainVisualManifest` owns the required spawn-view
+section set. Its `_required_blocks` derives the 3D sphere from the selected
+spawn position, configured radius and authoritative vertical bounds. Its 16-cell
+native blocks align with `StaticRenderSectionGrid` sections; expose that exact
+set as an immutable snapshot bound to world/session, request and view revisions,
+center/radius, and runtime owner identity. Do not reconstruct the set from a
+2D rectangle or an estimated height. A mesh-empty block remains required until
+the native terrain manifest accepts its empty result; each static provider must
+then report explicit empty coverage when its authoritative census is empty.
+Any spawn, view, source-world or runtime-owner change invalidates the snapshot.
+
+**Receipt authority and readiness composition:** `WorldStaticSectionCoordinator`
+is the sole authority for current section receipts. For every required key, the
+readiness query must require complete current provider coverage and a committed
+production candidate whose receipt is live for the exact world, section,
+generation, manifest digest, source revisions, render backend and current
+owner/chunk instances. A missing candidate or receipt, stale revision, replaced
+owner, incomplete provider, or uninstalled explicit-empty candidate remains
+pending or reports an authoritative non-retryable failure; a cached recipe or
+old owner receipt never counts as rendered. Preserve `VisibleWorldReadiness`'
+source-discovery and coverage checks. Map every migrated visible source
+identity/revision and candidate to its authoritative section-manifest member
+and affected required sections; missing or ambiguous mappings remain pending.
+For migrated static kinds, the current section receipt is the representation
+proof and there is no fallback that lets a legacy per-source visual receipt
+release spawn. Keep actor readiness for mobs/NPCs and existing physical,
+collision, navigation, interaction and structure prerequisites independent.
+Overall spawn readiness requires all those prerequisites, complete source
+coverage, and current receipts for every required section.
+
+**Owner lifecycle:** the production static render-owner path must notify the
+coordinator of unload before freeing or replacing an owner, including world
+reset/clear paths. Once a replacement owner and backend are attached, notify
+load so retained candidates replay or reassemble against the new owner. A lost
+receipt becomes pending immediately; only a fresh owner-bound receipt restores
+readiness. These notifications and currentness checks are prerequisites to the
+Main startup gate, not optional follow-up cleanup.
+
+**Progress and waiting:** the loading overlay reports current/required section
+receipts and a bounded pending-stage/reason summary. Queued, compiling, or
+provider-acknowledgement work is not counted as installed receipt progress.
+Keep the player unspawned while any retryable dependency is pending. Production
+startup has no elapsed-time failure: advance bounded work and await readiness
+changes or the next process frame, then revalidate the full predicate. Only
+explicit cancellation/shutdown or an authoritative non-retryable subsystem
+failure is terminal. Finite automated-runner watchdogs remain diagnostic and
+cannot fail or release the production spawn.
+
+**Ordered proof rows:**
+
+| Substage | Entry and proof | Exit |
+|---|---|---|
+| 6A. Scope contract | Use the manifest-owned 3D block set; prove exact section mapping, vertical bounds, explicit empty blocks, request/world/owner invalidation, and immutable complete scope. | No view can be narrowed, reused across revisions, or silently omit a required section. |
+| 6B. Receipt and source bridge | Prove live installed-receipt validation for missing, empty, stale-generation/source, incomplete-provider and replaced-owner cases; prove exact member-to-section mapping including cross-section contributors. A legacy-only visual receipt must not satisfy a migrated kind. | All migrated visible source coverage resolves to current section receipts; unmapped sources fail closed. |
+| 6C. Main lifecycle and wait | Wire static-owner unload/load/replay/reset and the receipt query into Main; remove production startup timeout failure. Prove pending stays pending, progress advances, cancellation/non-retryable failure stays terminal, and loading cannot hide or spawn early. | Main's readiness predicate is revision-bound and event-driven, with no production wall-clock timeout. |
+| 6D. Headed startup | After Stages 1–5 exit, run normal headed menu-to-New-Game startup on representative deterministic seeds, without teleporting or bypassing production publishers. Record spawn/view identity, required/current/pending keys, receipt generation/digest/owner/provider coverage, screenshots and overlay-to-spawn frame order. | The overlay remains visible and player unspawned until every required receipt and other gameplay prerequisite is current; then startup completion, spawn and overlay hide occur in order. |
+| 6E. Gameplay, replay and performance | After Stages 1–5 exit, exercise traversal/turning, edit/dig, harvest, save/reload and stream-owner unload/recreate in live gameplay; inspect visual evidence and run normal-runtime performance observation. | No required receipt/visual gaps or replay regressions, acceptable measured cadence/backlog/spikes, and no obsolete production per-source renderer remains for migrated categories. |
+
+Stages 1–5 are prerequisites for the production Stage 6 cutover. In particular,
+6D and 6E remain blocked until every preceding stage has passed its own exit
+evidence; a synthetic coordinator fixture or partial migrated roster cannot
+release the Main startup gate or count as Stage 6 acceptance.
+
 ### Startup readiness constraint — event driven, no production wall-clock timeout
 
 The game's initial spawn remains behind the existing startup overlay until the
