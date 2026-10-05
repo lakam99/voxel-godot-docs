@@ -4957,3 +4957,27 @@ subgate.
 
 No Main launch or production edit was made for this audit. Stage 3 remains
 partial and overall progress remains **1/7 stage exits**.
+
+### 2026-10-05 HEAD checkpoint — tree cross-section ownership audit
+
+The tree compiler records both center-owned sections and AABB support sections,
+but its current geometry batches are keyed only by each instance's center-owned
+section. The ecology adapter's compiled-tree census follows
+`ownedSectionKeys`, and its contribution capture emits only a batch whose
+center `sectionKey` matches the queried section. The support keys are retained
+as metadata but do not currently produce section-local geometry or an explicit
+visible-readiness dependency from a support section to the center-owned slot.
+
+This is separate from the source-owner discovery radius: an owner chunk can be
+found while the candidate section still lacks the cross-boundary geometry. The
+section contract must choose and verify an explicit policy—section-local
+partitioning/clipping, or center ownership with a proven support-to-owner
+rendering/readiness dependency. Do not assume that support-key metadata alone
+loads the center slot or that duplicating full trees is correct. The focused
+falsifier must use actual compiled member AABBs and show a center-owned section
+outside the queried view whose tree support intersects it, then assert the
+chosen policy's installed visual/readiness behavior.
+
+This source audit does not establish a live visual failure or pass Stage 1, 2,
+or 5. No production edit, compile, or Main launch was made; total progress
+remains **1/7 stage exits**.
