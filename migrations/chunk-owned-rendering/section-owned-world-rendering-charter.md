@@ -3103,6 +3103,59 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Next implementation charter — fluid as a section render layer (2026-10-05)
+
+**Outcome:** a terrain section candidate represents the terrain and any fluid
+surfaces from the same current authoritative volume snapshot. Fluid-bearing
+sections remain pending until their actual render layer installs and receives
+the native receipt; do not claim them empty or treat a proof of fluid presence
+as successful terrain-only coverage. Preserve fluid simulation/edit authority
+in `TerrainVolumeService` and the existing generated-volume rules.
+
+**Minecraft check:** `SectionCompiler.compile` reads each section block state
+once, obtains its fluid state from that same region value, and sends fluid
+geometry to the corresponding layer builder before returning one section
+result. The current Godot path separately scans exact fluid cells for a
+presence proof, while the terrain section contribution waits for that proof
+and rejects `hasFluid` because the candidate layer is unsupported. This is a
+correct fail-closed boundary, but it is not yet a complete section compile.
+Use the source's same-pass ownership principle, not its block mesher: smooth
+terrain stays Transvoxel, and fluid keeps the game's own surface/material rules.
+
+**Before production edits:** map `TerrainVolumeService` cell/fluid revisions,
+generated fluid queries, native resident terrain capture epochs, fluid mesh
+inputs, render-layer/upload support, and edit invalidation end to end. Decide
+whether one bounded authoritative section snapshot can carry both the smooth
+terrain payload and exact fluid IDs without mixing revisions; if not, retain an
+explicit paired-source manifest and validate both identities before and after
+preparation. A metadata-only fluid-presence proof cannot stand in for geometry.
+Keep the old terrain/fluid visual installed until the combined replacement is
+accepted, and retain collision and fluid interactions under their current
+owners.
+
+**Stages and exits:** (1) source/epoch contract proves exact fluid membership,
+empty sections, stale-volume rejection and durable fluid edits; (2) a pure
+section compiler contract proves deterministic fluid geometry, layer/material
+identity, boundaries and bounded work; (3) a real renderer gate installs a
+fluid-bearing mixed terrain section, verifies native receipt and old visual
+retention through replacement; (4) headed water/shore/underground traversal
+and edit/save/reload checks prove visual and gameplay parity; (5) a runtime
+profile shows probe/compile/upload cost and traversal hitch behavior. Do not
+remove the fail-closed unsupported-layer check before Stage 3 passes.
+
+**Diagnostic evidence (2026-10-05):** `node
+tools/visible-world/run-ordinary-static-section-provider-contract.mjs
+--outputdirectory artifacts/citadel-runtime-integration/ordinary-static-section-provider-minecraft-accents-20261005-r2`
+passed 28 synthetic provider checks; the geometry adapter runner passed 16.
+These include recipe capture of opaque corner timber and fence members, but
+prove no fluid behavior. A 90-second seeded, tutorial-free diagnostic after
+those changes ended at frame 1440 with no candidate jobs installed; demand
+admission still reported `terrain_exact_fluid_section_probe_pending` and
+ordinary census/geometry work in progress. Its owned-process watchdog timed
+out and proved zero remaining processes. This is diagnostic evidence only,
+not a failure of the fluid proof or live acceptance. The fluid same-pass
+integration is the next source-level investigation before changing that gate.
+
 ### Next implementation charter — bounded ordinary-source capture reuse (2026-10-05)
 
 **Outcome:** reduce repeated ordinary-structure visual capture for adjacent
