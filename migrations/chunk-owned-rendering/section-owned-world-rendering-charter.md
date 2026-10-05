@@ -3171,6 +3171,27 @@ ordinary structure retirement contract
 passed 18/18; it proves receipt-fenced visual retirement and boundary replay
 only at the provider-contract level.
 
+**Replacement census guard correction (2026-10-05):** Minecraft's
+`SectionRenderDispatcher` keeps the accepted section mesh visible until the
+replacement upload is accepted. Our tree queue follows the same retain-old
+policy, so an in-progress prepared artifact can coexist with a still-current
+`published` per-tree visual or a `section_owned` visual. The ecology prepared-
+tree census incorrectly required only `section_candidate_pending`, making the
+prepared artifact uncountable precisely while that accepted visual was kept.
+The census now accepts either pending preparation or a valid accepted visual
+state/source pair, and continues to validate prepared artifact generation,
+body instance, expected producer generation, transform, recipe signature and
+resource/member revisions. Contract evidence:
+`node tools/run-tree-section-value-adapter-contract.mjs
+--outputdirectory artifacts/citadel-runtime-integration/tree-section-value-adapter-census-accepted-replacement-20261005-r2`
+passed 23/23, including census admission while the old tree visual remains
+visible and rejection of a superseded prepared generation.
+`node tools/run-ecology-section-value-adapter-contract.mjs
+--outputdirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-census-accepted-replacement-20261005-r1`
+passed 47/47. These are synthetic contracts: they do not prove populated
+production tree receipts, native rendering, live traversal, save/reload or
+performance. The tree section compiler and full migration gates remain open.
+
 **Live gate:** `node tools/run-visible-world-fast-turn-sprint.mjs
 --skip-tutorial --timeout-seconds 240` did not reach gameplay readiness. Its
 progress remained `main_menu_waiting_for_gameplay_ready` through frame 3,720;
