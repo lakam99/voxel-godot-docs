@@ -5353,3 +5353,109 @@ candidate-specific pixel visibility, collision/interaction, save/replay,
 ordinary startup/traversal or performance. It is a verified Stage 2 lifecycle
 slice, not a stage exit. Stage 1 remains partial; Stage 2 and all later exits
 remain open; total progress remains **1/7 stage exits complete**.
+
+### 2026-10-05 Production load waits have no elapsed-time failure
+
+The production readiness gates and the shared Continue/New Game reset path no
+longer convert pending work into failure after a wall-clock deadline. This
+includes terrain/view coverage, urgent chunk admission, visual and physical
+region readiness, collision, navigation, destination relocation, stable
+post-draw presentation, seed reset, pending async-save drain, and navigation/
+Citadel publication retirement. They continue yielding progress while current
+work advances. Shutdown, superseded requests, and authoritative dependency or
+owner failures remain terminal. Runner observation bounds and the explicit
+shutdown worker-drain bound remain separate from playable-world readiness.
+
+The focused source contract passed **10/10** and the existing startup readiness
+contract passed **77/77**. Main/runtime script loading passed. Exact reports on
+the game worktree based at `ef327281` on branch
+`codex/chunk-owned-world-rendering-migration` are
+`artifacts/no-timeout-audit/source-contract6.json`,
+`artifacts/node-tools/run-startup-loading-readiness-contract-tests.json`, and
+`artifacts/no-timeout-audit/parse7.watchdog.json`; their owned watchdogs exited
+0 with cleanup passed and authoritative process-zero. The contract explicitly
+does not exercise live Main startup, native section receipts, rendered pixels,
+or gameplay. No live startup replay was run because the current ecology source
+closure blocker still makes such a replay non-diagnostic. This is an
+implementation subgate for Stage 6C, not a Stage 6 exit; overall progress
+remains **1/7 stage exits complete**.
+
+The architecture decision follows Minecraft 26.2's separation of section task
+readiness from a timeout: keep the owner and previous installed result while
+work is pending, then accept only current completed installation or an
+authoritative failure/cancellation. The game retains its own explicit
+frame-yield and progress presentation because its SDF terrain, regional source
+providers, navigation and save drains do not have Minecraft's fixed cell input
+domain. The next live startup gate depends on completing revision-bound
+cross-section ecology source discovery; broadening the current source radius
+would not prove completeness.
+
+### Next architecture charter — world-owned ecology support index
+
+#### Outcome and authority
+
+Replace the origin-radius/loaded-queue census as the authority for static
+ecology section membership. Add one long-lived world/source-owned index that
+maps deterministic ecology source records to every render section touched by
+their certified visual support. This is the shared static-contributor manifest
+input for candidate assembly; do not add one independent packet per tree or a
+second generated-world authority. Minecraft's block-state section volume is a
+complete fixed-domain input set. Our arbitrary procedural meshes need an
+explicit completeness proof because a tree can be rooted in a different chunk
+from every section touched by its crown or branches.
+
+Each source row binds stable provider/source/prop IDs, world seed and
+durable-removal revision, source chunk and owner generation, recipe/artifact
+generation, canonical geometry-owner section, render layer/material/resource
+identity, certified conservative world AABB, exact support-section keys, and
+state (`pending_recipe`, `compiled`, or `tombstoned`). Per-source-chunk
+completeness certificates bind the deterministic ecology pass and all
+enumerated rows to the current world/source revision. Candidate assembly must
+include every row for its section, reject stale owner/revision certificates,
+and remain pending when any relevant source domain is unknown. Explicit empty
+is legal only when all producer-certified source domains intersecting the
+section have current completeness certificates and no live row supports it.
+
+Before visual compilation, a tree recipe must publish a conservative support
+envelope derived from its actual bounded family grammar and mesh/factory
+primitive bounds. After compilation, actual transformed mesh AABBs must fit
+inside that envelope; exact support-section postings then replace conservative
+ones. Do not use nominal canopy radius or select a wider arbitrary chunk
+radius. The envelope must account for broadleaf, conifer, savanna, branch,
+foliage and LOD geometry, and fail closed if a compiled result exceeds it.
+
+The index is renderer metadata only. Tree gameplay owners retain trunk
+collision, harvest behavior, stable identity and durable save deltas. Harvest
+or removal tombstones the source at a new revision and invalidates both old
+and new support postings. On chunk unload/reload, reconstruct source rows from
+seed and durable deltas; missing owner certificates remain pending. When a
+section has a replacement in progress, its previous accepted native
+representation remains visible until the complete new or explicit-empty
+candidate receives current installation acknowledgement. Mobs and NPCs remain
+independent actors.
+
+#### Ordered work and exit evidence
+
+1. Derive and prove family/LOD support envelopes against compiled mesh bounds,
+   including worst-case branch and canopy extents. Reject a false envelope.
+2. Implement deterministic source enumeration, source-chunk completeness
+   certificates and the section-to-contributor index from current seed and
+   durable removals. Bind every row/posting to world, source and owner
+   generations; support pending recipe, compiled and tombstoned states.
+3. Replace the ecology adapter's radius/compiled-queue discovery with the
+   revision-bound index; wire dirty support sections through the existing
+   shared candidate assembler and native install acknowledgement. Preserve old
+   visuals through pending, stale and failed replacement work.
+4. Prove admission, invalidation, unload/replay and candidate empty semantics
+   with focused contracts, then run headed cross-boundary forest traversal.
+   The live proof must show the canonical center geometry-owner slot installed
+   while a support section is viewed, preserve real trunk collision/harvest/save
+   behavior, and capture traversal performance.
+
+The first contract must cover contributors on both sides of a section,
+missing/incomplete source domains, stale/replaced owners, durable tombstones,
+all-family/LOD envelope containment, and complete explicit-empty coverage. The
+headed proof is a separate exit: contracts cannot establish live ownership,
+pixel visibility, traversal, save/reload or performance. This stage adopts
+Minecraft's complete section-input and replacement-lifetime contract while
+using game-owned deterministic source enumeration and arbitrary-mesh bounds.
