@@ -3117,7 +3117,9 @@ rechecks generation/owner/transform before evicting an earlier artifact.
 Preparation and failure states preserve the accepted per-tree/section visual,
 and the adapter permits a current prepared replacement to be captured while
 that accepted representation remains the installed source.
-Game commit `686adb22` contains this currentness fix.
+Game commit `686adb22` contains the producer-generation and old-visual fix;
+`e25a1917` drops superseded tasks before worker admission and rejects stale
+worker/publication results so they do not consume tree publication slots.
 
 This boundary follows Minecraft 26.2's dispatcher pattern: supersede/cancel
 outdated compile work and keep the old section mesh until replacement upload
@@ -3127,11 +3129,11 @@ compiler is yet section-scoped or that an artifact reaches the native renderer.
 **Focused evidence:** `node tools/run-tree-publication-queue-contract.mjs`
 passed on Godot 4.6.1. The headed synthetic adapter command
 `node tools/run-tree-section-value-adapter-contract.mjs
---outputdirectory artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r4`
+--outputdirectory artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r5`
 passed all 22 checks, including stale-generation seal/replacement rejection
 preserving the old visual while the new candidate remains censusable. Its
 report is
-`artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r4/report.json`.
+`artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r5/report.json`.
 These are queue/adapter contracts and synthetic receipts; they do not prove
 normal-world capture, native production installation, live traversal or
 performance. A first adapter invocation without its required output directory
