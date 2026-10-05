@@ -3155,6 +3155,130 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### 2026-10-05 Stage 4 ordinary-section receipt evidence
+
+At game HEAD `6e911532222acc5a175dba10a258d3f5d476b475` on
+`codex/chunk-owned-world-rendering-migration`, headed run
+`artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-20261005-r4/report.json`
+passed all 9 behavioral checks. The fixture used one explicitly synthetic town
+record discovered through the ordinary provider's normal town-cache census. The
+same ordinary member ID and source revision appeared in the complete provider
+census, candidate manifest and current native receipt; the native renderer
+reported three opaque instances for the base/corner-X/corner-Z recipe. Four
+sampled pre-receipt pending frames retained the old recipe visuals. After the
+one-member provider acknowledgement, those visuals were retired while the same
+mapped `StaticBody3D` and enabled collider remained. A prior r3 fixture attempt
+had created an orphan ledger source with no discoverable town record; its
+empty census was a fixture setup mismatch, not evidence of a production
+provider defect.
+
+The run is not a clean runner pass. Godot emitted shutdown `ERROR`/leak
+diagnostics for a fixture-retained installed slot and unparented constructor;
+the watchdog terminated only its owned process job and proved authoritative
+zero with known-empty final membership. Its `cleanupPassed` is false, so retain
+this as behavioral renderer evidence with a cleanup failure, not as a clean
+headed-run acceptance. The runner's diagnostic prompted a fixture-only teardown
+fix proposal; do not rerun unchanged. The report explicitly excludes full-world
+provider coverage, generated-town layout parity, gameplay actions,
+save/reload, unload/replay, normal startup, traversal and performance.
+
+This closes only the bounded ordinary-provider-to-native-receipt subgate of
+Stage 4. Blueprint/Citadel membership and retirement, ordinary generated-town
+coverage, edits/replay, full roster co-coverage, clean runner shutdown and live
+visual/traversal/performance checks remain open. Overall migration remains
+**1/7 stage exits complete**; Stage 4 and the full migration remain partial.
+
+### 2026-10-05 Stage 4 ordinary-section receipt evidence
+
+At game HEAD `6e911532222acc5a175dba10a258d3f5d476b475` on
+`codex/chunk-owned-world-rendering-migration`, headed run
+`artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-20261005-r4/report.json`
+passed all 9 behavioral checks. The fixture used one explicitly synthetic town
+record discovered through the ordinary provider's normal town-cache census. The
+same ordinary member ID and source revision appeared in the complete provider
+census, candidate manifest and current native receipt; the native renderer
+reported three opaque instances for the base/corner-X/corner-Z recipe. Four
+sampled pre-receipt pending frames retained the old recipe visuals. After the
+one-member provider acknowledgement, those visuals were retired while the same
+mapped `StaticBody3D` and enabled collider remained. A prior r3 fixture attempt
+had created an orphan ledger source with no discoverable town record; its
+empty census was a fixture setup mismatch, not evidence of a production
+provider defect.
+
+The run is not a clean runner pass. Godot emitted shutdown `ERROR`/leak
+diagnostics for a fixture-retained installed slot and unparented constructor;
+the watchdog terminated only its owned process job and proved authoritative
+zero with known-empty final membership. Its `cleanupPassed` is false, so retain
+this as behavioral renderer evidence with a cleanup failure, not as a clean
+headed-run acceptance. The runner's diagnostic prompted a fixture-only teardown
+fix proposal; do not rerun unchanged. The report explicitly excludes full-world
+provider coverage, generated-town layout parity, gameplay actions,
+save/reload, unload/replay, normal startup, traversal and performance.
+
+This closes only the bounded ordinary-provider-to-native-receipt subgate of
+Stage 4. Blueprint/Citadel membership and retirement, ordinary generated-town
+coverage, edits/replay, full roster co-coverage, clean runner shutdown and live
+visual/traversal/performance checks remain open. Overall migration remains
+**1/7 stage exits complete**; Stage 4 and the full migration remain partial.
+
+### 2026-10-05 Stage 5 evidence note — static source audit only
+
+The production tree path currently begins with deterministic Main chunk prop
+generation and its `EcologySourceValueLedger` snapshot. `MainPlaytestTools.gd`
+records candidate values and finalizes the snapshot with a ready/stale source
+revision and chunk-owner identity (game: `scripts/MainPlaytestTools.gd:3014-3031`,
+`3059-3069`, `3258-3274`). The tree candidate carries deterministic recipe
+identity; `TreePublicationQueue.gd` seals recipe inputs against the real body,
+transform, seed and recipe signature, and `TreeRecipeSectionCompiler.gd`
+compiles the bole, branches and foliage into immutable batches with owned and
+support section keys (game: `scripts/environment/TreePublicationQueue.gd:769-817`,
+`scripts/world/TreeRecipeSectionCompiler.gd:206-286`).
+`EcologySectionValueAdapter.gd` validates producer snapshot ownership/revision,
+durable removal snapshot and category closure, then captures current compiled
+tree values into section contributions (game:
+`scripts/world/EcologySectionValueAdapter.gd:78-120`, `156-255`,
+`1591-1657`, `1925-1994`, `2016-2090`). The coordinator assembles the complete
+section from provider census and contributions; it switches the current
+production slot and acknowledges providers only after a live native receipt
+matches the candidate generation, census and content-manifest digests (game:
+`scripts/world/WorldStaticSectionCoordinator.gd:741-775`, `936-994`). Ecology
+tracks receipts for every section owned by a tree before asking the tree queue
+to retire the old visual; the retirement result explicitly retains the
+gameplay body (game:
+`scripts/world/EcologySectionValueAdapter.gd:449-524`,
+`scripts/environment/TreePublicationQueue.gd:983-1038`). Legacy static-prop
+and detail visual retirement similarly waits for all required section receipts
+and a fresh census (game: `scripts/world/EcologySectionValueAdapter.gd:543-613`).
+
+Gameplay and durable state remain separately owned: harvest uses the shared
+prop-harvest authority, records a removed-prop tombstone, invalidates the
+section source and notifies navigation (game: `scripts/MainPropFactory.gd:191-224`).
+`MainSaveState.gd` snapshots/restores removed prop IDs, while `SaveSystem.gd`
+encodes the save slot as binary and writes it atomically (game:
+`scripts/MainSaveState.gd:106-144`, `190-200`, `407-416`,
+`scripts/SaveSystem.gd:45-58`, `278-298`). The section coordinator invalidates
+the owning native receipt on chunk unload and queues replay/reassembly for
+reload (game: `scripts/world/WorldStaticSectionCoordinator.gd:1438-1517`,
+`1537-1565`).
+
+This is a **static source audit**, not a headed acceptance result. The earlier
+r3 tree diagnostic had an invalid fixture status selector (`complete` instead
+of the production `ready`/`stale` values); its run did not prove product
+failure, current replacement ordering, or successful native retirement. The
+selector correction has only a headless compile/load smoke so far. Still
+required: a headed Main run proving every owning native receipt carries the
+tree's exact current source revision; a pending/partial checkpoint with the
+legacy visual still present and retirement only after receipt closure; the
+same body and trunk collider surviving that retirement; real harvest and
+save/reload tombstone behavior; chunk unload/replay with stale owner/revision
+rejection; and a representative headed visual/traversal and performance pass.
+Category closure remains a dependency: the provider fails closed on missing
+static ecology categories, and the ledger documents unresolved immutable
+generated-rock geometry inputs (game:
+`scripts/world/EcologySectionValueAdapter.gd:19-27`, `1404-1463`,
+`scripts/world/EcologySourceValueLedger.gd:115-138`). No stage advances from
+this note, and the overall migration remains at 1/7.
+
 ### Blueprint section receipt progress (2026-10-05)
 
 The headed Citadel fixture now proves one real, non-empty blueprint source
