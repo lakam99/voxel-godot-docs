@@ -5281,3 +5281,32 @@ support using all eight AABB corners. This is provider geometry/diagnostic
 contract evidence only. It does not prove section installation, frame
 acknowledgement, rendered pixels, live visual retirement or traversal. Stage 1
 remains partial, and total progress remains **1/7 stage exits complete**.
+
+### 2026-10-05 ordinary opaque provider slice — focused result
+
+Game commit `14dac9b3` (`feat: publish opaque ordinary visuals through
+sections`) implements the reviewed opaque ordinary-structure recipe and
+provider-input slice. The eight-file diff passed independent read-only review
+and both fresh focused runners:
+
+- Adapter: **22/22** checks, report
+  `artifacts/citadel-runtime-integration/ordinary-section-geometry-adapter-shadow-review-20261005-03/report.json`.
+- Static provider: **40/40** checks, report
+  `artifacts/citadel-runtime-integration/ordinary-static-section-provider-shadow-review-20261005-01/report.json`.
+
+Both watchdogs report exit 0, no timeout, cleanup passed and authoritative
+zero owned processes. The nine opaque types yielded 49 asset/procedural members;
+asset-backed workbench/bed/stall/trap member counts matched their live recipe
+subtrees. Tests carry source `cast_shadow` policy into snapshot compatibility,
+revision and the existing Main recipe consumer, reject a stale shadow mutation,
+and confirm an exact section receipt retires the 49 old visuals while all nine
+collision/gameplay owners remain. Glass remains pending as translucent; dynamic
+chest/furnace/campfire/torch/door families remain with their gameplay owners.
+
+This is focused adapter/provider evidence with synthetic section receipts. It
+does not prove native renderer installation, a completed frame, live Main
+visual parity, save/replay, traversal or performance. The full Main renderer
+fixture is separately blocked before candidate promotion by incomplete Tree
+source-owner closure; it is not treated as a pass from these contracts. Stage 1
+remains partial; Stage 3 and later gates remain open; total progress is still
+**1/7 stage exits complete**.
