@@ -3103,6 +3103,46 @@ dependencies. Do not repeat the same long sprint before the section compiler
 has a real native-receipt proof; do not advance a stage from a snapshot or
 synthetic contract alone.
 
+### Tree producer generation and replacement currentness (2026-10-04)
+
+The review of game commit `23f8db57` found that prepared tree artifacts were
+sealed and retained without comparing their enqueue generation against the
+body's latest expected generation. An older LOD build could therefore replace
+a newer retained candidate. It also found that preparation/failure metadata
+could make the still-attached accepted tree visual appear non-current to the
+section adapter. The production queue now binds tree tasks to the current body
+generation, transform, request tier and recipe signature; section-owned tasks
+also require their retained immutable recipe-input record to match. Retention
+rechecks generation/owner/transform before evicting an earlier artifact.
+Preparation and failure states preserve the accepted per-tree/section visual,
+and the adapter permits a current prepared replacement to be captured while
+that accepted representation remains the installed source.
+
+This boundary follows Minecraft 26.2's dispatcher pattern: supersede/cancel
+outdated compile work and keep the old section mesh until replacement upload
+is accepted. It is a currentness and replacement fix, not proof that our tree
+compiler is yet section-scoped or that an artifact reaches the native renderer.
+
+**Focused evidence:** `node tools/run-tree-publication-queue-contract.mjs`
+passed on Godot 4.6.1. The headed synthetic adapter command
+`node tools/run-tree-section-value-adapter-contract.mjs
+--outputdirectory artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r4`
+passed all 22 checks, including stale-generation seal/replacement rejection
+preserving the old visual while the new candidate remains censusable. Its
+report is
+`artifacts/citadel-runtime-integration/tree-section-value-adapter-generation-fence-20261004-r4/report.json`.
+These are queue/adapter contracts and synthetic receipts; they do not prove
+normal-world capture, native production installation, live traversal or
+performance. A first adapter invocation without its required output directory
+did not launch a process; the first headed run caught and then helped resolve a
+GDScript parse error, and its owned watchdog proved zero remaining members.
+
+**Stage decision:** this closes a stale-work defect in the Stage 2 tree-value
+substage only. Keep Stage 2 partial until a section compiler consumes all tree
+contributors and a real Main-scene candidate obtains current native receipts.
+The earlier headed readiness timeout remains a separate failed gate; do not
+attribute it to this fix or call live rendering/traversal/performance accepted.
+
 ### 2026-10-04 producer-value integration checkpoint
 
 **Code evidence:** `TreePublicationQueue` now freezes section-ownership mode per
