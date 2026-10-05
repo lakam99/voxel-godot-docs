@@ -3119,8 +3119,13 @@ result. The current Godot path separately scans exact fluid cells for a
 presence proof, while the terrain section contribution waits for that proof
 and rejects `hasFluid` because the candidate layer is unsupported. This is a
 correct fail-closed boundary, but it is not yet a complete section compile.
-Use the source's same-pass ownership principle, not its block mesher: smooth
-terrain stays Transvoxel, and fluid keeps the game's own surface/material rules.
+The snapshot and native packet schemas enumerate translucent layer labels and
+the packet can receipt those labels; `NativeStaticSectionInstallSession`
+currently rejects every translucent batch with
+`native_section_translucent_sort_not_implemented`. An enum or packet receipt is
+not a working transparent pipeline. Use the source's same-pass ownership
+principle, not its block mesher: smooth terrain stays Transvoxel, and fluid
+keeps the game's own surface/material rules.
 
 **Before production edits:** map `TerrainVolumeService` cell/fluid revisions,
 generated fluid queries, native resident terrain capture epochs, fluid mesh
