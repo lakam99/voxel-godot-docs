@@ -205,6 +205,103 @@ contract. The block-state/cube mesher, fixed section size, layer names, actor
 rules and upload implementation do not transfer directly to our smooth SDF
 terrain, generated recipes or Godot renderer.
 
+### Stage 1 addendum — source-domain capture and section dispatch
+
+The production path needs three explicit work owners:
+
+1. **Source capture queue:** producers expose resumable, immutable snapshots
+   keyed by world epoch, source identity, source chunk, producer revisions,
+   support-policy/catalog identity and durable-removal projection. A section
+   registers its exact inverse-source dependencies. The source queue deduplicates
+   shared demand, advances each source snapshot once, and wakes all dependent
+   sections when that snapshot is sealed. Source-generation and gameplay
+   authorities remain unchanged; Node, Resource, RID, Callable and mutable
+   Variant data do not cross a worker boundary.
+2. **Section compile dispatcher:** after its exact provider census is complete,
+   one section task owns immutable local inputs and compiles the complete
+   candidate across all render layers. Tasks are prioritized from the current
+   camera, superseded generations are cancelled, and source/owner revisions
+   are checked after capture and after compilation. Keep smooth SDF terrain
+   meshing; this is a scheduling and ownership migration, not a block mesher
+   replacement.
+3. **Main-thread install queue:** renderer-resource creation, bounded upload,
+   section-slot promotion and Godot acknowledgements stay on the valid engine
+   thread. Preserve `NativeStaticSectionInstallSession`'s current staging,
+   receipt validation, rollback and old-slot visibility until replacement is
+   fully accepted. Stale work is rejected again immediately before promotion.
+
+The Stage 1i headed baseline located the immediate bottleneck before section
+assembly: each one-section roster query currently walks its inverse ecology
+source keys and advances the first pending source pass. The coordinator admits
+one section demand per attempt, so shared source work has no explicit
+subscription, fair service or completion wake-up. It never reached native
+candidate installation. This is a source-work ownership problem, not evidence
+that the native slot/receipt boundary is the bottleneck.
+
+Baseline command:
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-stage1-20261006i --TimeoutSeconds 1800 --StartupWaitSeconds 900`
+
+Seed: `ecology-main-retirement-stage5`; game `HEAD` at launch:
+`446f58ea365ddac9cb6b6d493cbdb5d1c33509d9` (working tree contained unrelated
+and in-scope pre-existing edits). The headed production Main instantiated with
+`-SkipTutorial`, but after 900 seconds remained in startup with 2,355 section
+demands, ecology in the `props` capture phase, no completed source categories,
+and six tree visuals pending. The report is
+`artifacts/citadel-runtime-integration/main-section-cohabitation-gate-stage1-20261006i/report.json`;
+the watchdog proves cleanup passed and the owned Job Object had zero members.
+The runner returned nonzero because startup was not ready; its assertion
+message described the nonzero functional exit as a missing/failing watchdog
+field, while the final watchdog record itself is complete.
+
+The next implementation stage is therefore the source-domain queue and
+dependency wake-up, followed by the section compile dispatcher over immutable
+value buffers. Acceptance must prove many sections sharing one source use one
+source job, incomplete sources stay retryable without scanning all section
+demands, sealed snapshots cover all required source identities, stale work is
+discarded, and the real Main candidate reaches a current native receipt. Keep
+visual/traversal, save/reload, and performance gates open after that proof.
+
+#### Complete compile-to-install cutover
+
+The next implementation unit spans source capture, native compilation, and
+renderer installation together. HEAD owns the production coordinator and final
+acceptance; the native lead owns the C++ dispatcher; the bridge lead owns the
+snapshot/assembler preparation and finalization boundary; the ecology contract
+lead owns fixture migration. Mutable file scopes do not overlap.
+
+Prepare validates the complete provider census and captures section-local
+contributor groups, source ranges, render layers, bounds, and exact revision
+identity. It retains Godot mesh/material bindings on Main. Native admission
+copies numeric buffers and string identities into owned C++ values. Worker
+jobs group/merge buffers and produce bounded batches; they never access scene
+objects or Godot resources. Finalization binds accepted results to the original
+capture, verifies counts and source coverage, and seals the candidate before
+the existing install queue can see it. Production must not call the synchronous
+buffer merger as a fallback when native compilation is pending or unavailable.
+
+One coordinator owns compile tickets through source invalidation, demand
+withdrawal, superseding generations, unload, and shutdown. It checks the census
+again after worker completion and before installation. Previous accepted slots
+remain visible throughout. Source jobs use the current camera when selected,
+deduplicate exact chunk-scoped removal projections, and notify subscribers on
+both success and terminal failure. Reusable policy results are immutable and
+bounded; a cache hit cannot waive provenance validation.
+
+The verification order is native ownership/cancellation contracts, shared
+assembler parity, real Main cohabitation with a native compilation receipt,
+then headed traversal and performance. The earlier 900-second Main failure
+remains the live baseline. A completed synthetic adapter report or a successful
+compile smoke does not advance the live gate.
+
+Source adapter prerequisite: on 2026-10-06, `node tools/run-ecology-section-value-adapter-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-async-cutover-20261006b`
+passed all 70 checks in 27.5 seconds. This includes corrupted sealed input,
+reversible removal/reappearance, exact tombstones, coverage and retained gameplay
+owners. `report.json` and `watchdog.json` under that output directory record
+functional exit 0, clean teardown and authoritative zero owned processes. This
+is synthetic producer/assembler evidence at dirty game HEAD `446f58ea`; the
+launch record binds tested source hashes. Native compilation, real installation
+and live traversal remain separate gates.
+
 ## Staged migration and gates
 
 | Stage | Work and gate | Exit evidence |
