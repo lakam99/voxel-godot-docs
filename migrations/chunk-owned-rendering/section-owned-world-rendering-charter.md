@@ -5724,3 +5724,52 @@ section receipt. These are implementation slices only; overall progress remains
 started). Terrain remains sourced from a resident Voxel Tools block and cannot
 retire its current visual until an authoritative arbitrary-section SDF/material
 snapshot and parity proof exist.
+
+### 2026-10-06 HEAD checkpoint — real Main admission and cross-section receipts
+
+At game HEAD `8254e3e9`, the whole-section native-install fixture now instantiates
+`scenes/Main.tscn` and binds its production ecology adapter, catalog lease,
+structure authority, and tree publication queue. Its first two attempts,
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-real-main-r1`
+and `...-real-main-r2`, stopped before fixture assertions because the concurrent
+ordinary-provider edit did not parse. The r2 watchdog records exit 126,
+`cleanupPassed=false`, and authoritative zero Job Object members; this is a
+setup/compile failure and provides no candidate or renderer evidence. The fixture
+does not stub successful ecology source-domain captures or empty families; terrain
+and ordinary structure providers remain explicitly synthetic.
+
+The ordinary provider's cross-section visual retirement contract now exercises
+the actual section coordinator and provider. Its headed synthetic run
+`node tools/visible-world/run-ordinary-static-section-provider-contract.mjs`
+at
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-cross-section-closure-20261006-r3/report.json`
+completed 42 checks: 38 passed, 4 failed. The new boundary proof passed: the
+first receipt retains the spanning live visual, current receipts for both exact
+affected sections retire it, replay contains its center-owned support, and the
+gameplay collision owners remain. The four remaining failures are
+`provider_satisfies_exact_static_section_roster_contract`,
+`provider_returns_same_sealed_geometry_for_cross_domain_assembly`,
+`single_center_owned_boundary_source_removes_in_its_one_section_only`, and
+`coordinator_one_attempt_per_frame_drains_real_33_member_ordinary_job`; they
+remain unresolved pending regression classification and repair. The watchdog
+completed normally with functional exit 1, `cleanupPassed=true`, and zero owned
+processes. This contract does not prove production registration, native upload,
+save/reload, live visual parity, or performance.
+
+Minecraft 26.2 `RenderRegionCache`/`RenderSectionRegion` captures bounded copied
+section values, `SectionCompiler` compiles a section's render layers, and
+`SectionRenderDispatcher` cancels superseded work and retains the installed mesh
+until all replacement layers are acknowledged. A focused code audit found that
+our native tree worker currently produces foliage instance values only. Bole
+mesh construction, distal branch transforms, section ownership/support proofs,
+batching and resource materialization still consume main-thread work. The next
+tree slice transfers exact branch and foliage instance-buffer math into a
+source-revision-bound worker over sealed whole-record recipe/LOD values, while
+leaving the continuous bole mesh on its GDScript path until its tube, junction,
+normal and UV parity is established. Godot resource creation, support proofs,
+batching and candidate admission stay on the owner thread. The worker must match
+the existing GDScript builder's buffers and ownership receipts, and prove
+cancellation and stale-result rejection before being used as production evidence.
+
+These are partial implementation gates. The migration remains **1/7 stage exits
+complete**; Stage 3/4 and full Main-to-renderer acceptance remain open.
