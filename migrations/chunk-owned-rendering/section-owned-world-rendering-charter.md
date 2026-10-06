@@ -6,6 +6,24 @@ run retained loading with source preparation and tree-bound validation pending,
 and zero native compilations/installations. Current work and exact
 evidence are in the [owned source publication charter](owned-source-publication-charter-2026-10-06.md).
 Full visual cutover and gameplay acceptance remain open.
+**HEAD checkpoint — 2026-10-06, game HEAD `8254e3e9`:** overall progress remains
+**1/7 stage exits** (Stage 0 complete; Stages 1–5 partial; Stage 6 not started).
+The focused tree recipe section compiler, real-Main ecology source-pass parity,
+source-capture session, and authoritative terrain snapshot contracts pass, but
+the headed whole-section install gate r3 stopped before candidate assembly. Its
+test `WorldRoot` lacks Main's `capture_ecology_source_domain` authority, so the
+ecology census correctly returned pending; the separately compiled queue record
+and fixture ledger did not become section contributions. The renderer was not
+reached, so this is fixture/source-authority integration evidence, not a native
+renderer failure. Watchdog cleanup passed with authoritative zero membership.
+Report: `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-r3/report.json`.
+The next gate must bind the adapter to initialized `Main.tscn`, capture the full
+certified source-family closure, and prove the accepted tree part in the native
+section manifest. Minecraft 26.2's `RenderRegionCache` → `RenderSectionRegion` →
+`SectionCompiler` boundary supports this: compile from captured section data,
+then retain the prior section mesh until all replacement layer uploads
+acknowledge. Its fixed 3×3 block neighborhood does not define this game's
+procedural support closure.
 **Recorded:** 2026-10-04
 **Canonical source:** `voxel-godot` branch `codex/chunk-owned-world-rendering-migration`
 
