@@ -5751,10 +5751,17 @@ gameplay collision owners remain. The four remaining failures are
 `provider_returns_same_sealed_geometry_for_cross_domain_assembly`,
 `single_center_owned_boundary_source_removes_in_its_one_section_only`, and
 `coordinator_one_attempt_per_frame_drains_real_33_member_ordinary_job`; they
-remain unresolved pending regression classification and repair. The watchdog
-completed normally with functional exit 1, `cleanupPassed=true`, and zero owned
-processes. This contract does not prove production registration, native upload,
-save/reload, live visual parity, or performance.
+were unresolved at r3. The provider source identity was aligned with the roster
+contract (render-member identity remains distinct from its authority identity),
+and the r7 rerun passed **42/42** checks using the same runner. The new closure,
+boundary removal/replay, cross-domain assembly, 33-member coordinator drain,
+collision, and gameplay-owner checks all pass. R3's watchdog completed normally
+with functional exit 1; r7 exited 0 with `cleanupPassed=true` and authoritative
+zero owned members. Report:
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-cross-section-closure-20261006-r7/report.json`.
+This remains synthetic coordinator/provider evidence; it does not prove
+production registration, native upload, save/reload, live visual parity, or
+performance.
 
 Minecraft 26.2 `RenderRegionCache`/`RenderSectionRegion` captures bounded copied
 section values, `SectionCompiler` compiles a section's render layers, and
