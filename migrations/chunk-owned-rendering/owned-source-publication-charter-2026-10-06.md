@@ -143,6 +143,64 @@ interaction/edit/harvest, unload/replay/save, and representative performance gat
 from the controlling migration matrix. Inspect screenshots and traces. Report
 failed and untested rows separately; a focused proof cannot waive this exit.
 
+### Next production unit: section-scoped immutable preparation
+
+Minecraft 26.2 confirms the useful unit is a target section compiled from a
+retained, immutable neighborhood capture, followed by staged render-layer upload
+and an atomic visible swap. It does not prescribe our mesher. The project already
+has a complete-section candidate assembler and native install session; this unit
+removes the serial, source-by-source preparation bottleneck before those existing
+owners. Do not replace deterministic producer authorities or publish individual
+tree visuals beside the section candidate.
+
+The captured section request must freeze a node-free value manifest containing:
+
+- world identity/epoch, target section key, section request generation, coverage
+  and roster revisions;
+- census provider identities and revisions, source-domain/publication lease
+  identity, and exact contributor/source revisions admitted for the section;
+- tree rows from the existing canonical recipe authority, including recipe and
+  LOD digests, stable source/member IDs, certified long-tree support closure,
+  transform, biome/material/wind policy identities, and removal revision;
+- terrain effective-volume and static contributor values only where their
+  current authoritative capture APIs prove edited cells, durable deltas, scene
+  overlays, and native pin/source identity are included;
+- complete render-layer/batch compatibility policy, explicit empty results, and
+  the producer completeness manifest required by the existing CandidateAssembler.
+
+Capture and validate this closure on the main authority once per request. Worker
+inputs own copied value arrays only; they contain no Node, Resource, RID, WeakRef,
+or Callable. The first bounded production change batches all admitted tree recipe
+rows for one section closure into a single cancellable preparation job. It keeps
+`TreeSpawnService` authoritative for grammar, stable identity and LOD, and emits
+section-local opaque/foliage layer data plus per-source ownership/support receipts.
+It must cover the impostor tier as well as bole, branch and foliage roles. Mesh or
+GPU resource creation remains on the renderer owner. Do not route through the
+current `NativeTreeArtifactBuilder`, which regenerates partial recipe grammars.
+
+Bind the job/result to the complete captured manifest digest and generation.
+Reject cancellation, world/roster/provider/source/removal changes before worker
+admission and again before candidate composition/install. Keep pending demand
+retryable. A stale or incomplete result contributes nothing; the installed section
+remains visible. Successful preparation must join terrain, buildings, trees and
+props into the same complete render-layer candidate, including explicit empty
+layers. Commit the replacement and retire the prior visual only after every
+required native layer and provider receipt acknowledges the same current candidate.
+Mobs/NPC simulation, tree gameplay bodies/collision/harvest authority, generation
+RNG and save deltas stay independently owned.
+
+**Preparation stage entry:** preserve the failed Main baseline and prove the
+existing complete-candidate/install boundary, then validate the capture manifest
+and queue backpressure/cancellation contract. **Preparation stage exit:** exact
+source/actor/RNG parity; focused recipe-to-layer parity covering all three tree
+grammars and near/mid/far/impostor tiers; stale/cancel/empty/retry checks; then the
+same-seed Main gate shows batched jobs admitted, native compiles and real installs
+completed, and settled provider acknowledgments. This is still not live acceptance.
+**Renderer stage exit:** headed initial view and traversal, harvest/edit/unload/
+replay/save checks, screenshots, and representative performance evidence. The
+underground source stays pending until its immutable capture includes edited cells,
+saved deltas, scene overlays and current native identity with script/native parity.
+
 Commit coherent verified scope with explicit file staging and retain known failed
 reports. Publish canonical documentation to main. No game push is implied.
 
