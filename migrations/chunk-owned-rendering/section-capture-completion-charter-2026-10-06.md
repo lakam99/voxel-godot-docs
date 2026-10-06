@@ -127,3 +127,82 @@ scaled, negative-chunk and boundary-crossing cases against independently transfo
 vertices/corners, then actual generated source slicing and the same Main gate.
 Correct synthetic expected bounds that duplicated the wrong formula without
 relaxing substantive containment, identity or renderer assertions.
+
+Independent review also found that adapter-local failed-cohort recovery does not
+prove production recovery: a failed provider snapshot becomes a nonretryable
+roster failure and blocks coordinator demand. Extend this same completion unit
+through the roster/coordinator boundary. Preserve concrete failure diagnostics
+and same-identity failed work, while allowing bounded authoritative recensus to
+observe a changed ecology source with unchanged terrain. Prove that path through
+the real coordinator and roster in a clearly labelled service contract, including
+saturated capture capacity. Do not convert invalid geometry into empty success.
+
+Owner-publication integration review found an additional existing consumer:
+`ActiveSurfacePropOwnerBundle` and the native N4 wildlife presentation admission
+require the established presentation schema and digest. Keep that ABI through a
+sealed value projection of the same animated registry publication; preserve its
+owner provenance and immutable aliases through nested bundles. Do not introduce
+another catalog authority or independently load resources. The owner-consumer
+lead owns this projection and its bundle/contract migration; HEAD reviews it and
+requires focused native admission evidence before committing the owner unit.
+
+The forward producer bounds gate now passes all eight checks:
+`node tools/run-ecology-forward-bounds-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-forward-bounds-20261006`.
+It compares independent transformed corners for primitive/detail source values,
+support proofs, negative chunks and section crossings, nested ordinary structure
+invalidation, and realized-prop bounds. Functional exit 0, cleanup passed, and
+authoritative zero membership; stderr is empty. This is a production-method
+geometry contract with synthetic inputs, not live or native-renderer acceptance.
+
+## Integrated forward-bounds result
+
+The project compiles (`godot-0XFtLP`). Focused results under
+`artifacts/citadel-runtime-integration/`:
+
+- `ecology-realized-prop-capture-forward-bounds-20261006`: 25 production-method
+  capture/RNG checks passed.
+- `ecology-section-support-coverage-forward-bounds-20261006`: 7 synthetic
+  support/manifest checks passed.
+- `ecology-section-value-adapter-forward-bounds-r3-20261006`: adapter contract
+  passed, including retained failed diagnostics and local bounded recensus.
+- `visual-owner-forward-bounds-r2-20261006`: 17 owner/envelope checks passed.
+
+Earlier adapter runs retained a stale failure-status assertion, then had a
+fixture check-call arity error; the first visual run incorrectly expected the
+aggregate envelope epsilon on each per-asset row. These were fixture errors.
+The final assertions preserve failure rejection and use unpadded per-asset
+expected bounds. No production tolerance was widened. The source-owner discovery
+fixture still has three failed rows (support and relocation/tombstone paths);
+its obsolete catalog resolver binding is under investigation. Source-pass slicing
+parity's initial fixture has type-inference parse errors and has not passed yet.
+
+The same-seed Main command, with the existing skip-tutorial flag, was:
+
+```text
+node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-forward-bounds-20261006 --TimeoutSeconds 360 --StartupWaitSeconds 120
+```
+
+It failed startup readiness at 120.033 seconds, with clean cleanup and authoritative
+zero membership. Four source chunks sealed successfully, 60 remained pending,
+and none failed support proof. No native compile or installation occurred. Two
+active section cohorts each required the same 64-chunk source closure. Remaining
+private sessions were 47 detail passes, 12 underground passes and one detail-batch
+pass. The coordinator retained 2,355 terrain-backed section demands.
+
+Across 4,417 capture calls, useful generation totaled 18,118,615 us; maximum call
+406,852 us, maximum useful-generation slice 47,248 us, maximum final seal 216,150 us.
+This confirms the geometric correction removed the observed failure but does
+not establish smoothness, native installation or startup acceptance. The next
+architectural decision must address why complete section capture invokes this
+broad procedural source-generation closure. Do not rerun this unchanged gate
+or merely raise frame budgets.
+
+The coordinator recovery contract subsequently passed in
+`ecology-section-value-adapter-coordinator-recovery-r4-20261006` through the real
+coordinator and source roster with synthetic producer authorities. It retains
+the concrete failed producer reason while section demand stays retryable, then
+changes only the structure source revision, observes fresh capture, and reaches
+candidate admission with unchanged terrain revision. Earlier new-fixture runs
+had type-inference and diagnostic-observation errors, preserved in their reports.
+This proves service-level retry integration; it does not prove native install or
+live gameplay. Production remains under the failed Main startup result above.
