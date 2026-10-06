@@ -5530,3 +5530,23 @@ headed proof is a separate exit: contracts cannot establish live ownership,
 pixel visibility, traversal, save/reload or performance. This stage adopts
 Minecraft's complete section-input and replacement-lifetime contract while
 using game-owned deterministic source enumeration and arbitrary-mesh bounds.
+
+### 2026-10-05 native section replacement lifecycle proof
+
+The headed synthetic lifecycle fixture now passes all 17 assertions through the
+actual native chunk render packet backend. It verifies complete source identity
+tuples `(sourceId, sourcePartId)`, explicit-empty installation, old-slot
+retention until replacement presentation, stale work rollback, unload callback
+drain, and source install acknowledgements. Command:
+
+`node tools/visible-world/run-native-section-presentation-lifecycle.mjs --OutputDirectory artifacts/citadel-runtime-integration/native-section-presentation-lifecycle-stage3-20261005-final`
+
+Report: `artifacts/citadel-runtime-integration/native-section-presentation-lifecycle-stage3-20261005-final/report.json`.
+The Node runner and Godot watchdog both exited 0; the watchdog records no
+timeout, clean owned-process teardown, and authoritative zero-member proof. The
+Windows Vulkan loader emitted one known registry warning, which the focused
+runner now admits exactly; other engine diagnostics remain fatal. This proves
+renderer installation and replacement lifetime for synthetic producers only.
+It does not prove the live Main provider census, candidate-specific pixel
+visibility, traversal, gameplay collision/interactions, save/reload or runtime
+performance. Stage 1 remains partial and the overall migration is not complete.
