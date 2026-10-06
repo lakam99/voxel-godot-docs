@@ -411,3 +411,64 @@ and temporary Godot result arrays are additional. The latest-generation metadata
 map still grows with visited section slots. Native identities are validated and
 echoed; full census and payload validation belongs to coordinator/finalization,
 so a native receipt alone is not authoritative world readiness.
+
+## Combined owner publication and replacement verification
+
+Game base remains `ff39dd5f`; the integrated migration is still an uncommitted
+working-tree diff. Charter review criteria were published in docs commit
+`c7df030`. No full migration acceptance is claimed.
+
+Focused results under `artifacts/citadel-runtime-integration/`:
+
+| Run directory | Result and scope |
+| --- | --- |
+| `ecology-producer-catalog-context-owner-publication-reviewed-20261006` | 41 checks pass: admitted catalog lifecycle and lease pressure. Eight entries bounds idle/unleased artifacts, not active generations. |
+| `ecology-section-value-adapter-owner-publication-20261006` | 82 checks pass: value adapter, support and owner replacement identity. |
+| `biome-owner-snapshot-contract-20261006` | 20 checks pass: profile value parity and actual ownership. |
+| `visual-owner-snapshot-contract-r3-20261006` | Visual ownership contract passes; disabling a required selected rock leaves publication pending, restoring the filter restores readiness. |
+| `animated-asset-scene-state-descriptor-private-animation-r2-20261006` | 19 checks pass: imported descriptors, actor-private animation resources and authoritative mutation invalidation. |
+| `native-section-presentation-lifecycle-owner-publication-r3-20261006` | 30 checks pass: synthetic providers through native compiler/renderer and frame callbacks, including stale pending acknowledgements. Not live gameplay or pixel acceptance. |
+
+These runs exited successfully with clean owned-process cleanup and authoritative
+zero membership. Compile smoke passed at
+`artifacts/node-tools/process-runs/godot-3QEXic/watchdog.json`.
+
+The first combined Main run,
+`main-section-cohabitation-gate-owner-publication-20261006`, used the same
+`ecology-main-retirement-stage5` seed and skipped tutorial. It was stopped after
+catalog invalidation remained pending: gameplay set loop mode on an Animation
+shared with the source catalog. Before invalidation it composed/sealed once,
+reused 39 times, and measured 22.046 ms catalog composition. It reached no native
+candidate/install. All 2,355 observed demands were terrain-backed; support-only
+count was zero. Forced-stop cleanup is recorded as failed, with authoritative
+zero membership proven; do not label it a clean functional completion.
+
+The ownership repair gives instantiated actors private AnimationLibraries and
+deep-duplicated Animations before returning them. Source mutations still invalidate
+catalogs. The first private-animation fixture run bypassed that factory and failed
+two assertions; the corrected fixture uses the production factory and passes all
+19. Launch manifests distinguish those source identities. No readiness assertion
+was weakened. A fresh same-seed Main run is required after this repair.
+
+Targeted integration review found no additional concrete defect in lease reuse,
+runtime identity, empty-section revisions, stale compilation/install/replay or
+delayed acknowledgement checks. It is not blanket approval of the broader dirty
+tree. Main cohabitation and all parent live/performance exits remain open.
+
+The post-repair Main run `main-section-cohabitation-gate-owner-private-animation-20261006`
+failed `main_startup_not_ready` at 120.068 seconds, functional exit 1, clean cleanup
+and authoritative zero membership. It composed/sealed once (13.606 ms), reused
+930 times and had no terminal source failure or catalog invalidation. At exit all
+196 source jobs remained pending, with 8,375 subscriptions and 2,355 terrain-backed
+demands; support-only demand remained zero. No native compile/install completed.
+Maximum ecology admission was 244.811 ms and source service 283.790 ms. This is
+evidence the catalog ownership fix works in Main, not startup acceptance.
+
+The next bounded discovery must distinguish repeated source admission/copy costs
+from useful generation. The current queue prioritizes least-recent dispatch over
+distance, spreading progress across every source. Main also serializes/freezes and
+restores resumable state every slice. Minecraft's dispatcher acquires a bounded
+buffer, completes an admitted task and releases it; its immutable input region is
+separate from mutable task-local computation. Follow that ownership separation in
+the next integrated producer/scheduler stage, retaining deterministic draws and
+revision checks. Do not relax readiness or repeat an unchanged long run.
