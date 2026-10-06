@@ -132,9 +132,130 @@ and generated-but-unrequested rows stay in the private generation session. This
 keeps each sealed bundle independently reconstructible from its published inputs
 and prevents private progress from changing a previously accepted manifest.
 
+Actor simulation readiness does not gate static installation. However, the
+current shared surface RNG tape includes wildlife presentation branch draws.
+`build_wildlife_actor_intent` can fail before scale/animation/direction/timer
+draws when its immutable presentation descriptor is unavailable. That remains
+an explicit generation-input failure in this unit: accepting later static rows
+would otherwise change their deterministic RNG sequence. Do not swallow that
+failure as an optional actor sidecar. Separating this dependency later requires
+a complete known draw branch and retained retryable actor decisions.
+
 Census carries `sourceChunkKeysByFamily` with all six canonical keys and exact
 sorted owner sets, plus a sorted union for compatibility. Unknown family support
 keeps the relevant census pending; it cannot become an empty set certificate.
 Capture can advance an independently bounded requested family while another
 family policy remains pending. Shared surface RNG decisions remain one retained
 pass; later family demand reuses those decisions rather than resampling.
+
+## Integrated verification checkpoint
+
+The user requested larger implementation steps. The delivery unit remains the
+complete generation, family dependency scheduling, tree compilation, and actual
+Main renderer installation path. Individual contract passes are diagnostic
+evidence within that unit; they are not stage exits.
+
+On game base `5ffac014` with the current uncommitted family cutover, the engine
+compile smoke passed after two GDScript syntax/type corrections. The catalog
+contract passed 45 checks and tree-family contract passed 19. Reports are under
+`artifacts/citadel-runtime-integration/`:
+
+- `ecology-producer-catalog-context-family-20261006/report.json` — passed,
+  synthetic catalog ownership and scope contract.
+- `tree-source-family-coverage-20261006/report.json` — passed, synthetic family
+  admission and authoritative-empty currentness contract.
+- `ecology-section-value-adapter-family-20261006/report.json` — failed; replacement,
+  cancellation, and refreshed admission assertions require integrated diagnosis.
+  Functional exit 1; clean shutdown and authoritative zero members.
+- `ecology-world-support-index-family-20261006/report.json` — failed at
+  “new family owner remains queryable and releases old leases.”
+- `ecology-source-pass-slicing-parity-family-20261006/report.json` — setup could
+  not find the required naturally generated static/tree/actor case in its bounded
+  search. This is unresolved service-fixture evidence, not a gameplay failure or
+  proof of changed generation.
+
+The failed same-seed Main baseline remains unchanged. Do not rerun that expensive
+gate until the narrower evidence supports a new attempt. Minecraft `ChunkStep`
+and `SectionRenderDispatcher` were reviewed again: completion follows task
+completion, and all required nonempty layer uploads precede replacement of the
+old section mesh. Preserve those boundaries through the family optimization.
+
+The integrated lifecycle review identified two production corrections: the
+latest-subscription lookup must bind world/chunk/family selection independently
+of the versioned work digest, and an equal-content catalog owner replacement
+must refresh validated source/posting provenance without creating a false
+removal. Revisioned job identity and all semantic content checks remain intact.
+For partial family publication under replacement owner B, remaining A-family
+proof must keep the candidate pending until recaptured under B. The previous
+installed representation remains visible during that transition. Do not admit a
+mixed stale-owner candidate to avoid a pending state.
+
+The second parity diagnostic isolated the setup omission: all 96 candidates
+failed `citadel_town_inputs_unfinalized`, with zero source attempts. The fixture
+must generate the required deterministic town-region inputs and use the real
+Main finalization command before comparing source-pass budgets.
+
+### Focused cutover results
+
+The coordinated correction now passes these named gates. All six runs below
+reported functional exit 0, cleanup passed, and authoritative zero owned members.
+Their `launch.json` files bind the uncommitted source hashes to the reports.
+
+| Gate | Checks | Report under `artifacts/citadel-runtime-integration/` |
+| --- | ---: | --- |
+| Catalog ownership | 45 | `ecology-producer-catalog-context-family-20261006/report.json` |
+| Tree family admission | 19 | `tree-source-family-coverage-20261006/report.json` |
+| Support index lifecycle | 60 | `ecology-world-support-index-family-r3-20261006/report.json` |
+| Adapter/candidate input contract | 88 | `ecology-section-value-adapter-family-r3-20261006/report.json` |
+| Real Main source-pass parity | 19 | `ecology-source-pass-slicing-parity-family-r5-20261006/report.json` |
+| Source relocation/removal replay contract | 14 | `ecology-source-owner-discovery-contract-family-r3-20261006/report.json` |
+
+Use `node tools/run-ecology-producer-catalog-context-contract.mjs`,
+`node tools/visible-world/run-tree-source-family-coverage-contract.mjs`,
+`node tools/visible-world/run-ecology-world-support-index-contract.mjs`,
+`node tools/run-ecology-section-value-adapter-contract.mjs`,
+`node tools/run-ecology-source-pass-slicing-parity.mjs`, and
+`node tools/visible-world/run-ecology-source-owner-discovery-contract.mjs`,
+respectively, with `--OutputDirectory` equal to the report's directory.
+The parity run used `--TimeoutSeconds 180` and the default recorded seed
+`ecology-source-pass-slicing-parity-v1`.
+
+The parity gate exposed a production detail handoff bug: a time-budget yield
+after completed detail batch publication but before caller phase advancement
+could append the completed detail rows again. The producer now performs that
+handoff once per session. Public sliced capture equals the full pass, preserves
+actor decisions and RNG states, and has unique source/member identities.
+Unchanged family publications now leave section revisions stable, while actual
+changes invalidate their exact dependents. Final family demand release drains
+the catalog lease. The source relocation fixture also corrected its own
+world-versus-chunk-local position setup; no production policy was relaxed.
+
+These are contract/service results. Actual Main native installation and later
+live visual, traversal, interactions, unload/reload, save, and performance gates
+remain required. No stage exit or overall completion is claimed.
+
+The headed recipe compiler contract also passed 25 checks and produced 9 batches:
+`node tools/visible-world/run-tree-recipe-section-compiler-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/tree-recipe-section-compiler-family-20261006`.
+Its owned-process cleanup and zero-member proof passed. It is compiler/queue
+integration evidence, not live gameplay acceptance.
+
+### Same-seed Main result and next architectural boundary
+
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-family-20261006 --TimeoutSeconds 360 --StartupWaitSeconds 120`
+failed startup readiness at 121.531 seconds, with tutorial skipped and seed
+`ecology-main-retirement-stage5`. Functional exit 1; cleanup passed and authoritative
+zero members. Report and source/DLL hashes are in that exact output directory.
+
+Compared with the prior 4 ready/60 pending baseline, the new run reached 60 ready,
+12 pending, 0 failed source jobs. However, it still had zero completed native
+compiles or installed candidates. This does not pass the stage exit.
+
+The final timings isolate the next boundary: 60 final seals consumed 21.434 s
+(maximum 915.937 ms); accepted-result retention consumed 20.757 s (maximum
+789.453 ms); useful generation consumed 7.468 s. The maximum source-queue service
+step was 4288.367 ms. Main seals the same completed payload twice solely to rotate
+its transport catalog lease; consumers then reconstruct it again during family
+and member validation. The next integrated unit must establish owner-issued
+immutable source publication once, reuse exact admitted family/member aliases,
+and preserve current owner/revision checks at capture and installation. Do not
+increase deadlines or frame budgets to conceal this work.
