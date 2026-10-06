@@ -442,3 +442,105 @@ review owns no mutable files. Godot runs remain serialized with dependency edits
 frozen. The proposed native underground scan is a later integrated unit: it must
 include script overlay capture, native source parity and cancellable receipt
 validation together before replacing the existing scan.
+
+The real-generated completion baseline reproduced the bounds contradiction;
+`ecology-source-pass-slicing-parity-real-compile-baseline-20261006` contains
+both AABBs. The Main-only correction was independently reviewed and passed all
+24 checks in `ecology-source-pass-slicing-parity-real-compile-headed-20261006`
+(15.641 s, cleanup and zero proven). The intermediate headless run failed because
+the factory intentionally produces no bole geometry with its dummy renderer;
+the extended fixture now uses a real GL renderer, without claiming gameplay.
+Across the preserved baseline and corrected run, actor digests and losslessly
+read 64-bit surface/detail/underground RNG states match. Nominal geometry is
+unchanged by the reviewed production diff; support-proof digests change intentionally.
+
+Main `main-section-cohabitation-gate-tree-coverage-20261006` progressed into
+tree geometry compilation but still failed startup. Its bounded cohort report
+identified `ecology_tree_source_compile_artifact_unsealed`. Both empty and
+nonempty queue completion paths discard the return value of the copy-producing
+`_freeze_section_value` helper. The next correction must retain that returned
+owned artifact in both paths, keeping consumer seal checks unchanged. Extend
+the real-generated completion assertion to check the artifact's recursive
+container immutability, and cover authoritative empty completion explicitly.
+Review the complete queue-to-adapter result boundary before another Main run.
+
+The complete boundary review also found two Adapter integration errors to repair
+as part of this unit: manifest assembly replaces a compiler world transform with
+the producer's chunk-local transform, and contribution polling registers an old
+chunk-only consumer token outside the section-demand retirement owner. Preserve
+and validate the compiled world transform against chunk origin plus producer
+placement; poll only under retained demand ownership. Prove a nonzero-chunk
+source remains correctly located through support-index admission, and prove
+contribution followed by last-demand release leaves no orphan queue consumer.
+The producer lead now owns Adapter and its existing contract fixture only; HEAD
+owns queue/real-generated fixtures and documentation; review remains independent.
+All other publication identities, currentness checks and source closure remain
+required. The sealed-output real-generated fixture passed 25 checks and exact
+same-proof baseline comparison; this still does not accept the Adapter boundary.
+
+The corrected manifest binder now preserves and validates the compiler's world
+transform, and contribution looks up the existing section demand by capture
+identity before polling its original queue/consumer. Independent review approved
+both changes. `ecology-source-pass-slicing-parity-support-boundary-r2-20261006`
+passed 26 checks in 16.427 s, including two naturally generated trees and 1,586
+compiled members through the actual manifest binder, support projection and
+Index row validation at chunk `(-4,-4)`. This is direct service evidence, not a
+complete census/contribution/native-install or gameplay claim. Its unchanged
+baseline comparator passed against `ecology-source-pass-slicing-parity-sealed-output-20261006`.
+
+Preserve the first support-boundary report: all 26 in-run checks passed, but its
+cross-run comparison failed. Adding an early Adapter preload changed process-local
+owner IDs and therefore the owner-bound catalog artifact ID, despite identical
+catalog content digest, source revision, actors and RNG. Loading that downstream
+probe after Main's catalog capture restored exact comparison without changing
+production identities or excluding comparison fields.
+
+The wider read-only retirement review found a remaining separate production
+defect: canonical `_latest_by_section` is keyed by source/member identities,
+while legacy prepared-tree retirement looks those keys up as raw source IDs.
+Moreover canonical compiled and legacy prepared revisions have different
+contracts. The next retirement unit must explicitly bind the real prepared owner
+to canonical source/member identities and require the complete owned-section
+receipt set. Decoding keys alone is insufficient. Do not report legacy tree
+retirement or duplicate-free mixed representation as accepted until live replay
+proves that association and retirement.
+
+Adapter gate `ecology-section-value-adapter-boundary-r4-20261006` passed all
+93 checks with cleanup and authoritative zero. The new synthetic contribution
+case reaches the actual Adapter contribution path, polls only the retained
+section token, removes that token on unload and refuses to poll after release.
+It uses an explicitly synthetic support index/queue; it does not prove live
+renderer retirement. Earlier fixture-only failures are preserved: r1 had typed
+stub/boolean parse errors, r2 had a parent return-signature mismatch (both exit
+126, cleanup false, authoritative zero); r3 supplied inconsistent census and
+query coverage digests (exit 1, cleanup and zero passed). The fixes align fixture
+inputs/types with production contracts; assertions and production gates remain.
+
+The next integrated run is `node tools/visible-world/run-main-section-cohabitation-gate.mjs
+--OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-integrated-boundary-20261006
+--TimeoutSeconds 360 --StartupWaitSeconds 120`, seed
+`ecology-main-retirement-stage5`, SkipTutorial, actual Main/Forward+.
+
+That integrated run failed the 120-second readiness criterion, exited 1, and
+passed cleanup with authoritative zero. The previous source-cohort contract
+failures no longer appeared: zero failed cohorts, 61 complete source captures,
+three pending underground scans. Tree preparation had 56 jobs (55 active, one
+complete), 246 recipe jobs and one recipe worker. The concrete pending tree
+reason was `tree_section_compile_in_progress`. Native completed compiles and
+installed candidates both remained zero. This is not live renderer acceptance.
+Maximum observed source queue service was 1,133.455 ms; section admission was
+1,576.602 ms. These are named section timings, not a measured worst-frame claim.
+
+Do not repeat this unchanged integrated run. The next larger preparation unit
+must address both expensive source discovery and tree geometry preparation,
+following Minecraft's retained region inputs, independent compile workers and
+complete upload/swap boundary. The native underground scanner needs the explicit
+script-overlay/native-source parity bridge described above; an existing shadow
+native page alone is insufficient. Existing `native_tree_artifact` also exposes
+pending broadleaf/savanna recipes, so it cannot replace the game's full grammar
+unchanged by assertion. Prefer native geometry preparation from the already
+admitted recipe values, preserving the game's generated recipe authority,
+with exact geometry/material/wind/ownership parity before promoting it.
+Retirement requires the separate exact member/owner receipt association already
+recorded. Full production migration, live traversal, gameplay/save parity and
+performance gates remain open. No stage is advanced by these focused passes.
