@@ -145,3 +145,84 @@ failed and untested rows separately; a focused proof cannot waive this exit.
 
 Commit coherent verified scope with explicit file staging and retain known failed
 reports. Publish canonical documentation to main. No game push is implied.
+
+## Integration evidence in progress
+
+The coordinated producer, Adapter/Index, and tree consumer implementation is now
+present. It retains publication aliases and consumer leases, removes the v1
+intermediate seal, and keeps the existing native compile/install destination.
+This is not stage-C acceptance.
+
+- `node tools/run-project-compile-smoke.mjs` passed: MainMenu, Main, and the
+  playtest runner load. Owned-process evidence:
+  `artifacts/node-tools/process-runs/godot-ggVDIp/watchdog.json`.
+- `node tools/run-ecology-producer-catalog-context-contract.mjs --OutputDirectory
+  artifacts/citadel-runtime-integration/ecology-producer-catalog-context-owned-r4-20261006`
+  passed 54 synthetic checks. This proves the named publication ownership/value
+  contracts, not gameplay. The earlier r1/r2 compiler failures are preserved;
+  their forced stops have authoritative zero-member evidence. R3 passed 53
+  checks before the legitimate immutable `Rect2i` structure-bounds case was added.
+- Real Main generation parity is not yet accepted. First run stopped at the
+  spatial-source review guard because its already-reviewed compiler hash had
+  not been updated. R2 then reached source admission and rejected the production
+  structure dependency's `Rect2i` bounds. Both runs exited with cleanup and
+  authoritative zero-member evidence. The owner whitelist now accepts that
+  immutable integer rectangle; no resource/object admission was relaxed.
+- Independent review identified a final local-revision freshness gap in support
+  queries. Owner/lease checks alone are insufficient after terrain, structure,
+  or removal changes. The query/acknowledgement checks are integrated and pass
+  the focused Index gate; old installed visuals remain while replacement is pending.
+
+The frozen-baseline parity command additionally compares exact 64-bit RNG state,
+generated rows, actor digests, source/family revisions, and counts with the
+passing family-unit r5 report. JavaScript comparison retains raw unsafe-integer
+JSON literals rather than rounding them. Full serialized v2 bundle equality is
+not claimed: transport lease data and the duplicate legacy `actorIntents` field
+are omitted; canonical actor snapshot/digest and generated content are retained.
+
+Remaining risk: large payload retirement still follows the existing synchronous
+alias-release behavior. This unit has not established hitch-free teardown or
+retirement. Live traversal, screenshots, interactions, save/reload, and runtime
+performance remain untested against this coordinated cutover.
+
+### Combined gate results
+
+All paths below are relative to game `artifacts/citadel-runtime-integration/`.
+Passing focused runs have exit 0, cleanup passed, and authoritative zero members.
+
+| Gate | Report directory | Result |
+|---|---|---|
+| Producer catalog/publication contract | `ecology-producer-catalog-context-owned-r4-20261006` | 54 checks passed |
+| Adapter | `ecology-section-value-adapter-owned-r2-20261006` | 88 checks passed |
+| Support index | `ecology-world-support-index-owned-r2-20261006` | 68 checks passed, including local freshness and stale acknowledgement rejection |
+| Tree family | `tree-source-family-coverage-owned-20261006` | 22 checks passed |
+| Source owner discovery/replay | `ecology-source-owner-discovery-contract-owned-20261006` | 14 checks passed |
+| Real Main generation service parity | `ecology-source-pass-slicing-parity-owned-r4-20261006` | 20 in-run checks passed; older-build digest comparison failed and remains unresolved |
+| Headed tree compiler/adapter | `tree-recipe-section-compiler-owned-20261006` | 22/25 checks passed; fixture authority lacked newly required publication APIs; fixture migrated, rerun pending |
+| Headed actual Main cohabitation | `main-section-cohabitation-gate-owned-20261006` | Failed initial readiness at 120.162 s; zero native compiles/installations |
+
+The real Main command remains unchanged apart from the fresh output directory:
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory
+artifacts/citadel-runtime-integration/main-section-cohabitation-gate-owned-20261006
+--TimeoutSeconds 360 --StartupWaitSeconds 120`. Seed is
+`ecology-main-retirement-stage5`, with `-SkipTutorial`. It completed with exit 1,
+cleanup passed, and authoritative zero members. The loading gate stayed closed.
+There were 61 ready source jobs, three pending, zero failed, 64 captured source
+chunks, and 2,355 terrain-backed section demands. The three unfinished source
+sessions were in `underground_props`; 60 narrow completed sessions retained their
+detail cursor for possible wider demand. No renderer installation is proven.
+
+Diagnostic totals: sealing 17.848 s, accepted-result retention 24.668 s, useful
+generation 9.662 s, total capture 59.241 s; maximum queue service 3.235 s. These are
+not controlled performance comparisons: approximately ten seconds overlapped an
+isolated diagnostic-project materialization. The functional pending phases and
+zero-install outcome remain valid evidence.
+
+The baseline mismatch has not been waived. Actor digests, actor/source counts,
+family counts, and exact RNG states match r5. The reviewed tree compiler source
+hash contributes to the certified support policy and catalog identity, which
+also appears in source rows. Reports retain only row hashes, so they cannot prove
+unchanged transforms/recipes independently. A separate ignored source-service
+replay using the retained prior compiler/queue and their original certificate
+pin is being prepared; it must use the unchanged baseline comparison, and must
+not be cited as production renderer or gameplay acceptance.
