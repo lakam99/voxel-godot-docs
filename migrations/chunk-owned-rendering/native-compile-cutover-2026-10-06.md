@@ -314,8 +314,81 @@ Progress and `diagnostic-summary.json` retain the source failures and timings;
 there is no successful final gameplay report. Maximum ecology admission was
 1500.707 ms, source service 398.817 ms, catalog capture 1425.194 ms cold and
 193.697 ms latest. These failed-run observations are not performance acceptance.
-Next falsifier: inspect actual imported AnimationPlayer SceneState properties
-and the registry descriptor reader before another Main run.
+The next falsifier inspected actual imported AnimationPlayer SceneState properties
+without instantiation. Report:
+`artifacts/citadel-runtime-integration/animated-scene-state-diagnostic-20261006/report-r2.json`;
+owned watchdog `watchdog-r2.json` has functional 0, clean cleanup and authoritative
+zero. All five imported assets serialize the default library as `libraries/`
+with an `AnimationLibrary` resource, while the descriptor reader recognized only
+a `libraries` dictionary. The first diagnostic had a temporary script indentation
+error; the corrected diagnostic proves this schema mismatch.
+
+The next cohesive producer descriptor change supports actual default/named
+serialized library properties, rejects malformed or ambiguous entries, and
+preserves bounded asset/node/property diagnostics through source capture. Its
+content digest excludes instance IDs and registry counters; runtime owner proof
+retains those identities separately so equal-content owner replacement changes
+freshness without changing generated content revisions. Reuse the leased frozen
+catalog in source pass state instead of deep-copying it. Acceptance requires the
+actual five imported descriptors, default/named and malformed contract cases,
+equal-content resource replacement with stale-owner rejection, relevant compact
+capture gates, then the same bounded real Main gate. No missing animation data
+will be treated as empty or accepted by a fallback.
+
+Descriptor verification passed:
+`node tools/run-animated-asset-scene-state-descriptor-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/animated-asset-scene-state-descriptor-r3-20261006`
+has 13 passing checks, including all five actual imported clips and stable semantic
+digest plus stale old-descriptor rejection after equivalent Resource replacement.
+The runner binds source and GLB hashes and verifies source stability. Functional 0,
+clean cleanup and authoritative zero. Earlier r1/r2 fixture/indentation failures
+are retained; r3 is the passing evidence. The production capture integration also
+passes the full project compile smoke (watchdog `godot-l94o6p`) and all 81 adapter
+assertions in `ecology-section-value-adapter-v2-descriptor-20261006/report.json`.
+These remain descriptor/compile/service checks. The next real Main run used
+`main-section-cohabitation-gate-catalog-v2-descriptor-20261006` with the same seed
+and bounds. It failed `main_startup_ready` at 120.485 seconds, functional exit 1,
+clean cleanup and authoritative zero. The animation failure is gone: no terminal
+source capture failures were recorded. However no section candidate or native
+compile was completed. At exit, 203 source jobs and 1,337 section demands remained;
+the run performed 394 fresh catalog captures. Maximum ecology admission was
+1045.104 ms (latest 216.095), source service 347.390 ms (latest 236.245), and catalog
+capture 987.874 ms (latest 105.493). The pending set grew from 89 source jobs and
+770 demands around 41.5 seconds. Before another full run, trace whether support
+owner requests recursively expand rendering demand and redesign catalog ownership
+to avoid repeatedly proving unchanged immutable data. Fixed-neighborhood input
+capture and the render demand set are separate concepts in Minecraft; preserve
+that separation while retaining all genuinely intersecting tree/building support.
+
+Read-only closure audit **did not find recursive expansion**: the bridge derives
+owner sections only from original view snapshots, then queries those owners in a
+separate map. It never derives another owner set from that map. Native viewer
+publication and one-hop owners both enter the coordinator's aggregate counter,
+so growth alone cannot identify either source. Current startup view distances are
+80 cells initially and 96 at target. Keep this finite closure; add distinct view,
+terrain-backed, support-only and source-chunk counters before attributing growth.
+The confirmed repeated work is the 394 outer catalog scopes: each reconstructs
+profile values, asset/rock/tree envelopes and animated descriptors, then copies
+and hashes them before deduplication. The next architecture unit is owner-published
+immutable catalogs with explicit mutation/reload boundaries, composed and leased
+across frames. A generation-counter shortcut over still-mutable public Resources
+would not satisfy the contract. Owner/consumer/write inventory and exact API
+agreement are entry requirements before that production edit.
+
+The independently usable descriptor subsystem was committed as game commit
+`ff39dd5f` (`Add verified SceneState descriptors for animated assets`): registry,
+dedicated fixture and its Godot-generated UID, and Node runner only. Final rerun
+`artifacts/citadel-runtime-integration/animated-asset-scene-state-descriptor-final-20261006/report.json`
+passes 13 checks after adding the UID to the source manifest. The owned editor UID
+import completed with clean cleanup and zero members; its only diagnostic was
+the existing nested scratch-project warning. The broader rendering integration
+remains dirty and unaccepted. No game push was made.
+
+The failure currently arises during the deterministic wildlife-intent pass,
+which shares seeded iteration with static ecology. Mobs remain separate rendered
+actors, but their descriptor admission can currently fail the static source pass.
+Full migration still needs actor readiness separated from static publication while
+preserving all seeded RNG draws; fixing the descriptor format alone does not
+prove that independence.
 
 Independent review also identified a non-startup capacity risk: 128 idle ready
 source jobs can retain leases across the catalog store's 8 artifact generations.
