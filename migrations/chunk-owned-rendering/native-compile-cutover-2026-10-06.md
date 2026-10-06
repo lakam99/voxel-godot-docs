@@ -102,6 +102,101 @@ Policy memoization keys the shared catalog values, while domain identities
 retain exact local revisions. A persistent world-lifetime context is deferred
 until catalog mutation boundaries can authoritatively invalidate it.
 
+Minecraft lifetime cross-check: `LevelExtractor` creates `RenderRegionCache`
+for one section-update extraction pass and shares it across dirty visible
+sections. `SectionCopy` copies non-air state containers, and region objects keep
+those copies alive for dispatch. The cache is not world-lifetime. Its Java graph
+also retains live level/light/block-entity references; our C++ worker boundary
+continues to require owned value data rather than copying that object model.
+
+Review identified two remaining dependency boundaries. The existing structure
+revision includes global publication queue/count changes, so even distant
+structure activity can supersede a source pass. It remains conservative until a
+separate token proves the exact exclusion/footprint, town-input and citadel
+reservation closure, including post-draw tree margins. Also the canonical prop
+pass emits wildlife actor intents and consumes presentation-dependent RNG;
+animated catalog identity must remain bound while that is true. Actors are not
+installed by the static renderer, but their producer inputs are not fully
+independent of static capture yet. Separating those producers requires an
+explicit deterministic RNG/parity decision; removing the identity alone would
+be incorrect.
+
+Producer-context implementation verification (dirty game base `b62a71d2`):
+
+- `node tools/run-project-compile-smoke.mjs` passed; owned report
+  `artifacts/node-tools/process-runs/godot-sLcMYt/watchdog.json`.
+- `node tools/run-ecology-producer-catalog-context-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-producer-catalog-context-20261006`
+  passed 22/22 synthetic value ownership, scope identity/lifetime and policy
+  digest checks. It does not prove real catalog reuse or gameplay.
+- `node tools/run-ecology-section-value-adapter-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-catalog-context-20261006c`
+  passed 81/81 synthetic lifecycle and existing contribution checks. Added
+  checks cover stale recapture fan-out, exact partial-state retirement on
+  supersession/release/reset, retained completed cache and idle scope avoidance.
+  The earlier first attempt had an explicitly typed boolean missing in its new
+  fixture; the second exposed reordered missing-authority diagnostics. Both
+  were corrected without relaxing assertions. The first was stopped by the
+  owned error monitor (cleanup false, authoritative zero true); the second
+  failed functionally with clean teardown.
+
+Both successful contract watchdogs report functional 0, cleanup true,
+authoritative zero true and empty final membership. The owned headless editor
+import at `artifacts/catalog-context-import-20261006/watchdog.json` also passed
+and generated the new script UID sidecars. It reported the existing nested
+`artifacts/vt/b/98399ab4-25f/source/project/project.godot` project as ignored.
+Production Main replay remains a separate gate.
+
+Game commit `90141c2c` preserves the verified catalog-context value/lifetime
+component, policy cache, static-member identity helpers, focused runner and UID
+sidecars. Main/adapter production integration is still in the working tree.
+
+The replay `node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-catalog-context-20261006 --TimeoutSeconds 360 --StartupWaitSeconds 120`
+failed startup at 122.98 seconds. Compared with the same-seed 120-second
+diagnostic above, full catalog input captures fell from 634 to 124 and maximum
+ecology admission from 11,112.271 to 5,268.936 ms. These are individual diagnostic
+runs, not a statistical performance gate. Native compilation/installation
+remained zero. There were no terminal source failures; stale jobs correctly
+reported recapture. The final four serviced jobs were invalidated solely as the
+global generated-structure count changed from four to five, with their local
+town/citadel values unchanged. Functional exit 1, cleanup true, authoritative
+zero true, empty final membership.
+
+### Next complete producer-admission unit
+
+Entry evidence is the replay above. Fix the producer dependency boundary as
+one unit: (1) replace ecology's broad structure publication revision with a
+semantic dependency closure for its actual source chunk and declared post-draw
+tree margins; (2) carry one owned catalog artifact through the source batch,
+using compact, validated identity at repeated source-job boundaries instead of
+rehashing/deep-copying the same catalog for each inverse source. Preserve fresh
+semantic capture between batches and reject forged or mutated provenance.
+
+The structure closure must include local natural exclusions, terrain footprints,
+admitted citadel reservations and generations, deterministic nearby town inputs,
+and pending/final state needed to know those records are complete. Distant queue
+indices and global generated counts are not ecology facts. Do not replace the
+existing general publication/navigation revision; add an ecology-specific
+contract and migrate every ecology consumer together. Preserve world generation,
+RNG, local edits, collision/navigation and old-render-slot authority.
+
+Acceptance: local changes invalidate and restart a whole source pass; unrelated
+structure scheduling does not; missing/undecided local admission remains pending;
+same-revision catalog mutation and forged digests are rejected; partial state is
+retired; immutable input parity remains exact. Then repeat the real Main gate
+and require native candidate progress before advancing to traversal/performance.
+Do not repeat the unchanged costly run as evidence of progress.
+
+Ownership for this unit: ecology lead owns the compact catalog artifact and
+Main/adapter/domain consumers, and may delegate support-index/tree-compiler
+consumers with separate mutable scopes. Structure lead owns only the additive
+StructureSystem closure API, its composed helper and focused contracts. HEAD
+owns integration, independent diff review and acceptance. The artifact resolver
+must be per-world, hold explicit lifetime ownership through source jobs,
+snapshots/index and asynchronous tree admission, deduplicate only freshly
+validated equal content, retire unleased entries with a bound, and drain on
+reset. Scope end cannot evict a retained proof. Unknown compact identities fail
+closed; the direct full-input form remains strictly validated for existing
+explicit synthetic contracts. No source/actor/navigation authority moves.
+
 Before changing capture ownership, measure catalog-input building, source queue
 callbacks, and census admission through the existing bounded performance monitor
 and retain those timings in the Main report. A short diagnostic replay of the
