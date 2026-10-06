@@ -1,6 +1,11 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
-**Status:** active migration; a live Main-scene production section candidate now reaches a current native render receipt. Full visual cutover and gameplay acceptance remain open.
+**Status:** active migration. Earlier revisions reached a live Main native receipt;
+the current complete-source cutover has not passed that gate. The 2026-10-06 Main
+run retained loading with source preparation and tree-bound validation pending,
+and zero native compilations/installations. Current work and exact
+evidence are in the [owned source publication charter](owned-source-publication-charter-2026-10-06.md).
+Full visual cutover and gameplay acceptance remain open.
 **Recorded:** 2026-10-04
 **Canonical source:** `voxel-godot` branch `codex/chunk-owned-world-rendering-migration`
 

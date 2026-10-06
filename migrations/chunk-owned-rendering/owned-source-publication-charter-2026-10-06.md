@@ -308,3 +308,137 @@ are invisible. No blanket family omission or fabricated empty result is allowed.
 Section-local generation must preserve deterministic candidate ordering/RNG;
 otherwise accelerate preparation at the terrain-volume authority. This is an
 explicit remaining architectural dependency, not an excuse to bypass admission.
+
+Read-only dependency discovery found an existing C++ implementation in
+`native/world_backend/core/native_underground_prop_stream.cpp`:
+`NativeUndergroundFloorScan::create` preserves the ordered first-floor scan,
+candidate hash threshold and first-36 cap, and accepts cancellation. Its only
+GDExtension entry point currently used by scripts is the synchronous
+`compose_underground_prop_ordered_shadow`, which also builds recipes and explicitly
+does not claim production cutover. Reuse that scanner if native preparation is
+needed; do not invent another algorithm. Promotion requires an asynchronous
+floor-artifact job, current `NativeEffectiveTerrainSource` pin, proven agreement
+with script edits/scene-block/structure/fluid state, and fresh differential
+evidence before substituting it for the live incremental scanner. Existing N4
+probe evidence is source/recipe parity, not live installation or worker ownership.
+
+### Coordinated preparation unit: focused verification
+
+The producer factory and adapter demand lifecycle are implemented together.
+The Domain sealer, source RNG/generation rules, tree geometry compiler, Index
+production code, and final six-family completeness requirement are unchanged.
+Independent review approved producer ownership and corrected adapter ownership
+paths: consumer identities include Adapter instance identity; accepted consumers
+are retained before later admission can fail; cancellation addresses the original
+queue through its weak owner; queue replacement readmits retained demand. Ready
+source work is primed before returning other pending or terminal source results.
+
+All passing commands below use `--OutputDirectory
+artifacts/citadel-runtime-integration/<directory>`. They ran serially, exited 0,
+and report cleanup passed with authoritative zero members.
+
+| Command | Directory | Named evidence |
+|---|---|---|
+| `node tools/run-ecology-producer-catalog-context-contract.mjs` | `ecology-producer-catalog-context-preparation-r2-20261006` | 57 synthetic ownership/value checks; single seal, unchanged semantic/content digests, copied producer data, strict external admission |
+| `node tools/run-ecology-section-value-adapter-contract.mjs` | `ecology-section-value-adapter-preparation-r3-20261006` | 90 synthetic adapter checks; priming, sibling demand, queue replacement, stale rejection and last-demand retirement |
+| `node tools/visible-world/run-ecology-world-support-index-contract.mjs` | `ecology-world-support-index-preparation-20261006` | 68 synthetic freshness/receipt checks; runner now hashes its actual Adapter fixture dependencies and checks final source stability |
+| `node tools/run-ecology-source-pass-slicing-parity.mjs` | `ecology-source-pass-slicing-parity-preparation-20261006` | 20 real Main source-service checks; exact comparison against same-certificate `ecology-source-pass-slicing-parity-owned-r4-20261006/report.json` passed, including rows, revisions, actors, and lossless RNG; 13.470 s |
+
+The parity command also used `--TimeoutSeconds 180 --BaselineReport
+artifacts/citadel-runtime-integration/ecology-source-pass-slicing-parity-owned-r4-20261006/report.json`.
+These results do not establish live startup, renderer installation, gameplay or
+performance acceptance. The actual Main gate is the next required exit.
+
+Preserved introduced fixture failures: Context first run had three untyped
+Variant-derived boolean assertions; Adapter first run had one untyped Dictionary
+assertion; Adapter r2 explicitly freed a RefCounted fixture and aborted its result.
+Each was stopped by the owned watchdog (exit 126, cleanup false, authoritative
+zero true). Fixture setup was also corrected to supply required publication
+handles and the section/job reverse subscription. Assertions and production
+admission requirements were retained.
+
+### Actual Main result and next falsifiable check
+
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory
+artifacts/citadel-runtime-integration/main-section-cohabitation-gate-preparation-20261006
+--TimeoutSeconds 360 --StartupWaitSeconds 120` failed initial readiness at
+120.182 s with the same seed and SkipTutorial. It exited 1 with cleanup passed
+and authoritative zero. There were 61 ready sources, three underground scans
+pending, zero native compiles/installations, and one failed section cohort.
+The existing report omits that cohort's failure reason; no source job was failed.
+
+The live factory boundary is confirmed: 61 producer seals, 61 trusted insertions,
+zero external revalidations and no lingering transient alias. Retention/store work
+totalled 2.139 s; canonical sealing 18.698 s; capture calls 41.741 s; maximum source
+queue service 1.517 s. These are diagnostics, not accepted performance: loading
+still failed and the earlier comparison run had overlapping file-copy activity.
+
+Before another expensive Main run, extend the existing source-service parity
+fixture to admit its naturally generated tree publication through the actual
+TreePublicationQueue and release that exact consumer. This distinguishes a real
+publication/queue admission mismatch from unfinished underground generation,
+without invoking gameplay or claiming native installation. Keep all existing
+parity assertions and the unchanged baseline comparator. The next Main report
+will also include bounded failed-cohort reasons and source tree job summaries;
+do not change timeouts or final readiness criteria.
+
+Focused reproduction `ecology-source-pass-slicing-parity-queue-admission-r2-20261006`
+failed only the strengthened actual compiler-admission check: real tree records
+use `ecology.static_source_value.v1`, while the compiler required the synthetic
+fixture's `ecology-tree-runtime-source/v1`. The queue returned queued even though
+compiler progress was idle. Exit 1, cleanup passed, authoritative zero. The first
+diagnostic checked only queue registration and passed; that is explicitly
+insufficient evidence, so the assertion now requires an active compiler with
+the exact generated tree record count.
+
+Repair the consumer to accept the existing shared producer value schema while
+retaining tree family/kind/recipe-version and all payload/provenance checks.
+Migrate the synthetic tree fixture to that same contract. Queue admission must
+verify an active compiler before retaining a nonempty job and preserve the actual
+rejection reason when admission fails. This changes no generation or geometry;
+the reviewed compiler source certificate must change, so derived policy/source
+digests change intentionally. Keep the old reports and exact prior comparison;
+do not mislabel different certificate digests as a generation regression or waive
+the new active-compiler assertion.
+
+### Integrated tree compilation and source coverage correction
+
+The repaired admission gate passed 23 checks in
+`ecology-source-pass-slicing-parity-queue-admission-r4-20261006` with exact
+same-certificate source/actor/RNG comparison against r3. The actual compiler
+contract and Adapter contract passed again (`tree-recipe-section-compiler-admission-20261006`,
+`ecology-section-value-adapter-admission-20261006`). These are service/contract
+results, not renderer acceptance. All exited zero with cleanup and authoritative
+zero proven.
+
+Main gate `main-section-cohabitation-gate-admission-20261006` (same command,
+seed and 120-second readiness criterion) still failed. Cleanup and authoritative
+zero passed. Unlike the prior failed cohort, tree compilation now starts:
+38 jobs, 37 active and one complete, 159 recipe jobs, no recipe workers remaining.
+Active jobs report `tree_source_family_envelope_unproven`; four underground scans
+remain pending, with zero native section installations. Do not rerun unchanged.
+
+The next coherent unit repairs source support ownership through actual compiled
+output. Main's nominal canopy/height AABB describes a silhouette; it does not
+cover trunk hull, roots or wind. The existing admitted catalog family envelope
+already certifies those effects and drives inverse source closure. Follow
+Minecraft's immutable source-region / derived compiled-geometry separation:
+derive conservative source coverage from that same certified family policy,
+retain nominal generation inputs, and require actual compiled geometry to fit
+the admitted coverage. Do not widen tolerances, bypass bounds checks, invent
+another policy, or change seeded recipes/RNG. Identity revisions and source-row
+digests may change when their support proof changes; gameplay values must not.
+
+Before production edits, extend the existing real-generated source fixture
+through worker recipe completion and section compilation, recording the exact
+declared-versus-actual bounds predicate. Preserve the failing baseline. Then
+verify real-generated completion, existing adverse bounds/stale-owner coverage,
+and the actual Main gate. Native installation, traversal, collision/interactions,
+save/replay and performance remain outstanding stage exits.
+
+HEAD owns fixtures, evidence and final acceptance. The producer lead owns only
+Main's source-proof production path and any required Domain helper; independent
+review owns no mutable files. Godot runs remain serialized with dependency edits
+frozen. The proposed native underground scan is a later integrated unit: it must
+include script overlay capture, native source parity and cancellable receipt
+validation together before replacing the existing scan.
