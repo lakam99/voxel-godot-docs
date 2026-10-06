@@ -21,6 +21,26 @@ retain their existing owners and readiness contracts. Mobs and NPCs remain
 independent live actors; this migration does not bake them into static section
 geometry.
 
+## Section contributor identity and support certificate
+
+Minecraft block positions provide stable per-member identity inside a section.
+Procedural producers use part IDs that are only unique within one source, so
+the shared contributor identity is the pair `(sourceId, sourcePartId)`. Carry
+both fields through source rosters, support leases, section manifests, and
+native installation receipts. Source revisions remain source-scoped. Encode
+the pair canonically only where an API requires a flat key; a plain part ID
+must never stand in for the pair.
+
+Inverse source discovery uses a sealed, revision-bound support certificate.
+It includes procedural policy revisions and the complete relevant profile and
+eligible asset catalog revisions/digests. Derive spatial maxima from the
+actual recipe rules, transformed member geometry, and declared shader
+displacement, then verify captured/compiled member bounds against the
+certificate. If an eligible profile or asset cannot be described, or any
+output exceeds its certified envelope, keep the source domain pending. Keep
+spatial support limits distinct from per-frame work budgets and payload-size
+limits; those are bounded by their own queues and accounting.
+
 ## Stage 4 addendum — transform-backed static building visuals
 
 **Scope:** migrate immutable, non-interactive static building visuals emitted
