@@ -71,6 +71,22 @@ sessions and generation entry points. Adapter lead owns `EcologySectionValueAdap
 and `EcologyWorldSupportIndex`, after the shared request/result shape is frozen.
 No overlapping edits. Existing owner-consumer verification is completed separately.
 
+Producer scope also includes `EcologyProducerCatalogContext`: a complete sealed
+catalog artifact may describe explicit pending family policies. Its admission
+must still prove immutable input completeness, ownership, lease and content
+integrity. Only the aggregate policy-ready requirement moves to requested-family
+and section-census validation. Missing catalog data never gains admission through
+this change. Add focused partial-policy and stale-owner coverage.
+
+Tree compilation lead owns `TreePublicationQueue` and `TreeRecipeSectionCompiler`:
+require explicit completed trees-family coverage before treating missing rows as
+empty, bind tree-family identity through compile/poll, and revalidate authoritative
+empty results too. A details-only bundle is never an empty-tree certificate.
+Coordinate shared validation helpers with the producer lead. HEAD independently
+reviews the compiler change before updating its reviewed spatial-source digest;
+no geometry or recipe change is intended. Native C++ consumes the assembled section
+candidate, not these ecology snapshot schemas, and needs no change for this gate.
+
 First establish and review the shared request/result schema, then integrate Main
 and adapter/index against it as one production cutover. Contract fixtures must
 prove family-specific inverse closure, narrow-to-wide requests, deterministic
@@ -94,6 +110,13 @@ omitting it explicitly requests all six families through the same generator.
 and a digest bound to source-domain/catalog/epoch/removal/family-policy identities.
 The base `sourceRevision` is invariant across request subsets.
 
+The request digest excludes the incidental catalog lease token and response
+status/reason. The token remains separately validated against the current owner;
+acquiring another lease for identical demand must not change work identity or
+create a circular dependency between lease ownership and request identity. Tree
+compile identity uses the base revision and the completed trees-family revision
+and manifest, so widening another family's demand reuses unchanged tree work.
+
 `ecology-source-domain-family-bundle/v2` retains existing provenance and contains
 `requestedFamilies`, an entry for every family in `familyCoverage`, the union of
 completed requested `sourceRows`, and a separate surface-pass/actor-intent receipt.
@@ -103,6 +126,11 @@ Dispositions are complete nonempty, complete empty, deferred unrequested, pendin
 dependency, or failed. A ready bundle requires every requested family complete.
 `categoriesComplete` during the transition is exactly the complete requested set.
 Never mutate a previously published bundle when a request widens.
+
+Unrequested or pending family entries publish no rows. Shared surface decisions
+and generated-but-unrequested rows stay in the private generation session. This
+keeps each sealed bundle independently reconstructible from its published inputs
+and prevents private progress from changing a previously accepted manifest.
 
 Census carries `sourceChunkKeysByFamily` with all six canonical keys and exact
 sorted owner sets, plus a sorted union for compatibility. Unknown family support
