@@ -103,3 +103,27 @@ snapshot schemas before edits; no overlapping mutable files.
 4. **Parent exits remain required.** Live visual/traversal, harvesting and edits,
    unload/replay, save/reload and representative frame performance. Focused owner
    checks or a first native receipt do not complete the full migration.
+
+## Independent review criteria for the combined cutover
+
+- Repeated acquisition must not deep-copy or hash catalog contents or full
+  resource-binding receipts. Compare genuine frozen owner publications and small
+  owner/world/settings identities; compose and seal only after a replacement.
+  Copied or forged payloads with unchanged claimed digest/receipt remain rejected.
+- A failed reload reports failure while retaining the prior valid publication.
+  It must not clear a prior invalidation, resurrect stale ownership, or let a
+  retired resource's signal invalidate the newly accepted publication.
+- Resource ownership includes relevant nested scene and animation dependencies.
+  A signal on the root PackedScene alone does not establish that changes inside
+  an AnimationLibrary or other nested Resource will invalidate its descriptor.
+  Prove isolation or invalidation at the actual dependency mutation boundary.
+- Legacy profile access returns defensive Resources; production value reads use
+  recursively immutable scalar/Array/Dictionary data. Preserve direct profile
+  parity and seeded draw assertions while migrating old borrowed-alias tests to
+  explicit owner mutation and replacement contracts.
+- Bind the shared catalog artifact's runtime identity into ecology's existing
+  provider `authorityRevision`, including empty sections. Keep semantic source
+  revisions unchanged. Existing census validation then rejects an old candidate
+  after equivalent-content owner replacement. Delayed provider acknowledgements
+  must also revalidate the census before retiring visuals; pending capture retains
+  demand, and changed authority requests replacement while keeping the old slot.
