@@ -5738,6 +5738,18 @@ setup/compile failure and provides no candidate or renderer evidence. The fixtur
 does not stub successful ecology source-domain captures or empty families; terrain
 and ordinary structure providers remain explicitly synthetic.
 
+After that parse issue was repaired, real-Main r3 loaded and ran its production
+ecology adapter/catalog authority and registered tree queue for 1,200 frames.
+It still failed before candidate admission with
+`ecology_section_capture_cohort_deferred`: source-capture sessions,
+publications, queued jobs, and tree-queue work were all zero. No tree identity,
+candidate manifest, native install, receipt, or frame acknowledgement was
+produced. Its watchdog exited 1 with clean teardown and authoritative zero
+members. The following r4 launch was invalid because a concurrent edit to
+`TreeRecipeSectionCompiler.gd` did not load; it provides no gameplay evidence.
+The next diagnostic must capture the first pending cohort and service-opportunity
+state, then fix why the real source authority never admits capture work.
+
 The ordinary provider's cross-section visual retirement contract now exercises
 the actual section coordinator and provider. Its headed synthetic run
 `node tools/visible-world/run-ordinary-static-section-provider-contract.mjs`
