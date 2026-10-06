@@ -5652,3 +5652,57 @@ renderer installation and replacement lifetime for synthetic producers only.
 It does not prove the live Main provider census, candidate-specific pixel
 visibility, traversal, gameplay collision/interactions, save/reload or runtime
 performance. Stage 1 remains partial and the overall migration is not complete.
+
+### 2026-10-06 HEAD checkpoint — current tree gate and Main boundary
+
+The game worktree is branch `codex/chunk-owned-world-rendering-migration` at
+`5ffac014` with a large active migration diff and generated `.import` churn;
+all pre-existing changes remain preserved. The focused tree compiler runner
+passed **25/25** checks at
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-head-check-20261006/report.json`.
+It covers canonical recipe admission, all three render roles, cross-section
+instance AABB/support proofs, stale owner/tombstone rejection, cancellation and
+replay admission, output invariance across work slicing, and exact adapter
+section mapping. Its evidence level stops before complete production census,
+shared candidate/native installation, gameplay/save lifecycle and performance.
+The fixture processed 1,806 single-unit steps (76 at the larger test budget);
+production currently advances the renderer-value compiler by eight work units
+per frame. This is a queue-granularity observation, not a measured frame-time
+result.
+
+The existing same-seed, tutorial-free Main run remains failed at its diagnostic
+120-second readiness boundary:
+`artifacts/citadel-runtime-integration/main-section-cohabitation-gate-integrated-boundary-20261006/report.json`.
+Main instantiated with the tutorial skipped, but readiness did not complete.
+The final diagnostic has 64 ecology source capture jobs, 61 ready and three
+pending with progress and zero stalled attempts; it accepted zero source manifests
+and submitted zero native compiles/installs. Tree preparation has 56 jobs (55
+active, one complete), 246 recipe jobs, and one recipe worker. The run therefore
+does not establish a renderer installation defect or gameplay failure. It
+establishes that complete candidate admission has not been reached within the
+diagnostic window. Do not repeat the unchanged run as acceptance evidence.
+
+Minecraft 26.2 was checked at
+`decompiled/net/minecraft/client/renderer/chunk/SectionCopy.java:27–47`,
+`RenderRegionCache.java:22–47`, `RenderSectionRegion.java:22–70`,
+`SectionCompiler.java:56+`, and `SectionRenderDispatcher.java:313–345` plus its
+layer upload callbacks. It copies reusable neighborhood values, compiles one
+section's render layers from that bounded input, cancels superseded jobs, and
+retains the old section mesh until the replacement layers are accepted. Our
+native section install already provides much of the downstream staged-slot
+lifecycle. Arbitrary tree and structure supports still require certified inverse
+source closure; Minecraft's fixed 3×3×3 input must not be copied as a substitute.
+
+Next, advance the measured producer-to-candidate bottleneck. Profile and migrate
+tree recipe-to-render geometry preparation to a bounded, cancellable background
+section job consuming exact sealed `TreeSpawnService` recipe/LOD values. Preserve
+the continuous bole, distal-branch and foliage custom attributes, impostor LOD,
+wind/support envelopes, and per-source ownership receipts. Keep Godot resource
+materialization and currentness/install checks on their owning threads. In
+parallel, continue Stage 4's bounded transform-backed Citadel member through the
+shared complete candidate while preserving its old visual through every affected
+section receipt. These are implementation slices only; overall progress remains
+**1/7 stage exits complete** (Stage 0 complete, Stages 1–5 partial, Stage 6 not
+started). Terrain remains sourced from a resident Voxel Tools block and cannot
+retire its current visual until an authoritative arbitrary-section SDF/material
+snapshot and parity proof exist.
