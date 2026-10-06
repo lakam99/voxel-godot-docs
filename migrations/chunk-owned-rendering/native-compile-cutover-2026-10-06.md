@@ -197,21 +197,138 @@ reset. Scope end cannot evict a retained proof. Unknown compact identities fail
 closed; the direct full-input form remains strictly validated for existing
 explicit synthetic contracts. No source/actor/navigation authority moves.
 
-Before changing capture ownership, measure catalog-input building, source queue
-callbacks, and census admission through the existing bounded performance monitor
-and retain those timings in the Main report. A short diagnostic replay of the
-same seed is sufficient; do not repeat the unchanged five-minute gate.
+The context component and measurements above are entry evidence for this unit,
+not a separate future milestone. Implement the producer, compact-input consumers,
+local structure closure, and lease/reset lifecycle together before freezing the
+integrated source for verification. Run the focused ownership/locality contracts
+and compilation checks first, then the real Main gate with the recorded seed.
+The next accepted milestone requires a current candidate to reach the native
+renderer; a contract-only result cannot advance it. Keep the existing bounded
+capture/service/census timings in the report to distinguish eliminated repeated
+work from deferred work.
 
-The next cohesive change, if timings confirm the repeated catalog work, is a
-Main-thread-owned immutable producer catalog context with an explicit provenance
-epoch. Reusable profile/model/grammar/asset envelopes belong to that context;
-terrain revisions, structure admission, chunk identity and removal projections
-remain per-source inputs. Audit the actual mutation/reload boundaries first.
-An arbitrary frame cache or revision-only hit must not hide changed resources.
-Preserve source/census stale checks and deterministic producer RNG. Acceptance:
-exact before/after capture parity, invalidation on each catalog mutation boundary,
-bounded context retirement, then real Main compilation/installation followed by
-the still-open visual/traversal and performance gates.
+Minecraft 26.2 reference recheck: `RenderRegionCache.createRegion` shares section
+copies across a capture batch; `SectionCompiler.compile` consumes that region
+and emits one result containing its render layers. Apply those ownership and
+completion boundaries here. Our producer catalogs and arbitrary tree supports
+require explicit shared artifacts and inverse-domain completeness, while smooth
+terrain retains its own mesher. No Java implementation is copied.
+
+The first isolated v2 gate passed on the dirty `90141c2c` game base:
+`node tools/run-ecology-producer-catalog-context-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-producer-catalog-context-v2-20261006`.
+Its 41 synthetic assertions cover owned immutable catalog values, fresh-content
+deduplication, mutation without a revision change, unknown/forged lease rejection,
+retention under eviction pressure, retry after pinned-capacity backpressure,
+scope-token ownership, nested-scope reset, world replacement, and stable semantic
+source revision with distinct runtime cache identity after owner replacement.
+The runner checked that its recorded source hashes remained unchanged. Watchdog:
+functional 0, cleanup true, authoritative zero true, no final members; completed
+2026-10-06 07:29:42 UTC. Report:
+`artifacts/citadel-runtime-integration/ecology-producer-catalog-context-v2-20261006/report.json`.
+This is value/lifetime evidence only; it does not establish Main startup,
+renderer installation, visual correctness or performance.
+
+The compiler source guard now records
+`420b4703562065ea6b4432c6696913a122ef15226138e0095205552e263b9596` after review
+of the compact-provenance and lease changes. Acquire/resolve, partial-admission
+cancellation, currentness revalidation, and terminal release were reviewed;
+three policy lookups now use admitted compact inputs with the resolved artifact
+instead of deriving policy again from the full catalog. Geometry transforms,
+recipe generation, wind/support mathematics, partitions and contributor
+ownership were not changed by this unit. The child's starting dirty source was
+not separately saved, so its scoped-change report and HEAD's final code review
+are the provenance for this update; the complete working-tree diff and later
+compiler/visual gates remain required. No guard was bypassed.
+
+Integrated adapter verification passed 81/81 assertions:
+`node tools/run-ecology-section-value-adapter-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-v2-typesfix-20261006`.
+The source manifest stayed stable; functional exit 0, cleanup true, authoritative
+zero true, no final members. This preserves source/part identity, source revision,
+stale capture, ownership replacement, exact tombstone/retirement, support census,
+material and partition assertions through compact v2 admission. It is a synthetic
+adapter contract, not native installation or gameplay acceptance.
+
+Integration checks exposed introduced compile errors in the new SupportIndex
+continuation/type annotations, Main owner-identity inference, StructureSystem
+footprint sorting/type annotations, and updated fixture signatures. These are
+integration defects, distinct from the recorded startup baseline. Failed run
+directories are retained under `artifacts/citadel-runtime-integration/` with
+`v2` names. The general compile runner stops on first script error; its forced
+stop reports cleanup false even though authoritative Job Object zero is proven.
+An owned editor check also exited 0 with clean cleanup but logged Main's unresolved
+parent script: that exit is explicitly not compilation success. Direct owned
+`--check-only` and focused fixture loads isolate the dependency errors before a
+long Main run is allowed.
+
+Additional integrated checks passed on the same dirty game base:
+
+| Gate | Evidence | Result |
+| --- | --- | --- |
+| `node tools/run-project-compile-smoke.mjs` | Main scene, menu, and PlaytestRunner load | Passed; watchdog `artifacts/node-tools/process-runs/godot-aXthu6/watchdog.json` |
+| `node tools/visible-world/run-ordinary-section-geometry-adapter-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ordinary-section-geometry-adapter-ecology-v2-mainfix-20261006` | Synthetic producer geometry and local structure dependency closure | 39 checks |
+| `node tools/visible-world/run-tree-recipe-section-compiler-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/tree-recipe-section-compiler-catalog-v2-typesfix-20261006` | Headed synthetic compiler/queue/adapter value integration, exact support and budget slicing | 25 checks, 9 batches, 1806 work units |
+| `node tools/visible-world/run-ecology-section-support-coverage-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-section-support-coverage-v2-admissionfix-20261006` | Synthetic distinct source/part support and footprint replacement proof | 7 checks |
+
+All four exited functionally 0 with clean cleanup and authoritative zero. The
+three focused source manifests were independently checked unchanged after exit.
+These are compile/service contracts; the headed compiler fixture is not live
+gameplay acceptance.
+
+The v2 SupportIndex gate ran all 27 assertions but failed its existing requirement
+that superseded revisions A and B remain demanded until the installed C receipt.
+Report: `artifacts/citadel-runtime-integration/ecology-world-support-index-v2-20261006/report.json`.
+The dirty index implementation filtered tombstones to old supports outside the
+replacement footprint, losing same-section revision history before installation.
+This is a production lifetime defect found during integration; the assertion
+remains required. Restore receipt-bound old-revision retention before the real
+Main gate. Minecraft `SectionRenderDispatcher.checkSectionMesh` likewise retains
+the old installed mesh until every applicable vertex/index upload has completed
+and the replacement is installed.
+
+After restoring history retention, the SupportIndex gate passes 35 checks:
+`node tools/visible-world/run-ecology-world-support-index-contract.mjs --OutputDirectory artifacts/citadel-runtime-integration/ecology-world-support-index-v2-retentionfix-20261006`.
+Re-running the adapter then exposes four integration failures, including
+`invalid_or_current_static_source_removal`. The adapter was projecting every
+historical tombstone into the current candidate removal roster. A candidate
+cannot both contain current C and remove the same source/part pair for historical
+A/B. The coherent repair keeps all revision-specific old receipt obligations in
+the index while generating current removals only for pairs actually absent from
+the new candidate, coalescing multiple retired revisions deterministically.
+Coordinator absence proof already checks exact source revision, so current C can
+prove A/B absent without confusing their identities. This second adapter run is
+failed evidence, not waived by the earlier 81-check pass; the repaired integration
+must pass before Main acceptance. The final history/current-content split passed
+all 81 adapter assertions in
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-v2-historysplit-20261006/report.json`
+(same runner, output directory named for this report; stable sources, functional 0,
+clean cleanup, authoritative zero).
+
+The next real Main check ran:
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-catalog-v2-20261006 --TimeoutSeconds 360 --StartupWaitSeconds 120`.
+The recorded comparison seed remains `ecology-main-retirement-stage5`, tutorial
+skipped. It reached terminal source failures `animation_library_state_unavailable`
+and no native compiled/installed candidates. HEAD requested an owned stop after
+the failure was identified. The watchdog proves zero remaining Job members;
+`cleanupPassed=false` records the forced diagnostic stop, not a successful run.
+Progress and `diagnostic-summary.json` retain the source failures and timings;
+there is no successful final gameplay report. Maximum ecology admission was
+1500.707 ms, source service 398.817 ms, catalog capture 1425.194 ms cold and
+193.697 ms latest. These failed-run observations are not performance acceptance.
+Next falsifier: inspect actual imported AnimationPlayer SceneState properties
+and the registry descriptor reader before another Main run.
+
+Independent review also identified a non-startup capacity risk: 128 idle ready
+source jobs can retain leases across the catalog store's 8 artifact generations.
+Ordinary asset lookup does not change registry generations; increments occur
+during setup or explicit test/reload actions. Add pressure-aware idle retirement
+before declaring repeated registry replacement fully accepted.
+
+Independent read-only consumer/lifecycle review found no additional production
+reader expecting full catalogs in v2 inputs. Capture cancellation releases through
+the original Main resolver; section demand retirement releases support leases;
+world reset drains compilers before revoking old-epoch artifacts. The SupportIndex
+synthetic fixture now uses the same admitted-input contract with all existing
+revision/receipt assertions preserved and added lease-lifecycle coverage.
 
 Real Main cohabitation, ordinary menu/startup, headed visual/traversal, edits and
 harvest, unload/replay, save/reload and representative runtime performance remain
