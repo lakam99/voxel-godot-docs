@@ -5763,6 +5763,17 @@ This remains synthetic coordinator/provider evidence; it does not prove
 production registration, native upload, save/reload, live visual parity, or
 performance.
 
+HEAD review further qualified that r7 boundary result: its source/member coverage
+is proven in the center geometry-owner section, but an adjacent intersected
+section can close with a current explicit-empty receipt. The ordinary provider
+does not yet emit or retain a render member in every section containing visible
+geometry. Thus r7 proves receipt ordering and old-visual retention, not complete
+per-section ownership. Before Stage 4 can advance, trace section partition,
+stream dependencies and unload behavior, then make affected-section ownership
+explicit without duplicate drawing or losing a center-owned visual when its
+owner section unloads. This gap is open even though all 42 scoped assertions
+pass.
+
 Minecraft 26.2 `RenderRegionCache`/`RenderSectionRegion` captures bounded copied
 section values, `SectionCompiler` compiles a section's render layers, and
 `SectionRenderDispatcher` cancels superseded work and retains the installed mesh
