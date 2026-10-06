@@ -226,3 +226,85 @@ unchanged transforms/recipes independently. A separate ignored source-service
 replay using the retained prior compiler/queue and their original certificate
 pin is being prepared; it must use the unchanged baseline comparison, and must
 not be cited as production renderer or gameplay acceptance.
+
+## Next coordinated cutover: preparation before complete-section admission
+
+The user requested larger implementation steps. This unit therefore spans the
+producer store, asynchronous recipe preparation, demand retirement, and final
+candidate admission together. HEAD owns acceptance; subsystem leads have separate
+mutable file scopes. The game branch remains at `5ffac014` plus the preserved
+migration work; no reset, generated-import staging, or game push is authorized.
+
+### Resolved prerequisite evidence
+
+The headed tree compiler/adapter rerun
+`tree-recipe-section-compiler-owned-r2-20261006` passed all 25 checks, nine batches,
+and its real queue-to-adapter mapping. This is compiler integration evidence,
+not ordinary-game visual acceptance.
+
+The isolated prior-certificate replay passed all 20 source-service checks and the
+unchanged exact baseline comparison. Command: `node
+tools/run-ecology-source-pass-slicing-parity.mjs --ProjectPath artifacts/parity
+--OutputDirectory artifacts/citadel-runtime-integration/ecology-source-pass-slicing-parity-r1
+--TimeoutSeconds 180 --BaselineReport <absolute game path>/artifacts/citadel-runtime-integration/ecology-source-pass-slicing-parity-family-r5-20261006/report.json`.
+The diagnostic copy uses current producer code and retained prior compiler/queue
+plus their prior certificate pin. This isolates the earlier digest differences
+to certified source identity: under the same certificate, row digests, family
+revisions, actor digests, and exact RNG states match. It does not establish new
+renderer installation or geometry correctness on its own. Both passing runs have
+exit 0, cleanup passed, and authoritative zero members. Initial diagnostic launch
+failed before process creation because the nested Windows log path was too long;
+the copied project was moved to `artifacts/parity`, preserving the setup failure.
+
+### Authority and complete data path
+
+Main's deterministic source pass remains the generation authority. A Context
+producer factory will own raw value capture, canonical sealing, the immutable
+payload, its catalog hold, and indexed family/member views. The factory invokes
+the Domain sealer once. External presealed admission retains full validation;
+there is no caller-controlled trusted boolean or certificate shortcut. Payload
+digests retain their current meaning. Owner, epoch, terrain, structure, removal,
+family and source revisions remain binding before and after asynchronous work.
+
+The adapter can submit an explicitly complete tree-family publication to the
+existing recipe queue while other source captures remain pending. Each job is
+owned by retained demand; shared demand survives one subscriber leaving, while
+last-demand unload, supersession, or world reset detaches/cancels owned work and
+releases aliases through the existing retirement owner. An obsolete completion
+cannot replace a newer source job. Pending/backpressure retains retryable demand.
+
+The final section candidate still includes the complete current terrain,
+building, tree, and prop manifest and required render layers. Early preparation
+does not permit partial installation. The existing native compiler/renderer must
+acknowledge installed layers and required collision/interaction consumers before
+the candidate is current. Old valid publication stays visible until replacement
+succeeds. Mobs, source RNG order, durable save deltas and gameplay authority stay
+independent of compilation scheduling.
+
+Minecraft reference inspected again: `SectionCopy` copies section state once;
+`RenderRegionCache` shares that immutable capture by section identity;
+`SectionRenderDispatcher.checkSectionMesh` waits for every required vertex/index
+upload before swapping and releasing the old mesh. Its cancellation boundaries
+inform demand-owned retirement here. Our smooth terrain and procedural-tree
+support bounds remain game-specific.
+
+### Entry, proof, and exit
+
+1. **Owned factory:** exact factory-versus-canonical output parity; one canonical
+   seal on the producer path; strict external rejection of forged/stale/object
+   inputs; independent catalog holds; alias, reset and local revision checks.
+2. **Independent preparation and retirement:** with another family blocked,
+   admitted trees prepare while final section readiness remains pending; shared
+   demand, last-unload cancellation, backpressure, empty-family proof and stale
+   completion rejection have focused evidence. No readiness bounds or timeouts
+   are relaxed.
+3. **Production admission:** repeat the same actual Main gate, require current
+   complete native installation and owner acknowledgements, then inspect live
+   visuals/traversal and performance. A failed Main gate keeps this unit open.
+
+Underground applicability requires additional authority evidence: a player above
+ground does not by itself prove that cave openings or nearby underground props
+are invisible. No blanket family omission or fabricated empty result is allowed.
+Section-local generation must preserve deterministic candidate ordering/RNG;
+otherwise accelerate preparation at the terrain-volume authority. This is an
+explicit remaining architectural dependency, not an excuse to bypass admission.
