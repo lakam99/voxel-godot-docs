@@ -2,6 +2,41 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Producer revision versus candidate revision — integration decision
+
+Actual practical-light capture exposed an identity distinction hidden by the
+native fixtures: BuildingPartPublisher owns the static-record revision, while
+CitadelPublicationService derives a different census source revision from world,
+site, plan, member and captured artifact identity. Both are valid authorities at
+different boundaries. Native borrowed registration currently compares body
+`section_attachment_source_revision` directly with candidate `sourceRevision`;
+this rejects that real producer path. Geometry attachment manifest admission
+also needs the same audit. Do not overwrite source-owner metadata with a census
+revision during capture; this can invalidate a retained installation without a
+producer change.
+
+The coordinated replacement protocol will make both revisions explicit:
+`sourceRevision` identifies candidate/census content and
+`producerSourceRevision` identifies the source-owner publication. Add the latter
+to the immutable presentation member, exact native manifest hash, installation
+receipt and weak binding. Use the v2 member schema with 12 exact fields; migrate
+every producer, validator, canonical serializer and fixture together. Geometry
+capture must seal its producer revision on the artifact/batch before worker
+assembly, rather than recover it from live bindings. Revalidate source-owner
+metadata against producer identity and section receipt against candidate identity.
+Prior valid visuals remain retained until replacement ACK, including when a new
+census wraps an unchanged source owner.
+
+The presentation lead owns the isolated actual publisher/capture/adapter patch;
+HEAD owns shared schema, native/session integration and engine verification.
+Required proof includes distinct valid revisions, stale producer with unchanged
+census, stale census with unchanged producer, same-mount replacement, rollback,
+owner incarnation replacement, light-only and geometry/borrowed mixed sections.
+Existing 161-check evidence precedes this protocol change and cannot certify it.
+The tree draft review also identified repeated linear accepted-record scans in
+per-tree proof queries; reuse the queue's exact record ownership lookup and test
+its replacement/removal lifecycle before promoting that draft.
+
 ### Actual ordinary renderer and light-only presentation checks
 
 The existing headed ordinary native fixture passes **20/20** at
