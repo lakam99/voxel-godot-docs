@@ -63,6 +63,19 @@ old visual restoration during replacement, and real recapture into a new binding
 Reject compound anchors paired with legacy center policy, and require matching
 compound policy/anchor across batch, segment and support records. These draft
 review findings have no production/runtime acceptance claim.
+Rollback with a valid previous native packet and a different replacement legacy
+roster must retain suppression of replacement-only legacy visuals. The existing
+native packet/transaction owns that claim; it is not an installed geometry ACK.
+Track previous, replacement and retained-suppressed roles explicitly, preserving
+original visibility separately from current hidden state. Transfer suppression
+to a successful replacement, or restore it on final withdrawal only when no
+overlapping native packet remains. Provider restoration, owner loss, reentry and
+shutdown must consult and settle those exact claims. Test different-roster rollback
+as well as same-roster rollback; do not destroy a valid prior section merely to
+avoid tracking its replacement's visibility. Minecraft's retained section mesh
+and task cancellation are the lifecycle reference, adapted to our separate
+animated owners. Producer construction before packet admission remains a separate
+possible overlap window and needs headed evidence before any whole-path claim.
 The native rollback must hide every replacement root even when restoration of an
 older missing root fails. Owner destruction and external-root teardown require
 explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
