@@ -8808,6 +8808,33 @@ The teardown error limits the r15 result to its recorded progress and watchdog
 evidence; there is no final report to support additional claims. Overall
 migration progress remains **1/7 stage exits complete**.
 
+### 2026-10-07 HEAD checkpoint — r16 native closure and provider reconciliation
+
+The headed `atlas-1492` r16 report passed 33 of 35 checks and failed the exact
+native-owner-closure/root-ack and complete-lifecycle checks. All 31 sections
+prepared, but only 3 native receipts were observed; 4 sections encountered
+mesh-binding conflicts. The closure window advanced 32 frames over 240 seconds.
+The worst frame was 31.77 s, with candidate advance peaking at 16.84 s and
+support reconciliation at 12.34 s. The functional runner exited 1; the watchdog
+reported `cleanupPassed=true` and `authoritativeZeroProven=true`. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-direct-mesh-r16/report.json`
+with watchdog evidence in the same directory.
+
+Two focused post-fix checks passed: mesh resource identity 2/2 and direct
+static-mesh artifact publication 10/10. Reports:
+`artifacts/citadel-runtime-integration/section-mesh-resource-identity-r2/report.json`
+and
+`artifacts/citadel-runtime-integration/building-direct-static-mesh-artifact-20261007-g/report.json`.
+They establish those focused contracts only.
+
+The ordinary static provider reconciliation runner remains unresolved: r1
+passed 20/62 checks. An earlier green r3 run had different source hashes, so
+it does not establish that r1's failure is caused by the current source or
+prove parity. Report:
+`artifacts/citadel-runtime-integration/ordinary-static-section-provider-reconcile-r1/report.json`.
+The r17 integrated gate is underway. No stage exit is claimed; formal progress
+remains **1/7 stage exits complete**.
+
 ### Cold translucent surface upload plan — 2026-10-07
 
 **Entry evidence:** focused glass-cache r1 isolated a cold 11.633 ms
