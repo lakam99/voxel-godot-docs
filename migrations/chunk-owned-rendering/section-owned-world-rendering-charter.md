@@ -82,6 +82,11 @@ and shutdown contracts only. Production integration and live performance remain
 unproven. Synchronous native tree ticket vector reclamation is a separate,
 unmeasured disposal risk; profile it before attributing a visible hitch to it.
 
+The independently reviewed five-file helper/contract/runner subset is committed
+as game `831223fb`; post-run helper, fixture and runner hashes matched the r6
+launch manifest. Its integration callers remain in the uncommitted migration
+batch. No game push or formal stage advancement accompanied this commit.
+
 The frozen batch at game HEAD `4dff1c72` plus the exact dirty-file manifest
 `artifacts/building-visual-authority-baseline-20261007/final-batch-files.json`
 passes the producer contract (36/36), service contract (22/22), and explicitly
@@ -117,6 +122,20 @@ Retirement must hide exact legacy GeometryInstances, never the whole door body:
 hiding that ancestor would also hide its new native children. Restore legacy
 visuals before releasing an accepted replacement. Missing/replaced owners or
 partial attachment upload retain the old publication.
+
+The attachment capture uses the canonical closed frame recorded by the producer,
+never the currently animated pose. `attachmentFromSection` is the inverse of
+that neutral parent-to-world transform multiplied by the section transform.
+Geometry identity stays stable during ordinary opening/closing. Keep neutral
+mesh bounds (which the partitioner validates against geometry) separate from
+conservative swept support bounds. Include attachment identity in batching and
+digests so unrelated pivots cannot merge. Carry weak parent bindings only in the
+Main-owned assembler/install envelope, including the coordinator's install call.
+Reuse the existing Citadel exact-GeometryInstance retirement/restoration owner.
+Native teardown must explicitly release externally parented roots as well as
+staged, presented, rolled-back and replaced roots. Minecraft's block-entity
+separation informs this design; its ordinary block-state door meshing is not a
+literal implementation for our animated pivots.
 
 Before implementation, review native/GDScript dependency closure and freeze a
 coherent scope. Required proof includes real producer geometry, swing and raise
