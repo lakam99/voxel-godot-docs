@@ -2,6 +2,56 @@
 
 ## Building visual-authority evidence and next boundary (2026-10-07)
 
+**Producer subset committed:** game `fd0fe385`, exactly eleven producer/plan/test
+files. Before committing, an isolated archive of `4dff1c72` with only those
+eleven files overlaid passed two Godot check-only runs, producer 36/36, and
+synthetic replay 5/5. All four runs exited normally, cleanup passed without
+forcing, and authoritative owned membership was zero. Manifest and verification:
+`artifacts/producer-head-gate-20261007/{manifest.json,verification.json}`.
+The other 1,647 source files matched HEAD after checkout line-ending normalization;
+all eleven overlay files matched the committed working-tree content. Recorded
+native DLLs supplied extension types only; this does not certify a HEAD-native
+build or renderer installation. Commands used the existing runners:
+`node tools/run-building-static-section-transform-artifact-contract.mjs` and
+`node tools/run-building-static-packet-replay-contract.mjs`, each with
+`-ProjectPath artifacts/producer-head-gate-20261007/project` and its recorded
+isolated output directory. Reports reside in that project's
+`artifacts/citadel-runtime-integration/building-transform-artifact-isolated-head-r1`
+and `static-flush-isolated-head-r1`.
+
+Independent full-diff review found no additional functional integrity defect,
+but identified an explicit remaining lifecycle/performance gap: publisher
+artifact replacement/clear and accumulated finished flush graphs may release
+large final nested data aliases on Main. Trace and migrate their actual disposal
+owner; do not claim hitch-safe producer retirement from these contracts. This
+unmeasured risk is not established as the cause of the observed Main startup
+failure. Service/coordinator/native acceptance remains outside this commit.
+
+The subsequent enclosing-owner trace narrows that concern: normal production
+creates a fresh publisher in `BuildingScenePublicationJob`, retains finished
+flushes with it, and transfers the enclosing CPU payload through
+`CitadelPublicationService` to `BuildingPublicationWorker`. It does not call
+`clear_published()`. Retained flushes keep the segment aliases alive across
+artifact-map replacement. Therefore normal teardown is not demonstrated to
+drop those final buffers on Main. Remaining work is measured disposal coverage,
+retained-graph accumulation, mixed Resource/value separation, and the public
+publisher-reuse clear path. Follow the enclosing owner, not only direct field
+readers, when assessing final-reference release.
+
+**Shared source retirement protocol:** compose a bounded
+`OwnedValueArtifactRetirement` helper under the existing ecology queue owner.
+Construct immutable value roots separately from Main-owned resource bindings;
+transfer complete nested geometry/proof/manifests, not only float buffers.
+Keep resources alive until worker join. A failed worker start retains demand
+and payload, applies backpressure, and retries; reset/shutdown drain owned work.
+Include adapter canonical-band caches in the same ownership path. The support
+index retains metadata only. HEAD traced the downstream copy boundary:
+`ChunkStaticRenderSectionInstancePartitioner.partition` encodes new per-instance
+records and concatenates new output buffers; the assembler/coordinator retain
+those prepared copies rather than original source geometry. This bounds the
+current source-retirement cutover without pretending to verify the distinct
+candidate-buffer disposal path.
+
 The frozen batch at game HEAD `4dff1c72` plus the exact dirty-file manifest
 `artifacts/building-visual-authority-baseline-20261007/final-batch-files.json`
 passes the producer contract (36/36), service contract (22/22), and explicitly
@@ -45,6 +95,17 @@ same-frame pivot following, stale-parent rejection, partial failure rollback,
 unload/reentry restoration, and the unchanged 31-owner installation gate.
 No controller or routing edits are part of this design. No formal stage exit
 advances on these focused contracts.
+
+The dynamic-attachment batch enters after ecology source freeze and an engine-free
+native build window. Exact file scope: building producer, Citadel adapter/service,
+shared snapshot/partitioner/builder, native install session, and packet backend
+header/implementation plus focused fixtures. Attachment identity must participate
+in grouping so geometry bound to different pivots cannot merge. Static payloads
+retain their existing semantics. First validate static compatibility and negative
+attachment identities, then real headed swing/raise interaction and full root-set
+failure/release/replay behavior. Only then run the unchanged 31-owner gate and
+Main coexistence/traversal/performance. Native DLL replacement is serialized with
+all owned Godot runs. This is the next implementation plan, not current acceptance.
 
 ## Current cutover: shared compiled tree source artifacts (2026-10-07)
 
