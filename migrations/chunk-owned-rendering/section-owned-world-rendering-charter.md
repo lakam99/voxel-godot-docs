@@ -11,7 +11,7 @@ Before the geometry-owner completion cutover, building focused contracts passed 
 ordinary-provider and 19 service checks. Native Citadel and ordinary fixtures
 have exposed the common geometry-owner versus AABB-support retirement
 coupling; the complete-member replacement charter below now owns that repair.
-Native boundary-crossing replacement and unload/replay remain open.
+Citadel boundary-crossing replacement and replay remain open.
 The new adapter's complete producer-to-snapshot member comparison passes 17
 checks (`citadel-transform-adapter-owner-completion-20261007-r4`). Ordinary
 native R4 passes initial installation, retirement, unload restoration and
@@ -21,8 +21,19 @@ Its normal failure/clean-zero report is preserved. Repair cached-job owner
 currentness before claiming the complete ordinary lifecycle passed.
 This establishes stale census reuse, not an accepted stale installation:
 downstream contribution and expectation currentness checks already reject the
-replaced body. The strengthened fixture must follow coordinator retry and the
-new native receipt rather than treating a direct stale roster read as acceptance.
+replaced body. The strengthened fixture follows coordinator retry and the new
+native receipt rather than treating a direct stale roster read as acceptance.
+Ordinary native R6 now passes all 16 checks, including initial installation and
+ACK, visual retirement, restoration before backend unload, fresh owner replay,
+delayed stale release rejection and identical-body replacement. Its replacement
+trace proves the old exact installed slot before commit, retained previous
+payload during pending presentation, visible fallback, final exact native
+receipt and positive provider ACK. Report:
+`artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-owner-completion-20261007-r6/report.json`.
+Normal exit 0, cleanup passed, no forced cleanup, authoritative zero owned
+processes. This is an isolated real-recipe/provider/coordinator/native fixture;
+it does not prove ordinary gameplay, moved/deleted source replay, saves,
+full-domain cohabitation or runtime performance.
 The new pure geometry-owner completion helper passes 50 synthetic value
 contracts (`static-geometry-owner-completion-20261007-r3`), independently
 reviewed. This covers exact expected/installed member sets, stale and malformed
@@ -43,13 +54,38 @@ support-only overlay and rejects forged empty geometry, but still fails two
 tree contribution/candidate checks. The remaining audit covers whole-source
 versus member identity and revisions across target-section queries; source
 capture and artifact admission alone do not prove candidate installation.
-Candidate/native installation remains unproven. The queue fixture's separate visibility-proxy assertion also
+Renderer-backed R14 now proves the deterministic timing-identity repair: the
+owner and support-only bands share one recipe content revision, unchanged
+compiled attributes and the same 958 geometry members. The support-only empty
+candidate assembles. Two checks remain failed: exact aggregate-manifest member
+binding and the owner candidate, rejected by the shared partitioner as
+`whole_section_cross_domain_partition_failed:mutable_or_invalid_instance_buffer`.
+Report: `artifacts/citadel-runtime-integration/ecology-section-value-adapter-20261007-r14/report.json`.
+The full contract failed normally with exit 1; cleanup passed with authoritative
+zero owned processes and no forced cleanup. This supersedes the source-revision
+conflict diagnosis, but does not establish owner candidate/native installation.
+The queue fixture's separate visibility-proxy assertion also
 remains unresolved. The earlier
 recipe-pending interpretation below is historical and superseded by the
 headless-fixture and typed-array transport diagnoses. Neither lane establishes
 live traversal, save/replay or performance acceptance.
 
-**Current verification boundary:** review the entire compiler/queue/adapter/index
+**Current verification boundary:** the next ecology change covers the entire
+compiled artifact -> contribution -> common assembly -> partition -> snapshot
+and native input boundary. Locate exactly where typed, sealed float buffers or
+member identity are lost; inspect all equivalent conversions before changing
+the owning boundary. Keep malformed/mutable input rejection. Building owns
+shared coordinator/assembler/snapshot edits; ecology proposes shared changes
+before touching those files. Building now has the edit/test window for complete
+move/delete replacement and Citadel owner closure. Freeze imported sources for
+each integration run. Re-read Minecraft `SectionCompiler`'s typed layer builders,
+`RenderSectionRegion`'s captured inputs, and `SectionRenderDispatcher.checkSectionMesh`'s
+all-layer upload acknowledgement before replacement. Apply their ownership
+contracts to our instanced trees and smooth terrain without copying their mesher.
+Next evidence must reach complete owner assembly and real native installation;
+do not repeat the expensive fixture for each newly discovered field mismatch.
+
+**Earlier verification boundary:** review the entire compiler/queue/adapter/index
 member and support transformation together before another full handoff run.
 After R7, complete the static audit through contribution, partition and snapshot
 admission before rerunning. Correct all demonstrated schema mismatches as one
@@ -275,6 +311,23 @@ the concrete pending dependency. Receipt/source/owner changes invalidate proof;
 owner release restores retained legacy visuals when replacement coverage is
 lost. Keep collision, interactions, doors, navigation, deterministic generation
 and durable save deltas under their existing authorities.
+
+**Removal authority audit after ordinary R6:** nonempty replacement/replay is
+proven, but the old removal ACK path can replace installed-members metadata with
+an empty set and acknowledge without validating all prior geometry owners.
+Retain a per-part removal ledger derived from the last admitted complete roster
+and authoritative deletion, seal an explicit-empty current roster, and keep its
+stable removal revision until every prior native owner accepts the empty result.
+Do not reconstruct this obligation solely from the already-overwritten installed
+member map or surviving legacy visual nodes. Ordinary deletion authority is
+`StructureSystem.generated_visual_block_removed` and its durable removed-block
+projection; a missing/unloaded body is pending. Citadel absence is authoritative
+only in a complete current publication plan under its site/member binding; a
+missing or malformed `member_records` collection is unavailable, never empty.
+Both providers must preserve these obligations through move/delete, delayed
+ACK/release and replay. Extend the existing native fixtures with real source
+commands and empty installed geometry; label direct-service removal separately
+from live interaction/save acceptance.
 
 **Acceptance:** first exercise missing/extra/duplicate/stale member, moved
 owner, old-tombstone, partial install, replaced backend and delayed release
