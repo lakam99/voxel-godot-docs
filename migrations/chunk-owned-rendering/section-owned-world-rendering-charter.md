@@ -1,5 +1,26 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Retained preparation verification in progress (2026-10-07)
+
+Game HEAD remains `831223fb`; the retained-preparation batch is uncommitted.
+`node tools/run-ecology-section-value-adapter-contract.mjs -CompileOnly true
+-OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-compile-retained-preparation-20261007-r1`
+failed on a newly introduced duplicate local declaration in the adapter. A direct
+adapter check isolated it. After correction, the same command with `-r2` passed
+with normal exit 0, cleanup passed and authoritative zero-member proof. Parsing
+does not prove the preparation contract.
+
+`node tools/run-ecology-section-value-adapter-contract.mjs -OutputDirectory
+artifacts/citadel-runtime-integration/ecology-section-value-adapter-retained-preparation-20261007-r1`
+then failed: the existing 25-second handoff capture bound expired with no admitted
+tree-band jobs. The fixture incorrectly indexed the empty job array at line 5868,
+preventing its final report. Watchdog exit 126, forced cleanup, cleanup failed;
+authoritative zero-member proof confirms the owned process is gone. The underlying
+preparation cause is unresolved, distinct from the confirmed fixture failure path.
+Preserve this run and repair its bounded diagnostic/report path before another
+targeted run; do not extend the bound or weaken required handoff assertions. No
+Main rerun or stage advancement is justified by these results.
+
 ## Next integrated cutover: retained section preparation and compound attachments (2026-10-07)
 
 HEAD decision after the failed source-reuse Main run: complete two independently
@@ -76,6 +97,11 @@ avoid tracking its replacement's visibility. Minecraft's retained section mesh
 and task cancellation are the lifecycle reference, adapted to our separate
 animated owners. Producer construction before packet admission remains a separate
 possible overlap window and needs headed evidence before any whole-path claim.
+HEAD traced that exposure to `BuildingPartPublisher.publish_part`: it attaches
+the body and publishes its legacy visual children before attachment capture. The
+native transaction therefore starts after producer construction. This bridge is
+not the final candidate-before-visible producer cutover; complete migration still
+requires that boundary and live construction/replacement evidence.
 Final source review held the draft for two additional lifecycle invariants. Every
 pending native withdrawal must preserve exact source/generation/token cancellation
 proof until its session acknowledges settlement, including provider reconciliation
