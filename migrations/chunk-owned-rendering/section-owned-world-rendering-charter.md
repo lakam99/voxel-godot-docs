@@ -8886,3 +8886,25 @@ The design is provisional until the first microbenchmark demonstrates a real
 frame-time improvement. Minecraft 26.2 informs complete-layer upload and
 replaceable section slots; Godot Resource and RenderingServer safety must be
 validated against Godot's own API, not inferred from Minecraft.
+
+### Section-scoped building owner cutover
+
+The Citadel owner-closure audit found that a two-section tower foundation
+request inherits full rosters for multiple castle wall, foundation, and paving
+parts, expanding the local closure to 31 sections and 9,529 retained member
+demands. Those are real owners of those whole logical parts, but they exceed the
+local section's geometry support. The next building cutover will partition the
+existing committed artifacts into immutable section-owned slices and retain the
+parent building identity for gameplay, collision, and saves. The staged charter,
+current evidence, revision boundaries, and gates are in
+[`section-scoped-building-owner-charter-2026-10-07.md`](section-scoped-building-owner-charter-2026-10-07.md).
+
+The synchronous snapshot cache reduced a comparable early r19 reconciliation
+sample from 10.99 s to roughly 0.39 s; it remained transaction-scoped and did
+not reduce the 31-section dependency. The completed r19 headed run used seed
+`atlas-1492`, ran 500.968 s, and passed 33/35 checks. The same exact-owner
+closure and owner-lifecycle checks failed: only 3 of 31 required sections were
+installed, with 30 visible demands pending and 9,529 retained owner demands.
+Cleanup passed and authoritative zero owned processes was proven. The failure
+remains unresolved; the bounded runner did not reach its visual acceptance
+state. Formal migration progress remains **1/7 stage exits complete**.
