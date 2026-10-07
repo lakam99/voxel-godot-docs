@@ -104,6 +104,30 @@ identity, bounds, revision and owner checks. Prefer one section-independent
 member/tombstone authority revision with section-scoped coverage and removal
 records; do not change the roster's identity/removal map contract implicitly.
 
+**Explicit movement/removal contract expansion:** ROOT traced the roster's
+local and final global current/removal rejection, the assembler's copying of
+whole-census revision maps into each target candidate, the native install
+session's receipt metadata pass-through, and the coordinator's boundary-map
+merge. A roster-only relaxation would therefore be incomplete. Extend
+`StaticSectionSourceRoster.gd`, `WorldStaticSectionCandidateAssembler.gd` and
+their existing contracts together with the already assigned coordinator:
+current membership and removal remain contradictory in the same section;
+across distinct sections they may coexist only under the same provider and
+one equal current member-authority revision. A moved member's departed-section
+tombstone uses that current authority revision, with absence encoded in the
+exact section coverage/removal row. Whole-member deletion keeps a stable
+tombstone authority revision across affected sections. Conflicting revisions,
+duplicate removals and conflicting provider ownership still fail.
+
+Filter candidate `sourceRevisions` and `removalRevisions` to its target section
+before native receipt propagation. A receipt must never claim a neighboring
+section's membership or removal. Permit the boundary's flat map merge only
+when overlapping identity revisions are equal; never overwrite a conflict.
+Verify moved source in B/removed in A together, strict same-section rejection,
+stale and conflicting revisions, provider conflicts, old/new receipt
+replacement, and per-section receipt metadata through the real assembler.
+The building lead owns these edits; preserve exact dirty originals first.
+
 **Proof and exit:** preserve focused red baselines, then prove stable member
 IDs/revisions across two sections; one geometry owner and exact support-only
 and mixed section manifests; publisher/material/transform invalidation;
