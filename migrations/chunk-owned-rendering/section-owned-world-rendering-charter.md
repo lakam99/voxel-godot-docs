@@ -4,6 +4,34 @@
 
 ### Dual-revision native installation evidence
 
+The existing geometry adapter now copies raw producer revision into immutable
+compatibility/batches and wraps attachment bindings with the distinct census
+revision. The provider's legacy-restoration check compares the raw producer
+revision in the actual native restoration receipt. The real producer adapter
+contract passes **17/17** at `citadel-transform-adapter-dual-revision-20261007-r1`.
+
+The real door service fixture initially failed both swing and raise installation:
+three submeshes shared an attachment key but carried different swept bounds.
+Capture now computes one complete moving-member envelope and reseals affected
+group identities/proofs. Its next run exposed noncanonical nested motion field
+serialization and a raise descriptor carrying a swing angle. The install session
+now canonicalizes geometry members with the same serializer as borrowed members;
+capture emits only the active motion axis. These are producer/protocol repairs,
+not relaxed manifest comparisons. Earlier native synthetic fixtures did not
+exercise this real multi-submesh producer shape.
+
+`node tools/visible-world/run-citadel-section-geometry-service-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/citadel-section-geometry-service-dual-revision-20261007-r3`
+passes **61/61**, including actual door producer, provider, shared candidate,
+native installation and replacement lifecycle. The r1/r2 failures are retained;
+their watchdog stopped on reported errors, confirmed zero but did not pass clean
+shutdown. `node tools/run-building-static-section-transform-artifact-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/building-transform-artifact-shared-door-envelope-20261007-r3`
+passes **66/66**, including shared envelope/digest and active-axis regressions.
+Its r1 was a new fixture mistake (top-level binding absent from the producer
+wrapper); r2 passed 64 checks before adding the axis assertions. Both final runs
+exit normally with cleanup passed and authoritative zero. These remain focused
+fixtures, not visual/traversal/save/performance acceptance. No full-world gate was
+restarted against the still-unpromoted tree/light/ecology bundle.
+
 The shared presentation schema is now v2. Native manifest admission, canonical
 hashing, attachment registration/currentness, restoration receipts and install
 session receipts carry independent candidate `sourceRevision` and live-owner
