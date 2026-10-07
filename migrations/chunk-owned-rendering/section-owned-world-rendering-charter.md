@@ -2,6 +2,31 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Live presentation producer connection gate
+
+Independent read-only review found no concrete integrity defect in the current
+manifest/native transaction slice, but confirmed that no live production provider
+yet supplies `presentationContributors`. The native r9 pass is therefore not a
+live producer cutover. The existing assembler contract now explicitly covers
+geometry plus presentation in one candidate, a presentation-only source retained
+as a nonempty contributor, and rejection of a missing binding: **26/26** pass in
+`artifacts/citadel-runtime-integration/whole-section-candidate-assembler-provider-presentation-20261007-r1`
+with exit 0, cleanup passed and authoritative zero. This is synthetic evidence.
+
+The next integrated producer scope is existing building source capture and its
+Citadel adapter/provider. Capture actual supported source-owned light/animated
+mounts, seal identity/revision/motion/swept support/original visibility as values,
+keep weak live bindings outside the worker candidate, and supply those members
+through the same finite provider census and section contribution. Preserve body,
+collision, interaction and durable removal authorities. Unsupported source
+forms must remain explicit; do not invent a generic arbitrary-node bypass.
+The presentation lead owns isolated capture/adapter changes; the building-tree
+lead owns the service and merges the agreed field contract. HEAD owns integration,
+verification and acceptance. Before promotion require actual source capture,
+complete candidate installation/frame ACK, source replacement and unload/replay
+proof. Both provider changes must reach the headed complete-building gate and
+later normal Main gameplay. Overall stage exits remain **1/7**.
+
 ### Native shared-presentation integration result
 
 `node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-shared-presentation-20261007-r9`
