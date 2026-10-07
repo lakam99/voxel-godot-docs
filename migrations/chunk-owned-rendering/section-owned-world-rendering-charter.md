@@ -112,6 +112,22 @@ source/owner revision change or an explicit retryable dependency.
 
 ## 2026-10-07 charter: complete building residency and replacement
 
+**Boundary integration finding:** headed
+`citadel-nonempty-section-receipt-crossing-lifecycle-20261007-r2` installed the
+first foundation section and retained legacy visuals when the second section
+failed `section_provider_support_range_stale`. Its viewport capture succeeded;
+functional acceptance failed, with normal exit and authoritative zero processes.
+The row spans a 5-by-4 chunk footprint. Citadel/ordinary producers sort chunk
+dependencies x-then-z, while the shared validator and ecology retain z-then-x
+when no extra owner chunk is appended. Small one-axis fixtures missed this.
+The building lead owns exact-set validation using sorted owned copies of actual
+and expected dependencies: reject wrong types, duplicates, missing and extra
+chunks, and preserve the original immutable digest-bound row. Dependency
+membership is authoritative; incidental array order must not reject identical
+sets. Add multi-axis positive and negative regression cases before rerunning
+the native lifecycle fixture. Do not change bounds, tolerances, generation, or
+ecology serialization policy.
+
 **Outcome:** boundary-crossing static buildings participate in the same section
 candidate, native installation, support residency, replacement and unload/replay
 lifecycle. Keep collision, interactions, doors, navigation and durable save
