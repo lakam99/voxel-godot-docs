@@ -8781,3 +8781,41 @@ remains a smooth-streaming blocker; moving only the 282 µs canonical math to
 a worker would not resolve the measured hitch. Report:
 `artifacts/citadel-runtime-integration/citadel-glass-section-cache-r1/report.json`.
 The seven-stage migration remains **1/7 stage exits complete**.
+
+### Cold translucent surface upload plan — 2026-10-07
+
+**Entry evidence:** focused glass-cache r1 isolated a cold 11.633 ms
+`ArrayMesh` materialization inside a 16.265 ms service preparation, while
+canonical CPU geometry took 282 µs. The native packet backend subsequently
+duplicates the mesh and fingerprints its surfaces at admission and upload.
+These costs are serial on the current publication path. The visible result
+must stay unchanged and installed while any replacement is pending.
+
+**First gate, before replacing the renderer path:** benchmark the same admitted
+real glass payload through current ArrayMesh creation, material assignment,
+native duplication, and frame installation as separate timed stages. Compare
+direct cold server-surface allocation, preallocated copy-on-write slot upload,
+and POV-only index replacement. Record Main submission, render callback,
+frame p95/max, resident bytes, upload-to-draw latency, cancellation and owner
+destruction. Reject a path that merely moves the hitch into the render frame.
+
+**Candidate architecture if the measurement succeeds:** extend the existing
+native compile ticket with sealed value-only vertex/index/material-identity
+data. A bounded worker may pack values; it must not access scene Nodes or
+mutate Godot Resources. Packet-owned renderer slots then hold separate staged
+and installed surfaces with exact source, owner, section generation, layer,
+geometry digest, index digest and translucent POV revision. RenderingServer
+upload completion is an explicit ticket acknowledgment, followed by the
+existing frame acknowledgment and atomic old-to-new presentation swap. Stale
+completion returns its slot through the cancellation owner; pool exhaustion
+retains retryable demand and the previous visible section. Shutdown drains
+compile, upload, presentation and retirement owners. No independent readiness
+authority is introduced.
+
+**Exit sequence:** focused native upload/cancel/reuse checks; headed glass
+receipt with stale source/POV and old-visible checks; the seeded mixed Citadel
+owner gate; then initialized-Main visual/traversal and frame-time observation.
+The design is provisional until the first microbenchmark demonstrates a real
+frame-time improvement. Minecraft 26.2 informs complete-layer upload and
+replaceable section slots; Godot Resource and RenderingServer safety must be
+validated against Godot's own API, not inferred from Minecraft.
