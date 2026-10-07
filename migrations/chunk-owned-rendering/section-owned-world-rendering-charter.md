@@ -1,6 +1,69 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+**Current production boundary repair charter — 2026-10-07:** the real tree
+adapter handoff passes 146/147 checks (`ecology-section-value-adapter-contract-20261007-r16`),
+with clean owned zero. All 37 typed immutable owner buffers pass. Candidate
+assembly fails because the partitioner counts contributor batches by section,
+compatibility key, source, source part, and revision, while the snapshot
+validator omits source part and recounts 37 as 2. Preserve the full identity
+tuple in validation; do not relax totals or merge away provenance. This changes
+no generation, collision, save, or native batching authority. The acceptance
+sequence is a focused same-source/same-revision/shared-compatibility multi-part
+regression (including rejection of a false total), the complete real-tree
+adapter contract, then the frozen-source real Main cohabitation gate. Ecology
+owns only this shared validator repair and its regression; building retains
+fixture-only foreground-window work; independent review owns no mutable files.
+Minecraft SectionCompiler's material-layer aggregation informs render grouping;
+our contributor identity remains necessary to validate replacement and retirement.
+
+The Citadel cap hypothesis remains unresolved: aggregate group counts alone do
+not prove one production demand scope exceeded the limit. Synthetic cap checks
+prove that rule only. Record actual scope rejection before attributing the run.
+The architectural audit must also separate immutable visual source binding from
+physical packet attachment; Minecraft compiles visible models independently of
+the solidity test used for occlusion. No visual may be silently omitted because
+its physical packet has not yet attached.
+
 **Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
+The updated shared demand/ACK regression passes **59/59** in
+`artifacts/citadel-runtime-integration/visible-section-demand-driver-removal-ledger-20261007-r1/report.json`:
+check-only and headed synthetic/native runs both exit normally, prove clean
+owned zero, and all 37 recorded launch hashes remain current. This does not
+establish live gameplay or full-view startup acceptance.
+
+**Current integration order:** complete the short real-tree adapter handoff
+against the typed-buffer correction, then run the real Main cohabitation gate
+on frozen production sources. Two detached native fixtures exposed setup
+dependencies before candidate admission; do not let repeated fixture setup
+attempts replace real Main evidence. The tree fixture reparents its real queue
+but omitted the queue's Main currentness delegates, and its detached setup does
+not advance a standalone structure admission dependency. Delegate to actual
+Main authority and advance existing asynchronous preparation; no synthetic
+success or synchronous production fallback. Its failed native attempt
+`whole-section-candidate-native-install-20261007-r2` exited normally with clean
+owned zero, no candidate installation, and a 64 MB diagnostic report that must
+be replaced with bounded summaries in future runs. A prior setup attempt also
+found a 65-character compiler fingerprint typo; the corrected pin and all 12
+reviewed source fingerprints were compared against normalized source bytes.
+
+Citadel `citadel-nonempty-section-receipt-full-owner-lifecycle-20261007-r1`
+failed before native admission at owner `(198,2,-342)`, part
+`castle_tower_01_battlement_left_0`, with
+`citadel_transform_member_binding_unavailable`. Normal exit 1, clean owned
+zero, all 47 recorded source hashes unchanged. The failure viewport retains
+legacy masonry and a visibly patchy floor; no native candidates were admitted,
+so that image is not evidence of a new/old native overlap regression. Static
+trace shows the fixture requested 1,501 dependency-closed foreground groups
+against the production limit of 1,024; runtime rejection must be recorded
+explicitly before treating that as the confirmed cause. Beam recipes are
+admitted by the production packet builder; do not filter the battlement out.
+The fixture may retain all required group identities while advancing bounded,
+deterministic foreground windows whose actual dependency closure stays within
+the production limit. Advance on real completed physical-group receipts, retain
+the same legacy visual identities, and keep the entire 31-owner native proof.
+Reject a single over-limit dependency closure explicitly. No production cap
+increase, invented binding, or reduced expected member set is authorized.
+
 Current game HEAD is `4dff1c72`: the complete geometry-owner member proof and
 its 50-check synthetic contract. It follows `b81dff1a`, the independently
 verified rendered-viewport and owned-process evidence infrastructure.
