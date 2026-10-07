@@ -6449,6 +6449,138 @@ This instrumentation has no standalone live acceptance claim. Minecraft's
 copied-region reuse guides the subsequent measured change; it does not justify
 dropping any of our declared 64 source dependencies.
 
+Read-only source mapping also identifies a coherent reuse boundary for the next
+measured performance cutover. Non-tree conversion/fingerprinting repeats while
+censuses revisit ready source publications. Tree recipe artifacts are reused,
+but each target-band compiler repacks the same source tree across all affected
+sections before filtering to its target. A publication-owned render-artifact
+batch can retain immutable section-indexed slices once per admitted source;
+section candidates still own their independent complete manifests, currentness
+checks and installation receipts. Bind reuse to publication content/owner epoch,
+source/family revisions, policy/catalog/removal digests and recipe/resource/
+packer revisions. Retire through the existing source-publication lease owner.
+Keep Godot resource references on Main; workers receive detached packed values.
+This is a design finding, not a measured attribution of the census stall and
+not authorization to skip any support dependency or installation check.
+
+**Visual-evidence dependency:** the r3 owned-window capture failed because
+Windows refused foreground focus. Integrate the reviewed viewport-capture
+proposal only after current focused runs terminate. The six-file scope is the
+existing automated overlay, Main gate, shared Node runner/evidence helper, Main
+runner and capture-protocol contract. The viewport must be read from the real
+headed Godot viewport after `frame_post_draw`; receipts must match run, runner,
+phase, source identity and contained output path, and Node must verify PNG bytes
+and hash while retaining owned-process cleanup. Preserve the default window
+capture path. Correct the reviewed proposal's fresh-directory setup bug before
+use. Behavioral protocol tests must cover fresh directory creation, rejection of
+mismatched receipts and acceptance of a correctly bound PNG; those tests do not
+establish visual gameplay. Only the next headed Main run and inspected images
+can establish that capture works on the real scene. The corrected proposed
+patch is `artifacts/viewport-capture-review-r2/voxel-viewport-capture-r2-corrected.patch`,
+SHA-256 `dc26a492a9a12e0d0be4581faed9ddd9bc1d6d38261996036a4bb931b8d0051f`.
+
+The corrected viewport patch is integrated. The behavioral receipt test uses
+synthetic PNG data and leaves visual acceptance false. The old shared-runner
+fixture was migrated to a valid PNG and exact source/phase identity; production
+validation was not bypassed. `node --test tools/tests/headed-viewport-capture.test.mjs tools/tests/main-section-cohabitation-viewport-capture-contract.test.mjs tools/lib/building-runner.test.mjs`
+passes 52/52 (3 behavioral, 8 static, 41 existing runner tests). JavaScript syntax
+checks pass. No Godot viewport image has yet been accepted at this checkpoint.
+
+The expanded tree handoff fixture passed actual Godot parsing, but its r5
+functional run reached the new handoff stage then hit the existing 60-second
+whole-suite deadline without a report. The prior green adapter suite took
+37.741 seconds; the added integration loop has a separate 25-second bound.
+The root cause of the new elapsed time remains unresolved. Cleanup proved zero
+owned processes but required forced termination, so cleanup acceptance failed.
+Record: `artifacts/citadel-runtime-integration/ecology-section-value-adapter-r5/watchdog.json`.
+One instrumented diagnostic retry uses a 150-second outer budget and records
+helper setup, recipe preparation, capture calls, assembly and cleanup timing;
+all substantive assertions and the 25-second integration bound remain intact.
+Do not classify timeout as a product regression or fixture-only issue before
+those measurements separate the causes.
+
+The instrumented r6 run completed normally in 81.8 seconds with clean owned
+process cleanup. All previous adapter assertions pass; eleven new handoff
+assertions fail because the first roster capture took 29.913 seconds and
+returned `tree_source_band_compile_queued`. Helper setup consumed only 465ms.
+That synchronous call exceeded the unchanged 25-second helper bound before
+any process frame could advance the newly queued worker. Source inspection then
+found that the new fixture used `PumpedAdapter`: its capture override explicitly
+performs up to nine real census calls and 64 fixture source-capture advances
+before returning. The aggregate 29.913 seconds must not be attributed to one
+production callback or confused with the separate real Main 14.602-second
+measurement. Report: `artifacts/citadel-runtime-integration/ecology-section-value-adapter-r6/report.json`.
+The next check isolates the helper through the existing runner, retaining
+correctness assertions and adding its five-phase census profile to the report.
+Use the real Adapter and explicitly advance admitted source work across process
+frames so the real tree queue can run; keep the old pumped helper only for its
+existing synchronous contract fixtures. Do not rerun the full 81-second suite
+or alter production to accommodate this fixture's artificial pumping. Use the
+profile to distinguish fixture-authority cost from real callback work before
+selecting the coherent source-artifact preparation/reuse cutover.
+
+### 2026-10-07 HEAD cutover — publication-owned section-band preparation
+
+**Outcome and boundary:** stop rebuilding and revalidating whole source-family
+bundles at every adapter/index handoff. Preserve the same exact section content,
+explicit empty receipts, source revisions, owner/support assignment, cancellation
+and installed representation. No recipe, world generation, save, physics, NPC,
+render-detail or required-source-closure change belongs in this cutover.
+
+**Evidence:** the plain-Adapter handoff-only diagnostic r2 still fails the
+25-second experiment, with clean cleanup. Its slowest actual provider call is
+8.887 seconds; `support_band_registration` consumes 6.897 seconds, source lookup
+1.477 seconds, conversion 0.541 seconds and closure 0.044 seconds. Source work is
+synthetic: two requested sections, 72 capture jobs, 40 ready, one authored tree
+row. The 37 registration counter counts source-chunk batches, not individual
+bands. There is no native-pack or installed-renderer evidence. Report:
+`artifacts/citadel-runtime-integration/ecology-tree-handoff-diagnostic-r2/report.json`.
+Real Main's separate 14.602-second census remains the live baseline.
+
+**Ownership/data path:** the existing `EcologyProducerCatalogContext` already
+owns sealed source publications and leases. Extend that owner to retain the
+complete section-band preparation derived from its exact admitted publication.
+Validate the full publication once; project a demanded section once; retain
+immutable slices with complete family manifests/digests and explicit empty or
+nonempty disposition. The adapter requests/reuses these values under its source
+publication lease. Both ordinary family registration and tree-band admission
+consume the same slice. The support index checks its own domain/support revision
+and exact source/member coverage, without projecting or hashing the complete
+source publication again. Existing tree geometry compilation then consumes the
+accepted tree authority; terrain and other providers still join the whole
+section candidate through the shared roster/assembler.
+
+**Trust and invalidation:** a read-only dictionary or digest marker is not an
+admission receipt. Resolve the exact retained slice through the existing
+publication owner and check identity/alias, live owner/world epoch, publication
+content, source/family/policy/catalog/removal revisions and requested section.
+Reject copied, changed, superseded, released or foreign slices. A source ID alone
+never permits reuse. New target sections extend retained preparation without
+rebuilding accepted siblings. Domain/support-index changes require new local
+registration; they do not authorize stale receipts. Retire prepared values with
+their publication and retained demand; old renderer installations remain until
+current replacements succeed. Keep large payload ownership in existing
+retirement/cancellation paths. Do not create a second generation authority or
+parallel queue. Native geometry packing remains unchanged in this measured
+slice; Godot resource references stay on Main.
+
+**Verification/exit:** contracts must exercise real source-owner admission,
+nonempty and authoritative-empty band slices, exact reuse without reprojecting,
+multiple sections and multiple consumers, copied/mutated/stale owner or revision
+rejection, release/eviction/replay and unchanged source/band output parity. Then
+the existing lightweight real compiler-to-index-to-candidate handoff must pass
+with unchanged correctness assertions. Record source/band validation and cache
+counts plus timing, so speed cannot come from dropping sources. Parse the real
+Main/viewport scripts, run one headed Main gate, inspect its images and compare
+the same seed's five-phase profile. Full migration acceptance still requires
+normal startup, native installation, traversal, collision/interactions,
+harvest/save/reload/unload/replay and representative runtime performance.
+
+Minecraft 26.2 `RenderRegionCache`/`SectionCopy` own reusable admitted copied
+inputs; `RenderSectionRegion` selects context and `SectionCompiler.Results`
+feeds one section installation lifecycle. This cutover applies that separation
+of source preparation from per-section compilation without copying its mesher.
+
 ### 2026-10-07 HEAD checkpoint — Citadel source identity boundary
 
 The r5 headed gate selected a packet-supported floor member, but candidate
