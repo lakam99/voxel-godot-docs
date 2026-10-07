@@ -1,6 +1,51 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
 **Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
+Current game HEAD is `b81dff1a`: independently verified rendered-viewport and
+owned-process evidence infrastructure. The publication-owned section-band
+cutover passes 70 owner and 136 index checks, but its real compiler handoff is
+still pending. Fixture catalog-scope parity now passes its added checks; the
+unchanged 25-second handoff bound still expires during active recipe work.
+The reproduced provider-acknowledgement failure now passes its focused repair
+contract, including failed/malformed responses remaining unsettled until an
+explicit success. Its full regression suite and production readiness consumer
+audit remain open. Neither lane establishes live traversal, save/replay or
+performance acceptance. Detailed evidence and remaining boundaries follow.
+
+**2026-10-07 focused checkpoint:**
+
+- `visible-section-demand-driver-ack-settlement-r6` passed its single named
+  `ack_settlement` contract. Failed and malformed acknowledgements remain
+  retained and retryable; success requires the exact installed receipt and no
+  geometry reinstall. Coordinator SHA-256:
+  `5e8b56ab9a6425d14d1e0e4adf4b2dc37e24798555b191f14aefae6df65222c8`.
+  This is synthetic scheduling/ownership evidence, not the full driver suite.
+- `ecology-tree-handoff-diagnostic-catalog-scope-20261007-r2` passes the added
+  nested catalog-scope, per-source field, mutation/currentness and restoration
+  checks. All 72 source jobs complete, but the tree compiler remains active in
+  `recipe_role_build`; no compiled artifact or installed renderer is proven.
+  The compiler had started about eight seconds before the unchanged 25-second
+  cutoff. This does not establish starvation. Repeated source census calls
+  still cost about 310 ms in this synthetic fixture and require architectural
+  investigation; this is not a normal-runtime frame measurement.
+- Both runs exited normally and proved authoritative zero owned processes.
+  The handoff runner's diagnostic exit 0 does not turn its failed report into
+  acceptance. Reports and watchdogs are under the game's
+  `artifacts/citadel-runtime-integration/` with the names above.
+- Do not repeat that unchanged costly handoff. Trace captured-input reuse,
+  pending compiler polling, retained completed jobs and actual production
+  scheduling before choosing a lifecycle change. Minecraft's region capture,
+  target-section compilation and all-layer upload-before-swap remain the
+  architectural reference. Preserve our smooth mesher and gameplay owners.
+- The acknowledgement consumer audit confirms production startup may remain
+  ready through a still-current legacy publication while the replacement
+  section ACK is pending. That is valid old-representation retention, not proof
+  of shared-section takeover or acceptance of a failed replacement. This is
+  the planned Stage 6 boundary: after producer cutovers are proven, integrate
+  exact initial-view section settlement after Main's existing visual/physical
+  checks. Do not insert a global background-queue gate or add ACK recursion to
+  native receipt validators used by the acknowledgement callbacks themselves.
+
 Real Citadel section installation r8 passed 29 checks; initialized-Main
 cohabitation and terrain/fluid live acceptance remain open. Independent review
 then identified publisher-currentness and adjacent-section support gaps in the
