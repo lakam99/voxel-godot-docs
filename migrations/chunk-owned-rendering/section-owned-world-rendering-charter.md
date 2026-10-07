@@ -34,6 +34,41 @@ Normal exit 0, cleanup passed, no forced cleanup, authoritative zero owned
 processes. This is an isolated real-recipe/provider/coordinator/native fixture;
 it does not prove ordinary gameplay, moved/deleted source replay, saves,
 full-domain cohabitation or runtime performance.
+The strengthened ordinary move/delete baseline then passes native movement:
+one current revision covers the new and departed sections, the new owner has
+three instances and the departed native slot has zero. Deletion fails before
+installation because the expected roster remains nonempty, locating the next
+repair at provider removal authority. Report:
+`artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-move-delete-red-20261007-r1/report.json`.
+Normal exit 1, clean owned zero, 35/35 launch hashes unchanged. Preserve this
+passing movement act while completing the durable removal lifecycle below.
+The corrected ordinary native lifecycle now passes **20/20** in
+`ordinary-structure-native-section-receipt-removal-ledger-20261007-r1`:
+installation, unload/replay, delayed release rejection, body incarnation
+replacement, cross-section move, explicit-empty deletion installed in the real
+native slot, and stable deletion identity after unrelated authority revision
+changes. Check-only passed; functional exit 0, no stderr, no forced cleanup,
+authoritative zero owned processes and stable launch hashes. This remains an
+isolated renderer/provider fixture, not live interaction, saves or performance.
+The shared assembler contract also passes **23/23**, including thirteen added
+removal identity checks for sealed target identities and missing, wrong, stale,
+mutable, duplicate and neighboring claims:
+`whole-section-candidate-assembler-removal-identities-20261007-r2/report.json`.
+This second result is explicitly synthetic; normal exit 0 and clean owned zero.
+The final added check rejects a mutable nonempty removal-revision map even when
+the outer candidate and its raw-identity map are sealed. Independent review
+confirmed the production guard and exact negative before the passing rerun.
+The headed Citadel preflight passes **19/19** at
+`citadel-nonempty-section-receipt-owner-closure-headed-preflight-20261007-r2`.
+Two root sections intersect 12 complete source parts whose geometry occupies
+31 owner sections. The large foundation has 391 members in 21 owners; the left
+wall has 2,410 members in 10 owners; the selected smaller foundation has 69
+members in two owners. These sets overlap. This is measured full-part residency
+for legacy retirement, not recursive expansion to every neighboring structure.
+Normal exit 0, stable sources, clean owned zero. The fixture's historical
+`evidenceLevel` text incorrectly says headless; launch/watchdog prove a headed
+run. Preserve the artifact and correct that label for the next run. This
+preflight proves the owner set, not native installation of those 31 sections.
 The new pure geometry-owner completion helper passes 50 synthetic value
 contracts (`static-geometry-owner-completion-20261007-r3`), independently
 reviewed. This covers exact expected/installed member sets, stale and malformed
@@ -84,6 +119,19 @@ all-layer upload acknowledgement before replacement. Apply their ownership
 contracts to our instanced trees and smooth terrain without copying their mesher.
 Next evidence must reach complete owner assembly and real native installation;
 do not repeat the expensive fixture for each newly discovered field mismatch.
+
+**Typed band buffer decision:** the native pack already returns typed float
+attributes, but compiler member accumulation uses generic arrays. Replace the
+existing per-member copy at band artifact sealing with one finite-checked,
+read-only `Array[float]`; hash the actual shipped owner payload afterward.
+The adapter must require and reuse that sealed buffer. Keep internal source
+compilation digests and semantic geometry unchanged. This avoids repeated
+per-target conversion or copying the full source for a support-only section.
+Review all digest consumers and the compiler fingerprint together. Verify
+typed/read-only alias retention, exact values, malformed inputs, full candidate
+assembly and native installation. The aggregate-manifest fixture must compare
+declared identity/geometry fields against the actual indexed support row;
+optional enrichment is not evidence of a source mismatch.
 
 **Earlier verification boundary:** review the entire compiler/queue/adapter/index
 member and support transformation together before another full handoff run.
