@@ -2,6 +2,67 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Whole-boundary review findings and revised implementation scope
+
+Fresh Minecraft 26.2 review includes `ChunkPyramid.GENERATION_PYRAMID` as well as
+`SectionCompiler`, `RenderSectionRegion`, and `SectionRenderDispatcher`.
+Minecraft separates authoritative generation (including features) from section
+compilation. Apply that distinction here: reduce unnecessary render dependencies
+without silently changing our seeded generation order.
+
+The shared ecology capture session is keyed by chunk/source identity, while
+adapter jobs also include family selection. A naive per-family job split would
+let requests overwrite one session's active family selection. The complete
+repair therefore needs one deterministic chunk pass with monotonically admitted
+families and independent exact family completion receipts. Late family demand,
+source edits, retirement and cancellation must work together. The current Main
+report does not retain exact per-family closure cardinalities; add bounded
+cardinality evidence before claiming a reduction ratio.
+
+Underground generation uses coordinate-filtered floor candidates and a shared
+sequential RNG with variable draw counts. A vertical scan frontier alone cannot
+seal a later candidate before earlier candidates resolve. Any future early-band
+receipt must include both exact closed-column evidence and the required ordered
+attempt prefix. Keep this limitation explicit. The first verifiable cutover
+removes the family/source union amplification while retaining required scans
+and generation order; it does not promise that all cold underground work can
+be skipped for surface startup.
+
+The tree review found a missing production producer path. Building scene jobs
+create `site-tree:...` IDs; Main queues them, but its invalidation callback only
+dirties a source. The ecology adapter populates candidates from deterministic
+chunk snapshots, whose natural-tree pass excludes town terrain. Consequently,
+those building trees never register with the shared section census. The tree
+lead must migrate finite building-tree contributors through the existing
+building publication authority using their real admitted recipes/compiled
+artifacts, exact body/source revisions, support sections and removal authority.
+Complete candidate installation, acknowledgement, unload and replay are part
+of that change. The headed fixture must exercise this production path with its
+original complete building roster; loading unrelated natural ecology cannot
+stand in for missing registration.
+
+Legacy per-tree visuals remain a visible fallback and source-preparation
+witness. Full installation acceptance will use actual native impostor slots or
+shared section receipts. Repeated full MultiMesh buffer reads would introduce
+new stalls; `Resource.changed` is insufficient for tracking all MultiMesh
+mutation methods. Do not add a second transitional ownership registry or accept
+a cached boolean as exact installation proof.
+
+The native presentation bundle carries borrowed source-owned light/animated
+mounts alongside geometry in one declared, immutable section manifest. Live
+weak owners stay outside worker values. Anchor activation is distinct from
+per-batch visibility: multiple geometry batches can share one door pivot while
+some source meshes are intentionally hidden. Capture original visibility before
+suppression, include it in batch compatibility/content identity, and apply it
+to each native batch. Borrowed mounts keep their own activation policy and are
+never freed by the renderer. Verify mixed visible/hidden batches on one anchor,
+borrowed-only candidates, exact frame acknowledgement, stale ownership,
+rollback, old-representation retention and bounded dependency admission.
+
+All of these extensions remain isolated review drafts. No new production
+bundle has been promoted or accepted. The last Main launch's **69 source hashes**
+were independently rechecked unchanged after failure.
+
 **Real Main comparison: preparation remains blocked by source-capture breadth.**
 `node tools/visible-world/run-main-section-cohabitation-gate.mjs -OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-retained-preparation-20261007-r1 -Seed ecology-main-retirement-stage5 -TimeoutSeconds 960 -StartupWaitSeconds 300`
 failed `main_startup_ready`: normal exit 1, cleanup passed without force,
