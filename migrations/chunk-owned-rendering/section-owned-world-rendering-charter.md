@@ -2,6 +2,45 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+The native gate subsequently passed **132/132**, including all 74 attachment
+checks, at
+`artifacts/citadel-runtime-integration/native-chunk-packet-compound-attachments-20261007-r9/report.json`
+using the same `node tools/run-native-chunk-render-packet-contract.mjs
+-OutputDirectory ...` command. HEAD independently inspected the report, both
+watchdogs and empty error logs: parse and headed runtime exit 0, cleanup passed,
+no forced cleanup, authoritative zero members. Installation consumes a real
+rendered-frame callback and nonempty frame acknowledgement token. The 40
+launch-recorded source/build hashes remain unchanged; the next runner revision
+adds the directly used `BuildingPart.gd` and UID to that identity list. This is
+native/service acceptance only. The r8 attempt had true assertions but script
+errors from an obsolete part stub lacking the current `snapshot()` interface;
+it correctly failed. R9 uses the actual BuildingPart resource, retaining every
+assertion and log gate. Building integration, full section closure, live world
+visuals/traversal/performance and final producer retirement remain outstanding.
+
+Coordinator cancellation/reassembly gate now passes **69/69**:
+`node tools/visible-world/run-visible-section-demand-driver-contract.mjs
+-OutputDirectory artifacts/citadel-runtime-integration/visible-section-demand-driver-all-install-retirement-20261007-r2`.
+Both parse and headed watchdogs report normal exit 0, cleanup passed, no forced
+cleanup and authoritative zero members. The runner checks unchanged launch-pinned
+source/build identities. All four attachment reassembly and six install-retirement
+assertions pass, including failed cancellation/retry for production, replay and
+boundary lanes. Evidence is synthetic provider/coordinator control flow plus a
+real native translucent-section install receipt, not live world acceptance.
+The prior r1 stopped on fixture-supplied mutable revision/census maps; preserve
+that failure. The fixture now supplies admitted immutable maps and production
+validation remains unchanged.
+
+The rebuilt native debug DLL is
+`1F3A7E22C0ED60E0FD0376A95EA3C55A5C6F20EA2C24D1A80D81E87B5AB55359`.
+Native `-r7` reports all **74 attachment checks passing**, but the full contract
+still fails. Its old synchronous session loops cannot receive the now-required
+rendered-frame acknowledgement, leaving the first ledger boundary open and
+blocking replacement preparation. Migrate all affected fixture phases to actual
+asynchronous installation with a headed renderer and real callback acknowledgement;
+do not inject acknowledgement or add a synchronous production fallback. This
+fixture migration does not convert its synthetic inputs into gameplay evidence.
+
 HEAD rechecked local Minecraft 26.2 `RenderSectionRegion`, `SectionCompiler`,
 and `SectionRenderDispatcher`: captured neighboring section inputs feed a
 section compile result with all render layers; upload callbacks promote the
