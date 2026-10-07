@@ -42,7 +42,7 @@ readers, when assessing final-reference release.
 `OwnedValueArtifactRetirement` helper under the existing ecology queue owner.
 Construct immutable value roots separately from Main-owned resource bindings;
 transfer complete nested geometry/proof/manifests, not only float buffers.
-Keep resources alive until worker join. A failed worker start retains demand
+Keep resources alive until each disposal acknowledgement. A failed worker start retains demand
 and payload, applies backpressure, and retries; reset/shutdown drain owned work.
 Include adapter canonical-band caches in the same ownership path. The support
 index retains metadata only. HEAD traced the downstream copy boundary:
@@ -51,6 +51,36 @@ records and concatenates new output buffers; the assembler/coordinator retain
 those prepared copies rather than original source geometry. This bounds the
 current source-retirement cutover without pretending to verify the distinct
 candidate-buffer disposal path.
+
+The execution design uses one persistent worker established before admitting
+source/band compilation, following the retained executor lifetime visible in
+Minecraft's SectionRenderDispatcher. Initial thread-start failure leaves
+admission retryable before large work is owned. Bounded disposal batches release
+all worker value aliases before publishing a completion acknowledgement; Main
+then releases that batch's resource keepalives. Do not accumulate resource tables
+until game exit. Cancellation must detach partial compiler data after cancelling
+its native tickets, and include publication-view/authority aliases. Shutdown
+stops, drains and joins the existing worker rather than attempting to create a
+new worker after scene destruction begins. Focused proof includes start failure,
+capacity pressure, incomplete cancellation, reset, and exit.
+
+The lifecycle scope also includes the still-scheduled singleton
+`tree_recipe_section_compiler`, not only per-source and band compilers. Body
+unload, stale completion, reset and exit must detach its partial value graph
+through the same owner. Known record wrappers exclude body WeakRefs; SurfaceTool,
+MultiMesh, meshes and materials remain Main-owned RefCounted keepalives until
+the worker acknowledgement. Backpressure retains cancellation demand. Minecraft
+`SectionRenderDispatcher.CompileTask.cancel()` marks cancellation while the task
+execution path releases compiled results; this is the relevant ownership model,
+adapted to Godot's reference-counted objects rather than copied literally.
+
+The isolated retirement helper contract passed 9/9 in
+`artifacts/citadel-runtime-integration/owned-value-artifact-retirement-20261007-r6`:
+normal exit 0, no forced cleanup, authoritative zero members. It proves deferred
+worker disposal, acknowledgement keepalives, capacity/start failure, drain/reuse
+and shutdown contracts only. Production integration and live performance remain
+unproven. Synchronous native tree ticket vector reclamation is a separate,
+unmeasured disposal risk; profile it before attributing a visible hitch to it.
 
 The frozen batch at game HEAD `4dff1c72` plus the exact dirty-file manifest
 `artifacts/building-visual-authority-baseline-20261007/final-batch-files.json`
