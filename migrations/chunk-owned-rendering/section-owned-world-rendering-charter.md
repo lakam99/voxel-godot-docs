@@ -46,6 +46,43 @@ performance acceptance. Detailed evidence and remaining boundaries follow.
   checks. Do not insert a global background-queue gate or add ACK recursion to
   native receipt validators used by the acknowledgement callbacks themselves.
 
+## 2026-10-07 charter: tree artifact sealing boundary
+
+The renderer-backed ecology adapter run
+`ecology-section-value-adapter-renderer-backed-20261007-r1` produced a real
+`compiled-tree-section-source/v1` nonempty artifact: 958 native-packed
+instances, two batches, one source completion row. The index rejected it with
+`tree_overlay_artifact_completion_digest_mismatch`; nine downstream handoff
+assertions failed. All 42 launch hashes were unchanged and cleanup exited
+normally with zero owned processes. Earlier headless attempts could not
+produce real bole geometry because the factory intentionally emits a headless
+proxy; a first-failure diagnostic identified that in 2.886 seconds. They are
+not evidence of a production compiler stall.
+
+The ecology lead owns bounded discovery and a coherent sealing-boundary repair:
+compare the exact producer-hashed value with the shipped frozen value and the
+consumer-hashed value, including typed-array serialization and nested payloads.
+The current hypothesis is that hashing precedes a freeze operation which
+changes serialization type metadata. Prove it with a small owned serialization
+contract before implementation; do not rerun the 25-second fixture unchanged.
+If confirmed, extend the lead's scope to `TreeRecipeSectionCompiler.gd`, the
+existing `CompiledTreeSectionArtifact.gd` schema helper, corresponding queue
+and index digest consumers, and their existing contracts. Seal/hash the actual
+owned immutable payload consistently, including completion and owner-batch
+digests. Do not weaken stale, completeness, resource or member validation or
+modify geometry, recipes, generation, bounds or rendering policies.
+
+Preserve exact source originals. If the reviewed compiler source fingerprint
+changes, update its producer-envelope admission only after an exact reverse
+diff proves the modification is sealing metadata and the geometry parity
+checks pass. Verify typed/untyped input parity, nested mutation rejection,
+nonempty real compiler output through the index and owner/support candidate
+assembly, followed by the normal Main/native installation gate. Native-packed
+geometry alone is not publication acceptance. Retaining failed jobs and their
+reason under the same authority, instead of silently restarting identical
+failed work, belongs to this lifecycle review; retries must follow a relevant
+source/owner revision change or an explicit retryable dependency.
+
 ## 2026-10-07 charter: complete building residency and replacement
 
 **Outcome:** boundary-crossing static buildings participate in the same section
