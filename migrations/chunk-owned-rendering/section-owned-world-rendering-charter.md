@@ -146,8 +146,8 @@ their own representation. For center-owned instances, support sections carry
 residency demand, not duplicate replacement geometry.
 
 **Replacement authority and scope:** the building lead owns a coherent cutover
-of Citadel's old-visual retirement to a complete part-level geometry-owner
-proof. Use the full existing sealed transform artifact for
+of both building providers' old-visual retirement to a complete part-level
+geometry-owner proof. Citadel uses the full existing sealed transform artifact for
 `building_source_part_id`; derive a deterministic immutable expected member
 roster from every group/segment/instance before section filtering. Bind it to
 world/site, publisher incarnation, part binding/source revision, artifact and
@@ -156,6 +156,17 @@ decoded transform/bounds. Reuse existing normalization and value admission;
 do not introduce another generator or a parallel geometry authority. Cache only
 under the current artifact identity, with bounded cancellation/retirement and
 no live Node ownership hidden inside the value roster.
+
+Ordinary structures use the existing admitted captured recipe and its complete
+mesh-member roster under the same proof contract; do not add a copied recipe
+builder. The real ordinary native r3 fixture installed its current candidate
+and preserved the collider, but reported
+`ordinary_visual_section_receipt_closure_pending` for support section `(0,-1,0)`
+although all three meshes have geometry owner `(0,0,0)`. It failed normally with
+clean owned zero and stable source hashes; release/replay assertions were not
+reached. Keep that boundary placement as a regression, rather than moving the
+fixture to avoid the support intersection. This confirms the same retirement
+coupling in the ordinary provider; it belongs in this shared building cutover.
 
 The coordinator must compare that complete expected set with current installed
 owner candidates, their native receipts and exact geometry provenance. Never
