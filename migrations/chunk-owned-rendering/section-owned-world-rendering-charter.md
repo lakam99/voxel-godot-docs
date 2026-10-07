@@ -2,10 +2,52 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Tree, light, and retained ecology integration
+
+The production tree and practical-light capture now enter the section candidate
+through source-owned presentation witnesses. The retained ecology source pass
+admits exact source/family requests, preserves late family demand, and hands
+large payload aliases to the existing retirement owner before releasing a
+session. Mobs and NPC simulation remain independent. The reviewed same-seed
+late-family check is synthetic scheduling evidence; generated-output parity
+and normal gameplay remain unproved.
+
+Focused gates after integration: the real Citadel section service passes
+**86/86** at `citadel-section-geometry-service-batch-identity-20261007-r2`;
+the actual producer adapter passes **15/15** at
+`citadel-section-geometry-adapter-batch-identity-20261007-r1`;
+the tree value adapter passes **25/25** at
+`tree-section-value-adapter-tree-light-fixture-repair-r10`; and the Main ecology
+capture-session contract passes **26/26** at
+`ecology-source-capture-session-retained-family-20261007-r7`. These runs exited
+normally with clean owned-process shutdown and authoritative zero members.
+The project compile smoke also passes after the merged ecology change.
+
+The first headed 31-building attempt reached real Citadel contribution but
+rejected ordinary sources that shared a draw batch key while carrying distinct
+producer revisions. The adapter now keeps raw revision on each contributor;
+only attachment-bound batch compatibility carries that revision. This preserves
+the common draw compatibility of ordinary groups and the strict identity of
+borrowed visual attachments. The second headed attempt at
+`citadel-nonempty-section-receipt-tree-ecology-20261007-r2` passed **28/30**
+checks and confirmed the earlier batch conflict is gone. It timed out its
+owner-publication window with two tree groups still in `group_tree_visuals`
+(`1499/3596` physical groups complete), so the native owner lifecycle act was
+not reached. The watchdog exited normally, cleaned up, and proved zero owned
+processes. This is an open tree source-preparation dependency, not a passed
+visual/traversal gate. Formal stage exits remain **1/7**.
+
+The tree queue headed contract reaches a real nonempty band with one compile,
+one projection, two batches and 31 contributors. Its overall **26/28** remains
+red on two pre-existing impostor/proxy checks; the new retained-failure
+regression passes. The broad building job contract also remains red and is
+under separate diagnostics. No full-world, traversal, save/reload or runtime
+performance acceptance is claimed from these focused fixtures.
+
 ### Dual-revision native installation evidence
 
-The existing geometry adapter now copies raw producer revision into immutable
-compatibility/batches and wraps attachment bindings with the distinct census
+The geometry adapter keeps raw producer revision on each contributor and on
+attachment-bound compatibility, and wraps attachment bindings with the distinct census
 revision. The provider's legacy-restoration check compares the raw producer
 revision in the actual native restoration receipt. The real producer adapter
 contract passes **17/17** at `citadel-transform-adapter-dual-revision-20261007-r1`.
