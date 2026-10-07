@@ -1,5 +1,68 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Integrated replacement protocol verification (2026-10-07)
+
+HEAD rechecked local Minecraft 26.2 `RenderSectionRegion`, `SectionCompiler`,
+and `SectionRenderDispatcher`: captured neighboring section inputs feed a
+section compile result with all render layers; upload callbacks promote the
+replacement only when its required vertex/index buffers are ready, then release
+the old mesh. This is the lifecycle reference, not a block-mesher transplant.
+Our smooth terrain and animated attachment/controller authorities remain intact.
+
+Native diagnostic command:
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory
+artifacts/citadel-runtime-integration/native-chunk-packet-compound-attachments-20261007-r5`.
+HEAD inspected its report and watchdog: normal exit 1, no script abort, cleanup
+passed, no forced cleanup, authoritative zero members. It preserves six failed
+attachment assertions and a structured `section_candidate_preparation_failed`.
+The production defect is previous-attachment validation using the retained-hidden
+contract before hiding those roots. The scoped repair moves that validation
+inside the same synchronous replacement switch after hiding the previous roots;
+independent review found no yield or rejecting return between hide and promotion.
+It still needs a rebuilt DLL and executable proof. Separately, the fixture used
+obsolete part-only revision identities and an incorrect empty-packet admission
+status expectation; repair those to the existing production contracts without
+removing assertions. Failed r5 sources are preserved in the ignored attachment
+design artifact directory. Earlier r3/r4 aborted during fixture cleanup/reporting
+and do not establish native acceptance.
+
+Independent ecology review accepts the same-key publication incarnation binding
+and sibling preparation invalidation, but identifies incomplete outcome handling
+at actual nested producer boundaries. Existing terminal tree results use
+`pending` with explicit terminal flags; non-tree conversion loses record-currentness
+failure structure; slice admission/lease loss requires invalidation and readmission.
+Repair the entire boundary result projection and exercise real helper result
+shapes before another Main run. An injected outer `failed` alone is insufficient
+regression coverage. Source repairs are prepared separately while the native
+runner owns the engine slot, preserving run/source identity.
+
+The next acceptance unit remains the integrated preparation → complete candidate
+→ real native installation/replacement → safe retirement path, followed by live
+visual, traversal and performance evidence. No formal stage exit or migration
+completion follows from these focused diagnostics.
+
+## Reviewed renderer bundle promoted; build passes (2026-10-07)
+
+HEAD applied the reviewed 23-file compound-attachment bundle with `apply_patch`.
+Frozen patch SHA-256:
+`7FB34EC0B4A15018AC8A2C434BB6360C24F716855933E880EDA6131160A0FB80`.
+All 23 production baselines matched before promotion; afterward all 23 matched
+the reviewed draft after newline normalization (18 byte-exact, five CRLF-only
+differences). The separate HEAD coordinator retirement integration was reviewed
+for source correctness and now includes six explicitly synthetic control-flow
+assertions; it has not passed its executable gate yet.
+
+`node tools/build-native-terrain-meshing.mjs` succeeded. Installed debug DLL SHA-256:
+`BC9477B96F0040B89A36F2343A7490105C3961B9DAA15B0E4703426D976B69B1`.
+No game commit or push accompanies this unverified integration. Native contract
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory
+artifacts/citadel-runtime-integration/native-chunk-packet-compound-attachments-20261007-r1`
+failed at fixture parsing (inferred boolean type); r2 parsed but hit a typed
+iteration over a freed fixture body during cleanup. Both failed with forced
+cleanup and authoritative zero-member proof. Preserve the failed fixture copies,
+repair test typing/cleanup, and rerun without weakening required checks. Neither
+run establishes native protocol acceptance, rendered visuals or gameplay.
+
 ## Retained preparation verification in progress (2026-10-07)
 
 Game HEAD remains `831223fb`; the retained-preparation batch is uncommitted.
@@ -20,6 +83,45 @@ preparation cause is unresolved, distinct from the confirmed fixture failure pat
 Preserve this run and repair its bounded diagnostic/report path before another
 targeted run; do not extend the bound or weaken required handoff assertions. No
 Main rerun or stage advancement is justified by these results.
+
+Separate source review confirmed two state-machine defects: proven stale source
+publications were collapsed into retryable pending, making completed preparation
+invalidation unreachable; terminal preparation failures were wrapped as aggregate
+`advanced` and left queued. Repair the whole transition contract before Main:
+temporary dependency pending stays retained, proven shared-source staleness wakes
+and invalidates every subscriber through existing retirement ownership, and
+terminal malformed work surfaces its exact failure instead of spinning. Require
+fresh completion after stale re-admission, including two sections sharing one
+publication. These findings are not yet established as the cause of the r1 stall.
+
+The next full focused run, the same command with `-r2`, wrote its report and
+failed normally (exit 1, cleanup passed, no forced cleanup, authoritative zero).
+It reports 168 checks with 62 failures, many downstream from missing tree jobs.
+Its bounded diagnostic identifies `ecology_source_family_rows_missing`: 64 source
+captures ready, first source chunk `(-4,-4)`, six families traversed, one preparation
+unit, no admitted tree jobs. HEAD traced the new caller passing all six family
+row entries to the index API selecting five non-tree families; the index correctly
+requires exact membership. Restore the caller's selected-family projection shape,
+preserving index validation. Independent stale/terminal fixture failures still
+need separate inspection. The r2 launch pins 52 files; a post-run HEAD comparison
+matched 51, with the adapter already modified for the subsequent repair. No claim
+of an unchanged 52-file post-run checkout or successful handoff is made.
+
+With the exact selected-family projection repaired, full focused `-r3` reaches
+the real census in 5,400 ms and assembles a ready contribution/candidate. HEAD
+independently inspected the report: 168 total checks, 24 failures; 53/54 real
+tree handoff checks pass, with `legacy_body_unload_transfers_partial_compiler_values`
+still failing. Normal exit 1, cleanup passed, no forced cleanup, authoritative
+zero-member proof. This isolates the former 25-second admission stall to the
+family-selection contract mismatch; it does not pass the full ecology gate or
+prove native installation, Main startup, traversal or performance acceptance.
+The ecology lead's later r5 report passes all 54 tree handoff checks while eleven
+top-level fixture assertions still fail; owned cleanup is normal. The remaining
+fixture changes adapt service progression and retain the existing 512-byte
+diagnostic bound. The latest four-file batch is preserved under
+`artifacts/section-preparation-cutover-baseline-20261007/r8-pre-freeze/` and awaits
+verification against the newly built renderer. This remains source/candidate
+handoff evidence, not a native-install or Main startup pass.
 
 ## Next integrated cutover: retained section preparation and compound attachments (2026-10-07)
 
@@ -112,6 +214,22 @@ tree detachment from object destruction: retained suppression must preserve orig
 visibility across detach/reentry of the same incarnation. Required regressions place
 provider reconciliation before session advancement after pivot loss and revision
 invalidation, and detach/reenter the actual suppressed owner before final withdrawal.
+Cancellation intent is distinct from ordinary advancement: loss of the previous
+owner must leave a viable replacement eligible to finish, but explicit cancellation
+or teardown must still be able to withdraw it when the previous representation
+cannot be restored. That result requires exact ownership-release proof and
+`previousRestored:false`, never a false full-rollback claim. Audit this distinction
+both while staging and while awaiting frame acknowledgement. Main/coordinator must
+settle sessions before freeing their native backend objects.
+HEAD's teardown audit found an existing coordinator gap: first-install jobs in
+append/upload are not yet in the installed-candidate map, and neither they nor
+pre-presentation replay/boundary sessions are covered by the owner retirement
+gate. Add one all-install-session cancellation boundary before native owner free,
+including global teardown. Retain the exact session and owner on cancellation
+failure; keep local replay/boundary demand retryable after successful cancellation.
+Required synthetic coverage includes first-install cancellation before any receipt,
+every session kind, wrong owner incarnation, failed cancellation/retry and global
+drain. Real native lifecycle and Main teardown remain additional acceptance gates.
 The native rollback must hide every replacement root even when restoration of an
 older missing root fails. Owner destruction and external-root teardown require
 explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
