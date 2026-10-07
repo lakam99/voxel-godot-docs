@@ -28,6 +28,18 @@ only and mixed candidates, same/different-mount replacement, cancellation,
 source-owner invalidation, nested manifest ownership, visibility and retirement.
 Formal stage exits remain **1/7** pending complete producer and live-game gates.
 
+The prepared ledger follow-up passes **24/24** in
+`artifacts/citadel-runtime-integration/prepared-static-contributor-ledger-source-visibility-20261007-r2`
+using `node tools/run-prepared-static-contributor-ledger-contract.mjs -OutputDirectory`
+with that directory. Exit 0, cleanup passed and authoritative zero are recorded.
+A new contract proves hidden source visibility survives real ledger admission
+and snapshot preparation, and mismatched visible input is rejected. The existing
+source-reidentification fixture now explicitly removes the previous source while
+admitting its replacement: local part IDs are not global ownership identities.
+Its assertion that both old and new sections are impacted is unchanged. r1
+failed only that outdated fixture expectation with clean shutdown. This remains
+a synthetic ledger contract, with mocked installation, not gameplay acceptance.
+
 ### Whole-boundary review findings and revised implementation scope
 
 Fresh Minecraft 26.2 review includes `ChunkPyramid.GENERATION_PYRAMID` as well as
