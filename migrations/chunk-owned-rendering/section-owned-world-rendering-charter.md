@@ -1,5 +1,98 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Current cutover: shared compiled tree source artifacts (2026-10-07)
+
+**Parallel building scope:** building lead may migrate visual source identity
+from physical-packet attachment to the existing committed visual-publication
+boundary. This is an architectural separation, not a claim that it fixes the
+unresolved Citadel r1 demand failure. Expected visual revisions must be indexed
+from admitted resolved building-source parts and sealed into plan identity;
+collision-only `static_record_bindings` omits decorative parts and is unsuitable.
+Extend the existing producer boundary receipt with exact source revision,
+publisher incarnation and epoch, then validate current parent/transform and
+sealed geometry/material artifacts. Migrate census, contribution, geometry-owner
+proof and retirement currentness together. Absent artifacts stay pending;
+authoritative plan deletion uses the retained prior identity and existing empty
+replacement ledger. Collision/interaction APIs keep their authorities. Scope:
+building producer/preparation/plan and Citadel service/adapter plus focused
+tests; no ecology/shared coordinator edits. Independent review checks stale
+source/publisher rejection, noncolliding visuals without packet bindings,
+missing-artifact pending, move/delete/replay and unchanged collision. Serialize
+Godot runs after relevant sources are frozen; retain the full 31-owner native
+gate. This replaces the known coupling without inventing a second source truth.
+
+Main `main-section-cohabitation-gate-post-owner-closure-20261007-r2` fails its
+300-second startup bound on seed `ecology-main-retirement-stage5`, tutorial
+skipped: 64/64 source captures ready, 36 tree band authorities, 32 overlays,
+34 legacy compiled records, zero native section candidates compiled/installed.
+Normal exit 1, clean owned zero, all 60 launch source hashes unchanged. Initial
+and final rendered viewports were inspected: the final remains on loading at
+75%, with no playable world shown. This is an integration failure; the 147-check
+adapter pass does not override it. The source trace confirms repeated work,
+but does not establish it as the sole cause of every remaining dependency.
+
+**Outcome:** neighbouring section candidates reuse immutable compiled tree
+geometry rather than each rebuilding a whole source and filtering afterward.
+Keep existing deterministic recipes, smooth terrain, gameplay, collisions,
+world/source revision authorities, complete manifests and atomic renderer swap.
+Do not increase timeouts, reduce closure, skip trees, or waive loading readiness.
+
+**Current path:** a source-chunk/target-section band owns a separate compiler;
+it iterates admitted source records, submits fresh native record compilation
+and section packing, accumulates all owner sections, then filters its target at
+sealing. Recipe reuse does not reuse the resulting compiled geometry. The native
+dispatcher queues each request without an identity cache. Minecraft 26.2
+RenderRegionCache reuses captured SectionCopy data; SectionCompiler emits a
+section's material layers; SectionRenderDispatcher replaces only after all
+uploads. Adopt shared immutable preparation and local composition, retaining
+our procedural geometry rather than copying Minecraft's block mesher.
+
+**Replacement contract:** the existing publication owner retains a compiled
+source artifact keyed by the full deterministic source, recipe, envelope,
+geometry-policy and world identities. Compilation and partitioning happen once
+per exact source revision, independent of a consuming target section. Its
+sealed index covers actual owner geometry and conservative support sections,
+complete source-part manifests, typed buffers, source revisions and explicit
+empty dispositions. Per-section band authorities consume exact indexed slices;
+they keep their target-specific census/proof and recheck source/owner currentness.
+Retained demand shares in-flight preparation and promotes urgency. Cancellation,
+eviction and retirement use the existing owner/lease lifecycle; do not destroy
+large final aliases synchronously in a gameplay frame or lose waiting demand.
+Native worker compilation remains the geometry backend. A cache never certifies
+installation: native receipts and provider ACK still gate old-visual retirement.
+
+**Stage and ownership:** ecology lead maps and implements compiler/queue/artifact
+and adapter/index cutover as one coherent batch; HEAD coordinates native scope
+and final acceptance; independent review owns no mutable files. Before coding,
+confirm the exact reusable unit and full key against actual producer inputs.
+Proof must include two neighbouring section consumers sharing one source
+compile/partition, exact geometry and support parity, stale revision and owner
+replacement rejection, cancellation/retry and eviction, empty support slices,
+and typed immutable alias preservation. Then rerun the complete adapter/native
+contracts and real Main on the same seed. Advance to visual traversal and
+performance only with real installed candidate evidence. Formal stage exits
+remain 1/7; collision, interactions, save/replay and full gameplay remain open.
+
+**Boundary verification — 2026-10-07:** the corrected builder passes 22/22 in
+`prepared-static-section-snapshot-builder-batch-identity-20261007-r3`; the full
+ecology adapter passes 147/147 in `ecology-section-value-adapter-20261007-r17`.
+Both normal exit 0, clean watchdog cleanup, authoritative zero. Two source-part
+contributors count as two partition batches but correctly merge into one native
+render batch when compatible; the forged partition count is rejected. Real
+tree evidence covers 958 packed instances, 37 owner inputs, a ready nonempty
+candidate, and a genuine support-only ready empty candidate. These gates do not
+prove renderer installation or gameplay. The first two new focused assertions
+failed because the test confused partition and renderer counts; they did not
+establish a second production defect.
+
+The first Main integration attempt (`main-section-cohabitation-gate-post-owner-closure-20261007-r1`)
+failed fixture parsing at the final viewport receipt boolean before Main began.
+Owned stop proved zero but required forced cleanup (cleanup did not pass).
+The fixture now types that boolean explicitly; Godot check-only passes with
+normal exit and clean owned zero (`main-section-cohabitation-parse-20261007-r1`).
+The next headed run uses the same known failing seed `ecology-main-retirement-stage5`
+and `-SkipTutorial`, with frozen production sources. No stage exit is advanced.
+
 **Current production boundary repair charter — 2026-10-07:** the real tree
 adapter handoff passes 146/147 checks (`ecology-section-value-adapter-contract-20261007-r16`),
 with clean owned zero. All 37 typed immutable owner buffers pass. Candidate
