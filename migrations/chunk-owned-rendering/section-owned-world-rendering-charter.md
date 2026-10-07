@@ -106,6 +106,33 @@ renderer-backed contracts, not ordinary gameplay acceptance.
 
 ## 2026-10-07 charter: tree artifact sealing boundary
 
+**Deterministic recipe content identity (HEAD decision):** the comprehensive
+renderer-backed handoff diagnostic compared the two conflicting bands' retained
+compiler inputs. Publication ID/content digest, source row alias, domain/source/
+producer revisions, source-record digest, request digest, recipe signature and
+recipe job key agree. The content revisions recompute exactly; the only nine
+recursive value differences are `recipeSnapshot/stats/timingUsec/*` integers.
+Compiled attributes and geometry ownership also agree. Runtime profiling data
+is therefore contaminating deterministic source identity.
+Evidence: `artifacts/citadel-runtime-integration/ecology-tree-handoff-diagnostic-20261007-r11/report.json`;
+normal diagnostic exit 0, clean cleanup and authoritative zero owned processes.
+The handoff itself remains failed on the source-revision conflict. The bounded
+diff records field paths and value digests, not raw timing values.
+
+The ecology lead owns excluding the declared `stats.timingUsec` profiling
+subtree from the immutable recipe content identity, preserving timing data for
+observability and retaining every semantic recipe/request/envelope/source and
+publication-currentness input. Use a shallow owned identity projection over
+already sealed geometry values rather than another large main-thread deep
+copy. Preserve exact pre-edit compiler bytes; update its reviewed producer
+fingerprint after independent review. Do not weaken source-revision conflict
+rejection, substitute a latest revision, change recipes, or drop publication
+identity checks. Focused proof must show different timing measurements produce
+one content revision while semantic input changes invalidate it; then prove
+both real owner and support-only bands assemble with one source revision and
+unchanged geometry. Compiler/synthetic passes do not prove native installation,
+ordinary Main startup or performance. No formal stage exit advances.
+
 **Ownerless support semantics:** renderer-backed ecology r5 selected actual
 support section `(0,-1,0)` from the immutable compiler ownership manifest:
 zero owner members and one support member. The index rejected its authoritative
