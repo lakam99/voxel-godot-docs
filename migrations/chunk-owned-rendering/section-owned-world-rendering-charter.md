@@ -2,6 +2,32 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Native shared-presentation integration result
+
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-shared-presentation-20261007-r9`
+passes **159/159** checks. Its watchdog records exit 0, cleanup passed, no forced
+cleanup, authoritative zero and no remaining owned processes. The native debug
+build completed successfully before the run. This is a real native renderer
+service contract with real frame callbacks; it does not prove generated-world
+gameplay, visible quality, traversal, saves or representative performance.
+
+Integration exposed and repaired two production boundaries: zero-geometry
+packets enter ready state before attachment admission, so initial declaration
+and borrowed registration now accept precisely that staged zero-geometry case;
+the prepared contributor ledger now carries original intended visibility in
+its compatibility identity, matching the snapshot builder. The session retains
+the generic Array representation used to hash the immutable manifest.
+
+Fixture repairs preserve substantive assertions: complete the asynchronous
+append/upload/commit phases before awaiting the real frame callback, query
+actual native installation for geometry counts, keep temporary same-cell
+owners in separate parent namespaces, and select a payload-bearing root for
+payload retirement accounting. Earlier r5-r8 failures exited normally with
+clean process cleanup; r4 required forced cleanup. The r9 gate covers borrowed
+only and mixed candidates, same/different-mount replacement, cancellation,
+source-owner invalidation, nested manifest ownership, visibility and retirement.
+Formal stage exits remain **1/7** pending complete producer and live-game gates.
+
 ### Whole-boundary review findings and revised implementation scope
 
 Fresh Minecraft 26.2 review includes `ChunkPyramid.GENERATION_PYRAMID` as well as
