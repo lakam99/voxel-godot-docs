@@ -6502,6 +6502,21 @@ handshake only. The temporary ignored fixture loads no world; it is not
 gameplay, migration, or performance acceptance. The next Main gate still needs
 its own inspected images.
 
+The independently reviewed capture infrastructure was committed in game commit
+`b81dff1a` with 11 explicit files. It includes the overlay and UID, autoload,
+shared evidence/runner API, exact watchdog run-ID propagation, bounded window
+capture helper and their tests. The unfinished Main gate and rendering changes
+were excluded. Review found that a generic helper timeout could kill a held
+Key/Click before its native `finally` released input; those actions retain the
+existing untimed native release contract, while capture/inspect/focus and
+one-shot mouse movement retain a five-second helper bound. Inputs are never
+retried. Final scoped checks: `node --test tools/lib/building-runner.test.mjs
+tools/tests/headed-viewport-capture.test.mjs` passed 45/45;
+`node --test tools/tests/owned-process-watchdog.test.mjs` passed 20/20 (owned
+Node-process fixtures, not gameplay); `node tools/native/owned-window-tests.mjs`
+passed 46 native synthetic checks plus Node argument/timeout assertions. No game
+push or migration-stage advancement is implied by this infrastructure commit.
+
 The expanded tree handoff fixture passed actual Godot parsing, but its r5
 functional run reached the new handoff stage then hit the existing 60-second
 whole-suite deadline without a report. The prior green adapter suite took
@@ -6596,6 +6611,43 @@ Minecraft 26.2 `RenderRegionCache`/`SectionCopy` own reusable admitted copied
 inputs; `RenderSectionRegion` selects context and `SectionCompiler.Results`
 feeds one section installation lifecycle. This cutover applies that separation
 of source preparation from per-section compilation without copying its mesher.
+
+### 2026-10-07 HEAD verification charter — provider acknowledgement failure
+
+Independent source review found a concrete settlement gap before the next live
+gate: the roster can return `failed` after a native install, but the coordinator
+retains only `pending` acknowledgements and erases failed records. The Main gate
+then treats absence from that map as settlement. This can report success without
+every provider accepting the exact installed receipt. It is a source-review
+finding, not yet a reproduced live failure.
+
+The accountable acknowledgement lead owns `WorldStaticSectionCoordinator.gd`,
+`StaticSectionSourceRoster.gd` only if needed, the existing visible-section demand
+driver contract, and the Main cohabitation gate's acknowledgement predicate.
+The ecology lead's mutable files remain separate. Preserve exact dirty baseline
+copies before edits on `codex/chunk-owned-world-rendering-migration`, currently
+`b81dff1a`; do not commit or reset unrelated work.
+
+Trace installed candidate -> roster callbacks -> retained acknowledgement state
+-> retry scheduler -> runtime readiness and gate consumers before editing. Keep
+native geometry installation identity separate from source acknowledgement
+settlement: only explicit successful acknowledgement settles the latter.
+Retain a bounded, inspectable non-success result tied to the exact receipt;
+retry only while current, and invalidate on replacement/unload. A retry must not
+reinstall geometry, clear provider failure into success, retire newer owners, or
+advance readiness through a missing record. Preserve existing provider gameplay
+and save authorities and the already installed valid renderer representation.
+
+First add a falsifiable focused contract for a provider returning `failed`
+after install, including retry-fails and retry-succeeds, malformed result,
+replacement and unload. Run the existing owned Node contract; preserve the
+failure baseline, then verify the repaired contract and unchanged existing
+assertions. Inspect the real gate's positive settlement check. This is synthetic
+ownership/scheduling evidence; the later headed Main gate must still prove
+real provider settlement. No stage exit is granted for this slice. Minecraft's
+dispatcher upload-before-swap lifecycle guides the separation of compilation,
+installation and accepted publication; our provider acknowledgements require
+their own explicit contract beyond Minecraft's block mesher.
 
 ### 2026-10-07 HEAD checkpoint — Citadel source identity boundary
 
