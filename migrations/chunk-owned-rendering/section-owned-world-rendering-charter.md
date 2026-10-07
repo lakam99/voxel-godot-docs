@@ -10,13 +10,25 @@ ordinary-provider and 19 service checks. Native Citadel and ordinary fixtures
 have exposed the common geometry-owner versus AABB-support retirement
 coupling; the complete-member replacement charter below now owns that repair.
 Native boundary-crossing replacement and unload/replay remain open.
+The new pure geometry-owner completion helper passes 44 synthetic value
+contracts (`static-geometry-owner-completion-20261007-r1`), independently
+reviewed. This covers exact expected/installed member sets, stale and malformed
+rows, packed transform/color/custom values, render policy, explicit empty
+removal, sealed roster identities and large-world coordinate conversion.
+The owned run exited normally with code 0, stable launch-source hashes and
+authoritative zero process membership. Production provider/native-union
+integration and visual retirement still require their own evidence.
 The tree queue preserves typed compiler payloads. Full ecology r4 verifies
 958 packed instances, matching digests, exact support sets (47/47 and 11/11),
 resource bindings and stale/tampered input rejection. Its three remaining
 fixture checks led to API-wiring corrections and actual ownerless-support
-selection. R5 then exposed the index's source-count versus owner-geometry
-disposition error; that correction is underway. Candidate/native installation
-remains unproven. The queue fixture's separate visibility-proxy assertion also
+selection. The ownerless-support disposition correction passes 136 index and
+70 publication-owner contract checks. Renderer-backed R7 accepts the genuine
+support-only overlay and rejects forged empty geometry, but still fails two
+tree contribution/candidate checks. The remaining audit covers whole-source
+versus member identity and revisions across target-section queries; source
+capture and artifact admission alone do not prove candidate installation.
+Candidate/native installation remains unproven. The queue fixture's separate visibility-proxy assertion also
 remains unresolved. The earlier
 recipe-pending interpretation below is historical and superseded by the
 headless-fixture and typed-array transport diagnoses. Neither lane establishes
@@ -24,6 +36,15 @@ live traversal, save/replay or performance acceptance.
 
 **Current verification boundary:** review the entire compiler/queue/adapter/index
 member and support transformation together before another full handoff run.
+After R7, complete the static audit through contribution, partition and snapshot
+admission before rerunning. Correct all demonstrated schema mismatches as one
+coherent handoff change; do not repeat the headed fixture once per rejected
+field. Preserve source-level authority separately from geometry-member identity
+and reject genuinely conflicting revisions rather than accepting whichever
+section was queried last. The building lead has the shared production edit
+window for both providers' geometry-owner completion cutover; the next shared
+source freeze follows that batch, avoiding repeated interruption by ecology
+diagnostic launches.
 Use bounded missing/extra support-key diagnostics and preserve the strict
 acceptance assertions. The headed full ecology r2 fixture's two new digest
 assertions used the producer-envelope digest helper rather than the compiler's
