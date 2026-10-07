@@ -6298,6 +6298,40 @@ inputs to that lifecycle, and need their own correctness evidence.
 
 #### Batch review findings and required repairs
 
+**Next coherent cutover decision:** remove target-section coordinates from
+Citadel's generated render source identity and producer revision. One stable
+world/site/member identity owns its immutable artifact revision; each section
+separately owns its membership, coverage revision and compiled output. The
+current `citadel:...:section:x,y,z` IDs and section-dependent source hashes are
+legacy publication identities, not durable gameplay/save IDs. Retaining them
+would require an unnecessary second identity bridge for adjacent-section
+support. Audit and migrate constructors, parsers, contribution joins,
+acknowledgement, removals/tombstones, replay and fixtures together. Preserve
+world generation, persistent building/member IDs and collision/interaction
+authority.
+
+The stable revision must bind live publisher incarnation, world/site/member
+binding, plan revision, parent transform and complete committed artifact
+content, independently of target section or candidate generation. Section
+census membership must cover actual artifact instance bounds, with the plan
+bounds checked as a producer envelope rather than assumed sufficient. Partition
+geometry into exactly one center-owned section; record exact per-instance
+support in every intersected section. Extend the shared support validator,
+owner-demand retention and receipt matching coherently for those instance
+identities. A support receipt never substitutes for an installed owner mesh.
+Keep existing visuals until all required current section/owner receipts agree,
+and restore fallback on release without touching gameplay collision.
+
+Entry: finish focused owner/currentness/empty/release contracts and preserve a
+fresh Main admission trace. Exit: stable identity/revision across adjacent
+sections; exact owner/support membership at positive, negative and tangent
+boundaries; stale owner/transform/content rejection; removal and replay of
+exact instances without affecting siblings; support-demand release; then real
+original-beam section installation followed by visual/traversal evidence.
+Minecraft's copied region and section-owned compilation validate this ownership
+boundary. They do not supply this game's smooth-terrain or procedural-member
+geometry, which remain governed by existing producers.
+
 Independent review found two remaining Citadel lifecycle gaps despite r8's
 successful installation. The plan census does not change when a live publisher
 or parent transform is replaced, so a candidate may outlive its actual captured
@@ -6345,6 +6379,75 @@ diagnostic will join source capture, tree band compilation/registration, section
 census/admission and installation for the next integrated run. It must not
 advance production work or infer authoritative emptiness from absent jobs.
 Report: `artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261007-r2/report.json`.
+
+### 2026-10-07 HEAD execution batch — real tree compiler-to-section handoff
+
+The Citadel lifecycle focused batch now passes 19/19 service checks at
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-lifecycle-batch-r2/report.json`
+and 12/12 adapter checks at
+`artifacts/citadel-runtime-integration/citadel-transform-adapter-lifecycle-batch-r3/report.json`.
+Both passed actual Godot parsing and normal watchdog cleanup with authoritative
+zero members. Fixture repairs model the new admission `stats` API, deliberately
+move the owner after the first artifact capture, derive the 21.6m section plane
+from the game grid and distinguish two sealed artifact groups from one target
+geometry group. The prior adapter r2 parse error required an explicit float
+annotation; it produced no functional report and required forced cleanup.
+These results establish source/lifecycle contracts, not new headed installation
+or full Citadel cross-section support acceptance.
+
+The frozen Main cohabitation gate on `8e3cd9b4` plus its recorded dirty source
+hashes failed initial-region readiness at 301 seconds. It registered all four
+providers, prepared 62/64 source captures and 13/13 tree bands, but admitted no
+native compilation, candidate or installed receipt. Near sections `(-1,1,-1)`
+and `(0,1,-1)` report `tree_section_overlay_compile_identity_mismatch`.
+This isolates a producer handoff failure before the renderer. Census reached
+14.602 seconds, which remains a separate performance failure. The runner exited
+1 with normal cleanup and authoritative zero owned processes. Windows refused
+foreground focus, so this run supplies no screenshot or visual acceptance.
+Report: `artifacts/citadel-runtime-integration/main-section-cohabitation-gate-main-section-cohabitation-native-tree-lifecycle-20261007-r3/report.json`;
+`launch.json` records source and native DLL identities.
+
+Read-only tracing finds the real nonempty compiler seals its general compiler
+schema while the support index requires the section-band artifact schema. The
+queue's hand-built empty artifact uses the expected schema. Existing fabricated
+index inputs therefore do not establish producer/consumer compatibility.
+
+Before another integrated launch, repair and verify this entire handoff as one
+batch: real immutable source admission -> native tree preparation -> sealed
+section-band output -> queue retention -> adapter support projection -> index
+acceptance -> section contribution. Define the compiled band format once at its
+owning producer boundary; keep identity, complete source/member manifests,
+resource bindings, support ownership and digests consistent through consumers.
+Do not suppress rejection, infer empty output from missing data or replace
+actual producer output with synthetic dictionaries in the integration contract.
+
+Entry is the frozen report above and a complete static producer/consumer audit.
+Focused exit must exercise a real nonempty compiler artifact, owner geometry,
+cross-section support, authoritative empty output and stale/replaced identity
+rejection through the index and contribution boundary. Preserve old visuals and
+gameplay owners until actual installation acknowledgement. Only then rerun Main
+to establish the next installed-renderer boundary; that still does not waive
+ordinary menu, traversal, harvest/replay, save/load or performance acceptance.
+
+Minecraft 26.2 `SectionCompiler.Results` provides a single concrete output
+contract consumed by its dispatcher; `RenderSectionRegion` supplies copied
+neighbor context without changing source identity. Apply that ownership and
+handoff discipline to our smooth-terrain/static-contributor architecture.
+No world generation, collision, save authority or NPC simulation changes belong
+in this batch. HEAD owns final stage acceptance and serialized live launches.
+
+The terminal cohort has 64 jobs, of which two still advance underground source
+scans with zero stalled attempts. The four ready rows shown by the bounded
+diagnostic are only samples, so their state does not establish a scheduler bug.
+The 377 deferred cohorts establish pressure, not starvation. Before choosing a
+performance rewrite, add bounded aggregate timings/counts inside the existing
+ecology provider callback for closure/policy, capture lookup, source conversion,
+band/support registration and final query/sealing. Reuse existing diagnostics;
+do not add a new queue or alter admission/scheduling. The next already-required
+Main gate should identify the dominating stage and its row/domain counts.
+This instrumentation has no standalone live acceptance claim. Minecraft's
+copied-region reuse guides the subsequent measured change; it does not justify
+dropping any of our declared 64 source dependencies.
 
 ### 2026-10-07 HEAD checkpoint — Citadel source identity boundary
 
