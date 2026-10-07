@@ -64,6 +64,19 @@ renderer-backed contracts, not ordinary gameplay acceptance.
 
 ## 2026-10-07 charter: tree artifact sealing boundary
 
+**Ownerless support semantics:** renderer-backed ecology r5 selected actual
+support section `(0,-1,0)` from the immutable compiler ownership manifest:
+zero owner members and one support member. The index rejected its authoritative
+`complete_empty` geometry disposition because it inferred nonempty geometry
+from the presence of expected source IDs. A source may be present through
+support while owning no geometry in that section. The ecology lead owns
+correcting index disposition validation to the proven owner-member/completion
+set, preserving exact source IDs, complete source rows, digests, support
+membership and resource validation. Verify genuine support-only acceptance and
+forged-empty rejection when owner geometry exists. Compiler recipes, geometry
+and source generation stay unchanged. R5 failed normally with clean owned zero;
+it did not establish candidate or native installation acceptance.
+
 **Confirmed support projection repair:** independent source reviews found that
 `tree_support_rows_from_manifest` emits `conservativeSupportSectionKeys`, but
 the adapter's registration filter reads `supportSectionKeys`, a field added
