@@ -2,6 +2,44 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+HEAD's source review isolated a production recovery defect in the nine remaining
+ecology failures: retained failed preparation returns before current source input
+identity is checked; its currentness helper also returns a failed capture before
+checking changed authoritative inputs. The repair must preserve a latched failure
+for the same identity while allowing changed structure/source/catalog/removal
+inputs through normal supersession and recapture. Repeated fixture pumping alone
+does not repair this boundary. Add both unchanged-failure and changed-owner proof.
+This finding is source evidence pending executable verification.
+
+Local Minecraft 26.2 was rechecked at `RenderSectionRegion`, `SectionCompiler`,
+and `SectionRenderDispatcher.checkSectionMesh`: one captured section neighborhood
+feeds a result containing all layers; replacement waits for every required upload
+before releasing the old mesh. The next acceptance unit remains the complete
+production path. In parallel, audit producer-before-visible building admission:
+current native attachment replacement is verified, but the earlier legacy visual
+publication window still prevents claiming final cutover. The updated 25-file
+attachment inventory is `artifacts/attachment-cutover-design-20261007/integrated-fixture-freeze.json`
+(SHA-256 `C5C61B90E114B4DC7A645846CB03F0963117461B296801A4E8AF4B4947CD7CEF`).
+Its two hardened integration fixtures are source-reviewed and not yet run.
+
+The full ecology run after protocol promotion is not accepted:
+`node tools/run-ecology-section-value-adapter-contract.mjs -OutputDirectory
+artifacts/citadel-runtime-integration/ecology-section-value-adapter-tokenless-retirement-backpressure-r1`.
+HEAD inspected **181 top-level checks, nine false**, and **54/54 real tree handoff
+checks passing**. The latter reaches source capture, native nonempty artifacts,
+section owner candidate assembly, shared source compilation, support-only empty
+coverage and bounded 129-source projection. Partial source admission cancellation
+also passes. Remaining failures cover scheduler fixture progression/telemetry,
+owner-revision recapture and exact pending dependency reporting; their causes
+must be classified before repair. No generic pending expectation may replace the
+unsupported-material/uncertified-bounds/exact-source assertions. The functional
+result is exit 1; the runner stopped the owned job, yielding overall 126, forced
+cleanup and cleanup failure, with authoritative zero members. No full31 or Main
+launch is justified yet. The preceding CompileOnly gate passed but proves parsing
+only. Final attachment reruns `native ... -r11` (133/133) and service `... -r6`
+(61/61) remain clean; the frozen 24-file inventory is preserved at
+`artifacts/attachment-cutover-design-20261007/production-focused-freeze.json`.
+
 Retained-preparation review now includes producer admission ownership: tree-band
 `pending` may mean either no admission under queue capacity pressure or an already
 attached consumer awaiting source-record compilation. Every post-attachment queue
