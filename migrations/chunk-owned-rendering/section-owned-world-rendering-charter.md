@@ -43,6 +43,14 @@ retains its existing center ownership. One section packet then owns the complete
 door root set; do not introduce a cross-section visibility/ACK cycle or gradually
 show slices over a still-visible legacy door. Preserve actual body/pivot authority,
 neutral geometry identity, declared motion envelopes and exact legacy retirement.
+Compound attachment commit must also swap exact legacy GeometryInstance visibility
+in the same native transaction: staging retains the old visuals; complete validated
+commit hides those exact instances and shows all new roots before the first draw.
+Native rollback retains prior visibility and owner-incarnation proof. Provider
+restoration consults the actual pending presentation/installed receipt, and final
+ACK settles the existing retirement owner. A pending boolean is not sufficient.
+This avoids a one-frame overlap while waiting for frame acknowledgement; it does
+not establish that every existing static producer already has the same guarantee.
 The native rollback must hide every replacement root even when restoration of an
 older missing root fails. Owner destruction and external-root teardown require
 explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
