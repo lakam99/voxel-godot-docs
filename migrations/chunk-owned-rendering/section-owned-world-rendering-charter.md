@@ -2,6 +2,36 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Dual-revision native installation evidence
+
+The shared presentation schema is now v2. Native manifest admission, canonical
+hashing, attachment registration/currentness, restoration receipts and install
+session receipts carry independent candidate `sourceRevision` and live-owner
+`producerSourceRevision`. Attachment batch compatibility seals the producer
+revision before assembly. Same-mount replacement permits a new census revision
+while retaining the same producer incarnation; source metadata is never rewritten.
+Read-only independent review found no concrete blocker in these shared changes.
+
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-dual-revision-20261007-r1`
+passes **163/163**: mixed geometry/light installation, light-only installation,
+distinct revision receipts, stale census binding rejection with an unchanged
+producer, stale live producer rejection, same-mount replacement/rollback,
+owner loss and actual frame acknowledgement. Normal exit 0, cleanup passed,
+authoritative zero. These are native service/integration fixtures, not full-world
+or traversal acceptance. The assembler v2 fixture separately passes **26/26** at
+`artifacts/citadel-runtime-integration/whole-section-candidate-assembler-dual-revision-20261007-r1`
+with the existing `run-world-static-section-candidate-assembler-contract.mjs`
+runner and the same clean terminal evidence. Game HEAD remains `831223fb` with
+uncommitted migration work; native source/header hashes are in the native report.
+
+The native debug rebuild used the existing owned compiler wrapper and finished
+with clean zero-member evidence in `artifacts/dual-revision-integration/build`.
+Its MSVC auto-discovery warning means this is not the pinned N1 toolchain gate.
+Producer drafts remain unpromoted: actual Citadel/tree/light capture needs v2
+plumbing and exact presentation-only owner completion, including prior-anchor
+removal. The ecology retained-pass draft also needs reset/backpressure consumer
+review. Formal stage exits remain **1/7**; no production cutover completion is claimed.
+
 ### Producer revision versus candidate revision — integration decision
 
 Actual practical-light capture exposed an identity distinction hidden by the
