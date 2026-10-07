@@ -2,6 +2,54 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+Retained-preparation review now includes producer admission ownership: tree-band
+`pending` may mean either no admission under queue capacity pressure or an already
+attached consumer awaiting source-record compilation. Every post-attachment queue
+reply must carry its exact job/token, including terminal record failures. The
+adapter retains admitted pending demand before polling; failures detach the exact
+attachment before propagation. A prospective queue-full job key alone is not
+admission. Preserve consumer-loss retry and invalidate stale source incarnations;
+latch terminal failures and wake the existing coordinator once. Malformed ready
+family receipts, including `complete_empty` with rows, fail closed. The four-file
+adapter/queue/fixture/runner draft is approved for promotion after the final
+admission classifier and indentation corrections; compile and real-queue contract
+proof remain required. No new scheduler or authority is introduced.
+
+The attachment service subsequently passed **61/61** in `-r5` after two composed
+production boundaries were corrected: snapshot transforms are now canonicalized,
+and native publisher identity accepts valid signed RefCounted ObjectIDs (bit 63),
+rejecting only zero. Owner-loss coverage also corrected validity-before-type checks
+on retained legacy nodes. Service acknowledgement remains explicitly synthetic;
+the separate headed native `-r10` passed **133/133**, including a real RefCounted
+publisher regression and real frame acknowledgement. Both have normal exit 0,
+cleanup passed and authoritative zero. Current debug DLL:
+`1A4201EF9BCB2E2112EC87CB601007EB9858FFFA61EE813EE387426579C4F5C1`.
+The prepared-snapshot regression correctly fails its obsolete expectation that
+Transform3D is unsupported; replace that negative example with an Object while
+retaining object/non-string-key rejection. The full 31-section and live journeys
+have not run on this cutover yet.
+
+The subsequent service integration isolates one missing manifest value type:
+both actual swing/raise attachment candidates fail snapshot digest construction
+because the canonical encoder does not yet accept their immutable Transform3D
+values. Extend canonical encoding with exact finite basis/origin components,
+using the existing lossless scalar representation. Verify identical transforms
+hash identically, representable component changes alter identity, and nonfinite
+transforms are rejected. Do not remove transform fields or weaken digest checks.
+The production path stays frozen while this repair is prepared separately from
+ecology verification. The failed service report is
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-attachments-20261007-r2`;
+owned cleanup was forced but authoritative zero is established. No service pass.
+
+Six supporting gates passed with normal exit 0, cleanup passed and authoritative
+zero, independently inspected by HEAD: building transform artifact 52/52,
+partitioner 21/21, snapshot 29/29, prepared snapshot builder 22/22, whole-section
+candidate assembler 23/23, and Citadel transform adapter 17/17. Their reports are
+the `*-attachments-20261007-r1` directories under `artifacts/citadel-runtime-integration`,
+except building transform artifact uses `-r2` after a fixture parse correction.
+These are focused contracts; attachment service composition found the missing
+transform encoding despite these green individual gates.
+
 The native gate subsequently passed **132/132**, including all 74 attachment
 checks, at
 `artifacts/citadel-runtime-integration/native-chunk-packet-compound-attachments-20261007-r9/report.json`
