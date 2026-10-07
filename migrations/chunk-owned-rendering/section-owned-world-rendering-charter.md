@@ -8782,6 +8782,32 @@ a worker would not resolve the measured hitch. Report:
 `artifacts/citadel-runtime-integration/citadel-glass-section-cache-r1/report.json`.
 The seven-stage migration remains **1/7 stage exits complete**.
 
+### 2026-10-07 HEAD checkpoint — direct static meshes and full31 follow-up
+
+The focused direct-static-mesh artifact gate passed 10/10 checks, covering
+pennants, planar ground, and non-box goods meshes while preserving the legacy
+presenter through acknowledgement. The focused glass support gate passed
+17/17 checks. Reports:
+`artifacts/citadel-runtime-integration/building-direct-static-mesh-artifact-20261007-f/report.json`
+and
+`artifacts/citadel-runtime-integration/citadel-glass-section-support-r13/report.json`.
+These focused producer/service gates do not establish full-world completion.
+
+In the headed `atlas-1492` full31 run, r14 prepared 29/31 selected sections
+within the shared phase bound. R15 prepared 31/31, while native installation
+closure reached 3/31; the observed run also recorded 14 compiled and 4
+blocked. No final r15 report was written: teardown raised an engine error for
+the missing `section_attachment_legacy_restoration_receipt` metadata key.
+The watchdog ended with exit 126 after forced cleanup; it authoritatively
+proved zero owned process members, but cleanup was not a clean runner exit.
+Reports and run evidence:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-direct-mesh-r14/`
+and
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-direct-mesh-r15/`.
+The teardown error limits the r15 result to its recorded progress and watchdog
+evidence; there is no final report to support additional claims. Overall
+migration progress remains **1/7 stage exits complete**.
+
 ### Cold translucent surface upload plan — 2026-10-07
 
 **Entry evidence:** focused glass-cache r1 isolated a cold 11.633 ms
