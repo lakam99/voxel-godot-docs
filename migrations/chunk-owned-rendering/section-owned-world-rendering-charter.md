@@ -59,9 +59,28 @@ never freed by the renderer. Verify mixed visible/hidden batches on one anchor,
 borrowed-only candidates, exact frame acknowledgement, stale ownership,
 rollback, old-representation retention and bounded dependency admission.
 
-All of these extensions remain isolated review drafts. No new production
-bundle has been promoted or accepted. The last Main launch's **69 source hashes**
-were independently rechecked unchanged after failure.
+The native presentation, immutable candidate, install-session and original
+batch-visibility bundle has now been promoted to production source for
+integration verification. The C++ build succeeds. The building source transform
+contract passes 60 checks, candidate assembler 23, snapshot 29 and prepared
+builder 22. Each run exited 0 with cleanup passed and authoritative zero owned
+processes. Their reports are under `artifacts/citadel-runtime-integration/`:
+`building-transform-artifact-source-visibility-20261007-r1`,
+`whole-section-candidate-assembler-shared-presentation-20261007-r1`,
+`chunk-static-render-section-snapshot-shared-presentation-20261007-r2`, and
+`prepared-static-section-snapshot-builder-shared-presentation-20261007-r2`.
+These are focused contracts, not live gameplay acceptance.
+
+Native renderer run `native-chunk-packet-shared-presentation-20261007-r4`
+passed parsing but failed at runtime: a new fixture omitted the native begin
+transform argument, and the install session assigned the generic canonical
+manifest Array to a typed Array. The latter is corrected by preserving the
+generic serialized Array type; fixture API review precedes another launch.
+The failed run was stopped with authoritative zero processes, but forced
+cleanup means cleanup did not pass. Native installation acceptance remains
+open. Building-tree and ecology producer cutovers remain isolated drafts.
+Overall stage exits remain **1/7**. The prior Main launch's **69 source hashes**
+were independently rechecked unchanged after its failure, before this promotion.
 
 **Real Main comparison: preparation remains blocked by source-capture breadth.**
 `node tools/visible-world/run-main-section-cohabitation-gate.mjs -OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-retained-preparation-20261007-r1 -Seed ecology-main-retirement-stage5 -TimeoutSeconds 960 -StartupWaitSeconds 300`
