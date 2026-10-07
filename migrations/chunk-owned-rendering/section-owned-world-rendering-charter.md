@@ -1,20 +1,35 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
 **Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
-Current game HEAD is `b81dff1a`: independently verified rendered-viewport and
-owned-process evidence infrastructure. Provider acknowledgement settlement
+Current game HEAD is `4dff1c72`: the complete geometry-owner member proof and
+its 50-check synthetic contract. It follows `b81dff1a`, the independently
+verified rendered-viewport and owned-process evidence infrastructure.
+Provider acknowledgement settlement
 passes the full 59-check driver regression after the shared building and
 dependency-set changes (`visible-section-demand-driver-building-lifecycle-20261007-r2`).
-Building focused contracts pass 9 roster, 10 assembler, 15 adapter, 62
+Before the geometry-owner completion cutover, building focused contracts passed 9 roster, 10 assembler, 15 adapter, 62
 ordinary-provider and 19 service checks. Native Citadel and ordinary fixtures
 have exposed the common geometry-owner versus AABB-support retirement
 coupling; the complete-member replacement charter below now owns that repair.
 Native boundary-crossing replacement and unload/replay remain open.
-The new pure geometry-owner completion helper passes 44 synthetic value
-contracts (`static-geometry-owner-completion-20261007-r1`), independently
+The new adapter's complete producer-to-snapshot member comparison passes 17
+checks (`citadel-transform-adapter-owner-completion-20261007-r4`). Ordinary
+native R4 passes initial installation, retirement, unload restoration and
+renderer replay checks, but fails identical-body replacement: the completed
+provider job reuses its old live owner despite body-ID binding on fresh capture.
+Its normal failure/clean-zero report is preserved. Repair cached-job owner
+currentness before claiming the complete ordinary lifecycle passed.
+This establishes stale census reuse, not an accepted stale installation:
+downstream contribution and expectation currentness checks already reject the
+replaced body. The strengthened fixture must follow coordinator retry and the
+new native receipt rather than treating a direct stale roster read as acceptance.
+The new pure geometry-owner completion helper passes 50 synthetic value
+contracts (`static-geometry-owner-completion-20261007-r3`), independently
 reviewed. This covers exact expected/installed member sets, stale and malformed
 rows, packed transform/color/custom values, render policy, explicit empty
-removal, sealed roster identities and large-world coordinate conversion.
+removal, sealed roster identities, producer-to-renderer policy field
+normalization and large-world coordinate conversion. Exact command:
+`node tools/visible-world/run-static-geometry-owner-completion-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/static-geometry-owner-completion-20261007-r3`.
 The owned run exited normally with code 0, stable launch-source hashes and
 authoritative zero process membership. Production provider/native-union
 integration and visual retirement still require their own evidence.
@@ -205,6 +220,24 @@ their unrelated section contents are not replacement geometry for this part.
 Keep pending/failed provider acknowledgement semantics and current source,
 coverage, publisher and receipt validation. Do not simply rename a pending
 retirement as acknowledged to pass a fixture.
+
+**Temporary residency obligation:** while a legacy part is replaced atomically,
+an independently demanded section may request that exact part's complete
+geometry-owner set. Such replacement leases must not recursively enlist other
+parts from sections loaded only by those leases. Keep the owner set resident
+while that legacy retirement obligation remains; dropping distant owners after
+the first completion would invalidate the proof and resurrect the old visual.
+Record owner counts and retained demand in performance evidence. This bounded
+part-level obligation is migration overhead, not final Minecraft-like local
+section residency acceptance. Stage 6 must remove it with the obsolete legacy
+part representation, preserving exact intersecting support-to-owner leases.
+
+**Owner replacement identity:** an ordinary body's instance identity must bind
+the admitted render revision and installed candidate receipt, not merely the
+provider's current roster. Identical recipe/mesh values from a newly created
+body cannot satisfy the old owner's receipt. Verify this through the real
+provider and native replacement path, while keeping durable save and world
+generation identities unchanged.
 
 **Moves, removal and replay:** retain the old sealed expected member roster
 before replacement/removal. Current groups missing from capture are never an
