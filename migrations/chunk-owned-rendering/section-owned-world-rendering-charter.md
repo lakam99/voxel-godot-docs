@@ -1,29 +1,273 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
-**Status:** active migration. Earlier revisions reached a live Main native receipt;
-the current complete-source cutover has not passed that gate. The 2026-10-06 Main
-run retained loading with source preparation and tree-bound validation pending,
-and zero native compilations/installations. Current work and exact
-evidence are in the [owned source publication charter](owned-source-publication-charter-2026-10-06.md).
-Full visual cutover and gameplay acceptance remain open.
-**HEAD checkpoint — 2026-10-06, game HEAD `8254e3e9`:** overall progress remains
+**Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
+Real Citadel section installation r8 passed 29 checks; initialized-Main
+cohabitation and terrain/fluid live acceptance remain open. Independent review
+then identified publisher-currentness and adjacent-section support gaps in the
+building path, which are being repaired as a complete lifecycle batch below.
+Native tree preparation is now committed as standalone capability `8e3cd9b4`;
+its build and r6 contract passed all **35** boolean checks. The contract ran on
+the dirty integration checkout at `c35bbd7b`, and its recorded hashes match the
+three committed native source files. The GDScript integration and its source/
+support dependencies remain uncommitted; the native capability commit alone
+does not establish that integration or live installation. No import churn,
+generated binary or unrelated file was included.
+
+Tree r6 evidence:
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-r6-section-size-guard-01/report.json`.
+Its watchdog exited 0 with normal cleanup and authoritative zero. The prior r5
+attempt failed GDScript parsing in newly added assertions and was cleaned up;
+it is test setup failure, not a native result. The currently built debug DLL
+was observed after r6 with SHA-256
+`686eb64ffb879614d3d9c368957cc5f4bebb3c548a030d706552c5560f8715c8`;
+the runner recorded source hashes but did not record that DLL hash at launch.
+
+**Status:** active migration. The complete-source cutover has not yet passed
+its real Main native install and replay gate. On 2026-10-06, r20 captured all
+64 certified ecology source chunks and exposed a partitioner bug: distinct
+parts under one source were incorrectly required to share one revision. The
+partitioner now keys revisions and owner cells by `(sourceId, sourcePartId)`;
+its focused contract passes 21/21. The assembler contract passes 9/9,
+including stale-input revision rejection. Material replay identity now
+canonicalizes an unset shader uniform to its declared default; the focused
+ecology adapter contract passes this case and still detects material changes.
+r25 advanced through candidate admission to owner replay, then emitted a Godot
+error because acknowledgement queried `get_tree()` on the fixture's valid but
+detached Main authority. A tree-attachment guard is in place. r26 made no
+further progress after the 63rd of 64 source captures and reached its 600-second
+watchdog bound at frame 900, before candidate installation. Owned-process zero
+was proven, but forced cleanup means this run fails its cleanup gate. The
+focused cave contract passes for the same seed and region; a direct exposed
+floor scan slice completes in 46 ms, so those isolated checks did not reproduce
+the full Main capture stall. r27 reused the prior air/head/floor cell states
+during the incremental terrain scan. The focused readiness contract passed
+219/219; its parity row produced the same candidate with 6 volume-state queries
+rather than 12. The headed r27 gate then sealed all 64/64 source jobs, but its
+last checkpoint remained census-pending at frame 930 while the next
+complete-source validation/assembly call consumed CPU and about 1.7 GB resident
+memory. It reached the 600-second watchdog before a census or native install
+receipt. The owned Job Object reached authoritative zero, but forced cleanup
+means the cleanup gate failed. No renderer-install stage exit is established.
+The exact runs are in the game worktree at
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-real-main-r25/`
+and `...-r26/`, `...-r27/`, and
+`artifacts/citadel-runtime-integration/visible-world-readiness-floor-sample-reuse-20261006-r3/report.json`.
+
+**HEAD checkpoint — 2026-10-06, ecology section-band receipts:** the producer
+projects each complete sealed source-family snapshot into exact full-3D section
+bounds, and the support index now retains independent `(source chunk, family,
+section)` receipts. Missing/stale band work remains pending; a pending section
+may expose only its exact retained tombstones as retryable demands, with no
+contributors or coverage certificate and no receipt acknowledgement. Synthetic
+producer fixture rows now carry mesh-derived support proofs. Contracts passed:
+producer projection 64/64 (`ecology-producer-catalog-context-band-r6`), support
+index 121/121 (`ecology-world-support-index-band-r16`), and section adapter
+104/104 (`ecology-section-value-adapter-band-r15`). The adapter runs r5–r14
+preserve intermediate failures and fixes; r15 is the final green report. These
+are synthetic producer/index contracts, not a real Main render installation.
+Minecraft 26.2 supports the boundary: copied neighbor sections are compile
+context, the target section owns its outputs, and the prior installed mesh
+survives until replacement uploads complete. Overall progress remains 1/7 stage
+exits; live Main installation, visual/traversal, unload/replay, save/reload and
+performance remain open.
+
+**HEAD checkpoint — 2026-10-06, Main tree-band diagnostics, game HEAD
+`c35bbd7b`:** the headed tutorial-free Main gate still fails
+`main_startup_not_ready` after about 295 seconds. All 64 ecology source captures
+were ready and seven capture cohorts had completed, but six tree visuals were
+still pending; the real shared section pipeline reported zero native compiles
+and zero installed candidates. The gate now samples the distinct band compiler
+queue instead of treating an empty legacy queue as “no tree work.” Its two
+samples, 7.22 seconds apart, show the active band compiler advanced 34 work
+units and 32 instances, with native foliage tickets draining. The band queue is
+therefore making progress; the remaining latency is downstream source-to-tree
+recipe compilation and candidate admission, which still did not reach renderer
+installation. This is diagnostic evidence only, not a Stage 1 exit. The
+renderer gate command was
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs -OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-band-diagnostics-r2 -Seed ecology-main-retirement-stage5 -TimeoutSeconds 960 -StartupWaitSeconds 300`.
+Its `report.json`, `progress.json`, `watchdog.json`, and exact source hashes are
+preserved in that run directory; functional exit was 1 and owned-process
+cleanup passed with authoritative zero. Minecraft 26.2 still supports the
+target: compile all current section content from immutable bounded context as
+one section job, then swap only after every required render layer is installed.
+Keep the section compiler, not per-source visual publication, as the next
+production cutover boundary.
+
+**HEAD checkpoint — 2026-10-06, underground source revision correctness:** the
+incremental exposed-floor scan now binds its cursor to the intersecting
+terrain, fluid, and scene-overlay column revisions. Completed Main ecology
+scans are revalidated against that same composite identity before their first
+deterministic RNG draw. This closes a stale-work hole where floor predicates
+read fluids and scene overlays but the cursor previously watched terrain-only
+revisions. The focused `visible-world-readiness` runner passes 222/222 checks,
+including restart on terrain, fluid, and scene-overlay mutation while keeping
+an unrelated XZ column edit resumable, plus negative-coordinate chunk-boundary
+checks for in-range and out-of-range overlays. Report:
+`artifacts/citadel-runtime-integration/visible-world-readiness-underground-revision-r5/report.json`.
+Its evidence is synthetic owner/readiness contract coverage, not live
+rendering. Three intermediate runs exposed and then fixed a GDScript indentation
+parse error, revision-shape assertions, and an invalid explicit free of a
+RefCounted fixture; the final owned runner exited 0 with clean watchdog cleanup.
+
+This does not make vertical band completeness production-ready. The canonical
+underground recipe still scans the full horizontal source chunk and preserves
+its ordered global candidate cap and RNG sequence. Section-Y family coverage
+must be represented as an explicit immutable band manifest derived from the
+sealed full source snapshot; it must not treat another band's `complete_empty`
+receipt as proof. Cold vertical-scan pruning would require an authoritative
+revision-keyed topmost-floor index maintained by terrain generation and edits.
+Minecraft 26.2's section compiler reinforces this boundary: copied neighboring
+section values are compile context, while each target section owns its output
+and superseded work is cancelled. The following band-manifest implementation
+must preserve our smooth-terrain and deterministic ecology authorities.
+
+**HEAD renderer-install audit — 2026-10-06:** the production shared-section
+path is already implemented beyond value contracts. `WorldStaticSectionCoordinator`
+captures the complete provider census and revisions, assembles immutable
+terrain/building/ecology contributions, dispatches native compilation, then
+rechecks currentness before staged packet install. The native backend keeps the
+prior root until candidate presentation is acknowledged and finalization
+retires the old root; rollback restores the prior visible representation.
+Provider acknowledgements and terrain's retirement of its old claim follow the
+current installed receipt. Minecraft 26.2 validates this context/target split:
+`RenderRegionCache` copies neighboring sections as input, `SectionCompiler`
+emits the target section's layers, and `SectionRenderDispatcher` cancels stale
+tasks and waits for all layer uploads before promotion. Keep the current smooth
+Transvoxel terrain mesh and native instance/layer backend.
+
+The largest acceptance gap is now the live production path, not absence of a
+section installer: prove complete ecology + ordinary/blueprint structures +
+terrain together under initialized Main, then traversal across section/chunk
+boundaries, unload/recreation replay, save/reload, and representative
+performance. The headed runner
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs` currently
+proves a narrower cohabitation/install receipt. A prior fast-turn traversal
+stopped at generated-prop collision (42.67 m; p99 54.3 ms, max 79.1 ms), so it
+remains a failed diagnostic rather than acceptance. Stage exits remain 1/7.
+
+The r28 rerun with census-local resource fingerprint reuse timed out at its
+600-second watchdog. Its last persisted progress checkpoint was frame 930 with
+63/64 domains ready and the final source in `underground_props`, scan complete,
+attempt cursor 10 of 36 and 65 source rows; no stalled-attempt signal was
+reported. Godot then stopped producing frames for the watchdog's remaining
+308 seconds. Source inspection confirms each underground attempt invokes one
+whole `spawn_underground_prop_attempt` before the cursor can advance; that call
+may derive and fingerprint a multi-member ore or forage value. The fixed
+frame-sliced outer loop cannot preempt one such builder call. This is the
+boundedness defect established at r28; the exact candidate branch is not
+recorded. The census-local fingerprint cache did not execute. No final census,
+native compile, install or receipt was written. Forced cleanup was needed,
+though the owned Job Object reached authoritative zero. The next production
+change caches repeated mesh/material fingerprints by live resource identity
+within one synchronous recipe build, records branch and elapsed timing, and
+propagates pending source/member results without advancing the attempt cursor
+or RNG. If that indivisible step still exceeds its frame budget, move render
+value derivation into candidate-local resumable work. Preserve currentness,
+deterministic RNG order and the existing installed representation. Use a
+same-seed production capture to prove cursor progress and exact output parity,
+then the real-Main native gate to prove the candidate reaches installation.
+Report:
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-real-main-r28/watchdog.json`.
+Minecraft 26.2's `SectionCompiler` consumes copied inputs for one explicit
+section job, and `SectionRenderDispatcher` cancels superseded jobs while keeping
+old layers until all replacement uploads acknowledge. Keep deterministic
+producer/RNG ownership in Main, but make expensive render-value derivation
+bounded at the candidate boundary. Do not append pending as empty/ready or
+advance its cursor; candidate retries must produce the same value and stream
+state. Full visual cutover and gameplay acceptance remain open.
+
+**HEAD checkpoint — 2026-10-06, game HEAD `8254e3e9`, startup vertical-closure
+diagnostic:** the compile-only load check passes after adding bounded pending
+tree and source-capture telemetry. Headed run `ecology-main-retirement-20261006-
+minecraft-diagnostics-r2` reached Main startup frame 1200 and reported 70/76
+visible candidates represented; all six pending candidates are valid trees
+whose renderable receipt is still pending. Their recipes and several section
+compile artifacts are current, but none had a current acknowledged section
+install. Three active producer jobs had each been advanced about 394 times and
+were in `underground_props`, after scanning only 17.5k–20.2k cells; each request
+included all six source families. The diagnostic run was stopped before its
+visual act, and its owned Job Object reached authoritative zero; forced stop
+means the runner cleanup gate is failed and no visual result is claimed. Report
+and watchdog are preserved under the game worktree at
+`artifacts/citadel-runtime-integration/ecology-main-retirement-20261006-minecraft-diagnostics-r2/`.
+
+The source audit found `inverse_source_chunk_keys_for_family` computes only
+horizontal source bounds for every vertical section, and the current source
+publication scans underground floors through the world bottom before declaring
+`underground_props` complete. Thus ordinary above-ground startup waits on
+unseen underground source coverage. The next architecture step is an explicit
+vertical-band ecology coverage receipt: bind its half-open Y interval, source
+chunk and terrain/structure/removal/catalog revisions; capture and publish
+only the family members whose certified bounds can intersect that band; and
+retain unrequested bands as pending demand for later visibility or underground
+descent. A section candidate remains complete only for its declared vertical
+content manifest, with no missing-as-empty shortcut. Keep one authoritative
+deterministic source/RNG sequence and prove same-seed parity across adjacent,
+negative-coordinate and edited bands before switching the production demand
+path. This matches Minecraft's per-section output ownership and bounded region
+context without adopting its block mesher. Stage exits remain **1/7**; no
+renderer-install, visual, traversal or performance exit is added by this
+diagnostic.
+
+**HEAD checkpoint — 2026-10-06, game HEAD `8254e3e9`:** progress remains
 **1/7 stage exits** (Stage 0 complete; Stages 1–5 partial; Stage 6 not started).
-The focused tree recipe section compiler, real-Main ecology source-pass parity,
-source-capture session, and authoritative terrain snapshot contracts pass, but
-the headed whole-section install gate r3 stopped before candidate assembly. Its
-test `WorldRoot` lacks Main's `capture_ecology_source_domain` authority, so the
-ecology census correctly returned pending; the separately compiled queue record
-and fixture ledger did not become section contributions. The renderer was not
-reached, so this is fixture/source-authority integration evidence, not a native
-renderer failure. Watchdog cleanup passed with authoritative zero membership.
-Report: `artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-r3/report.json`.
-The next gate must bind the adapter to initialized `Main.tscn`, capture the full
-certified source-family closure, and prove the accepted tree part in the native
-section manifest. Minecraft 26.2's `RenderRegionCache` → `RenderSectionRegion` →
-`SectionCompiler` boundary supports this: compile from captured section data,
-then retain the prior section mesh until all replacement layer uploads
-acknowledge. Its fixed 3×3 block neighborhood does not define this game's
-procedural support closure.
+The native tree compiler contract passes 29/29, including reviewed spatial
+support, recipe parity, stale epoch rejection, cancellation and bounded worker
+admission. The ordinary cross-section provider contract passes 46/46, including
+support leases and receipt-gated retirement. Both are focused evidence, not
+stage exits.
+
+The headed Main candidate gate remains open. Run `r9` completed the real Main
+setup and attached the native renderer, then the census stayed pending on a
+queued standalone admission because this detached fixture did not service
+Main's bounded `StructureSystem` operation queue. The fixture now services that
+production queue. Run `r10` exceeded its 300-second watchdog before writing a
+final report; forced cleanup was required, with authoritative zero job members
+proven, so its cleanup gate failed. No candidate or install result can be
+claimed. The next run holds the census while production requests drain, then
+recaptures, and writes periodic bounded progress to `progress.json`.
+
+Latest focused report:
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261006-final/report.json`.
+`r9` report:
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-real-main-r9/report.json`.
+`r10` watchdog:
+`artifacts/citadel-runtime-integration/whole-section-candidate-native-install-20261006-real-main-r10/watchdog.json`.
+The updated fixture script passes Godot `--headless --check-only` load/compile;
+this is syntax and resource-load evidence only.
+
+Minecraft 26.2's `RenderRegionCache` → `RenderSectionRegion` → `SectionCompiler`
+boundary remains the design reference: section work consumes captured bounded
+inputs, and `SectionRenderDispatcher` keeps the prior mesh until all replacement
+layer uploads acknowledge. The region is compile context, not duplicate output
+ownership; this game's procedural support closure remains its own certified
+input. No candidate-install, visual, traversal or performance stage exit is
+claimed.
+
+**HEAD checkpoint — 2026-10-06, game HEAD `8254e3e9`:** the r14 headed Main
+candidate gate captured all 64 source domains but failed at tree-source compile
+polling. The queue is intentionally parented to the fixture world so its frame
+service runs while the real `Main.tscn` authority remains detached; the poll
+incorrectly resolved authority from the queue parent. This violated owner
+identity despite the compile job retaining the exact Main weak reference. The
+poll now validates against the admitted Main owner and still checks live source
+publication currentness before accepting compiled output.
+
+The r15 rerun passed source capture but timed out at 600 seconds while repeatedly
+receiving `ecology_static_source_resource_digest_unavailable`; its watchdog
+records forced cleanup and authoritative zero job members, so cleanup did not
+pass and no candidate/install claim was produced. Progress advanced to 64/64
+source chunks before that next gate. The fixture now records bounded source ID,
+part ID and family diagnostics, and exits after three identical pending results
+only when structure, source-capture and tree queues are idle. The r16 headed run
+is collecting the exact digest mismatch now. The source-family wait remains
+truthful: underground props cannot be skipped using the player's above-ground
+height flag because the current whole-chunk manifest has no vertical support
+band. A future section-scoped scan must bind its exact vertical interval and
+terrain/structure/removal/catalog revisions into a separate coverage receipt;
+content outside that band remains deferred. This follows Minecraft's
+section-local output ownership with bounded neighboring context, while keeping
+this game's certified producer support.
 **Recorded:** 2026-10-04
 **Canonical source:** `voxel-godot` branch `codex/chunk-owned-world-rendering-migration`
 
@@ -240,6 +484,34 @@ The production path needs three explicit work owners:
    sections when that snapshot is sealed. Source-generation and gameplay
    authorities remain unchanged; Node, Resource, RID, Callable and mutable
    Variant data do not cross a worker boundary.
+   Reuse a source capture across sections only when it proves one complete
+   source-chunk/family result. The current underground family has global
+   producer semantics: visit source XZ columns in canonical order, choose the
+   topmost valid exposed floor per column, accept cells by stable hash, stop
+   after 36 accepted candidates, then generate recipes from a sequential
+   source-chunk RNG. A section-Y-clipped scan cannot prove the same candidate
+   list: below-section candidates can consume cap slots and shift later recipe
+   RNG. Keep this complete family result as producer authority, then partition
+   its immutable contributors into target-section outputs using exact bounds
+   and certified support. Do not merge separate output sections into one
+   renderer owner.
+
+   To reduce cold-scan work without changing those semantics, a future
+   `TerrainVolumeService` top-floor index must return the same first spawnable
+   floor (or an explicit none) for every source XZ column, under the exact
+   terrain chunk revision and including generated volume, edits, and scene
+   overlays. Build it alongside authoritative volume generation/storage or
+   maintain it as a revision-correct derived cache; lazily building it by
+   repeating the full scan only moves the cost. Iterate the complete index in
+   the original XZ order and preserve the stable hash, cap, candidate order and
+   sequential RNG state. Bind its completeness receipt to source chunk, world
+   epoch, terrain revision, removal projection, policy and catalog revisions.
+   On revision change, discard/rebuild it. Only after exact parity may the
+   index support section-specific lookup; that lookup must carry the section's
+   half-open Y interval, certified vertical support, and a scoped
+   completeness/empty receipt. Cross-section tree or structure support stays
+   attached to every intersected output section through explicit coverage
+   ranges.
 2. **Section compile dispatcher:** after its exact provider census is complete,
    one section task owns immutable local inputs and compiles the complete
    candidate across all render layers. Tasks are prioritized from the current
@@ -260,6 +532,60 @@ one section demand per attempt, so shared source work has no explicit
 subscription, fair service or completion wake-up. It never reached native
 candidate installation. This is a source-work ownership problem, not evidence
 that the native slot/receipt boundary is the bottleneck.
+
+The 2026-10-06 real-Main r26 fixture reaches 63/64 completed source captures,
+then makes no progress for the remainder of its 600-second watchdog while one
+chunk-wide underground ecology scan is active. The isolated cave contract for
+the same seed/region passes, and a single exposed-floor scan slice completes in
+46 ms; neither reproduces the full capture stall. The source audit traced the
+request through `EcologySectionValueAdapter`'s family-specific inverse source
+closure, `MainPlaytestTools.capture_ecology_source_domain`, the chunk capture
+session, `process_chunk_prop_spawn_state`, and finally
+`TerrainVolumeService.begin/advance_exposed_underground_floor_scan`. Although
+families are separated, the underground scan currently walks each XZ column
+from its surface to `world_bottom_cell_y`; target-section Y and the family's
+vertical support are applied only after candidates are produced. The 36-item
+candidate cap therefore does not bound that scan work. A follow-up audit
+proved that simply stopping at the output section's lower face breaks parity:
+lower floors in earlier columns consume the global accepted-candidate cap,
+and accepted candidates also determine sequential recipe RNG state.
+
+Minecraft's `SectionCompiler` emits one target section; `RenderSectionRegion`
+is a bounded 3x3x3 read neighborhood, not a larger output owner. Its analogy
+supports target-section output assembly from captured authoritative inputs,
+but it does not mean every upstream producer can discard data outside that
+section. The immediate falsifiable production slice retains the full canonical
+scan while reusing overlapping vertical cell-state samples within each column;
+this preserves topmost-floor selection and candidate order. The next larger
+optimization is a complete, revision-keyed top-floor index whose construction
+and lookup are separately measured and whose output is compared exactly with
+the existing scan before adoption. Keep producer support and generation owned
+by this game; apply section bounds when partitioning the sealed result into
+renderer-owned output.
+In r27, 64/64 source jobs sealed in 285 seconds of fixture time; the following
+census/assembly call did not return during the remaining watchdog period. The
+last progress file still showed `ecology_source_capture_queued` and a ready
+result for the final source job, with no candidate-install attempt. The next
+gate needs bounded progress inside census/assembly and section-owned work so a
+complete producer closure cannot become one unresponsive full-source pass.
+A read-only code trace locates that pass in
+`EcologySectionValueAdapter._capture_nonresident_static_section_sources_in_scope`:
+it synchronously revalidates every source publication, visits each requested
+family/source row, compiles non-tree members, publishes support families, and
+queries the section index. `_compile_non_tree_source_row` fingerprints member
+meshes; `StaticRenderMeshFingerprint.inspect` reads surface arrays, serializes
+them, and hashes the payload. Repeated placements can therefore repeat the
+same large resource serialization. This is the leading CPU/allocation
+hypothesis, not a measured hotspot: r27 has no nested profiler or in-call
+checkpoint. Before optimizing, add bounded counters/timers for source chunk,
+family, row/member, fingerprint bytes/time, publication and index work. If the
+fingerprint path dominates, cache by live resource identity plus admitted
+catalog/resource revision while preserving the exact digest and freshness
+checks. In parallel, reshape the post-capture pass into a retryable,
+frame-budgeted section continuation. Minecraft's SectionCompiler processes one
+target section from copied bounded context; this supports per-section compile
+ownership and dispatcher budgets, while our inverse source closure and full
+producer coverage remain explicit dependencies.
 
 Baseline command:
 `node tools/visible-world/run-main-section-cohabitation-gate.mjs --OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-stage1-20261006i --TimeoutSeconds 1800 --StartupWaitSeconds 900`
@@ -5803,3 +6129,275 @@ cancellation and stale-result rejection before being used as production evidence
 
 These are partial implementation gates. The migration remains **1/7 stage exits
 complete**; Stage 3/4 and full Main-to-renderer acceptance remain open.
+
+### 2026-10-06 Stage 3 implementation checkpoint — authoritative section input
+
+The terrain contribution path now prepares a 19³ Transvoxel input directly
+from `VoxelTerrainGenerator` plus current `TerrainVolumeService` edit overlays,
+generates the payload on an owned worker, seals it against the same world,
+generator/profile, neighboring section, material and exact-fluid revisions,
+then feeds the existing smooth Transvoxel mesher and shared section candidate.
+Stale work is rejected before sealing and again before candidate admission. The
+existing VoxelTools terrain visual and collision remain active until the shared
+section install receipt and coverage handoff.
+
+Worker preparation takes one `GeneratedSiteProfileStore.snapshot_with_revision`
+and passes that exact profile snapshot into `clone_for_worker`; it does not
+reacquire profiles while cloning. The section worker receives private clones of
+the five `FastNoiseLite` resources and its own `NativeCaveField`. Its cloned
+context, pinned-town values, profile arrays, edit overlay and revision rows are
+not mutated by the owner after dispatch; the owner checks currentness against
+the live authorities and joins the worker before releasing it. This is an
+owner-confined cloned-resource contract, not a claim that arbitrary Godot
+Resources or GDExtension `RefCounted` objects are generally thread safe. A
+focused contract has been added for isolated resource identities, exact profile
+snapshot use, worker channel parity, pre-cancel rejection, sealing and stale
+input rejection. The r3 contract did not cancel after entering `_generate_block`;
+it only rejected a token cancelled before generation. R4 added an active-call
+cancellation row: cancellation was observed during the whole-block call, its
+worker completed and joined, and the cancelled result had no generated payload
+or seal. The durable edit was also restored after clearing its scene overlay.
+The same-cell overlay row failed. R4 supplied `volumeRevision=0` after scene
+overlay mutations had advanced the fixture volume revision, so that result
+cannot decide source precedence. R5 refreshes the empty-fluid proof from the
+live volume/fluid revisions after each mutation and records the captured row
+order, expected `get_cell_state` material/density, actual channel ID/SDF, and
+capture status. R5 proved the same-cell rows were applied in edit-then-scene-
+overlay order and that the scene overlay's material channel won, but the test
+compared raw SDF `-3.0` with the quantized 16-bit SDF `-2.9908137`. R6 now
+constructs its expected SDF through an identical 16-bit `VoxelBuffer` and
+compares exact represented values. R6 passed all **9/9 generator block rows**
+with zero channel mismatches, plus the overlay precedence, active cancellation
+and join, durable edit reveal, private worker resource, exact profile snapshot,
+and stale edit/neighbor/fluid rejection checks. Report:
+`artifacts/terrain/voxel-generator-exact-output-2026-10-07T03-15-06-839Z-1645e86d/report.json`.
+Cancellation responsiveness remains bounded by one indivisible whole-block
+generation call. A headed Main diagnostic separately compares generated
+SDF/material channels with resident VoxelTools before testing the native receipt.
+
+The first two post-change synthetic launches stopped during script loading:
+r1 found an indentation parse error in the resource-isolation helper, and r2
+found an unused helper parameter typed as a nonexistent `WorkerResultSlot`.
+Both exited before snapshot assertions with clean teardown and authoritative
+zero owned processes. Those defects were repaired and the unused helper was
+removed. The r3 exact-output contract passed all **9/9 generator block rows**
+across three seeds (surface, underground and LOD 1), with zero channel
+mismatches. Its authoritative 19³ section snapshot passed generator parity,
+census revision/currentness, exact profile snapshot use, private worker
+resource identities, pre-cancellation, sealing, and stale edit/neighbor/fluid
+rejection. Report:
+`artifacts/citadel-runtime-integration/authoritative-terrain-source-isolated-worker-20261006-r3/report.json`.
+The owned runner exited 0, timed out false, cleanup passed, and authoritative
+zero-member proof passed. This is synthetic service-contract evidence; it does
+not compare against resident VoxelTools channels or prove a live Main candidate,
+native receipt, or drawn replacement. R6 fixes the overlay assertion only; the
+headed Main diagnostic remains open, as do visual/collision handoff, traversal, unload/replay, save/reload and
+performance; this checkpoint adds no stage exit and overall progress remains
+**1/7**. Worker cancellation is cooperative around the generator's indivisible
+`_generate_block` call. Payload decoding, `VoxelBuffer` materialization and
+Transvoxel mesh building still run on the owner thread. Retain VoxelTools until
+resident-channel parity and current-receipt evidence pass.
+
+### 2026-10-07 HEAD checkpoint — tree pack and terrain gate follow-up
+
+The project terrain-meshing extension built successfully with the new native
+tree section-pack dispatcher (`node tools/build-native-terrain-meshing.mjs`).
+The first tree contract attempt found a GDScript type-inference parse error;
+the corrected runner reached assertions. Its current report fails three
+checks: native transform/bounds parity at a synthetic million-meter coordinate,
+the v2 catalog-lease resolver fixture, and the reviewed tree spatial-policy
+fixture. The native differential shows C++ double transform/AABB arithmetic
+does not match Godot's `Transform3D`/`AABB` float behavior there. This must be
+resolved at the worker boundary; do not waive parity. Reports:
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261007-r2/report.json`
+and `...-r3/report.json` (r3 adds per-instance mismatch diagnostics).
+
+Independent review found and HEAD added two fail-closed intake checks: the
+geometry owner must equal
+`Grid.key_for_world_position(worldBounds.get_center())`, and the completed
+result must echo its packet source-part and mesh digest. The initial native
+differential also caught a real parity issue: C++ double transform/AABB math
+disagreed with Godot float semantics at large coordinates. The packer now
+matches Godot 4.6 `Transform3D`, `AABB`, wind expansion and float section
+snapping, while retaining widened coordinate guards and int64 support deltas.
+The reviewed compiler-source digest was refreshed after reviewing the spatial
+bound changes.
+
+The rebuilt extension's r4 tree contract passed every check, including three
+families/LODs of native geometry parity, four-instance packing across negative,
+exact-plane, rotated/nonuniform and million-meter coordinates, exact owner and
+support keys, certified-envelope rejection, stale identity, cancellation and
+capacity/backpressure. Large-coordinate packed attributes matched exactly
+(maximum lane error 0); all 895 accepted tree instances passed owner-side
+acceptance in 21.7 ms. Runner exit was 0 with clean watchdog cleanup and
+authoritative zero. Report:
+`artifacts/citadel-runtime-integration/tree-recipe-section-compiler-20261007-r4/report.json`.
+This is headed compiler/producer evidence, not native shared-section candidate
+installation or gameplay acceptance. Minecraft 26.2 still defines the next
+cutover boundary: one target section compiles its full render layers from
+bounded copied context, stale work is discarded, and the prior installed
+section remains until replacement upload is acknowledged. The native tree
+worker remains upstream of shared `NativeSectionCompileDispatcher` installation.
+Overall progress remains **1/7 stage exits**; Main installation and gameplay
+acceptance are open.
+
+### 2026-10-07 HEAD checkpoint — Citadel building coverage diagnostic
+
+The updated headed fixture reached the real seeded `CitadelPublicationService`
+and immutable packet plan (3,596 groups, 4,210 visual member rows). Its required
+target was the authored visible beam
+`castle_tower_04_battlement_front_0` (`beam`, `stone_foundation`). The plan
+contains 58 all-building sections, but only 16 currently packet-capable
+sections; the target beam's section is among the 42 rejected because its source
+part geometry family is unsupported. The selection gate correctly refused to
+call the missing beam contribution complete. r3 now emits a clean failure report
+instead of crashing after selection, and the owned runner exited 1 with normal
+cleanup and authoritative zero. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261007-r3/report.json`.
+This is useful live-source coverage evidence, not a native install. The next
+building fixture should select a real member from a complete packet-capable
+section to prove renderer installation, while retaining this beam omission as
+an explicit production migration gap. The production cutover still needs all
+static building families represented, not only masonry, paving and roof.
+
+### 2026-10-07 HEAD execution batch — complete producer-to-install contracts
+
+The next batch covers complete producer lifecycles before another integrated
+retry. HEAD owns integration, section admission and final acceptance. The
+building lead audits canonical member identity through capture, acknowledgement,
+retirement and unload/replay; the terrain lead owns the live terrain/fluid
+receipt fixture; an independent reviewer audits production identity and the
+native tree compiler. File ownership is non-overlapping. Existing dirty source
+and generated/import changes remain preserved on
+`codex/chunk-owned-world-rendering-migration` at baseline `c35bbd7b`.
+
+Entry evidence is the green tree compiler r4, exact terrain generator output
+contract and real Citadel section receipt r8. These are individual producer
+proofs. The unresolved integrated boundary is compiled tree content through
+band registration, complete provider census, candidate admission, native compile
+and renderer installation. Every pending outcome must retain its demand and
+identify the actual dependency; a sealed capture with no compile job is not an
+authoritative empty result. Review all affected consumers before retrying a
+costly scene, and distinguish fixture contract failures from production defects.
+
+Batch acceptance requires current identities at every handoff, stale/cancelled
+work rejected, old valid visuals retained through replacement, and renderer
+receipts from the real pipeline. The subsequent initialized-Main gate must join
+terrain, structures and ecology in complete installed sections before live
+traversal, unload/replay, save/reload and representative frame-time acceptance.
+No stage exit is promoted by diagnostics or a compiler result alone. Failed
+runs require report inspection and authoritative owned-process cleanup before
+another run. Commit only explicit reviewed source/fixture dependencies.
+
+Minecraft 26.2 `SectionCompiler.compile` (line 56) emits layers for one target
+section using copied neighboring context; `RenderSectionRegion` bounds that
+context; `SectionRenderDispatcher` cancels superseded jobs and swaps the
+installed mesh after uploads. These are the lifecycle reference for this batch.
+Our procedural support extents, smooth terrain and gameplay authorities remain
+inputs to that lifecycle, and need their own correctness evidence.
+
+#### Batch review findings and required repairs
+
+Independent review found two remaining Citadel lifecycle gaps despite r8's
+successful installation. The plan census does not change when a live publisher
+or parent transform is replaced, so a candidate may outlive its actual captured
+artifact owner. Bind that live dependency into the provider's section census
+revision so the existing async census validation rejects it before installation
+or legacy retirement. A mutable map of the latest capture is not proof for an
+older candidate. Also, a bounds-intersecting contributor whose instance centers
+all belong to adjacent sections must publish an authoritative revisioned empty
+contribution for the target section, rather than stay pending forever. Missing
+geometry must still fail. The same batch covers receipt-identity-checked release
+and restoration of legacy fallback when native section coverage is withdrawn.
+
+The earlier beam report is now classified more narrowly: r3's selector required
+prepared masonry/paving/roof packets, while the production transform-artifact
+route is separate. That run establishes a prepared-packet selection limitation,
+not absence of production beam geometry. After the lifecycle fixes, the next
+real building gate must attempt the original beam through committed transform
+artifacts and account for every contributor in its section before making a
+production coverage claim.
+
+An instance centered in an adjacent section can still intersect the target.
+That is support-only geometry, not empty content. The building batch must keep
+it pending until its exact geometry-owner dependency is certified and retained;
+only zero owned instances **and** zero intersecting instances establish an
+empty local contribution. The existing shared support validator and owner-demand
+reconciliation currently encode ecology and ordinary-structure policies, so
+Citadel multi-instance support needs an explicit extension and acceptance cases.
+
+The native tree review found no concrete worker lifetime, cancellation or
+production-input ownership defect. It did find a direct native API edge where
+a positive double section size narrows to float zero; validation and a focused
+malformed-input case are included before the next build. Tree-band completion
+currently relies on the coordinator's retained 30-frame retries rather than an
+explicit completion wake. This is an urgency delay, not evidence of dropped
+demand or the cause of the Main startup failure. The native compiler's dirty
+diff depends on the ecology source/support contracts, so it must not be committed
+as an isolated C++ plus compiler slice without those reviewed dependencies.
+
+The terrain/fluid headed r2 run passed parsing but failed its prerequisite Main
+startup readiness after the fixture's 240-second diagnostic wait. It never
+reached terrain/fluid receipt assertions. The owned runner exited 1 normally,
+with no forced cleanup and authoritative zero remaining processes. Its startup
+report omitted the blocked section dependency; a reusable read-only fixture
+diagnostic will join source capture, tree band compilation/registration, section
+census/admission and installation for the next integrated run. It must not
+advance production work or infer authoritative emptiness from absent jobs.
+Report: `artifacts/citadel-runtime-integration/terrain-fluid-section-native-receipt-20261007-r2/report.json`.
+
+### 2026-10-07 HEAD checkpoint — Citadel source identity boundary
+
+The r5 headed gate selected a packet-supported floor member, but candidate
+admission remained pending before native compilation. Its complete real source
+census had 12 members; the shared roster represented each as a canonical
+`section-part:` identity while `CitadelPublicationService` compared those
+keys to the provider's raw `citadel:...:member:...` IDs. The report shows the
+same unchanged members in both namespaces. This was a false stale rejection,
+not a dispatcher stall. The gate exited 1; its watchdog cleanup passed and
+proved zero owned processes. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261007-r5/report.json`.
+
+The production adapter now resolves canonical roster keys through the sealed
+`sourceIdentities` map, verifies the identity round-trip and one-to-one mapping,
+and compares source revisions under the shared identity key. It keeps
+authoritative source revisions separate from per-capture artifact revisions.
+The coordinator candidate assembler's stale-source diagnostic now records both
+the provider and census revisions for future mismatch diagnosis. The service
+contract initially exposed that its transform fixture omitted the required
+identity map; the fixture now models the real roster shape. Its r10 run passed
+all 15 checks, including producer artifact capture, candidate assembly, stale
+binding rejection, retained old visuals/collision, and explicit empty content.
+Report:
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-20261007-r10/report.json`.
+
+The headed gate fixture now constructs the same canonical roster and compares
+complete contribution receipts using canonical identity keys. r6 exposed the
+fixture's identity-map omission; r7 reached a ready 12-member transform
+contribution but its final fixture assertion still compared canonical keys to
+raw IDs. Those failures each exited 1 with normal owned-process cleanup and
+zero-member proof. The r8 headed retry passed after the fixture began emitting
+the real canonical roster shape. The report records a fresh `atlas-1492`
+Citadel source, section `(199, 1, -342)`, and all 12 exact member
+contributions. Its complete candidate was installed into the native section
+owner, exact target-source revision receipts were current, the real publisher
+acknowledged installation, and all legacy target visuals remained visible
+while the receipt was pending before they were retired. All 29 checks passed;
+the owned runner exited 0, did not time out or force cleanup, and proved zero
+owned processes. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-20261007-r8/report.json`.
+
+This is the first proof that a real production provider candidate reaches the
+native renderer. It is one packet-capable building section; it does not cover
+unsupported beam families, trees, terrain, normal menu startup, traversal,
+save/reload or representative performance. The full migration stage remains
+open pending those producers and ordinary gameplay proof. The tree packer and
+terrain exact-output results remain upstream evidence only.
+
+This follows the relevant Minecraft 26.2 boundary in
+`decompiled/net/minecraft/client/renderer/chunk/SectionCompiler.java`,
+`RenderSectionRegion.java`, and `SectionRenderDispatcher.java`: compile one
+section from bounded context, reject cancelled/stale work, then install the
+complete replacement while keeping the prior section mesh until the swap is
+accepted. Minecraft does not answer our smooth-terrain meshing question; this
+checkpoint applies only the section ownership and replacement lifecycle.
