@@ -46,6 +46,71 @@ performance acceptance. Detailed evidence and remaining boundaries follow.
   checks. Do not insert a global background-queue gate or add ACK recursion to
   native receipt validators used by the acknowledgement callbacks themselves.
 
+## 2026-10-07 charter: complete building residency and replacement
+
+**Outcome:** boundary-crossing static buildings participate in the same section
+candidate, native installation, support residency, replacement and unload/replay
+lifecycle. Keep collision, interactions, doors, navigation and durable save
+deltas under their existing owners. No terrain mesher, NPC behavior, recipe or
+world-generation redesign belongs to this batch.
+
+**Baseline and ownership:** game branch
+`codex/chunk-owned-world-rendering-migration`, HEAD `b81dff1a`, retains a large
+dirty migration baseline and unrelated import churn. The building lead must
+copy exact scoped files before edits. ROOT owns stage acceptance and explicit
+staging; the lead must not commit or launch concurrent Godot processes. The
+ACK lead currently owns the coordinator; a coordinator scope transfer requires
+its frozen results and drained process handoff. Building edits may proceed in
+the independent service, geometry adapter and ordinary provider files first.
+
+**Source-backed gaps:** `CitadelSectionGeometryAdapter` rejects every
+intersecting non-owner instance, including mixed owner/support sections.
+`CitadelPublicationService` embeds requested section coordinates in member IDs
+and authoritative source revisions. Existing coordinator support leases are
+ordinary-specific. `OrdinaryStructureStaticSectionProvider` has no explicit
+`release_section_install` callback. These are implementation gaps established
+by source review, not yet red engine contracts. The prior r8 live fixture
+proved 12 floor members in one section only. Current Citadel publisher identity
+validation and all-AABB-section retirement closure already exist; preserve and
+extend them instead of recreating them.
+
+**Shared lifecycle:** deterministic world/site/member -> indexed producer
+membership and immutable transform/material inputs -> stable member authority
+revision plus section coverage/artifact revisions -> center-owned geometry
+and exact AABB support manifest -> shared source roster and complete candidate
+-> native section install -> exact provider acknowledgement and all-required-
+section closure -> legacy visual retirement. Replacement keeps the prior valid
+publication until closure succeeds. Release restores the prior visual when
+needed, rejects old receipt releases against a newer owner, and retains
+section-scoped removal evidence. Saves continue recording durable deltas only.
+
+**Implementation scope:** `CitadelPublicationService.gd`,
+`CitadelSectionGeometryAdapter.gd`, `OrdinaryStructureStaticSectionProvider.gd`,
+their existing fixtures/runners, and after explicit ownership transfer the
+coordinator's existing support-lease policy. Change `CitadelPublicationPlan.gd`
+only if a compiled-bounds-versus-indexed-bounds contract demonstrates a producer
+coverage mismatch. Do not introduce a parallel Citadel lease authority.
+
+**Proof and exit:** preserve focused red baselines, then prove stable member
+IDs/revisions across two sections; one geometry owner and exact support-only
+and mixed section manifests; publisher/material/transform invalidation;
+partial closure retaining old visuals; full closure retiring them; unload
+restoring, replay re-retiring, delayed old release preserving replacement;
+support demand retaining its owner; section-scoped tombstones; and indexed
+membership covering actual compiled bounds. Extend the existing adapter,
+service, retirement, ordinary provider and owner-demand lifecycle runners.
+Then install actual crossing members through the native renderer, inspect
+viewport captures and exact source/build identities, and require normal
+owned-process zero cleanup. Follow with initialized Main traversal,
+collision/interaction, save/reload and representative performance evidence.
+Synthetic and fixture passes alone do not close Stage 4 or the migration.
+
+**Minecraft reference:** the lead reread `RenderSectionRegion`,
+`SectionCompiler` and `SectionRenderDispatcher` in local 26.2. Apply shared
+captured context, target-section ownership, stale cancellation and complete
+upload-before-swap. Our larger meshes require explicit crossing supports;
+Minecraft's block mesher is not copied into the smooth terrain or buildings.
+
 Real Citadel section installation r8 passed 29 checks; initialized-Main
 cohabitation and terrain/fluid live acceptance remain open. Independent review
 then identified publisher-currentness and adjacent-section support gaps in the
