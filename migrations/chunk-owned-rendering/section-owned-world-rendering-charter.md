@@ -112,6 +112,70 @@ source/owner revision change or an explicit retryable dependency.
 
 ## 2026-10-07 charter: complete building residency and replacement
 
+### Geometry-owner completion cutover (HEAD decision)
+
+The native crossing r3 passed beyond the dependency-order rejection but failed
+the explicit provider-ACK settlement assertion. HEAD stopped the owned run
+before its second replay wait: authoritative zero was proven, forced cleanup
+means cleanup did not pass, and no final functional report was produced.
+The exact pending runtime reason was not captured. Independent source review
+establishes the structural issue: Citadel retirement requires receipts in every
+section intersecting each legacy visual AABB, although actual geometry is
+center-owned. The large foundation spans 35 support sections and 20 stream
+chunks; it has an actual geometry owner outside the fixture's two sections.
+This is a per-visual footprint expansion, not evidence that code recursively
+walked the entire settlement.
+
+Minecraft reference: `SectionCompiler` reads a neighbor region but emits its
+target section's layers; `SectionRenderDispatcher` promotes that section after
+its uploads complete. Our smooth terrain and instanced static geometry retain
+their own representation. For center-owned instances, support sections carry
+residency demand, not duplicate replacement geometry.
+
+**Replacement authority and scope:** the building lead owns a coherent cutover
+of Citadel's old-visual retirement to a complete part-level geometry-owner
+proof. Use the full existing sealed transform artifact for
+`building_source_part_id`; derive a deterministic immutable expected member
+roster from every group/segment/instance before section filtering. Bind it to
+world/site, publisher incarnation, part binding/source revision, artifact and
+segment digests, exact instance identity and owner section, mesh content and
+decoded transform/bounds. Reuse existing normalization and value admission;
+do not introduce another generator or a parallel geometry authority. Cache only
+under the current artifact identity, with bounded cancellation/retirement and
+no live Node ownership hidden inside the value roster.
+
+The coordinator must compare that complete expected set with current installed
+owner candidates, their native receipts and exact geometry provenance. Never
+infer completeness from the subset already installed, source-ID presence, a
+visible node, a counter or an ACK alone. Retire all legacy visuals for the part
+only after the full new-revision member set is proven. Support-only sections
+must retain the exact geometry owners through the existing lease machinery;
+their unrelated section contents are not replacement geometry for this part.
+Keep pending/failed provider acknowledgement semantics and current source,
+coverage, publisher and receipt validation. Do not simply rename a pending
+retirement as acknowledged to pass a fixture.
+
+**Moves, removal and replay:** retain the old sealed expected member roster
+before replacement/removal. Current groups missing from capture are never an
+empty result. Require explicit removal/empty acceptance for old geometry owners
+that no longer carry the part, plus complete current-revision geometry for new
+owners. If the old roster cannot be recovered, keep the old visual and report
+the concrete pending dependency. Receipt/source/owner changes invalidate proof;
+owner release restores retained legacy visuals when replacement coverage is
+lost. Keep collision, interactions, doors, navigation, deterministic generation
+and durable save deltas under their existing authorities.
+
+**Acceptance:** first exercise missing/extra/duplicate/stale member, moved
+owner, old-tombstone, partial install, replaced backend and delayed release
+negatives against the existing roster/coordinator/provider contracts. Then use
+the real generated Citadel artifact and native renderer to prove a crossing
+member and its actual external owner: pending owner demand, exact installation,
+partial-replacement retention, full-part retirement, release and reentry.
+Use the existing headed viewport evidence and owned cleanup. Preserve r2/r3
+baselines. Rerun affected ordinary/ecology snapshot and full 59-check demand
+driver coverage, then the real Main cohabitation gate. No stage exit or live
+traversal/save/performance acceptance is implied by these intermediate proofs.
+
 **Boundary integration finding:** headed
 `citadel-nonempty-section-receipt-crossing-lifecycle-20261007-r2` installed the
 first foundation section and retained legacy visuals when the second section
