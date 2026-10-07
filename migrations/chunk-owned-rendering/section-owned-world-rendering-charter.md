@@ -2,6 +2,67 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+**Full31 r2 exposed an underbounded tree admission certificate.** It progressed
+to 990/1501 prepared groups before `tree_request_outside_profile_envelope`.
+The owned watchdog was stopped promptly: overall 126, forced cleanup and cleanup
+failure, but authoritative zero with no remaining members. No final fixture
+report was produced. All 80 launch identities remained unchanged. This failed
+run does not prove renderer installation.
+
+Before another integrated launch, the existing tree-admission contract now calls
+the real `CitadelUrbanPocComposer.build_tree_placement_records` for its complete
+three-height cycle. Baseline output
+`artifacts/citadel-runtime-integration/tree-request-admission-citadel-envelope-baseline-r1/report.json`
+reproduces acceptance of 6.2 m and rejection of unchanged production requests at
+7.1 m and 8.0 m. The town profile has no configured height range; its producer
+deliberately uses those fallback heights, while `EcologyProducerDomain` assumed
+every fallback producer ended at 6.8 m. The correction belongs to that conservative
+admission envelope: cover the existing largest producer value, without changing
+tree dimensions, profiles, RNG, recipe identity or clamping generated trees.
+Add rejection immediately outside the corrected bound, retain certificate tamper
+and stale-catalog checks, then rerun the complete lifecycle only after the focused
+producer/admission boundary passes. This is an introduced admission incompatibility,
+not a changed Citadel recipe or permission to enlarge unrelated visual tolerances.
+
+The corrected producer-envelope contract passes **13/13**:
+`node tools/run-tree-request-admission-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/tree-request-admission-citadel-envelope-r1`.
+HEAD compared all three records against the failing baseline: visual height,
+trunk radius and canopy radius are unchanged. Requests at 8.001 m still reject
+against the town profile, oversized requests reject, and certificate tampering
+and stale catalog rejection remain mandatory. Exit 0, cleanup passed without
+force, authoritative zero, no remaining members. This is production-producer
+admission evidence, not a live installation result. The full31 r3 rerun follows
+with refreshed source identities; no stage exit is implied.
+
+**Full31 r1 failed at fixture initialization, before renderer installation.**
+The compound-attachments run below passed 26/28 checks; the failed rows were
+`owner_publication_windows_complete_through_real_group_receipts` and
+`complete_owner_lifecycle_act_reached`. Its structured failure was
+`tree_admission_catalog_unavailable`. The fixture overrides Main's `_ready` and
+omitted `setup_biome_environment_catalog`, which ordinary Main initializes in
+MainCore. Current tree admission correctly requires that real authority. This is
+a setup incompatibility exposed by the admission validation, not evidence of a
+native attachment failure. Preserve the report and failure-overlay captures.
+Functional exit was 1, stderr empty, cleanup passed without force, authoritative
+zero proven, and no owned process remained; all 74 launch hashes were unchanged.
+
+The r2 fixture initializes the actual catalog and asserts its ready generation
+receipt before source work. The lead also audited its real player, NPC/portal,
+tree-queue and request-validation initialization; no roster or acceptance
+assertion was removed. The r2 command uses the same runner with output directory
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-compound-attachments-20261007-r2`.
+Its terminal failure and the bounded repair are recorded above.
+
+The next coherent cutover is being prepared in isolated drafts with disjoint
+ownership: HEAD integrates source-prepared versus installed publication;
+terrain lead owns exact physical-support movement readiness; native review lead
+owns borrowed presentation membership and its complete transaction lifecycle.
+These drafts are not promoted or accepted. Shared-root replacement must be
+verified explicitly: admitting or cancelling a candidate cannot change the
+currently installed light/mount's visibility or invalidate its receipt by
+overwriting a single packet-generation claim. Minecraft's all-layer upload
+barrier and old-section retention govern the integration unit.
+
 **Focused ecology gate accepted:**
 `node tools/run-ecology-section-value-adapter-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-retained-preparation-r5`.
 HEAD independently inspected 181/181 top-level checks, 54/54 tree handoff checks,

@@ -83,8 +83,9 @@ members explicitly; do not infer their intended state from staged visibility.
 Further source tracing identifies three prerequisite gaps before promotion:
 
 - `OrdinaryStructureBlockVisualRecipe` classifies door, chest, furnace, campfire
-  and torch as `separate_dynamic`; the ordinary adapter emits an empty static
-  contribution for them. Their presentation needs real owner-bound contributors
+  and torch as `separate_dynamic`; the current ordinary adapter returns pending
+  with `ordinary_geometry_dynamic_family_requires_separate_owner` for them.
+  Their presentation needs real owner-bound contributors
   before it can be staged. Preserve their independent gameplay behavior.
 - `FireLight3D._process` updates visibility from daylight and LOD. A one-time
   hidden flag is insufficient. Evaluate a source-owned presentation mount claimed
