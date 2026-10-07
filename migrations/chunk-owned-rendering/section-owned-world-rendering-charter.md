@@ -6483,8 +6483,24 @@ The corrected viewport patch is integrated. The behavioral receipt test uses
 synthetic PNG data and leaves visual acceptance false. The old shared-runner
 fixture was migrated to a valid PNG and exact source/phase identity; production
 validation was not bypassed. `node --test tools/tests/headed-viewport-capture.test.mjs tools/tests/main-section-cohabitation-viewport-capture-contract.test.mjs tools/lib/building-runner.test.mjs`
-passes 52/52 (3 behavioral, 8 static, 41 existing runner tests). JavaScript syntax
-checks pass. No Godot viewport image has yet been accepted at this checkpoint.
+passes 53/53 (3 viewport behavioral, 8 static, 42 shared-runner tests). HEAD
+also repaired the default owned-window branch's acknowledgement variable and
+added a behavioral regression test proving that a failed owned-window capture
+writes the configured failure acknowledgement. JavaScript syntax checks pass.
+
+The isolated headed protocol smoke then passed using the real Forward+ viewport:
+`node artifacts/viewport-capture-smoke-fixture/run.mjs`. Its preceding
+`--compile-only` invocation passed actual Godot parsing. Evidence is under
+`artifacts/citadel-runtime-integration/viewport-capture-smoke-headed-r1/`.
+HEAD inspected `he/s/04.png`: the intended orange panel and label, blue
+background, and automated-test identity overlay are visible. Its exact final
+receipt/acknowledgement matches the run and source identity, PNG SHA-256
+`bc8af4deafcf29f69fb2328100c9f7cdc7d6c07ee8c4282e07888afe8404931f`.
+Godot exited 0; stderr is empty; cleanup passed with authoritative zero members
+and no forced termination. This proves real viewport capture and the terminal
+handshake only. The temporary ignored fixture loads no world; it is not
+gameplay, migration, or performance acceptance. The next Main gate still needs
+its own inspected images.
 
 The expanded tree handoff fixture passed actual Godot parsing, but its r5
 functional run reached the new handoff stage then hit the existing 60-second
