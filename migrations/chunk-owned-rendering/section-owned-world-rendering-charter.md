@@ -2,6 +2,31 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+**Focused ecology gate accepted:**
+`node tools/run-ecology-section-value-adapter-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/ecology-section-value-adapter-retained-preparation-r5`.
+HEAD independently inspected 181/181 top-level checks, 54/54 tree handoff checks,
+empty stderr and watchdog exit 0, cleanup passed, no forced cleanup, authoritative
+zero and no remaining members. The runner validates 52 unchanged launch hashes
+at game HEAD `831223fb10b86bdbc7dbf2a7ec916b8829e30a98`. The changed-owner case
+preserves unchanged failed demand, recaptures the changed structure revision with
+unchanged terrain, and proves actual native compile admission by ticket,
+generation and census identity. This is source-to-candidate contract evidence,
+not an installed renderer or gameplay acceptance.
+
+Final adapter SHA-256: `3698ADE7F4A78EF79E1DE872A75BDC47E0DAC4340835A8D2157B51C1C986EE2A`;
+fixture: `1A50FFFB86B10327DAFE27919DFC1AAF9E0A7BD6EB9989B68BD979EB8171D231`;
+runner: `6C860C16925105B9B4D2D6008FC391CED910EF7706B81CC588D6FC842F8E5FDD`.
+Earlier r3 assertions passed but leaked two synthetic queue Nodes; r4 freed them
+and exited cleanly, then runner validation exposed two assertions looked up in
+the wrong report map. R5 retains both mandatory assertions under
+`realTreeBandHandoff.checks`. The fixed fixture snapshots observed demand state
+before later mutation and accepts actual compile admission rather than pending.
+
+The live source is frozen for headed full31:
+`node tools/visible-world/run-citadel-nonempty-section-receipt.mjs -OutputDirectory artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-compound-attachments-20261007-r1`.
+No selector smoke or preflight shortcut. Its result is pending; no stage exit is
+claimed. The next building producer cutover remains an isolated design draft.
+
 The next full ecology run (`ecology-section-value-adapter-retained-preparation-r1`)
 reduced failures from nine to three: changed-owner recapture, uncertified tree
 bounds diagnostics, and unsupported-flower dependency identity. All 54 tree
