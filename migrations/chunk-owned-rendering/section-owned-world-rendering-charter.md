@@ -2,6 +2,35 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Actual ordinary renderer and light-only presentation checks
+
+The existing headed ordinary native fixture passes **20/20** at
+`artifacts/citadel-runtime-integration/ordinary-structure-native-section-receipt-presentation-baseline-20261007-r1`
+using `node tools/visible-world/run-ordinary-structure-native-section-receipt.mjs -OutputDirectory`
+with that directory. It exercises the production block constructor, ordinary
+provider, coordinator and actual native renderer for an isolated synthetic
+one-cell town source. Exit 0, cleanup passed and authoritative zero are recorded.
+It records lifecycle traces, not screenshot/pixel evidence, and does not prove
+full-world co-coverage, ordinary menu startup, traversal, save/reload or performance.
+The broader synthetic ordinary provider's 20 failed assertions remain open;
+this narrower pass does not override them.
+
+Tracing real Citadel lighting located `BuildingPartPublisher.publish_practical_light`,
+not door capture, as the producer. The isolated presentation lead now owns that
+actual producer seam and adapter integration. Its real light-only mount requires
+an empty legacy geometry list. The production install session now accepts an
+explicit read-only empty list for borrowed members at admission and currentness;
+geometry attachment requirements are unchanged. Exact native receipt comparison
+still requires the same zero legacy count. The light remains parented to its
+source owner; the renderer never reparents or frees it.
+
+`node tools/run-native-chunk-render-packet-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/native-chunk-packet-light-only-presentation-20261007-r1`
+passes **161/161** with normal exit, clean shutdown and authoritative zero. Added
+real OmniLight3D service checks prove empty-legacy installation through real frame
+ACK and release while preserving source parentage and unrelated geometry. This
+does not establish the pending BuildingPartPublisher production cutover. Formal
+stage exits remain **1/7**.
+
 ### Ordinary-provider baseline and remaining owner families
 
 HEAD audited the ordinary provider before changing its production path.
