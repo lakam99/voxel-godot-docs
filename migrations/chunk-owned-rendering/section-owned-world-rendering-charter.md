@@ -8746,3 +8746,38 @@ The next stage should derive a real glass face-group descriptor from admitted
 mesh geometry and a distinct camera revision while preserving the window's
 deterministic source identity and the old visible representation until the
 replacement is accepted.
+
+### 2026-10-07 HEAD checkpoint — translucent glass and full-owner follow-up
+
+The projecting-bay glass path now derives a camera-sorted translucent mesh
+from the admitted window transform artifact and binds its POV revision to the
+section candidate. A focused headed service gate passed 14/14 checks for two
+owner sections, native frame acknowledgement, stale-POV rejection, malformed
+face-descriptor rejection, and old-visual retirement only after both receipts.
+Report: `artifacts/citadel-runtime-integration/citadel-glass-section-r12/report.json`.
+This is isolated-window renderer evidence, not a mixed-world stage exit.
+
+The larger `atlas-1492` Citadel gate r10 reached a complete census but its
+fixture had disabled Main's frame loop without supplying the coordinator's
+live-camera refresh. After the fixture called the same refresh used by Main,
+r11 advanced through all 1,532 selected publication groups and reached the
+full owner-section census. It then reported a distinct missing producer:
+`urban_market_plaza` in section `(202, 1, -340)` had no committed transform
+artifact roster. The `ground_patch` publisher creates a direct MeshInstance
+outside the static batch artifact path. That source must enter the same
+revisioned section manifest while retaining one old visible presenter until
+native acceptance. Both r10 and r11 exited 1 with clean, unforced zero-member
+owned-process shutdown. Reports:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-glass-r10/report.json`
+and
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-glass-r11/report.json`.
+
+A bounded completed-work cache now retains the glass source's canonical
+transformed arrays and at most two POV-class sorted mesh variants. Its focused
+gate passed 17/17 checks with clean shutdown. Same-POV reuse took 17 µs and
+new-POV resort 358 µs, but cold ArrayMesh materialization still took 11.633 ms
+of a 16.265 ms full service preparation. Cold main-thread materialization
+remains a smooth-streaming blocker; moving only the 282 µs canonical math to
+a worker would not resolve the measured hitch. Report:
+`artifacts/citadel-runtime-integration/citadel-glass-section-cache-r1/report.json`.
+The seven-stage migration remains **1/7 stage exits complete**.
