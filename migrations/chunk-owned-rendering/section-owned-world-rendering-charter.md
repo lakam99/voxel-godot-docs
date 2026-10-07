@@ -2,6 +2,82 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+**Real Main comparison: preparation remains blocked by source-capture breadth.**
+`node tools/visible-world/run-main-section-cohabitation-gate.mjs -OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-retained-preparation-20261007-r1 -Seed ecology-main-retirement-stage5 -TimeoutSeconds 960 -StartupWaitSeconds 300`
+failed `main_startup_ready`: normal exit 1, cleanup passed without force,
+authoritative zero and no owned members. HEAD inspected `he/s/04.png`: the
+loading screen is still at 75%; no playable scene was accepted. This focused
+real-Main fixture skips the tutorial and does not prove ordinary menu flow.
+At the final diagnostic, native compile/install counts remain zero, 31 of 64
+source captures are ready and 33 remain pending. Four retained section
+preparations have completed zero units. All pending capture sessions are in
+`underground_props`, after the five earlier families have finished; this is
+active source scanning, not evidence that the scheduler stopped running.
+
+The next design gate is bounded target-section preparation. Reinspect Minecraft
+26.2 `RenderSectionRegion`, `SectionCompiler.compile` and dispatcher ownership:
+bounded neighbouring inputs feed one target section's complete compilation.
+Map the existing per-family/band sealing and revision contracts before changing
+our dependency closure. A surface section must not require unrelated deep
+underground generation merely because it shares a horizontal source chunk.
+Conversely, partial scans must never be relabelled complete or empty. Preserve
+the deterministic producer, capture immutable admitted inputs, explicitly seal
+the relevant spatial/family coverage, and retain missing dependencies for retry.
+Prove unchanged source results and complete target membership before repeating
+this same Main gate; increasing its timeout or hiding underground contributors
+does not meet this design gate. This diagnosis leaves formal exits at **1/7**.
+
+**Approved implementation boundary:** the adapter already computes certified
+`sourceChunkKeysByFamily`, but unions those keys and then requests every family
+for every chunk in that union. The replacement must retain the family-by-source
+dependency relation through capture admission, preparation, deduplication,
+subscribers, cancellation and final section coverage. The ecology lead owns
+`EcologySectionValueAdapter.gd` and, only where the current API requires it,
+the capture seam in `MainPlaytestTools.gd`, `EcologyProducerCatalogContext.gd`
+and `EcologyWorldSupportIndex.gd`. Preserve dirty baselines; HEAD owns promotion
+and acceptance. The native attachment and tree witness leads own separate files.
+
+Exit evidence for this implementation boundary:
+
+- Captured family/source pairs exactly match the certificate's closure;
+  unrelated families do not hold a ready pair pending.
+- Underground work remains mandatory wherever its certified closure intersects
+  the target. Do not invent an above-ground exclusion or call missing data empty.
+- Final section membership remains incomplete until every required current
+  family receipt has settled, including authoritative empty receipts.
+- Shared jobs bind source incarnation and semantic revision, preserve urgency
+  and retained consumers, and invalidate correctly on edits or unload.
+- Deterministic output and ownership match existing production authorities.
+- After focused contracts, the unchanged-seed Main gate must reach actual native
+  candidate installation and acknowledgement within its existing test budget.
+
+**Full31 r3: producer admission fixed; old tree witness is now the failing boundary.**
+`node tools/visible-world/run-citadel-nonempty-section-receipt.mjs -OutputDirectory artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-compound-attachments-20261007-r3`
+passed 28/30 checks, then failed `tree_visual_missing_node` before section
+installation. Exit 1, cleanup passed without force, authoritative zero and no
+owned members; 80 launch hashes unchanged and stderr empty. This remains a failed
+integration gate. The tree dimensions/admission failure did not recur.
+
+`BuildingScenePublicationJob` requires a `GeneratedTreeVisual` child in its tree
+visual, physical-group witness and receipt validation paths. The real queue can
+publish an impostor into `ChunkStaticRenderBackend` and legitimately call
+`commit_published_visual` with no per-tree visual child. Fix the complete consumer
+contract: shared exact-body/source/revision/installation evidence from the actual
+publisher, reused by the scene job and visual consumers. A node name, metadata
+state, horizon placeholder or arbitrary visible child cannot stand in for the
+required installed representation. Preserve physical/source preparation as a
+separate fact from section draw acknowledgement so the new section pipeline does
+not wait recursively for its own visual completion. No fake child, forced LOD,
+tree omission or repeated unchanged integrated run is permitted as a repair.
+
+HEAD review also rejected the first isolated motion draft for promotion: it
+requires all section provider ACKs before inspecting supports, rejects any dirty
+section even when an unchanged physical owner has a valid old representation,
+and scans render support ranges without a physical-source index. The rework must
+capture exact physical support in the existing provider/roster authority and
+maintain bounded indexes outside physics, with retryable retained demand. These
+draft findings do not describe a production regression; no draft was promoted.
+
 **Full31 r2 exposed an underbounded tree admission certificate.** It progressed
 to 990/1501 prepared groups before `tree_request_outside_profile_envelope`.
 The owned watchdog was stopped promptly: overall 126, forced cleanup and cleanup
