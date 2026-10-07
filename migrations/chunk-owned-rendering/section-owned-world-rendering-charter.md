@@ -6612,6 +6612,69 @@ inputs; `RenderSectionRegion` selects context and `SectionCompiler.Results`
 feeds one section installation lifecycle. This cutover applies that separation
 of source preparation from per-section compilation without copying its mesher.
 
+### 2026-10-07 HEAD evidence — section-band owner cutover
+
+The owner preparation, adapter and index changes are implemented but not yet
+accepted as a complete cutover. Actual Godot focused results:
+
+- `ecology-producer-catalog-context-band-slices-20261007-r2`: 70/70, including
+  exact slice reuse across consumers/sections, authoritative empty and nonempty
+  output parity, copied/stale/foreign rejection, eviction and replay. Cleanup
+  passed with zero owned members and no forced termination.
+- `ecology-world-support-index-band-slices-20261007-r2`: 136/136. Earlier r1
+  stopped at the adapter fixture's old override signature; no index assertions
+  ran in that attempt.
+- `ecology-tree-handoff-diagnostic-band-slices-20261007-r3`: six census calls
+  took 25.732 seconds, max 7.148 seconds, still pending. Newly added reporting
+  read fixture counters after freeing their owner; the detailed report was
+  lost. The watchdog proved zero members but forced cleanup failed acceptance.
+- `ecology-tree-handoff-diagnostic-band-slices-20261007-r4`: report preserved
+  after copying counters before free, stderr empty, clean exit/zero members.
+  **Diagnostic failed** despite runner exit 0: six census calls over 26.298
+  seconds still missed the unchanged 25-second handoff bound. Max call was
+  7.546 seconds; its registration phase was 5.425 seconds, lookup 1.518 seconds,
+  conversion 0.566 seconds and closure 0.036 seconds. Owner preparation totals
+  across the run were only 0.155 seconds validation, 0.027 seconds source digest,
+  0.101 seconds projection/sealing; 37 first validations and 128 slice reuses.
+  This falsifies owner preparation as the dominant remaining cost. There were
+  72 source requests, 40 ready and 32 pending, and 204 exact slice resolutions.
+
+All reports above live under `artifacts/citadel-runtime-integration/` with the
+named directory and `report.json` where produced; launch records preserve exact
+dirty source and DLL identity. These are focused/synthetic source-owner and
+compiler-handoff evidence, not real Main installation or performance acceptance.
+
+HEAD corrected a misleading queue interpretation: the target compiler's
+`startedElapsedUsec=3574` is its age at the final report, not a startup offset.
+It was admitted only in the final expensive census call, before the fixture
+broke at its deadline and before another process frame. Its zero work units do
+not prove queue starvation. `sinceLastAdvanceStartedUsec` uses zero before the
+first advance and cannot be treated as a measured stall duration in this case.
+
+The next bounded diagnostic measures index expectation/currentness callbacks.
+Source review found repeated per-family currentness checks, but also a material
+fixture difference: its callback copies and interns the complete biome catalog
+on every check; real Main uses an active scoped catalog artifact and checks
+compact source/terrain/removal revisions. Separate that synthetic cost before
+changing production or claiming a runtime speedup. Preserve negative currentness
+assertions when migrating any fixture scope. The 25-second assertion and real
+compiler output requirements remain intact; the next long Main run follows
+the focused handoff and provider acknowledgement repair passing.
+
+The r5 diagnostic confirmed 110 expectation/currentness calls taking 1.541
+seconds, of which 1.531 seconds was the fixture local-currentness callback;
+publication resolution and owner receipt checks took only milliseconds. The
+fixture still stopped after 40/72 captures. This warrants fixing fixture parity
+before another production optimization. Approved fixture-only change: at the
+outer no-yield catalog scope, capture/intern the catalog once and share its
+exact immutable alias through nested scopes, matching Main. Rebuild compact
+per-source inputs and check terrain/structure/removal/family identity each time;
+do not reuse the first source chunk's compact inputs for other chunks. A new
+outer scope must detect nested profile mutation. Outside-scope currentness must
+open and close its own scope. Preserve all substantive negative assertions and
+add scope-reuse/mutation proof. No production fast path or larger deadline is
+part of this fixture correction.
+
 ### 2026-10-07 HEAD verification charter — provider acknowledgement failure
 
 Independent source review found a concrete settlement gap before the next live
@@ -6648,6 +6711,16 @@ real provider settlement. No stage exit is granted for this slice. Minecraft's
 dispatcher upload-before-swap lifecycle guides the separation of compilation,
 installation and accepted publication; our provider acknowledgements require
 their own explicit contract beyond Minecraft's block mesher.
+
+The focused red baseline reached the new assertion in
+`visible-section-demand-driver-ack-settlement-red-r3`: after provider failure,
+the coordinator reported idle, zero pending acknowledgements and no retained
+settlement, with only one provider callback and one native-session advance.
+The log reproduces the predicted false settlement. An older fluid fixture also
+failed independently (`terrain_section_revision_capture_pending`); keep that
+separate from this ACK defect. The owned runner stopped on assertion errors and
+proved zero members; forced cleanup is not a cleanup pass. The repair and
+positive receipt-bound proof remain unverified at this checkpoint.
 
 ### 2026-10-07 HEAD checkpoint — Citadel source identity boundary
 
