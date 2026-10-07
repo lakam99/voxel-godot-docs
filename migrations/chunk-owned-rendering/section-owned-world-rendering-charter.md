@@ -91,6 +91,19 @@ coordinator's existing support-lease policy. Change `CitadelPublicationPlan.gd`
 only if a compiled-bounds-versus-indexed-bounds contract demonstrates a producer
 coverage mismatch. Do not introduce a parallel Citadel lease authority.
 
+The ACK lane's full existing demand-driver suite subsequently passed 59/59
+checks (`visible-section-demand-driver-full-r1`), with normal parse/functional
+exit 0, zero owned processes and all 27 recorded source hashes unchanged.
+Its frozen coordinator hash is
+`5e8b56ab9a6425d14d1e0e4adf4b2dc37e24798555b191f14aefae6df65222c8`.
+ROOT transfers the coordinator support-lease region to the building lead;
+preserve the ACK lifecycle and proof API. The scope also includes
+`ChunkStaticRenderSectionSnapshot.gd`'s existing support-range validator to
+admit the same certified static-mesh ownership policy while retaining all
+identity, bounds, revision and owner checks. Prefer one section-independent
+member/tombstone authority revision with section-scoped coverage and removal
+records; do not change the roster's identity/removal map contract implicitly.
+
 **Proof and exit:** preserve focused red baselines, then prove stable member
 IDs/revisions across two sections; one geometry owner and exact support-only
 and mixed section manifests; publisher/material/transform invalidation;
