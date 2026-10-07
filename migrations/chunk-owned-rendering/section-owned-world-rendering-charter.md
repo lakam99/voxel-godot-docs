@@ -2,6 +2,25 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+The next full ecology run (`ecology-section-value-adapter-retained-preparation-r1`)
+reduced failures from nine to three: changed-owner recapture, uncertified tree
+bounds diagnostics, and unsupported-flower dependency identity. All 54 tree
+handoff checks pass; scheduler failure propagation, bounded cache scanning,
+telemetry and material mutation rejection now pass. Functional exit 1, forced
+cleanup, cleanup failure and authoritative zero remain a failed gate. Preserve
+this report. Source review identifies internal stale-readmission being treated as
+external dependency backoff, and early pending slice returns losing their exact
+diagnostics. Shared wrapper classification/projection must cover every step,
+including raw non-ready legacy/tree registration results; do not convert terminal
+failures into generic pending. Subsequent compile/full verification is required.
+
+The [building producer cutover charter](building-producer-before-visible-cutover-2026-10-07.md)
+now records the complete next publication boundary, distinct ordinary/Citadel
+producers, separate source-prepared and installed proofs, uncovered interactive
+and player-placed contributors, independently updated lights, and the missing
+installed-static-support composition in traversal readiness. Those findings
+prevent blanket source hiding before the actual consumers are migrated.
+
 HEAD's source review isolated a production recovery defect in the nine remaining
 ecology failures: retained failed preparation returns before current source input
 identity is checked; its currentness helper also returns a failed capture before

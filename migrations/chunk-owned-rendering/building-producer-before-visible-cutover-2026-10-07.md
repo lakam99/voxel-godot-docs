@@ -26,6 +26,15 @@ the same publication concern. `BuildingScenePublicationJob.visual_receipt_instal
 currently accepts visible scene witnesses or old per-source packet receipts.
 Hiding geometry alone would leave that readiness dependency unsatisfied.
 
+Ordinary structures use a different producer: `StructureSystem` calls
+`MainChunkTerrain.create_block`, which builds the body and visual children while
+detached, then attaches the body. Stage those visuals before that attachment;
+do not force ordinary structures through the Citadel scene job. Citadel attaches
+bodies earlier and spans deferred sinks, requiring staging at each sink.
+`visual_receipt_installed` is consumed by `GeneratedStructureVisualManifest` and
+`ChunkPropVisualManifest`; it must retain its actual-installation meaning. Add
+source-prepared evidence at preparation consumers, not by redefining this method.
+
 The local Minecraft 26.2 reference was inspected in `RenderSectionRegion`,
 `SectionCompiler` and `SectionRenderDispatcher.checkSectionMesh`: captured inputs
 produce a complete set of render layers; publication waits for their uploads,
@@ -70,6 +79,29 @@ Physical preparation before visible ACK is safe only while the existing
 playable-region/loading gate retains that dependency. Hidden blockers during
 ordinary traversal are a failure. Audit practical lights and originally-hidden
 members explicitly; do not infer their intended state from staged visibility.
+
+Further source tracing identifies three prerequisite gaps before promotion:
+
+- `OrdinaryStructureBlockVisualRecipe` classifies door, chest, furnace, campfire
+  and torch as `separate_dynamic`; the ordinary adapter emits an empty static
+  contribution for them. Their presentation needs real owner-bound contributors
+  before it can be staged. Preserve their independent gameplay behavior.
+- `FireLight3D._process` updates visibility from daylight and LOD. A one-time
+  hidden flag is insufficient. Evaluate a source-owned presentation mount claimed
+  by the existing native transaction, with explicit borrowed ownership; native
+  retirement must not free the source-owned mount or replace lighting authority.
+- Current terrain motion proof checks terrain/chunk collision and reports
+  `supportRequiredForMotion:false`; structures report `structures_physical_only`.
+  Extend the existing readiness composition to relevant installed static support
+  before hiding source presentation. An unchanged valid previous representation
+  can satisfy that dependency; do not expand local movement to an entire town.
+
+Player-placed blocks are also a remaining contributor domain. Placement uses
+`MainInteractionFlow.place_selected_block` and `MainChunkTerrain.create_block`;
+`MainSaveState.snapshot_player_blocks`/`restore_player_blocks` own their durable
+records. Current generated-source registration excludes them. Reuse those
+authorities and shared geometry adaptation; do not mislabel player blocks as
+generated or invent a second placement/save system.
 
 ## Verification and exit
 
