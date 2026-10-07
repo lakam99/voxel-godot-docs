@@ -3,15 +3,21 @@
 **Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
 Current game HEAD is `b81dff1a`: independently verified rendered-viewport and
 owned-process evidence infrastructure. Provider acknowledgement settlement
-passed the full 59-check driver contract before the building changes; rerun it
-against the shared building changes. Building focused contracts pass 9 roster,
-10 assembler, 13 adapter, 62 ordinary-provider and 19 service checks. Native
-boundary-crossing installation, replacement and unload/replay remain open.
-The tree queue now preserves typed compiler payloads: the headed queue check
-produced nonempty geometry with matching completion and owner-payload digests.
-That suite still failed a separate visibility-proxy assertion. The full headed
-ecology handoff now reaches `tree_overlay_artifact_support_set_mismatch` after
-producing 958 instances; candidate installation remains unproven. The earlier
+passes the full 59-check driver regression after the shared building and
+dependency-set changes (`visible-section-demand-driver-building-lifecycle-20261007-r2`).
+Building focused contracts pass 9 roster, 10 assembler, 15 adapter, 62
+ordinary-provider and 19 service checks. Native Citadel and ordinary fixtures
+have exposed the common geometry-owner versus AABB-support retirement
+coupling; the complete-member replacement charter below now owns that repair.
+Native boundary-crossing replacement and unload/replay remain open.
+The tree queue preserves typed compiler payloads. Full ecology r4 verifies
+958 packed instances, matching digests, exact support sets (47/47 and 11/11),
+resource bindings and stale/tampered input rejection. Its three remaining
+fixture checks led to API-wiring corrections and actual ownerless-support
+selection. R5 then exposed the index's source-count versus owner-geometry
+disposition error; that correction is underway. Candidate/native installation
+remains unproven. The queue fixture's separate visibility-proxy assertion also
+remains unresolved. The earlier
 recipe-pending interpretation below is historical and superseded by the
 headless-fixture and typed-array transport diagnoses. Neither lane establishes
 live traversal, save/replay or performance acceptance.
