@@ -1,5 +1,26 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Source-reuse verification checkpoint (2026-10-07)
+
+Game HEAD `831223fb` plus the frozen dirty source-reuse batch reached the full
+focused adapter contract in
+`artifacts/citadel-runtime-integration/ecology-section-value-adapter-tree-source-artifact-cutover-20261007-r2`:
+148/157 checks passed, nine failed. Functional exit 1 was normal; cleanup passed,
+no forcing was used, and authoritative owned membership was zero. This is
+contract/producer evidence, not live gameplay. The preceding direct support-index
+and adapter check-only runs passed after repairing contributor-loop indentation;
+an earlier full attempt stopped on fixture Object/Dictionary API misuse.
+
+Resolve the nine failures as one fixture/contract migration batch before another
+production comparison. Some assumptions still require per-band compilers and
+band-local native counters, whereas the new owner is the shared source artifact.
+Keep geometry/revision equality assertions on that actual source identity and
+keep section-specific completion proofs distinct. Preserve mutation rejection,
+cache-pressure retry, and off-Main disposal/ACK assertions. The pressure fixture
+disables normal queue processing and leaves recipe work pending; its admission
+success alone does not prove projection completion. No formal stage exit or
+successful Main startup is claimed from this checkpoint.
+
 ## Building visual-authority evidence and next boundary (2026-10-07)
 
 **Producer subset committed:** game `fd0fe385`, exactly eleven producer/plan/test
