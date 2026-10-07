@@ -1,5 +1,63 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Next integrated cutover: retained section preparation and compound attachments (2026-10-07)
+
+HEAD decision after the failed source-reuse Main run: complete two independently
+owned boundaries before another integrated run. Preserve the current branch,
+dirty migration baseline, deterministic producers, renderer acknowledgements,
+collision, protected navigation, interactions and save authority. No stage exits.
+
+**Ecology preparation:** the nearest section `(0,1,0)` had four ready source
+publications but no family-band receipts or complete candidate census. Source
+capture and compilation advance independently, while section family preparation
+still depends on repeated provider queries. Replace that polling dependency with
+retained section preparation serviced through the existing bounded ecology lane.
+Extend or replace the existing cohort owner; do not add a second source/census
+authority. Exact world/section/source/family revisions identify the work. Explicit
+states distinguish closure pending, captures pending, family bands pending,
+complete census, stale and failed. Source completion retains/wakes dependent
+sections, including retries under backpressure. Only current complete family
+dispositions may produce a census; absent data never counts as empty. A sealed,
+authoritatively empty closure releases its capture slot. Diagnostics must show
+closure state and the precise dependency; the observed zero-source active cohort
+is a suspected slot leak, not a confirmed cause. Preserve capacity and budgets.
+Coordinator candidate/native receipt ownership remains unchanged. Any additional
+completion notification into the coordinator is HEAD-owned and must not bypass
+its currentness checks. Fix the separately observed immutable-record retirement
+mutation by detaching transferred aliases, with queue-level lifecycle coverage.
+
+Required proof: real retained section demand progresses after worker completion
+without repeated full provider recapture, certified empty and missing closure
+remain distinct, stale completion and capacity retry preserve demand, and real
+queue shutdown drains without immutable mutation. Then the nearest section must
+produce its six current family dispositions, complete census and native candidate
+installation in Main. The focused source-reuse assertions remain required.
+
+**Animated building attachments:** keep each complete compound door visual bundle
+(fixed frame/lever and moving leaf) in one canonical body-anchor section. Other
+intersecting sections declare its swept support. This adapts SectionCompiler's
+block-entity collection by owning block position; it is not a claim Minecraft
+doors use animated pivots. Explicit compound ownership is part of admission,
+partitioning, candidate digest and geometry-owner proof. Ordinary static geometry
+retains its existing center ownership. One section packet then owns the complete
+door root set; do not introduce a cross-section visibility/ACK cycle or gradually
+show slices over a still-visible legacy door. Preserve actual body/pivot authority,
+neutral geometry identity, declared motion envelopes and exact legacy retirement.
+The native rollback must hide every replacement root even when restoration of an
+older missing root fails. Owner destruction and external-root teardown require
+explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
+production coordinator and replay/reassembly policy, not just a direct test call.
+
+Building lead owns isolated producer/shared/native draft and live fixture changes;
+ecology lead owns adapter/queue/compiler/support-index contracts; HEAD owns
+coordinator integration, serialized engine/build runs, final acceptance and docs.
+Review the complete diff and baseline hashes before promotion. Prove producer,
+compound ownership and native rollback/lifetime contracts, then real player-input
+swing/raise visuals, unchanged 31-owner demand, Main installation and traversal/
+performance. No contract, direct-helper pose edit or draft substitutes for those
+live gates. Minecraft RenderRegionCache, SectionCompiler and SectionRenderDispatcher
+are the architectural references; our smooth terrain and gameplay authorities stay.
+
 ## Source-reuse verification checkpoint (2026-10-07)
 
 **Latest focused result:** `ecology-section-value-adapter-tree-source-artifact-cutover-20261007-r7`
