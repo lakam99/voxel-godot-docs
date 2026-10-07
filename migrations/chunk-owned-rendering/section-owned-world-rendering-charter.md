@@ -2,6 +2,40 @@
 
 ## Source-reuse verification checkpoint (2026-10-07)
 
+**Latest focused result:** `ecology-section-value-adapter-tree-source-artifact-cutover-20261007-r7`
+passes 160/160 aggregate and 54/54 handoff checks. HEAD independently verified
+all 52 launch-file hashes, the report and watchdog: normal exit 0, cleanup passed,
+no forced cleanup, authoritative zero members. The original pressure case
+completes 129/129 source projections with a peak cache of 128, including a real
+source recompile after exact slot release; the other 128 entries are explicitly
+synthetic cache/empty-source fixtures. Native source proof binds 958 accepted
+instances to the projected source digest. The source reuse/retirement batch and
+cancelled-recipe admission repair are still working-tree changes. This proves
+producer/contract/candidate handoff, not native candidate installation or gameplay.
+The same-seed real Main comparison under
+`main-section-cohabitation-gate-source-reuse-20261007-r1` failed
+`main_startup_not_ready` at 300,923 ms. All 61 launch source hashes still match.
+The report shows 64/64 captures ready, 28 completed tree source compiles and
+29 cache reuses, but zero native section compiles or installed candidates.
+HEAD inspected the final rendered viewport: the loading screen remains at 75%;
+capture SHA256 `207313fba39f80e9b51ff21f7378dbeda698fddbe411c8cbb30f0bcd374a37f8`,
+run `ff7d7c28a9084e1badeb521b13544904`. No gameplay acceptance or stage exit.
+
+Command: `node tools/visible-world/run-main-section-cohabitation-gate.mjs
+-OutputDirectory artifacts/citadel-runtime-integration/main-section-cohabitation-gate-source-reuse-20261007-r1
+-Seed ecology-main-retirement-stage5 -TimeoutSeconds 960 -StartupWaitSeconds 300`.
+The runner passes `-SkipTutorial`. Functional failure and teardown are distinct:
+shutdown logged an immutable Dictionary `clear` at TreePublicationQueue line
+1281. The run-local stop forced termination (watchdog exit 126, cleanupPassed
+false); authoritative Job Object zero and an empty final membership list prove
+process drainage, not successful cleanup. Diagnose startup ownership separately
+from this newly observed retirement error before repeating the expensive run.
+
+Independent review found no defect in the cancelled-task admission guard, but
+its cancellation fixture is synthetic. It does not prove a retained real band
+survives actual worker drainage and publication-lease transfer. The 129-source
+pressure test proves capacity retry separately. Preserve this coverage gap.
+
 Game HEAD `831223fb` plus the frozen dirty source-reuse batch reached the full
 focused adapter contract in
 `artifacts/citadel-runtime-integration/ecology-section-value-adapter-tree-source-artifact-cutover-20261007-r2`:
@@ -20,6 +54,29 @@ cache-pressure retry, and off-Main disposal/ACK assertions. The pressure fixture
 disables normal queue processing and leaves recipe work pending; its admission
 success alone does not prove projection completion. No formal stage exit or
 successful Main startup is claimed from this checkpoint.
+
+The subsequent r3 report is explicitly rejected despite `passed=true` and a
+normal clean exit: it contained only 103 checks while `realTreeBandHandoff`
+reported `failed/tree_band_revision_input_preflight_failed`. The aggregate
+fixture omitted checks when that helper returned early, and the runner trusted
+the aggregate pass flag. Repair both boundaries to require successful handoff
+and named critical proofs; add an early-failure regression. This is a discovered
+verification defect, not evidence of successful production migration.
+
+The later r5 capacity probe exposes `ecology_tree_recipe_job_missing` after
+real cancellation and readmission. Keep its original requirement: a released
+cache slot must admit and complete the real source compile before the 129-source
+projection succeeds. Do not inject the prior artifact to bypass this lifecycle.
+The owning recipe admission path currently can attach a new consumer to a task
+already marked cancelled; collection can then erase that key. Validate this
+race with a focused check and repair cancellation ownership at admission.
+Cancellation must remain monotonic: retain new demand while the prior task drains,
+or create an explicitly distinct task incarnation whose completion cannot be
+erased by the old task. A missing polled task must not become endless readiness.
+This follows Minecraft's task-owned cancellation flag and fresh-task scheduling,
+adapted to the existing Godot queue. Keep source identities and deterministic
+recipe values unchanged; prove cancellation/readmission and the original capacity
+scenario before accepting the source-reuse cutover.
 
 ## Building visual-authority evidence and next boundary (2026-10-07)
 
@@ -157,6 +214,19 @@ Native teardown must explicitly release externally parented roots as well as
 staged, presented, rolled-back and replaced roots. Minecraft's block-entity
 separation informs this design; its ordinary block-state door meshing is not a
 literal implementation for our animated pivots.
+
+Draft implementation may proceed in ignored, `.gdignore`-protected copies while
+the production ecology comparison stays frozen. Record every copied baseline
+hash; HEAD applies the reviewed patch only after that comparison. The proposed
+Main-only `attachmentBindings` map uses stable attachment keys and weak
+parent/body bindings with instance IDs, publisher epoch and source revision.
+Immutable batches carry the attachment key, canonical neutral transform and
+swept bounds; empty keys preserve ordinary static rendering. The install session
+receives the binding map separately. Native registration binds each packet
+generation to parent/body ObjectIDs and ancestry, computes section-to-neutral-
+parent transforms, and owns the complete root set through commit, frame ACK,
+rollback and teardown. Parent validity must be checked natively as well as by
+the script-side owner. This draft is not a production cutover or accepted result.
 
 Before implementation, review native/GDScript dependency closure and freeze a
 coherent scope. Required proof includes real producer geometry, swing and raise
