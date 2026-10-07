@@ -51,6 +51,18 @@ restoration consults the actual pending presentation/installed receipt, and fina
 ACK settles the existing retirement owner. A pending boolean is not sufficient.
 This avoids a one-frame overlap while waiting for frame acknowledgement; it does
 not establish that every existing static producer already has the same guarantee.
+Review of the isolated 21-file draft found a role-ownership gap before promotion:
+an old-only owner exit withdrew a valid pending replacement and its token, and
+legacy claim lookup omitted the previous side. The revised transaction must
+distinguish previous and replacement ownership. Previous-only exit preserves a
+current replacement/token while marking its fallback unavailable; replacement
+exit must settle cancellation or retain an explicit recoverable failure. Both
+sides' legacy claims remain owned during promotion. A missing fallback is never
+full rollback success. Required negatives include both exits during frame ACK,
+old visual restoration during replacement, and real recapture into a new binding.
+Reject compound anchors paired with legacy center policy, and require matching
+compound policy/anchor across batch, segment and support records. These draft
+review findings have no production/runtime acceptance claim.
 The native rollback must hide every replacement root even when restoration of an
 older missing root fails. Owner destruction and external-root teardown require
 explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
