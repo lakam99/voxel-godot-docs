@@ -2,15 +2,31 @@
 
 **Latest HEAD checkpoint — 2026-10-07:** formal stage exits remain **1/7**.
 Current game HEAD is `b81dff1a`: independently verified rendered-viewport and
-owned-process evidence infrastructure. The publication-owned section-band
-cutover passes 70 owner and 136 index checks, but its real compiler handoff is
-still pending. Fixture catalog-scope parity now passes its added checks; the
-unchanged 25-second handoff bound still expires during active recipe work.
-The reproduced provider-acknowledgement failure now passes its focused repair
-contract, including failed/malformed responses remaining unsettled until an
-explicit success. Its full regression suite and production readiness consumer
-audit remain open. Neither lane establishes live traversal, save/replay or
-performance acceptance. Detailed evidence and remaining boundaries follow.
+owned-process evidence infrastructure. Provider acknowledgement settlement
+passed the full 59-check driver contract before the building changes; rerun it
+against the shared building changes. Building focused contracts pass 9 roster,
+10 assembler, 13 adapter, 62 ordinary-provider and 19 service checks. Native
+boundary-crossing installation, replacement and unload/replay remain open.
+The tree queue now preserves typed compiler payloads: the headed queue check
+produced nonempty geometry with matching completion and owner-payload digests.
+That suite still failed a separate visibility-proxy assertion. The full headed
+ecology handoff now reaches `tree_overlay_artifact_support_set_mismatch` after
+producing 958 instances; candidate installation remains unproven. The earlier
+recipe-pending interpretation below is historical and superseded by the
+headless-fixture and typed-array transport diagnoses. Neither lane establishes
+live traversal, save/replay or performance acceptance.
+
+**Current verification boundary:** review the entire compiler/queue/adapter/index
+member and support transformation together before another full handoff run.
+Use bounded missing/extra support-key diagnostics and preserve the strict
+acceptance assertions. The headed full ecology r2 fixture's two new digest
+assertions used the producer-envelope digest helper rather than the compiler's
+raw Variant-byte digest; correct that test error separately from the real
+support-set rejection. Reports are
+`artifacts/citadel-runtime-integration/tree-publication-queue-headed-contract-20261007-r1/`
+and `ecology-section-value-adapter-renderer-backed-20261007-r2/`.
+Both runs ended with authoritative zero owned processes. These remain focused
+renderer-backed contracts, not ordinary gameplay acceptance.
 
 **2026-10-07 focused checkpoint:**
 
@@ -47,6 +63,17 @@ performance acceptance. Detailed evidence and remaining boundaries follow.
   native receipt validators used by the acknowledgement callbacks themselves.
 
 ## 2026-10-07 charter: tree artifact sealing boundary
+
+**Confirmed support projection repair:** independent source reviews found that
+`tree_support_rows_from_manifest` emits `conservativeSupportSectionKeys`, but
+the adapter's registration filter reads `supportSectionKeys`, a field added
+only later by the index. Consequently the real r2 artifact expected 47 support
+members and the adapter submitted zero. The ecology lead owns correcting this
+existing adapter projection to consume its actual producer field. Preserve
+index exact-set validation; prove nonempty converted support membership,
+missing/extra-member rejection, owner/support candidate assembly and current
+authority handling together in the headed handoff. This is part of the same
+compiler-to-candidate cutover, with no bounds or generation policy change.
 
 The renderer-backed ecology adapter run
 `ecology-section-value-adapter-renderer-backed-20261007-r1` produced a real
