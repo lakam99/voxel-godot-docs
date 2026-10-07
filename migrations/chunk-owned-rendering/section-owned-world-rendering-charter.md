@@ -8700,3 +8700,49 @@ section from bounded context, reject cancelled/stale work, then install the
 complete replacement while keeping the prior section mesh until the swap is
 accepted. Minecraft does not answer our smooth-terrain meshing question; this
 checkpoint applies only the section ownership and replacement lifecycle.
+
+### 2026-10-07 HEAD checkpoint — furnishing, borrowed lights, and section support
+
+The production furnishing producer now shares one visual recipe between the
+existing publisher and section capture. Its source binding includes the scene
+job incarnation and publisher epoch; native completion retires only the old
+visual, leaving the furnishing body, collision, gameplay identity and any
+source-mounted practical light intact. The native borrowed-presentation owner
+now admits an already visible source light, preserves it through a pending
+replacement, and restores its original local visibility after rollback or
+release when the same source incarnation still owns it. The source-matched
+native packet contract passed 165/165 checks, including visible-light rollback
+and release, with clean zero-member shutdown. The focused headed furnishing
+service contract passed 111/111 checks for actual candle/hearth publisher to
+native frame acknowledgement and replay. Reports:
+`artifacts/citadel-runtime-integration/native-chunk-packet-visible-borrowed-r1/report.json`
+and
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-furnishing-r3/report.json`.
+
+The larger seeded Citadel gate initially stopped on incomplete mixed-provider
+membership, then exposed a real furnishing producer gap. With furnishing
+capture present, its r8 report identified a window whose published trim and
+sill reached sections outside its nominal part box. A shared window visual
+recipe now drives both the published boxes and the plan's visual support;
+the exact `atlas-1492` window producer/plan check passed with all seven
+instances indexed and physical bounds unchanged. The r9 Citadel gate then
+reported a complete census, but stopped at translucent projecting-bay glass:
+the transform artifact requests camera-depth sorting and the section adapter
+currently has no face sort descriptor. Reports:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-furnishing-r8/report.json`,
+`artifacts/citadel-runtime-integration/building-transform-artifact-window-r2/report.json`,
+and
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-window-r9/report.json`.
+The r8 and r9 runners exited 1 with normal zero-member cleanup. This is a
+specific missing translucent candidate contract; full Citadel, normal
+traversal, save/reload and performance acceptance remain open. The broader
+native core suite separately passed 703/714 and has 11 cave/natural-terrain/
+source-definition failures outside this borrowed-light change; it is not a
+DLL acceptance result.
+
+Minecraft 26.2 `SectionCompiler` builds a separate translucent layer and
+`SectionRenderDispatcher` resorts its transparency for a changed camera.
+The next stage should derive a real glass face-group descriptor from admitted
+mesh geometry and a distinct camera revision while preserving the window's
+deterministic source identity and the old visible representation until the
+replacement is accepted.
