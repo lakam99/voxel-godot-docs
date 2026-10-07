@@ -76,6 +76,16 @@ avoid tracking its replacement's visibility. Minecraft's retained section mesh
 and task cancellation are the lifecycle reference, adapted to our separate
 animated owners. Producer construction before packet admission remains a separate
 possible overlap window and needs headed evidence before any whole-path claim.
+Final source review held the draft for two additional lifecycle invariants. Every
+pending native withdrawal must preserve exact source/generation/token cancellation
+proof until its session acknowledges settlement, including provider reconciliation
+that happens before session advancement. Use bounded native cancellation receipts
+and admission backpressure rather than deleting a live token or evicting its proof.
+Shutdown/reset must settle that ownership explicitly. Also distinguish reversible
+tree detachment from object destruction: retained suppression must preserve original
+visibility across detach/reentry of the same incarnation. Required regressions place
+provider reconciliation before session advancement after pivot loss and revision
+invalidation, and detach/reenter the actual suppressed owner before final withdrawal.
 The native rollback must hide every replacement root even when restoration of an
 older missing root fails. Owner destruction and external-root teardown require
 explicit proof. Thread Main-only bindings through the actual PacketOwner wrapper,
