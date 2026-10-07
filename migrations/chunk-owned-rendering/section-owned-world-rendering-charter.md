@@ -1,5 +1,51 @@
 # Section-Owned World Rendering: Architecture Charter and Stage Plan
 
+## Building visual-authority evidence and next boundary (2026-10-07)
+
+The frozen batch at game HEAD `4dff1c72` plus the exact dirty-file manifest
+`artifacts/building-visual-authority-baseline-20261007/final-batch-files.json`
+passes the producer contract (36/36), service contract (22/22), and explicitly
+synthetic packet replay (5/5). Reports under `artifacts/citadel-runtime-integration/`:
+`building-transform-artifact-visual-authority-20261007-r3`,
+`citadel-section-geometry-service-visual-authority-20261007-r1`, and
+`static-flush-visual-authority-20261007-r1`. Each terminated normally with clean
+owned-process cleanup, no forced termination, and authoritative zero members.
+These prove the named source identity/completeness/replay contracts, not full
+native building installation or live door behavior. The full Preparation fixture
+remains unrun because its pinned historical input artifacts are absent.
+
+The preserved 31-owner demand includes ten direct-door groups. Keep that demand
+unchanged; its next useful run depends on a complete dynamic presentation
+contract. Current direct-door capture deliberately reports pending.
+
+**Next boundary, design only:** Minecraft SectionCompiler collects block entities
+separately from static material layers, while SectionRenderDispatcher waits for
+all layer uploads before replacement. Adapt that separation for our animated
+doors: preserve the established body, pivot, controller, collision, portal and
+save authorities; let section publication own render attachments and their
+complete roster. Worker inputs remain immutable values. Actual weak parent
+bindings and source/pivot incarnation checks belong on the main thread.
+
+The current native packet owns a single staging root. Supporting attachments
+under live pivots requires a complete root-set lifecycle: stage hidden, validate
+all parents and members, commit together, receipt, rollback, and explicit release
+of roots outside the backend subtree. Transform each captured section-local
+slice into its bound pivot space; legitimate pivot motion must affect visuals
+in the same frame without remeshing. Declare conservative swept support bounds
+(swing arc, or raise translation), not only closed/open endpoint bounds.
+Retirement must hide exact legacy GeometryInstances, never the whole door body:
+hiding that ancestor would also hide its new native children. Restore legacy
+visuals before releasing an accepted replacement. Missing/replaced owners or
+partial attachment upload retain the old publication.
+
+Before implementation, review native/GDScript dependency closure and freeze a
+coherent scope. Required proof includes real producer geometry, swing and raise
+motion through ordinary interaction, unchanged collision/body identities,
+same-frame pivot following, stale-parent rejection, partial failure rollback,
+unload/reentry restoration, and the unchanged 31-owner installation gate.
+No controller or routing edits are part of this design. No formal stage exit
+advances on these focused contracts.
+
 ## Current cutover: shared compiled tree source artifacts (2026-10-07)
 
 **Parallel building scope:** building lead may migrate visual source identity
@@ -20,6 +66,20 @@ source/publisher rejection, noncolliding visuals without packet bindings,
 missing-artifact pending, move/delete/replay and unchanged collision. Serialize
 Godot runs after relevant sources are frozen; retain the full 31-owner native
 gate. This replaces the known coupling without inventing a second source truth.
+
+Review found two required completeness cases. A source with one accepted and
+one rejected transform group must remain incomplete; the surviving groups
+cannot define their own expected roster. BuildingStaticBatchFlush is included
+in the producer-completeness scope. Citadel doors currently use direct live
+visual nodes and the established DoorController pivot, while the plan includes
+them in its visual census. They need an explicit stateful/dynamic rendering
+contract before full building acceptance; missing static artifacts must stay
+pending, never disappear from the manifest. No door controller, portal or NPC
+routing edits are authorized by this rendering task. Minecraft DoorBlock uses
+open/hinge block state for its model, while SectionCompiler separately records
+block entities. Our existing interactive presentations require preserving
+their authority and motion; this batch does not falsely certify them as static
+or claim their migration complete.
 
 Main `main-section-cohabitation-gate-post-owner-closure-20261007-r2` fails its
 300-second startup bound on seed `ecology-main-retirement-stage5`, tutorial
@@ -60,6 +120,36 @@ eviction and retirement use the existing owner/lease lifecycle; do not destroy
 large final aliases synchronously in a gameplay frame or lose waiting demand.
 Native worker compilation remains the geometry backend. A cache never certifies
 installation: native receipts and provider ACK still gate old-visual retirement.
+
+**Locality constraint:** reusing a source must not eagerly compile every tree
+in a conservative source-chunk closure. An admitted empty target band needs no
+geometry job. Only actual intersecting, demanded tree source IDs may cause
+compilation; reuse their full owner/support partition across targets. If the
+existing whole-family job cannot satisfy that demand-driven unit, retain its
+publication/lease owner but share immutable per-tree results instead. Complete
+family census and complete compiled geometry are separate facts: no partially
+compiled family may be declared complete. Review work amplification against
+the old selected-band source count before accepting this design.
+
+The chosen reusable unit is one admitted tree producer record. The existing
+queue remains the execution/lease owner, with record-keyed shared jobs and thin
+band consumers. Band projection proof migrates to exact per-source immutable
+buffer slices where necessary; it must not concatenate/copy every source buffer
+merely to certify an overlay. The index checks complete member/range coverage
+and source identity over these slices; the final partitioner/native renderer
+performs compatible render-batch merging. Version changed proof shapes and
+migrate their production consumers and substantive tests together. Production
+coordinator requests one section at a time; aggregate roster queries retain
+their complete-or-pending contract rather than returning disguised partial data.
+
+Capacity proof must include a band with more distinct demanded trees than the
+shared cache limit. Once a record is ready, the band takes ownership of its
+immutable artifact/proof and detaches its cache consumer, making that cache
+entry evictable without losing the band's inputs. Another band's attached
+consumer must remain valid. Index/publication leases are separate; accepted
+proofs survive cache eviction, and cancellation/retirement must transfer large
+payload aliases through the existing retirement owner rather than causing a
+main-thread destruction spike. Test these cases without increasing the cap.
 
 **Stage and ownership:** ecology lead maps and implements compiler/queue/artifact
 and adapter/index cutover as one coherent batch; HEAD coordinates native scope
