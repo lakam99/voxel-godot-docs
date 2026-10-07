@@ -44,6 +44,91 @@ regression passes. The broad building job contract also remains red and is
 under separate diagnostics. No full-world, traversal, save/reload or runtime
 performance acceptance is claimed from these focused fixtures.
 
+The later headed Citadel receipt attempts found two distinct source issues.
+At `citadel-nonempty-section-receipt-tree-ecology-20261007-r3`, a roof deck's
+committed masonry extended 8.6 cm beyond its nominal plan support. The plan
+now indexes a deterministic conservative **visual** support bound from the
+same masonry descriptor dimensions, while collision/navigation keep their
+nominal physical bound. The actual atlas-1492 producer check passes **70/70**
+at `building-transform-artifact-masonry-support-atlas1492-r2`, and the shared
+section service passes **86/86** at
+`citadel-section-geometry-service-masonry-support-atlas1492-r1`.
+
+The `r4` headed receipt reached **28/31**. Its floor discrepancy is the
+converse: conservative support includes section `(198,1,-342)`, while all 31
+committed floor instances belong to `(199,1,-342)`. The completed source owner
+roster proves an empty projection in the former section. The legacy-visual
+gate now uses that validated actual owner roster to distinguish a legitimate
+empty projection from a missing visible instance. The other `r4` dependency
+is a far tree that has a valid native three-instance impostor but no section
+compile: the compiler deliberately rejects the impostor LOD, so section
+readiness remains pending. The next production cutover compiles the same
+immutable low-detail impostor into the section candidate and retains the old
+native slot until a current section receipt acknowledges replacement. This
+follows the section-layer versus separate gameplay-entity boundary inspected
+in Minecraft 26.2 `SectionCompiler` and `SectionRenderDispatcher`; it does not
+reuse Minecraft's block mesher for smooth voxel terrain. Formal stage exits
+remain **1/7** until real installation, visual/traversal and performance
+evidence passes.
+
+### Furnishing producer cutover after mixed Citadel capture (2026-10-07)
+
+The actual headed Citadel receipt at
+`citadel-nonempty-section-receipt-tree-ecology-20261007-r7` passed the floor
+and far-tree source checks but stopped at owner section `(199,1,-339)` with
+`citadel_transform_member_kind_invalid`. Its report passed **29/31** checks;
+the two red rows are source capture and the downstream lifecycle act that
+could not start. The watchdog exited normally with clean shutdown and
+zero owned processes. The source is a genuine `furnishing:` plan member:
+`BuildingSpatialDependencies` records furnishings in the same spatial
+description, `CitadelPublicationPlan` indexes them, and the service rejects
+them before source capture. Filtering them out would leave a visible static
+contributor outside the candidate and violate complete section readiness.
+
+**Stage entry and authority.** Work continues on game branch
+`codex/chunk-owned-world-rendering-migration` at base `831223fb`, with
+uncommitted migration work and unrelated import churn preserved. The prior
+roof/floor/tree fixes and the two pre-existing queue proxy failures are
+baseline context; this furnishing failure is first observed in `r7` after
+those dependencies advanced. `FurnishingPart` and the frozen furnishing plan
+own semantic identity, pose, recipe and durable records. `FurnishingPublisher`
+currently produces a `StaticBody3D`, occupied-size collision and child visual
+pieces; `BuildingScenePublicationJob` owns the scene/epoch lifecycle. The
+section candidate must consume the same deterministic primitive recipe and
+mesh/material identities, not a second authored furnishing generator.
+
+**Complete candidate and consumers.** Each furnishing source enters the
+shared section manifest with source ID, source/producer revision, body owner,
+full geometry ownership roster, actual visual support, render layer/material
+and collision-independent presentation members. Static primitives become
+section geometry. Real candle/hearth lights use the existing borrowed-light
+transaction; any dynamic visual must be separately classified and receipted.
+The furnishing body, collision, navigation occupancy, semantic record,
+interaction and save authority remain live and independent. Visual support
+must include the actual primitive transforms and light range; physical/nav
+bounds remain tied to the furnishing's occupied volume. No NPC/mob simulation
+is moved into the section renderer.
+
+**Publication transaction.** A frozen source record enters the existing
+candidate preparation queue. Before and after asynchronous work, compare
+world/site/scene epoch, exact part/body incarnation, source revision, recipe
+and resource digest. A stale result remains retryable or is rejected. The
+legacy visual children remain visible until every owner section has current
+native install and frame ACK; only then may the exact old visual subtree be
+retired. The body/collider/semantic record and separately receipted light
+remain. Unload, replay, replacement and save/reload must reconstruct from
+the deterministic furnishing source plus durable deltas, without treating an
+old receipt as current for a replacement owner.
+
+**Verified exits.** First prove one actual publisher furnishing source yields
+matching geometry/support and a complete candidate; then prove current
+renderer installation/ACK with old visual retained until replacement and body
+collision still live. Cover lit furnishing, boundary crossing, stale
+owner/epoch, unload/replay and saved state. Only after these focused gates
+pass rerun the headed 31-building receipt, inspect the viewport and traversal,
+then measure sprint/runtime frame cost. Passing a source contract alone is not
+the stage exit. Formal migration exits remain **1/7**.
+
 ### Dual-revision native installation evidence
 
 The geometry adapter keeps raw producer revision on each contributor and on
