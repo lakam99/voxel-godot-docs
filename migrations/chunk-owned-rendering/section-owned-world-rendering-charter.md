@@ -2,6 +2,36 @@
 
 ## Integrated replacement protocol verification (2026-10-07)
 
+### Ordinary-provider baseline and remaining owner families
+
+HEAD audited the ordinary provider before changing its production path.
+`OrdinaryStructureBlockVisualRecipe` still excludes glass from supported recipes
+and classifies chest/furnace/campfire/torch/door as separate dynamic owners;
+`OrdinaryStructureSectionGeometryAdapter` explicitly returns pending for these
+families. Those historical slice boundaries do not establish full migration
+coverage. Preserve gameplay/portal/light authorities while adding section-owned
+presentation membership; glass additionally needs actual translucent mesh/sort
+inputs bound to section generation and current POV. Reuse the established
+terrain/native translucent contract after verifying its coordinate assumptions.
+
+The baseline command is
+`node tools/visible-world/run-ordinary-static-section-provider-contract.mjs -OutputDirectory artifacts/citadel-runtime-integration/ordinary-static-section-provider-presentation-baseline-20261007-r2`.
+It passes **42/62** assertions, exits 1 normally, has empty stderr, cleanup passed
+and authoritative zero processes. The preceding r1 failed because its synthetic
+FixtureStructure omitted `generated_visual_block_is_removed`; the fixture now
+implements that query against its existing removal table, matching the real
+StructureSystem method. r1 required forced cleanup and is not a cleanup pass.
+No ordinary production behavior was changed. The runner now hashes the shared
+presentation helper in its source inventory.
+
+Remaining failures involve owner replacement, complete support/geometry receipt
+closure, retirement, release/replay and tombstones. The fixture has no call to
+`bind_geometry_completion_owner`, while production completion queries that weak
+owner. Classify the failures as unresolved fixture/production integration until
+exact receipt and geometry-owner semantics are compared; do not weaken checks
+or add production fallbacks for a synthetic fixture. HEAD owns this ordinary
+provider follow-up, separately from the ongoing Citadel/tree and ecology drafts.
+
 ### Live presentation producer connection gate
 
 Independent read-only review found no concrete integrity defect in the current
