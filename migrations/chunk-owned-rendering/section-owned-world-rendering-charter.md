@@ -8832,7 +8832,21 @@ passed 20/62 checks. An earlier green r3 run had different source hashes, so
 it does not establish that r1's failure is caused by the current source or
 prove parity. Report:
 `artifacts/citadel-runtime-integration/ordinary-static-section-provider-reconcile-r1/report.json`.
-The r17 integrated gate is underway. No stage exit is claimed; formal progress
+The subsequent r17 integrated result is recorded below. No stage exit is
+claimed; formal progress remains **1/7 stage exits complete**.
+
+### 2026-10-07 HEAD checkpoint — r17 material binding and upload cost
+
+The headed `atlas-1492` r17 report passed 33/35 checks and failed the native
+owner closure and complete lifecycle checks. The run advanced beyond the
+prior mesh-binding no-block point, then encountered a material-binding
+conflict; only 3/31 native receipts were observed. The worst frame was 34.22 s,
+with candidate advance peaking at 20.56 s and support reconciliation at
+13.08 s. The functional runner exited 1; the watchdog reported clean cleanup
+and authoritative zero owned processes. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-direct-mesh-r17/report.json`
+with watchdog evidence in the same directory. Material binding and cache
+changes are underway. No stage exit is claimed; formal migration progress
 remains **1/7 stage exits complete**.
 
 ### Cold translucent surface upload plan — 2026-10-07
