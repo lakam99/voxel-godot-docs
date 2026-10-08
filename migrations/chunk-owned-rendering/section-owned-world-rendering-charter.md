@@ -9218,3 +9218,49 @@ long headed run, inspect why owner proof makes 279 retries without a ready
 result and why several visual-scope jobs remain pending; add bounded progress
 telemetry or a falsifiable cursor contract as needed. Formal progress remains
 **1/7**.
+
+**2026-10-08 r60 live ACK result and resumable closure correction:** r60 used
+the source-scoped invalidation and bounded progress telemetry, but still failed
+the 1,400-second headed gate. It committed 9 sections and completed 11 native
+compiles; all 9 provider ACKs remained pending. The final 678-member building
+owner scan was at cursor 194 after 6 resets (dependency revision 6, membership
+revision 4). This confirms that same-source candidate installs and visible
+membership changes were discarding the whole owner-member scan. The fixture
+had 2 visible demands pending and no accepted ACK. No final viewport was
+captured, so this does not prove final visuals or traversal. The owned watchdog
+timed out (`overallExitCode=125`, `cleanupPassed=false`) after forced cleanup,
+and proved zero remaining job members. Evidence is in the game repo at
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r60/`.
+
+The coordinator now separates immutable owner input progress from mutable
+section closure. A candidate or visible-membership change retains scanned
+current/prior members, but discards captured section candidates, receipts and
+installed-member comparison state; the section closure is rebuilt against the
+new visible-section snapshot. Exact candidate and receipt object identity plus
+native receipt currentness are still rechecked before a ready proof. Roster
+members and prior members validate under the cursor. The existing public
+roster digest remains byte-for-byte unchanged; the coordinator treats the
+read-only producer-sealed digest as an opaque identity token, validates each
+member as it consumes it, and binds continuation to the exact current roster
+object and captured prior-roster objects. Prior wrapper arrays may be fresh and
+mutable, but their sealed entries must match the captured identities. The
+separate 64-entry prior-identity admission bound is exposed in work telemetry;
+the worst measured fixture case was 66 total work units (64 prior identities,
+one sealed digest admission, one cursor item) in 305 microseconds. The ACK proof
+time allowance is now 1 millisecond; normal cursor work remains capped at two
+items per provider invocation.
+
+The focused Citadel service contract passes **142/142** in independent r3 at
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-independent-20261008-r3/`
+with exit 0, cleanup passed and authoritative zero-member evidence. It covers
+same-source replacement and section addition, unrelated mutation, exact stale
+receipt rejection and replacement acceptance, changed owner/prior digest,
+mutable fresh prior-array wrappers, same-token prior substitution rejection,
+malformed prior/current rows, and large current and prior rosters. Each 8,192
+member case advanced 15 entries across eight slices; the measured maxima were
+two cursor work items and 91 microseconds for the current roster, and three
+total work items and 84 microseconds for one prior roster. The 64-prior case
+was separately measured as above. This is focused service/native-renderer
+evidence, not the 31-owner headed world gate. The next action is to rerun that
+headed gate with frozen source identity and inspect whether ACKs settle and the
+viewport is fully captured. Formal migration progress remains **1/7**.
