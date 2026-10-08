@@ -9199,3 +9199,22 @@ visual-inventory preflight remain synchronous, and the boolean
 because it has no production callers or resumable source-freshness token. The
 headed 31-owner renderer/traversal gate and representative runtime performance
 observation remain unpassed. Formal migration progress remains **1/7**.
+
+The first headed run after this cursor integration, r59, failed its 1,400-second
+outer watchdog bound. It reached the real renderer and committed 9 sections
+after 11 native compiles, but 9 provider acknowledgements remained pending and
+none acknowledged. The oldest owner-proof retry reached 279 attempts; other
+sections were still waiting for legacy visual section-scope preparation. The
+fixture ended at 355 frames with 10 owner dependencies pending. Its final
+snapshot had no viewport beyond the early loading capture, so this run proves
+neither final visual quality nor traversal. The owned watchdog forced cleanup
+and proved zero job members (`cleanupPassed=false`); the runner rejected the
+timed-out exit as expected. Exact evidence is in the game repo at
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r59/`
+(`progress.txt`, `watchdog.json`, and `stdout.log`). This is a failed live gate,
+not a completion result. The cursor path improved the prior 7-section plateau
+to 9, but did not settle a provider ACK within the run bound. Before another
+long headed run, inspect why owner proof makes 279 retries without a ready
+result and why several visual-scope jobs remain pending; add bounded progress
+telemetry or a falsifiable cursor contract as needed. Formal progress remains
+**1/7**.
