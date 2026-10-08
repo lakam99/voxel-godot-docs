@@ -2576,6 +2576,30 @@ and live traversal remain separate gates.
 
 ## Staged migration and gates
 
+### Execution order — Stages 1 and 2 first (2026-10-08)
+
+Stages 1 and 2 are the migration's active priority and shared foundation.
+Close Stage 1's complete, immutable section candidate and contributor census
+contract first. Then close Stage 2's production section slot, native install,
+per-section receipt and ACK, stale-work rejection, and old-slot retention
+lifecycle. Each exit requires its full evidence in the table below, reviewed
+against the current source and build; a focused contract or one installed
+candidate does not close either stage.
+
+Do not begin or resume Stage 3, 4, 5, or 6 implementation, cutover, or
+acceptance work until **both** Stage 1 and Stage 2 have passed their exit gates
+and HEAD records those decisions here. Preserve the partial work and evidence
+already produced for later stages. Stage 2 may use an existing contributor as
+a bounded integration fixture to prove the shared renderer contract, without
+advancing that contributor's later-stage cutover.
+
+Parallel agents may work on independent Stage 1–2 tasks and independent
+verification with non-overlapping mutable scopes. After both exits, proceed
+through terrain (Stage 3), both building paths (Stage 4), ecology and static
+props (Stage 5), and whole-game readiness, traversal, and performance (Stage
+6). Complete each stage's real renderer and gameplay evidence before starting
+the next stage's implementation.
+
 | Stage | Work and gate | Exit evidence |
 |---|---|---|
 | 0. Source map and baseline — **complete** | Trace all producer paths, authorities, revisions, ownership, unload/replay and saves; record current packet behavior and known missing terrain receipt. | This charter, focused current packet/replay reports and independent audits. Baselines prove only their named contracts. |
