@@ -9017,3 +9017,158 @@ capture, candidate compilation/finalization, and section submission; retain the
 exact-currentness and no-stale-ACK checks while collecting it.
 
 Stage exit remains unearned; formal migration progress is **1/7**.
+
+### 2026-10-08 HEAD checkpoint — section admission must be resumable
+
+The r44/r45 headed receipt runs isolate production admission more clearly. In
+r44, the maximum measured pass was 13.44 s, including 6.98 s candidate
+admission and 5.46 s candidate advance; a single source-ACK attempt reached
+4.37 s. r45 replaced the redundant post-capture geometry recopy with a cheap
+committed-source identity check. The focused section service contract passed
+126 checks, the transform adapter contract passed 19 checks, and project
+compile smoke passed. In r45, measured Citadel contribution callbacks fell
+from r44's 0.67–2.16 s range to 0.36–1.58 s, and source-ACK advance peaked at
+66.7 ms while visual inventory remained pending. The maximum candidate
+admission was still 3.49 s and the total pass 4.91 s, so this is a measured
+reduction, not a smoothness result. The run was stopped at that frame; the
+watchdog proved zero owned processes, but cleanup was forced and gameplay
+acceptance did not complete. Reports and progress are under
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r44/`
+and `.../citadel-nonempty-section-receipt-r45/` in the game repository.
+
+The next implementation stage is a resumable per-section admission job, not a
+larger synchronous time allowance. The job retains an immutable candidate
+identity (world epoch, section, demand/candidate generation, provider-scoped
+source closure and revisions), a deterministic provider/source cursor, and
+private sealed contribution values. It advances between complete source
+captures on separate frames; the coordinator retains and reprioritizes the
+demand. Unrelated providers may advance their census while a slice is pending.
+Before resuming and before submission, it rechecks the exact provider-scoped
+closure, terrain/support demand, provider incarnation and source publication
+identities. Any mismatch cancels that generation and discards its private
+partial values. Final assembly uses the latest full census. It never seals or
+publishes an incomplete manifest. The installed section remains visible until
+the full candidate's required layers, native upload, collision/owner receipts,
+and provider acknowledgements are current; retirement follows the existing
+atomic replacement path. Mobs and NPC simulation stay independent.
+
+This follows the lifecycle in Minecraft 26.2 `SectionRenderDispatcher` and
+`SectionCompiler`: immutable section inputs, cancellable generation-bound work,
+and replacement only after the compiled result is fully uploaded. The game
+keeps its smooth-volume mesher and existing deterministic gameplay authorities.
+The section roster, Citadel producer, and coordinator must share the cursor;
+resuming only the outer scheduler would repeat earlier providers on every
+retry. Preserve large captured aliases in an explicit cancellation/retirement
+owner and drain them on cancellation or world reset.
+
+Stage entry is the passing r26 service and r9 transform-adapter contracts plus
+compile smoke. Stage exit requires: (1) focused demand/cancellation contracts
+prove same-generation resumption and stale-generation rejection; (2) native
+whole-section install and owner lifecycle contracts prove complete manifests,
+all layers/receipts, and old-section retention through replacement; (3) the
+headed nonempty-section run reaches exact 31-owner closure, installs through
+the real renderer, and passes its visual/traversal assertions; and (4) a normal
+runtime performance observation shows no multi-second admission or ACK frame.
+Until all four pass, formal migration progress remains **1/7**.
+
+The r46 run then exposed an overly strict token: the whole provider census can
+change while unrelated providers publish, even though this provider's exact
+source closure remains stable. The job token now follows the Citadel provider's
+source IDs/revisions, authority and coverage revisions, service generation,
+world and candidate generation, and assembles against the latest full census.
+The r47 focused service contract passed 126 checks, the coordinator demand
+contract passed 78, the transform-adapter contract passed 19, and project
+compile smoke passed. The headed `atlas-1492` run proved that the cursor advances
+through changing whole-census revisions: it completed source sets of 182 and
+135 contributors and prepared 12 of 31 owner sections. It then reached the
+fixture's shared 180-second source-capture deadline while section `(202, 1,
+-342)` was at 86 of 163 contributors. The run failed
+`every_measured_owner_has_complete_capturable_section`; it did not reach the
+native whole-section install or owner-closure acknowledgement. A final failure
+viewport was captured. The fixture did not exit after its prerequisite failed,
+so the exact run-local watchdog stop was requested; the watchdog proved zero
+owned processes, but cleanup was forced (`cleanupPassed=false`). Artifacts are
+in `artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r47/`
+in the game repository.
+
+The r49 headed run did not clear the source-closure gate. It recorded 29 cache
+reuses overall and 22 in the active section, but reached only 12/31 owners and
+87/163 sources in `(202, 1, -342)` at the shared 180-second fixture deadline.
+It therefore never reached native installation or owner ACK. The final failure
+viewport was captured at
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r49/he/s/04.png`.
+After capture, the fixture remained in teardown, so the exact run-local stop was
+requested; the Job Object proved zero members, with forced cleanup and
+`cleanupPassed=false`. This is failed gate evidence, not a live-renderer result.
+
+The transform-artifact cache retains a capture for reuse by sections
+intersecting the same source. Cache lookup binds the publisher
+instance, scene-job incarnation, part, member binding and source transform. Reuse
+requires the committed source identity to match and the producer's receipt to
+confirm the exact group roster, live mesh-content hashes, and material
+fingerprints; presentation mounts stay on their existing full-currentness
+path. The cache is bounded to 2,048 entries and clears on world reset and
+shutdown. Each section still builds and validates its own manifest and
+partition. The service contract passed 128 checks, including a same-source replay
+that records one cache hit, and project compile smoke passed. r49 then confirmed
+cross-section reuse, but the aggregate result did not improve the gate, so the
+cache alone is not a sufficient throughput fix. A read-only code audit found
+that Godot 4.6 `ArrayMesh.clear_surfaces()` mutates content without emitting
+`Resource.changed`; therefore a changed-signal-only watcher could accept stale
+geometry. The receipt now recomputes each unique mesh fingerprint on cache use.
+The service contract passed 130 checks, including direct proof that a silent
+`clear_surfaces()` mutation changes a current receipt to stale. Cache lookup,
+cold capture, adapter, and final source revalidation now have separate timings.
+The contribution fixture waits on current readiness rather than converting a
+pending contribution into failure at 180 seconds; the owned runner watchdog
+remains the outer process safety bound and must prove zero members at exit.
+Minecraft's immutable-input reuse remains the reference, with the smooth-volume
+and static-mesh compiler kept game-specific.
+
+The r48 headed invocation was stopped before any result was accepted because a
+source edit changed the runner's recorded identity while it was in flight. Its
+watchdog proved zero owned processes; that run is invalid evidence. r49 launched
+with the current source identity frozen and failed as described above. r50 was
+stopped during early world preparation after the mesh invalidation gap was found;
+the watchdog proved zero owned processes, with forced cleanup, and the run is
+invalid. The first r51-r55 attempts exposed contract-fixture parse/setup issues;
+r56 passed all 130 service checks after those were corrected. Headed r57 reached
+the native renderer: all 31 owner-section contributions passed the fixture's
+source-closure gate, the coordinator compiled eight native candidates, and seven
+section receipts installed. The 240-second owner-install window then ended with
+provider acknowledgements still pending: sampled reasons included missing or
+stale geometry-owner receipts and unavailable static source boundaries. The
+failure viewport shows missing floor fragments under installed walls,
+consistent with those receipts. Teardown hung before it wrote `report.json`; the
+exact-run watchdog proved zero members after forced cleanup. This is partial
+real-renderer evidence and a failed overall gate. The fixture now waits on
+current receipts without an internal install cutoff and writes a failure
+snapshot immediately so teardown cannot erase the diagnostic. The updated
+fixture passed its headless selector smoke. Headed r58 ran for 18 minutes after
+removing the fixture's install cutoff, then was intentionally stopped under its
+owned watchdog with zero processes proven; it installed 7/31 owner sections and
+therefore is not gate evidence. The last closure iteration took 4.10 seconds
+(6.38-second maximum): candidate advancement used 2.35 seconds, including a
+2.35-second provider ACK retry; admission used 0.59 seconds; support reconciliation
+used 0.14 seconds; and full retention checks used 1.01 seconds. Its 151-iteration
+profile shows that waiting longer alone would leave main-thread full-source ACK
+and retention work dominating installation. The next change must make ACK
+validation resumable and retry when owner receipts progress, while keeping the
+old visible representation until full validation succeeds. No migration stage
+exit is claimed; formal progress remains **1/7**.
+
+**2026-10-08 ACK prerequisite — revision-authoritative building roster:**
+`BuildingPartPublisher` now owns a private published-node roster and exposes a
+cached, sealed snapshot with publisher identity, roster revision, root instance
+identity and source-part attribution. Registration, exact removal, clear, and
+root `tree_exiting` invalidate the snapshot and advance its revision. Production
+readers in the scene job, Citadel service and legacy section visual index use the
+owner API; a caller can no longer mutate the publisher through the compatibility
+`published_nodes` view. The focused Citadel service/index contract passes
+133 checks (`citadel-section-geometry-service-r65`) and project compile smoke
+passes. This removes repeated full-roster scans from stable snapshot reads and
+closes untracked public-array mutation. It does not version live transforms or
+bound per-section visual-bound checks, so it is only an ACK prerequisite. The
+next gate still requires measured, resumable per-section inventory/completion
+validation, exact stale-slice rejection, and a live renderer result with old
+visual retention. Formal migration progress remains **1/7**.
