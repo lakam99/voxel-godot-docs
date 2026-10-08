@@ -9173,3 +9173,29 @@ bound per-section visual-bound checks, so it is only an ACK prerequisite. The
 next gate still requires measured, resumable per-section inventory/completion
 validation, exact stale-slice rejection, and a live renderer result with old
 visual retention. Formal migration progress remains **1/7**.
+
+**2026-10-08 resumable native owner proof:** The coordinator now advances
+geometry-owner completion as a retained cursor over sealed producer members,
+prior rosters, visible sections, installed manifests/ranges, exact member
+comparison, and final native receipt rechecks. The cursor checks a roster's
+sealed digest on session creation, resumes by exact roster object identity, and
+rejects stale progress when candidate/receipt publication or stream unload
+changes the publication epoch. Citadel ACK, building visual retirement, tree
+ACK, and tombstone completion use this cursor; each provider ACK attempt shares
+a maximum two-item proof allowance across all its sources, and pending attempts
+retry on later eligible frames. Legacy visuals remain visible until the full
+owner proof and presentation proof return ready. The section index mutation
+audit found its mutation paths paired with publication-epoch changes.
+
+The focused service contract passed 136/136 checks. Its synthetic proof needed
+27 work items across 13 pending calls, with no more than two items and 112
+microseconds in any one call; it also replaced a receipt between slices and
+proved the stale attempt did not complete. Project compile smoke passed with
+the main menu, main scene, and playtest script loaded, and the owned-process
+watchdog proved zero processes. Scoped `git diff --check` passed. This is a
+focused ACK/service subgate, not live gameplay evidence: the full census and
+visual-inventory preflight remain synchronous, and the boolean
+`furnishing_section_visual_installed` helper retains its synchronous proof
+because it has no production callers or resumable source-freshness token. The
+headed 31-owner renderer/traversal gate and representative runtime performance
+observation remain unpassed. Formal migration progress remains **1/7**.
