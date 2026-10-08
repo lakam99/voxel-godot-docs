@@ -8908,3 +8908,88 @@ installed, with 30 visible demands pending and 9,529 retained owner demands.
 Cleanup passed and authoritative zero owned processes was proven. The failure
 remains unresolved; the bounded runner did not reach its visual acceptance
 state. Formal migration progress remains **1/7 stage exits complete**.
+
+### 2026-10-07 HEAD checkpoint — r30-r33 frame handoff gate
+
+The headed `atlas-1492` r30-r32 attempts exposed a gate-ordering problem in the
+fixture: it checked for visible legacy nodes in the same main-thread turn that
+the native backend promoted a complete section candidate, before yielding the
+frame required by that candidate's draw callback. The exact pending presentation
+was not acceptance evidence. The fixture now recognizes only a pending packet
+that matches the active section job's generation and content digest and the
+canonical world/section slot, yields through `frame_post_draw`, then retries the
+normal installation and source-owner checks. Final success still requires
+current receipts for every owner section, provider acknowledgements, and complete
+geometry-owner closure. Minecraft 26.2's `SectionRenderDispatcher` similarly
+swaps a section after every nonempty layer's GPU uploads complete; it does not
+wait for a world-owner-wide acknowledgement.
+
+The r31 and r32 runs still failed during the pre-frame gate check because the
+fixture compared against the last-installed candidate rather than the active
+install job, and then compared the absent candidate `sourceId` field rather
+than the renderer's canonical slot ID. Those failures are fixture evidence, not
+production acceptance. The headed r33 run cleared that assertion and reached
+the bounded owner-closure timeout: 5 receipts were current, 6 visible demands
+remained, and the closure advanced 46 frames in its 240-second window. The
+measured maximum closure pass was 24.36 seconds: candidate admission 8.19 s,
+candidate advancement 13.87 s, support-owner reconciliation 2.75 s, and receipt
+checks 1.19 s. Cleanup passed and the watchdog proved zero owned processes.
+Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r33/report.json`
+with watchdog evidence in the same run directory.
+
+The r30/r32 captures show the tower-floor source split across adjacent sections.
+For the installed neighboring section, all 13 batches and 1,562 instances match
+the packet manifest. The evidence does not establish a renderer truncation; a
+same-camera comparison of the complete settled-cobble source artifact against
+its section contributions remains open. Stage 1 is still partial and formal
+migration progress remains **1/7 stage exits complete**.
+
+### 2026-10-07 HEAD checkpoint — owner receipt hot path and r34
+
+The r33 profile identified repeated full producer capture, section census, and
+roster validation inside each building-owner section query. Section queries now
+use the already admitted immutable roster receipt after checking its live
+publisher, scene binding/job incarnation, source transform, committed visual
+boundary, exact artifact roster reference, mesh resource-watch state, and each
+unique material fingerprint. Sources with practical-light presentation members
+continue through the full currentness capture until their authority has an
+equivalent compact freshness receipt. Full roster capture still occurs during
+admission and at later install/owner safety boundaries. A focused contract also
+found that changing a `ShaderMaterial` uniform did not reliably emit
+`Resource.changed`; the source capture now compares material fingerprints, and
+the fast receipt checks unique material resources so this edit revokes reuse.
+
+The focused Citadel section service contract passed 117 checks, the building
+transform artifact contract passed with resource-replacement/material/mesh
+invalidation checks, and the project compile smoke passed. Reports are in the
+game repository at
+`artifacts/citadel-runtime-integration/citadel-section-geometry-service-r3/report.json`,
+`artifacts/citadel-runtime-integration/building-transform-artifact-r2/report.json`,
+and `artifacts/node-tools/run-project-compile-smoke.json`.
+
+The headed `atlas-1492` r34 gate still failed the exact owner-closure and final
+lifecycle assertions. It ran 55 measured frames: 6 of 31 owners were installed,
+11 sections were visible, 5 visible demands remained pending, and 6 source
+install acknowledgements were pending with no failed or stale acknowledgements.
+The provider repeatedly reported
+`citadel_transform_artifact_scene_not_ready`; the Citadel scene remained at its
+publication boundary with 14 of 3,596 physical groups complete. The headed run
+did not pass gameplay acceptance. Its watchdog cleanup passed and proved zero
+owned processes. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r34/report.json`.
+
+The hot-path telemetry improved: owner authority lookup fell from r33's
+2.584 seconds to 4.707 ms total in r34, and sampled section-slice lookups were
+48–107 microseconds. This did not remove the large worst-pass stall: r34 still
+recorded 8.55 seconds maximum candidate admission, 13.79 seconds candidate
+advance, and 22.29 seconds overall. Accumulated candidate admission and advance
+were 0.92 and 2.78 seconds across the measured run, so those maxima are isolated
+pathological turns; r34 does not attribute them to a single provider callback.
+The current r34 evidence points to two concurrent gaps: the Citadel producer
+has not reached `scene_ready`, and candidate publication/install work is still
+backlogged. The next diagnostic must time each provider callback and candidate
+subphase, then move only immutable value-data preparation to workers while
+keeping Godot scene/resource/render-server calls on their owning thread.
+
+No migration stage exit is claimed; formal progress remains **1/7**.
