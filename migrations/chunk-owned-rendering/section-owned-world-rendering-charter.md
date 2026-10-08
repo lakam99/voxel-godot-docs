@@ -9164,10 +9164,11 @@ identity and source-part attribution. Registration, exact removal, clear, and
 root `tree_exiting` invalidate the snapshot and advance its revision. Production
 readers in the scene job, Citadel service and legacy section visual index use the
 owner API; a caller can no longer mutate the publisher through the compatibility
-`published_nodes` view. The focused Citadel service/index contract passes
-133 checks (`citadel-section-geometry-service-r65`) and project compile smoke
-passes. This removes repeated full-roster scans from stable snapshot reads and
-closes untracked public-array mutation. It does not version live transforms or
+`published_nodes` view. Duplicate root registration is idempotent. Independent
+verification passes 134/134 checks in the focused Citadel service/index contract
+(`citadel-section-geometry-service-r67`) and project compile smoke. This removes
+repeated full-roster scans from stable snapshot reads and closes untracked
+public-array mutation. It does not version live transforms or
 bound per-section visual-bound checks, so it is only an ACK prerequisite. The
 next gate still requires measured, resumable per-section inventory/completion
 validation, exact stale-slice rejection, and a live renderer result with old
