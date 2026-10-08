@@ -8993,3 +8993,27 @@ subphase, then move only immutable value-data preparation to workers while
 keeping Godot scene/resource/render-server calls on their owning thread.
 
 No migration stage exit is claimed; formal progress remains **1/7**.
+
+### 2026-10-07 HEAD checkpoint — r35 repeated live gate
+
+The headed `atlas-1492` rerun included the shader-uniform freshness fix and
+again failed only `root_demands_install_exact_native_owner_closure_and_settle_root_ack`
+and `complete_owner_lifecycle_act_reached`. It ended after 49 measured frames
+with 5 installed section receipts, 6 visible demands pending, and 5 source
+acknowledgements pending; all ACK samples were pending, with none failed or
+stale. The source remained `citadel_transform_artifact_scene_not_ready` while
+the Citadel publication boundary was still incomplete. Watchdog cleanup passed
+and authoritative zero owned processes was proven. Report:
+`artifacts/citadel-runtime-integration/citadel-nonempty-section-receipt-r35/report.json`.
+
+The exact building section lookup remains far below r33's multi-second owner
+recapture cost: r35's authority lookup total was 21.56 ms. The added material
+fingerprints bring sampled slice lookups to roughly 0.5–1.3 ms, still bounded
+per unique material rather than per roster member. Candidate timing remains
+unresolved: maxima were 9.34 s for admission, 18.10 s for advance, and 28.44 s
+overall. These are not yet attributed to one callback. The next bounded
+diagnostic is per-provider and per-subphase timing for `StaticSectionSourceRoster`
+capture, candidate compilation/finalization, and section submission; retain the
+exact-currentness and no-stale-ACK checks while collecting it.
+
+Stage exit remains unearned; formal migration progress is **1/7**.
